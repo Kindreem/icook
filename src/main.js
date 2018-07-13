@@ -4,23 +4,25 @@ import '../static/js/viewport'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import 'iview/dist/styles/iview.css'
-import { Input,Button,Tag,Dropdown,Icon,DropdownMenu,Upload } from 'iview'
+
+import iview from 'iview'
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+import '@/assets/hotcss/hotcss.js'
+import 'iview/dist/styles/iview.css';
 
 
-Vue.component('Input', Input)
-Vue.component('Button', Button)
-Vue.component('Tag', Tag)
-Vue.component('Dropdown', Dropdown)
-Vue.component('Icon', Icon)
-Vue.component('DropdownMenu', DropdownMenu)
-Vue.component('Upload', Upload)
+Vue.use(iview)
+Vue.use(MintUI)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  iview,
   components: { App },
   template: '<App/>'
 })
