@@ -1,0 +1,106 @@
+<template>
+  <div class="all">
+     <div class="top">
+       <router-link to="home" class="left">
+         <p>&lt;湘派</p>
+       </router-link>
+       <router-link to="home" class="right">
+         <p>川派&gt;</p>
+       </router-link>
+     </div>
+     <div class="ban">
+       <div class="b-top">
+         <h1>粤派三段</h1>
+         <p>您已掌握6/18道菜式,获得粤派经验4782/12000</p>
+       </div>
+       <div class="b-bot">
+         <div class="ex"><router-link to="O_recipe"><img src="../../common/img/links/1-017.png" alt=""></router-link><p>恭喜您已桨握：佛跳墙。在本道菜咬基础向债改变N个步骤即可学会粤派菜系两个船新的菜肴。快来看看！</p></div>
+         <div class="step">
+           <router-link to="O_recipe">
+             <img src="../../common/img/links/1-023.png" alt="">
+           </router-link>
+         </div>
+         <router-link to="home" class="b-right">
+            <p>看完整粤派菜肴&gt;</p>
+         </router-link>
+       </div>
+     </div>
+  </div>
+</template>
+
+<style lang="stylus" scoped>
+@import '../../assets/px2rem.styl';
+.all {
+  margin 0px 30px
+  padding-top 98px
+
+}
+.top {
+  font px2rem(24) '微软雅黑'
+  p{
+    color #727171
+  }
+}
+.left {
+  float left
+}
+.right {
+  float right
+}
+.ban {
+  border-radius 20px
+  box-shadow 8px 8px 4px rgba(204, 204, 204, 0.349019607843137)
+  margin-top 72px
+  margin-bottom 8px
+  .b-top {
+  border-top-left-radius 20px
+  border-top-right-radius 20px
+  text-align center
+  background-color rgba(93, 184, 233, 1)
+  color #fff
+  height px2rem(110)
+  padding-top 20px
+  h1 {
+    font px2rem(40) '微软雅黑'
+  }
+  p {
+    font px2rem(20) '微软雅黑'
+  }
+  }
+}
+.b-bot {
+  margin-top 26px
+  .ex {
+    margin 0px 20px
+    a {
+      display inline-block
+
+      margin-right 20px
+      img {
+        width 96px
+        height 96px
+        border-radius 50%
+      }
+    }
+    p {
+      font px2rem(24) '微软雅黑'
+      display inline-block
+      width 78%
+    }
+  }
+  .step {
+    margin-top 20px
+    margin-bottom 40px
+    text-align center
+  }
+}
+.b-right {
+  text-align right
+  p {
+    font px2rem(23) '微软雅黑'
+    color #727171
+    padding-bottom 28px
+  }
+}
+
+</style>
