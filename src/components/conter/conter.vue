@@ -1,5 +1,5 @@
 <template>
-  <div class="conter">  
+  <div class="conter">
       <header class="header">
             <img src="@/assets/images/DR-005.png" @click="backto">
       </header>
@@ -12,8 +12,8 @@
             <p>所属公会</p>
         </div>
         <div class="right">
-            <img src="./2.png" alt="">
-            <img src="./2.png" alt="">
+            <router-link to="conter/show" ><img src="./2.png" alt=""></router-link>
+            <router-link to="conter/show" ><img src="./2.png" alt=""></router-link>
         </div>
       </div>
        <div class="item">
@@ -43,7 +43,7 @@
                    <img src="./pic.png" alt="">
                    <p>蛋炒饭</p>
                </li>
-            
+
            </ul>
        </div>
        <div class="item menu">
@@ -58,7 +58,7 @@
                 <li>
                    <img src="./pic.png" alt="">
                </li>
-            
+
            </ul>
        </div>
        <div class="item menu">
@@ -73,7 +73,7 @@
                 <li>
                    <img src="./pic.png" alt="">
                </li>
-            
+
            </ul>
        </div>
          <div class="item menu">
@@ -88,46 +88,47 @@
                 <li>
                    <img src="./pic.png" alt="">
                </li>
-            
+
            </ul>
        </div>
        <div class="item badge">
            <div class="title"><p>我的徽章</p></div>
            <ul class="badges">
                <li>
-                   <img src="./2.png" alt="">
+                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
                </li>
-            
+
            </ul>
        </div>
         <div class="item badge">
            <div class="title"><p>我的成就</p></div>
            <ul class="badges2">
                <li>
-                   <img src="./2.png" alt="">
+                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
+
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
                </li>
                 <li>
-                   <img src="./2.png" alt="">
+                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
                </li>
-            
+
            </ul>
        </div>
-       
+
   </div>
 </template>
 
@@ -135,7 +136,7 @@
 export default {
   data () {
     return {
-   
+
     }
   },
   methods:{
@@ -250,7 +251,7 @@ export default {
             margin:px2rem(20) px2rem(10);
             img{
              width: px2rem(90);
-             height: px2rem(100);   
+             height: px2rem(100);
              border-radius:px2rem(10);
              overflow: hidden;
             }
@@ -269,7 +270,7 @@ export default {
                 height: px2rem(55);
             }
         }
-    
+
     }
 }
 </style>

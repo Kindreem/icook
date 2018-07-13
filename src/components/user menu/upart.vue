@@ -27,6 +27,7 @@
       position absolute
       top px2rem(-20)
       right px2rem(40)
+      width px2rem(72)
     }
   }
   .bot {

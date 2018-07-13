@@ -8,45 +8,45 @@
             <div class="title"><p>我已获得派系徽章</p></div>
             <ul class="badges">
                 <li>
-                    <img src="./2.png" alt="">
+                     <router-link to="/genre/genre" ><img src="./2.png" alt=""></router-link>
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/genre/genre" ><img src="./2.png" alt=""></router-link>
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/genre/genre" ><img src="./2.png" alt=""></router-link>
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/genre/genre" ><img src="./2.png" alt=""></router-link>
                 </li>
-                
+
             </ul>
        </div>
         <div class="item underway">
             <div class="title"><p>进行中的派系徽章</p></div>
             <ul class="badges">
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
                     <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
                     <p>16/18</p>
 
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
                     <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                   <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
                     <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
                 <li>
-                    <img src="./2.png" alt="">
+                    <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
                     <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
-                
+
             </ul>
        </div>
         <div class="item not">
@@ -76,7 +76,7 @@
                 <li>
                     <img src="./2.png" alt="">
                 </li>
-                
+
             </ul>
        </div>
   </div>
@@ -86,7 +86,7 @@
 export default {
   data () {
     return {
-   
+
     }
   },
   methods:{
@@ -180,9 +180,8 @@ export default {
             }
         }
 
-      
+
     }
 }
 </style>
 
- 

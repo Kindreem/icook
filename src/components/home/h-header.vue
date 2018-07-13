@@ -2,19 +2,19 @@
   <div class="all">
     <header>
       <div class="tleft">
-        <router-link to="home">
+        <router-link to="conter">
           <img src="./img/head/TX (1).png" alt="">
           <h3>东南</h3>
         </router-link>
-        <router-link to="home">
+        <router-link to="conter/badge">
           <img src="./img/head/TX (4).png" alt="">
         </router-link>
       </div>
       <div class="tright">
-        <router-link to="home">
+        <router-link to="">
           <img src="./img/ZY-004.png" alt="">
         </router-link>
-        <router-link to="home">
+        <router-link to="tast/tast">
           <img src="./img/ZY-003.png" alt="">
         </router-link>
       </div>

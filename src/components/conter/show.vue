@@ -14,7 +14,7 @@
            <button class="demount">卸下</button>
            <button class="change">更换</button>
        </div>
-       
+
   </div>
 </template>
 
@@ -22,7 +22,7 @@
 export default {
   data () {
     return {
-   
+
     }
   },
   methods:{
@@ -36,6 +36,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
     .show{
+      text-align: center;
         .header{
             height: px2rem(44);
             background: none;

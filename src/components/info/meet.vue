@@ -79,6 +79,11 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
 .meet{
+  text-align: center;
+      input{
+        outline: none;
+        border:none;
+      }
   .header{
     height: px2rem(44);
     background: none;
@@ -118,7 +123,7 @@ export default {
       margin-top: px2rem(3);
     }
     .icon{
-      position: absolute; 
+      position: absolute;
       right:0;
       top: 0;
       margin-right:px2rem(5);
@@ -129,7 +134,7 @@ export default {
       }
     }
   }
-  
+
   .greens{
     margin: px2rem(25) auto;
     display: flex;

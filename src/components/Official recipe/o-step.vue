@@ -48,11 +48,11 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 0 30px
+  margin 0 px2rem(30)
   section {
     box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
     border-radius 20px
-    margin-bottom 40px
+    margin-bottom px2rem(40)
     .top {
       position relative
       .bg {
@@ -61,22 +61,24 @@ export default {
         border-top-right-radius 20px
       }
       .heart {
+        width px2rem(36)
         position absolute
-        top 0.25rem
-        left 0.75rem
+        top px2rem(12)
+        left px2rem(36)
       }
       .tag {
+        width px2rem(234)
         position absolute
-        top -2px
+        top px2rem(-2)
         left 0px
       }
       h3 {
         position absolute
-        top 0.25rem
+        top px2rem(12)
         left 0
-        width 260px
+        width px2rem(250)
         text-align center
-        font 24px Arail
+        font px2rem(24) Arail
         color #5A4030
       }
     }
@@ -84,8 +86,8 @@ export default {
       p {
         font px2rem(24) Arail
         color #666
-        line-height 38px
-        padding 20px 20px 28px
+        line-height px2rem(38)
+        padding px2rem(20) px2rem(20) px2rem(28)
       }
     }
   }

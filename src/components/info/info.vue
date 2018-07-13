@@ -7,10 +7,10 @@
       <p>完善个人信息</p>
      <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
   </div>
- 
+
    <Form :model="formItem" >
         <div class="item">
-            <input v-model="formItem.nickname" placeholder="请输入2至24个字符" id="nickname"/> 
+            <input v-model="formItem.nickname" placeholder="请输入2至24个字符" id="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
@@ -53,8 +53,8 @@ export default {
             dateTime: '',
             startDate: new Date(),
         },
-   
-         
+
+
            cityList: [
                     {
                         value: '1',
@@ -83,7 +83,7 @@ export default {
       },
        openPicker () {
          this.$refs.picker.open()
-        },  
+        },
       handleConfirm (data) {
         let date = moment(data).format('YYYY.MM.DD')
         this.dateTime = date
@@ -99,6 +99,11 @@ export default {
 @import '@/assets/hotcss/px2rem.scss';
 
 .info{
+  text-align: center;
+      input{
+        outline: none;
+        border:none;
+      }
     .header{
     height: px2rem(44);
     background: none;
@@ -123,7 +128,7 @@ export default {
         width: px2rem(96);
         height: px2rem(96);
         border-radius: 50%;
-      
+
     }
 }
 
@@ -139,7 +144,7 @@ export default {
         margin-top:px2rem(20);
         font-size: px2rem(12);
         border: none;
-        
+
    }
    img{
        width:  px2rem(20);
@@ -183,7 +188,7 @@ export default {
     transition: all .2s ease-in-out;
     transform: scale(0);
 }
-         
+
   }
     .txt{
         font-size:px2rem(10);
@@ -207,5 +212,5 @@ export default {
 
 }
 
-  
+
 </style>

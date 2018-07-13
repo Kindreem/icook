@@ -5,9 +5,9 @@
           <img src="../../assets/images/DR-001.png" alt="">
           <p>游饪我生活！</p>
       </div>
-       
+
        <div class="btn">
-           <router-link to="register/register"><button class="btn_register">登录</button></router-link> 
+           <router-link to="register/register"><button class="btn_register">登录</button></router-link>
            <router-link to="login/login"><button class="btn_login">注册</button></router-link>
        </div>
        <div class="thirdparty">
@@ -30,15 +30,16 @@
 export default {
   data () {
     return {
-   
+
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>  
+<style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
     .member{
+      text-align: center;
         .logo img{
             margin-top: px2rem(108);
             width: px2rem(195);
@@ -86,9 +87,9 @@ export default {
                 span{
                     font-size: px2rem(10);
                 }
-            }            
+            }
             .qq{
-                margin: 0 px2rem(88); 
+                margin: 0 px2rem(88);
             }
         }
     }

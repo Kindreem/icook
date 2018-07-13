@@ -50,8 +50,8 @@
 .ban {
   border-radius 20px
   box-shadow 8px 8px 4px rgba(204, 204, 204, 0.349019607843137)
-  margin-top 72px
-  margin-bottom 8px
+  margin-top px2rem(72)
+  margin-bottom px2rem(8)
   .b-top {
   border-top-left-radius 20px
   border-top-right-radius 20px
@@ -59,7 +59,7 @@
   background-color rgba(93, 184, 233, 1)
   color #fff
   height px2rem(110)
-  padding-top 20px
+  padding-top px2rem(20)
   h1 {
     font px2rem(40) '微软雅黑'
   }
@@ -69,16 +69,15 @@
   }
 }
 .b-bot {
-  margin-top 26px
+  margin-top px2rem(26)
   .ex {
-    margin 0px 20px
+    margin 0px px2rem(20)
     a {
       display inline-block
 
-      margin-right 20px
+      margin-right px2rem(20)
       img {
-        width 96px
-        height 96px
+        width px2rem(96)
         border-radius 50%
       }
     }
@@ -89,9 +88,12 @@
     }
   }
   .step {
-    margin-top 20px
-    margin-bottom 40px
+    margin-top px2rem(20)
+    margin-bottom px2rem(40)
     text-align center
+    img {
+      width px2rem(484)
+    }
   }
 }
 .b-right {
@@ -99,7 +101,7 @@
   p {
     font px2rem(23) '微软雅黑'
     color #727171
-    padding-bottom 28px
+    padding-bottom px2rem(28)
   }
 }
 

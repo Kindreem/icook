@@ -4,9 +4,9 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
       </header>
     <div class="tit">输入您的手机号码</div>
-       <form action="" >
+       <form >
           <input type="text" v-model="tel" placeholder="输入手机号码">
-            <button value="注册" class="btn_login">注册</button> 
+            <button value="注册" class="btn_login">注册</button>
           <p class="txt">注册代表你已同意<span>注册协议好</span>和<span>隐私政策</span></p>
 
        </form>
@@ -30,6 +30,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
+.login{
+      text-align: center;
+      input{
+        outline: none;
+        border:none;
+      }
+}
 .header{
     height: px2rem(44);
     background: none;

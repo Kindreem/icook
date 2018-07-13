@@ -22,7 +22,7 @@ export default {
      return {
         swiperOption: {
                 slidesPerView: 3.4,
-                spaceBetween: 24,
+                // spaceBetween: 24,
                 freeMode: true,
                 slidesOffsetBefore: 24,
             },
@@ -64,7 +64,7 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 0 30px 40px
+  margin 0 px2rem(30) px2rem(40)
   border-radius 20px
   box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
   .title {
@@ -75,15 +75,19 @@ export default {
     //   left 0px
     // }
     #heart {
+      width px2rem(36)
       position absolute
-      top 0.32rem
+      top px2rem(16)
       left 0.75rem
+    }
+    #tag {
+      width px2rem(360)
     }
     h3 {
       position absolute
-      top 0.32rem
+      top px2rem(18)
       left 1.64rem
-      font 24px Arial
+      font px2rem(24) Arial
       color #5A4030
       // text-align center
       // width 435px
@@ -91,10 +95,11 @@ export default {
   }
 }
 >>>.swiper-container {
-   padding-bottom 28px
+   padding-bottom px2rem(28)
  }
 >>>.swiper-slide {
   width px2rem(180) !important
+  margin-right px2rem(24)
   a{
     display block
     img {
@@ -107,7 +112,7 @@ export default {
   .ban {
     background #5DB8E9
     text-align center
-    padding 20px 0
+    padding px2rem(20) 0
     border-bottom-left-radius 20px
     border-bottom-right-radius 20px
     h3 {
@@ -115,7 +120,7 @@ export default {
       color #fff
     }
     p {
-      font px2rem(18) Arail
+      font px2rem(20) Arail
       color #fff
     }
   }

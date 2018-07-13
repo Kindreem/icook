@@ -7,7 +7,7 @@
     <div class="search">
         <input type="text" placeholder="请输入信息">
         <div class="icon"><img src="../../assets/images/DR-019.png" alt=""></div>
-    </div>  
+    </div>
           <div class="item">
            <div class="title">
                <img src="./GR-007.png" alt="">
@@ -46,9 +46,9 @@
                    <img src="./2.png" alt="">
                    <img src="./lock.png" alt="">
                </li>
-            
+
            </ul>
-       </div> 
+       </div>
        <div class="item">
            <div class="title">
                <img src="./GR-007.png" alt="">
@@ -86,9 +86,9 @@
                    <img src="./2.png" alt="">
                    <img src="./lock.png" alt="">
                </li>
-            
+
            </ul>
-       </div>   
+       </div>
   </div>
 </template>
 
@@ -96,7 +96,7 @@
 export default {
   data () {
     return {
-   
+
     }
   },
   methods:{
@@ -109,7 +109,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
-.genre{ 
+.genre{
      .header{
     height: px2rem(44);
     background: none;
@@ -147,10 +147,10 @@ export default {
         outline: none;
         text-align: center;
         font-size:  px2rem(12);
-        margin-top: px2rem(3);
+        margin: px2rem(3) px2rem(72) ;
         }
         .icon{
-        position: absolute; 
+        position: absolute;
         right:0;
         top: 0;
         margin-right:px2rem(5);
@@ -214,6 +214,6 @@ export default {
             }
         }
    }
-  
+
 }
 </style>

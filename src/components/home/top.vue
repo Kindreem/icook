@@ -68,20 +68,20 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 20px 30px 0px 30px
+  margin 36px 30px 0px 30px
   header {
-    height 48px
-    line-height 48px
+    height px2rem(48)
+    line-height px2rem(48)
     border-bottom 2px solid #5DB8E9
-    margin-bottom 20px
+    margin-bottom px2rem(20)
     p {
-      font 24px '微软雅黑'
+      font px2rem(24) '微软雅黑'
       color #5DB8E9
     }
   }
 }
 .item {
-  margin-bottom 44px
+  margin-bottom px2rem(44)
   box-shadow 8px 8px 4px rgba(204, 204, 204, 0.349019607843137)
   border-radius 20px
   img {
@@ -94,11 +94,13 @@ export default {
     border-radius 20px
   }
   .tab {
+    width px2rem(345)
     position absolute
     top -4px
     left 0
   }
   .heart {
+    width px2rem(36)
     position absolute
     top 0.25rem
     left 0.75rem
@@ -107,9 +109,9 @@ export default {
     position absolute
     top 0.25rem
     left 0
-    width 386px
+    width px2rem(386)
     text-align center
-    font 24px '微软雅黑'
+    font px2rem(24) '微软雅黑'
     color #5A4030
   }
 

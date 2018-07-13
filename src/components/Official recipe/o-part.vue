@@ -92,7 +92,7 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 0 30px
+  margin 0 px2rem(30)
   .top {
     img {
       width 100%
@@ -103,13 +103,13 @@ export default {
   .ban {
     box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
     border-radius 20px
-    margin-bottom 40px
+    margin-bottom px2rem(40)
     .b_top {
       height px2rem(78)
       background #5DB8E9
       text-align center
       position relative
-      margin-top 60px
+      margin-top px2rem(60)
       border-top-left-radius 20px
       border-top-right-radius 20px
       h1 {
@@ -118,11 +118,13 @@ export default {
         color #fff
       }
       #sound {
+        width px2rem(72)
         position absolute
         top -20px
         right 112px
       }
       #step {
+        width px2rem(72)
         position absolute
         top -20px
         right 20px
@@ -132,21 +134,25 @@ export default {
       div {
         section {
           position relative
-          margin-top 4px
-          padding-bottom 32px
+          margin-top px2rem(4)
+          padding-bottom px2rem(32)
           .title {
+            .bg {
+              width px2rem(240)
+            }
             .heart {
+              width px2rem(36)
               position absolute
-              top 0.29rem
-              left 0.75rem
+              top px2rem(16)
+              left px2rem(38)
             }
             h3 {
-              font 24px Arial
+              font px2rem(24) Arial
               color #5A4030
-              width 240px
+              width px2rem(240)
               text-align center
-              height 66px
-              line-height 66px
+              height px2rem(66)
+              line-height px2rem(66)
               position absolute
               top 0px
               left 0px
@@ -154,7 +160,7 @@ export default {
           }
           .content {
             ul {
-              margin 0px 30px
+              margin 0px px2rem(30)
               font px2rem(24) Arial
               color #666
               line-height px2rem(36)

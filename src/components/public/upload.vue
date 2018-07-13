@@ -21,20 +21,21 @@
 @import '../../assets/px2rem.styl';
 .all {
   >div {
-    padding 20px 32px 40px 16px
+    padding px2rem(20) px2rem(32) px2rem(40) px2rem(16)
     box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
     border-radius 20px
-    margin-bottom 40px
+    margin-bottom px2rem(40)
   }
-  margin 0 30px
+  margin 0 px2rem(30)
   h3 {
     font px2rem(24) Arail
     color #5DB8E9
-    margin-bottom 20px
+    margin-bottom px2rem(20)
   }
   .main {
     .left {
       float left
+      width px2rem(96)
     }
     .right {
       float right
@@ -42,16 +43,17 @@
       color #5DB8E9
       #rock {
         background url('./img/DR-007.png') no-repeat 0
-        padding-left 26px
-        margin-left 4px
+        background-size px2rem(24)
+        padding-left px2rem(26)
+        margin-left px2rem(4)
       }
     }
     .min {
-      margin-left 116px
+      margin-left px2rem(116)
       p {
         font px2rem(22) Arial
         color #999
-        line-height 32px
+        line-height px2rem(32)
         span {
           color #5DB8E9
         }
@@ -59,7 +61,7 @@
     }
   }
   .but {
-    margin-top 40px
+    margin-top px2rem(40)
     text-align center
     >>>.ivu-btn {
       font px2rem(24) Arail
@@ -67,7 +69,7 @@
       background #5DB8E9
       width px2rem(134)
       height px2rem(40)
-      line-height 20px
+      line-height px2rem(20)
     }
   }
 }

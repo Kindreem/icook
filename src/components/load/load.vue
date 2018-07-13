@@ -10,7 +10,7 @@
         <img src="./2.png" alt="">
       </div>
     </div>
-    
+
     <div class="modal2">
       <p class="tit">上传自己的菜肴作品</p>
       <p>每当您首次上传菜肴派系中自己的菜肴作品,您都会获得这个菜谱派系中菜肴的专属认证徽章,专属经验,厨金币等。</p>
@@ -18,12 +18,12 @@
       <p>如您幸运的上传了一个ICOOK从未收录的菜肴作品,您将获得更丰盛的专属奖励!</p>
       <p>赶紧上传您的惊天大作吧!</p>
       <div class="btn">
-        <button>传传传,不传不是人</button>
-        <button>等等 ! 一会儿再说</button>
+      <router-link to="/home"><button>传传传,不传不是人</button></router-link>
+       <router-link to="/home"><button>等等 ! 一会儿再说</button></router-link>
       </div>
     </div>
-    
-       
+
+
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped >
 @import '@/assets/hotcss/px2rem.scss';
   .load{
-    .modal1, 
+    .modal1,
     .modal2{
         width: 90%;
         font-size:px2rem(12);
@@ -89,5 +89,5 @@ export default {
       }
     }
   }
-  
+
 </style>

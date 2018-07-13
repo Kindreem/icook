@@ -33,8 +33,8 @@
              </div>
          </div>
       </div>
-       
-       
+
+
   </div>
 </template>
 
@@ -42,7 +42,7 @@
 export default {
   data () {
     return {
-        
+
         pic:[
             {id:1,title:'lv.1',imgs:require('./left.png'),pic1:require('./RW-004.png'),pic2:require('./RW-005.png'),show:1},
             {id:2,title:'lv.2',imgs:require('./right.png'),pic1:require('./RW-004.png'),pic2:require('./RW-005.png'),show:1},
@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
-.tast{ 
+.tast{
     .header{
     height: px2rem(44);
     background: none;
@@ -110,6 +110,7 @@ export default {
             z-index: -1;
         }
         .left{
+            position: relative;
             margin-top: px2rem(8);
            p{
             font-size: px2rem(9);
@@ -119,6 +120,7 @@ export default {
             background: #199ED8;
             border-radius:px2rem(10);
             color: #fff;
+            text-align: center;
            }
            .tit2{
                margin-top:  px2rem(15);
@@ -127,6 +129,8 @@ export default {
            span{
                width: px2rem(1);
                height: px2rem(15);
+               position: absolute;
+               right: 50%;
            }
         }
         .yuan{
@@ -175,7 +179,7 @@ export default {
                 height: px2rem(24);
                 margin: px2rem(5) 0;
             }
-            p{ 
+            p{
                 width: px2rem(50);
                 font-size: px2rem(11);
                 margin: px2rem(13) px2rem(3);

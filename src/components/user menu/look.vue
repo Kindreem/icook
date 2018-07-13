@@ -20,7 +20,7 @@
     box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
     border-radius 20px
     h2 {
-      font-size 28px
+      font-size px2rem(28)
       color #fff
     }
   }

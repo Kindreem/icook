@@ -9,9 +9,9 @@
            <input type="text" class="mui-input-clear" v-model="username" placeholder="输入手机号码">
          <br>
            <input type="text" v-model="password" placeholder="输入验证码" class="psd">
-         <br>  
+         <br>
           <input type="button" value="获取验证码" class="code">
-         <br> 
+         <br>
           <router-link to="/info">
           <button class="btn_register">登录</button>
           </router-link>
@@ -53,6 +53,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
+.register{
+      text-align: center;
+      input{
+        outline: none;
+        border:none;
+      }
+}
 .header{
     height: px2rem(44);
     background: none;
@@ -137,9 +144,9 @@ export default {
           span{
               font-size: px2rem(10);
           }
-      }            
+      }
       .qq{
-          margin: 0 px2rem(88); 
+          margin: 0 px2rem(88);
       }
   }
 </style>
