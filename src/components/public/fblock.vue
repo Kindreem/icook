@@ -7,7 +7,7 @@
         <h4>{{part}}</h4>
       </div>
         <div class="bot">
-          <div v-for="(item,index) in items" :key="index"><h4>{{item.name}}</h4><h4>{{item.vol}}</h4></div>
+          <div :style='bg' v-for="(item,index) in items" :key="index"><h4>{{item.name}}</h4><h4>{{item.vol}}</h4></div>
       </div>
     </section>
   </div>
@@ -17,7 +17,8 @@
 export default {
   props:
     ['part',
-     'items'
+     'items',
+     'bg'
   ]
 }
 </script>
@@ -60,7 +61,6 @@ export default {
       padding-top px2rem(28)
       height px2rem(128)
       width px2rem(216)
-      background #569dc7
       border-radius 20px
       text-align center
     }
