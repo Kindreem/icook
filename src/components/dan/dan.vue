@@ -14,16 +14,19 @@
           <span></span>
            <div class="pic">
                 <img src="./pic.png" alt="">
+                <p>lv.2 荷包蛋</p>
                 <p>已完成</p>
             </div>
           <span></span>
           <div class="pic">
                 <img src="./pic.png" alt="">
+                <p>lv.3 荷包蛋</p>
                 <p class="begin">开始挑战</p>
             </div>
           <span></span>
           <div class="pic">
                 <img src="./pic.png" alt="">
+                <p>lv.4 荷包蛋</p>
                 <p class="begin">开始挑战</p>
             </div>
           <span class="bottom"></span>
@@ -81,23 +84,27 @@ export default {
        .badge{
             img{
             width: px2rem(70);
-            height: px2rem(70);
+            margin-top:px2rem(-3);
         }
        }
         .pic{
-            margin-top:px2rem(-3) ;
+            margin-top:px2rem(-3);
             img{
                 width: px2rem(60);
                 height: px2rem(60);
                 border-radius: 50%;
             }
             p{
-                font-size: px2rem(12);
+                font-size:px2rem(14);
+                margin-top: px2rem(-4);
+            }
+            p:last-child{
+                font-size: px2rem(10);
                 color: #F8E0DC;
                 background: #004D95;
-                width: px2rem(90);
-                height: px2rem(20);
-                line-height: px2rem(20);
+                width: px2rem(60);
+                height: px2rem(15);
+                line-height: px2rem(15);
                 border-radius:px2rem(5);
                 margin: 0 auto;
             }
@@ -109,11 +116,11 @@ export default {
             display: inline-block;
             background: #199ED8;
             width: px2rem(1);
-            height:px2rem(50);
+            height:px2rem(40);
         }
-        .top{
-            height:px2rem(40) ;
-            margin-top: px2rem(-7);
+        span.top{
+            height: px2rem(35);
+            margin-top: px2rem(-9);
         }
         .bottom{
             margin-bottom: px2rem(-7);

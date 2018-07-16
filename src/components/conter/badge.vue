@@ -55,38 +55,39 @@
 
             </ul>
        </div>
-        <div class="item not">
-              <div class="title">
-                <img src="./GR-007.png" alt="">
-                <p>未获得的派系徽章</p>
-            </div>
-            <ul class="badges">
+      
+         <div class="item genre">
+           <div class="title">
+               <img src="./GR-007.png" alt="">
+               <p>未获得徽章:粤派</p>
+               </div>
+           <ul class="meet">
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
-                  <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
                 <li>
-                    <img src="./2.png" alt="">
-                </li>
-                <li>
-                    <img src="./2.png" alt="">
-                </li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
 
-            </ul>
+           </ul>
        </div>
   </div>
 </template>
@@ -109,11 +110,11 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
 .badge{
-    .header{
-    height: px2rem(44);
-    background: none;
-    text-align: left;
-    position: relative;
+   .header{
+        height: px2rem(44);
+        background: none;
+        text-align: left;
+        position: relative;
     .title{
         font-size: px2rem(20);
         position: absolute;
@@ -123,14 +124,14 @@ export default {
         left: 50%;
         transform: translateX(-50%);
     }
-    div{
-      padding: 20px;
-    }
-    img{
-      margin-top: px2rem(20);
-      width: px2rem(24);
-      height: px2rem(24);
-    }
+        div{
+        padding: 20px;
+        }
+        img{
+        margin-top: px2rem(20);
+        width: px2rem(24);
+        height: px2rem(24);
+        }
   }
     padding:  px2rem(1)  px2rem(10);
     text-align: left;
@@ -151,6 +152,17 @@ export default {
         height:  px2rem(250);
         li{
             margin-bottom:px2rem(20);
+        }
+    }
+    .item.genre{
+        height: px2rem(250);
+        li{
+            margin-bottom:px2rem(15) ;
+            img:last-child{
+            width: px2rem(15);
+            display: block;
+            margin: 0 auto;
+          }
         }
     }
     .item{

@@ -64,7 +64,6 @@ export default {
             .btn_register{
                 background: #5DB8E9;
                 color: white;
-                margin-right: px2rem(20);
             }
             .btn_login{
                 color: #999;
