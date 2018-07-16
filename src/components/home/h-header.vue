@@ -19,14 +19,45 @@
         </router-link>
       </div>
     </header>
-    <router-link to="search">
-      <Input placeholder="在此输入你要查询的菜谱" style="width: 92%"/>
+    <router-link to="search" @mousemove="move" @touchmove="move">
+      <transition name="fade"><Input :style="sty" placeholder="在此输入你要查询的菜谱"/></transition>
     </router-link>
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+        window.addEventListener('scroll', this.move)
+    },
+  data() {
+    return{
+      sty: '',
+    }
+  },
+  methods: {
+     move() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        // console.log(scrollTop)
+        if(document.documentElement.scrollTop>0){
+          this.sty= {transform:"scale(0.5)",
+         fontsize: '24px'
+      }
+         }
+         else{
+            this.sty= {transform:"scale(1)",
+         fontsize: 'px2rem(26)'
+      }
+         }
+     },
+   }
+}
+</script>
+
+
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
+
 .all {
   position fixed
   top 0
@@ -71,6 +102,7 @@ header {
 }
 >>>.ivu-input {
   height px2rem(100)
+  width px2rem(686)
   margin px2rem(56) px2rem(30) px2rem(20) px2rem(30)
   text-align center
   border-radius 20px

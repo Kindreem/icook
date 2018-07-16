@@ -102,7 +102,7 @@
         height px2rem(48)
         width px2rem(140)
         margin-right px2rem(10)
-        margin-bottom 1px2rem(16)
+        margin-bottom px2rem(16)
         background #5DB8E9
         font px2rem(20) Arail
         text-align center
