@@ -17,7 +17,10 @@
         </div>
       </div>
        <div class="item">
-           <div class="title"><p>我的钱包</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的钱包</p>
+            </div>
            <ul class="money">
                <li>第一种货币:999999</li>
                <li>第二种货币:999999</li>
@@ -25,7 +28,10 @@
            </ul>
        </div>
         <div class="item">
-           <div class="title"><p>我学会的菜肴:38道</p></div>
+           <div class="title">
+                <img src="./GR-007.png" alt="">
+                <p>我学会的菜肴:38道</p>
+            </div>
            <ul class="meet">
                <li>
                    <img src="./pic.png" alt="">
@@ -47,7 +53,10 @@
            </ul>
        </div>
        <div class="item menu">
-           <div class="title"><p>我的菜谱(共36个)</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的菜谱(共36个)</p>
+            </div>
            <ul class="menus">
                <li>
                    <img src="./pic.png" alt="">
@@ -62,7 +71,10 @@
            </ul>
        </div>
        <div class="item menu">
-           <div class="title"><p>我的作品(共36个)</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+                <p>我的作品(共36个)</p>
+            </div>
            <ul class="menus">
                <li>
                    <img src="./pic.png" alt="">
@@ -77,7 +89,10 @@
            </ul>
        </div>
          <div class="item menu">
-           <div class="title"><p>我的收藏(共36个)</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的收藏(共36个)</p>
+            </div>
            <ul class="menus">
                <li>
                    <img src="./pic.png" alt="">
@@ -92,7 +107,10 @@
            </ul>
        </div>
        <div class="item badge">
-           <div class="title"><p>我的徽章</p></div>
+            <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的徽章</p>
+           </div>
            <ul class="badges">
                <li>
                    <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
@@ -110,7 +128,10 @@
            </ul>
        </div>
         <div class="item badge">
-           <div class="title"><p>我的成就</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的成就</p>
+            </div>
            <ul class="badges2">
                <li>
                     <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
@@ -160,7 +181,6 @@ export default {
     img{
       margin-top: px2rem(5);
       width: px2rem(24);
-      height: px2rem(24);
     }
   }
     padding:  px2rem(10);
@@ -210,8 +230,11 @@ export default {
         .title{
             width: px2rem(180);
             height: px2rem(30);
-            background: url(./GR-007.png) no-repeat;
-            background-size:cover;
+            position: relative;
+                img{
+                width: px2rem(180);
+                height: px2rem(40);
+                 }
             p{
                 font-size: px2rem(12);
                 line-height: px2rem(30);
@@ -219,6 +242,8 @@ export default {
                 padding-left:  px2rem(25);
                 background: url(./titles.png)no-repeat center left;
                 background-size: px2rem(20) px2rem(15);
+                position: absolute;
+                top: 0;
             }
         }
         ul{
@@ -260,14 +285,12 @@ export default {
             margin-top: px2rem(10);
             img{
                 width: px2rem(80);
-                height: px2rem(70);
             }
         }
          ul.badges2 {
             margin: px2rem(30) px2rem(20);
             img{
                 width: px2rem(55);
-                height: px2rem(55);
             }
         }
 

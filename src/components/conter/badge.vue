@@ -5,7 +5,10 @@
             <p class="title">徽章</p>
       </header>
         <div class="item">
-            <div class="title"><p>我已获得派系徽章</p></div>
+              <div class="title">
+                <img src="./GR-007.png" alt="">
+                <p>我已获得派系徽章</p>
+              </div>
             <ul class="badges">
                 <li>
                      <router-link to="/genre/genre" ><img src="./2.png" alt=""></router-link>
@@ -23,7 +26,10 @@
             </ul>
        </div>
         <div class="item underway">
-            <div class="title"><p>进行中的派系徽章</p></div>
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+                <p>进行中的派系徽章</p>
+            </div>
             <ul class="badges">
                 <li>
                     <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
@@ -50,7 +56,10 @@
             </ul>
        </div>
         <div class="item not">
-            <div class="title"><p>未获得的派系徽章</p></div>
+              <div class="title">
+                <img src="./GR-007.png" alt="">
+                <p>未获得的派系徽章</p>
+            </div>
             <ul class="badges">
                 <li>
                     <img src="./2.png" alt="">
@@ -112,7 +121,7 @@ export default {
         color: #199ED8;
         top: px2rem(20);
         left: 50%;
-        transform: translateX(-50%)
+        transform: translateX(-50%);
     }
     div{
       padding: 20px;
@@ -129,13 +138,10 @@ export default {
         height: px2rem(160);
          .ivu-progress{
             display: block;
-            margin: px2rem(-5) auto;
+            margin: px2rem(-2) auto;
             width: px2rem(35);
-            .ivu-progress-inner{
-                background: red!important;
-             }
            }
-        p{
+        li p{
             margin-top: px2rem(8);
             font-size: px2rem(8);
             color: #999;
@@ -143,6 +149,9 @@ export default {
     }
     .item.not{
         height:  px2rem(250);
+        li{
+            margin-bottom:px2rem(20);
+        }
     }
     .item{
         width: 100%;
@@ -153,15 +162,20 @@ export default {
         .title{
             width: px2rem(180);
             height: px2rem(30);
-            background: url(./GR-007.png) no-repeat;
-            background-size:cover;
+            position: relative;
+            img{
+                width: px2rem(180);
+                height: px2rem(40);
+            }
             p{
                 font-size: px2rem(12);
                 line-height: px2rem(30);
                 margin-left: px2rem(20);
                 padding-left:  px2rem(25);
                 background: url(./titles.png)no-repeat center left;
-                background-size: px2rem(20) px2rem(15);
+                background-size: px2rem(20) px2rem(15); 
+                position: absolute;
+                top: 0;
             }
         }
         ul{
@@ -174,8 +188,7 @@ export default {
                 width: 25%;
                 text-align: center;
                 img{
-                    width: px2rem(80);
-                    height: px2rem(80);
+                    width: px2rem(64);
                 }
             }
         }

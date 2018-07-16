@@ -5,15 +5,20 @@
       </header>
   <div class="demo-avatar">
       <p>完善个人信息</p>
-     <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+      <Upload
+       action="//jsonplaceholder.typicode.com/posts/"
+       :show-upload-list="false">
+     <Avatar :src="img.url" />
+      </Upload>
   </div>
 
-   <Form :model="formItem" >
+   <form >
         <div class="item">
-            <input v-model="formItem.nickname" placeholder="请输入2至24个字符" id="nickname"/>
+            <input v-model="nickname" placeholder="请输入2至24个字符" id="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
+            <input type="text" placeholder="输入您的年龄" class="age" v-model="age" @focus="openPicker">
              <mt-datetime-picker
                 type="date"
                 ref="picker"
@@ -24,69 +29,55 @@
                 :startDate="startDate"
                 >
                 </mt-datetime-picker>
-            <p id="sel">仅自己可见</p>
+            <p id="sel">仅自己可见></p>
         </div>
-         <div class="item">
-            <RadioGroup v-model="formItem.radio">
-                <Radio label="male">男</Radio>
-                <Radio label="female">女</Radio>
-            </RadioGroup>
+         <div class="item" >
+            <p class="sex">选择您的性别</p>
+             <div class="sex2">
+                  <input type="radio" id="one" value="One" v-model="picked">
+                <label for="one">男</label>
+                <input type="radio" id="two" value="Two" v-model="picked">
+                <label for="two">女</label>
+             </div>
         </div>
        <p class="txt">选择您的性别完成奖励,完成后可获得<span>烹饪之心</span>的徽章</p>
        <router-link to="info/meet">
            <input type="button" class="next" value="下一步">
        </router-link>
 
-  </Form>
+  </form>
 
 
   </div>
 </template>
 
 <script>
-
+import moment from 'moment'
 export default {
   data () {
     return {
-        formItem:{
+            img:{
+                url:'https://i.loli.net/2017/08/21/599a521472424.jpg'
+            },
             nickname:'',
-            dateTime: '',
             startDate: new Date(),
-        },
-
-
-           cityList: [
-                    {
-                        value: '1',
-                        label: '仅自己可见'
-                    },
-                    {
-                        value: '2',
-                        label: '所有人可见'
-                    },
-                    {
-                        value: '3',
-                        label: '部分人可见'
-                    },
-                ],
-                model3: '',
-                radio:'male'
+            age:'',
+            picked:'One'
     }
   },
   created() {
-      this.model3 = this.cityList[0].value
   },
 
   methods:{
       clear(){
-        console.log('www')
+        this.nickname="";
       },
        openPicker () {
          this.$refs.picker.open()
         },
       handleConfirm (data) {
         let date = moment(data).format('YYYY.MM.DD')
-        this.dateTime = date
+        this.age = date
      } ,
      backto(){
       this.$router.go(-1);
@@ -115,7 +106,6 @@ export default {
     img{
       margin-top: px2rem(20);
       width: px2rem(24);
-      height: px2rem(24);
     }
   }
     .demo-avatar{
@@ -133,61 +123,51 @@ export default {
 }
 
   .item{
-       margin: 0 auto;
+       margin: px2rem(20) auto;
        width:  px2rem(238);
        display: flex;
        position: relative;
+    
     #nickname{
-        margin-bottom: px2rem(20);
         width:  px2rem(238);
         height:  px2rem(25);
-        margin-top:px2rem(20);
         font-size: px2rem(12);
         border: none;
+        position: relative;
 
    }
    img{
-       width:  px2rem(20);
-        height:  px2rem(20);
+       width:  px2rem(15);
+       height:  px2rem(15);
+       position: absolute;
+       right: px2rem(2);
+       top: px2rem(5);
    }
-    #sel{
-         width: px2rem(100);
+    #sel,{
          height:  px2rem(20);
          font-size: px2rem(12);
-         margin-left: 300px;
-         option{
-             font-size: 10px;
+         line-height:  px2rem(20);
+         right: 0;
+         position: absolute;
+         color: #999;
+    }
+    .age,.sex{
+         font-size: px2rem(12);
+         line-height: px2rem(20);
+         color: #666;
+    }
+    .sex2{
+        flex: 1;
+        text-align: right;
+        input{
+            width: px2rem(12);
+            height:px2rem(12);
+            margin-left: px2rem(12);
+        }
+        label{
+            font-size: px2rem(12);
          }
     }
-    .ivu-radio-wrapper{
-          font-size: 40px
-      }
-    .ivu-radio-inner{
-        width: 30px;
-        height: 30px;
-        background: #d7d7d7;
-    }
-.ivu-radio-checked .ivu-radio-inner:after {
-    opacity: 1;
-    transform: scale(1);
-    transition: all .2s ease-in-out;
-}
-    .ivu-radio-inner:after {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    left: 6px;
-    top: 6px;
-    border-radius: 6px;
-    display: table;
-    border-top: 0;
-    border-left: 0;
-    content: ' ';
-    background-color: #2d8cf0;
-    opacity: 0;
-    transition: all .2s ease-in-out;
-    transform: scale(0);
-}
 
   }
     .txt{
@@ -195,7 +175,31 @@ export default {
         margin-top:px2rem(80);
         color: #999;
         span{
-            color: #199ED8
+            color: #199ED8;
+        }
+    }
+    .mint-popup{
+        top: 50%;
+        width: 65%;
+        left: auto;
+        
+        height: px2rem(130);
+        transform: none;
+        .picker-items{
+            margin-top:px2rem(15) ;
+            .picker-item{
+                font-size: px2rem(12);
+            }
+        }
+        .picker-toolbar{
+            position: absolute;
+            height: px2rem(20);
+            bottom: 0;
+            width: 100%;
+            span{
+                display: inline-block;
+                font-size: px2rem(14);
+            }
         }
     }
      .next{
