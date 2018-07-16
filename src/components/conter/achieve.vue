@@ -19,7 +19,7 @@
           <div class="left"><img src="./2.png" alt=""></div>
           <div class="tit">
               <p>成就1是一个成就</p><span>在 特定的条件下,完成一个动作</span>
-             <Progress :percent="100" status="active"></Progress>
+             <Progress :percent="76" status="active"></Progress>
           </div>
           <div class="right">
               <img src="./GR-016.png" alt="">
@@ -97,7 +97,6 @@ export default {
         .left{
             img{
                 width: px2rem(55);
-                height: px2rem(55);
                 margin-right: px2rem(10);
             }
         }
@@ -111,12 +110,16 @@ export default {
             span{
                 font-size: px2rem(10);
             }
+            .ivu-progress{
+                // width: 92%;
+                font-size: px2rem(12);
+                display: flex;
+            }
         }
         .right{
             margin: px2rem(5) px2rem(10);
             img{
                 width: px2rem(30);
-                height: px2rem(30);
             }
             p{
                 font-size: px2rem(10);

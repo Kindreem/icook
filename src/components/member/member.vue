@@ -8,7 +8,6 @@
 
        <div class="btn">
            <router-link to="register/register"><button class="btn_register">登录</button></router-link>
-           <router-link to="login/login"><button class="btn_login">注册</button></router-link>
        </div>
        <div class="thirdparty">
            <div class="wx">

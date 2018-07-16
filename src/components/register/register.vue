@@ -124,7 +124,7 @@ export default {
     }
   }
  .thirdparty{
-      margin-top: px2rem(130);
+      margin-top: px2rem(104);
       display: flex;
       justify-content: center;
       position: relative;
