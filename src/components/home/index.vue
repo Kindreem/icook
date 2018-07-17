@@ -2,7 +2,10 @@
 <template>
   <div class="all">
     <hheader/>
-    <hslider/>
+    <hmain/>
+    <food/>
+    <top/>
+    <!-- <hslider/> -->
     <router-link to="Share">
         <!-- 悬浮的HTML -->
       <div
@@ -18,11 +21,17 @@
 
 <script>
 import hheader from './h-header'
-import hslider from './h-slider'
+import hmain from './h-main'
+import food from './food'
+import top from './top'
+// import hslider from './h-slider'
 export default {
   components : {
     hheader,
-    hslider
+    hmain,
+    food,
+    top
+    // hslider
   },
   data() {
   return {
