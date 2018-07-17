@@ -60,7 +60,6 @@ export default {
         outline: none;
         border:none;
       }
-}
 .header{
     height: px2rem(44);
     background: none;
@@ -82,6 +81,7 @@ export default {
   }
     .psd_register{
         margin-top: px2rem(100) ;
+        height: px2rem(200) ;
         input{
         width: px2rem(238);
         height: px2rem(25);
@@ -142,4 +142,5 @@ export default {
             margin: 0 px2rem(88);
         }
   }
+}
 </style>

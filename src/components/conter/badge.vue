@@ -33,23 +33,23 @@
             <ul class="badges">
                 <li>
                     <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
+                    <Progress :percent="80" status="active" hide-info :stroke-width="6"></Progress>
                     <p>16/18</p>
 
                 </li>
                 <li>
                     <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
+                    <Progress :percent="80" status="active" hide-info :stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
                 <li>
                    <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
+                    <Progress :percent="80" status="active" hide-info :stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
                 <li>
                     <router-link to="/dan/dan" ><img src="./2.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info="true" stroke-width="6"></Progress>
+                    <Progress :percent="80" status="active" hide-info :stroke-width="6"></Progress>
                     <p>16/18</p>
                 </li>
 

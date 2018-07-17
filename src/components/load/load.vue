@@ -57,7 +57,7 @@ export default {
     }
     .modal1{
       height:  px2rem(190);
-      margin-top: px2rem(80);
+      margin-top: px2rem(50);
       .badge{
         display: flex;
         justify-content: center;

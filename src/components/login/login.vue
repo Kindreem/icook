@@ -36,8 +36,7 @@ export default {
         outline: none;
         border:none;
       }
-}
-.header{
+ .header{
     height: px2rem(44);
     background: none;
     text-align: left;
@@ -81,5 +80,7 @@ export default {
         span{
             color: #199ED8
         }
-    }
+    }     
+}
+
 </style>
