@@ -31,9 +31,8 @@
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 0px 30px
-  padding-top 98px
-
+  margin 100px 30px 0px
+  padding-top 198px
 }
 .top {
   font px2rem(24) '微软雅黑'

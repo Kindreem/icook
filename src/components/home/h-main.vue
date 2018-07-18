@@ -1,5 +1,7 @@
 <template>
-  <div class="all">
+<div>
+ <transition name = "fade">
+  <div class="all" v-if="show">
     <div class="content">
       <p>游烹我生活！</p>
       <div class="butt">
@@ -8,26 +10,69 @@
       </div>
     </div>
   </div>
+ </transition>
+</div>
 </template>
 
+<script>
+export default {
+  mounted() {
+        window.addEventListener('scroll', this.move)
 
+    },
+  data() {
+    return{
+      show: 'true',
+    }
+  },
+  methods: {
+     move() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        // console.log(scrollTop)
+        if(scrollTop>20){
+           this.show=false
+      }
+        if(scrollTop==0){
+           this.show=true
+      }
+        //  else{
+        //    this.show=true
+        //  }
+     },
+    //  one() {
+    //     if(this.show==false){
+    //        document.documentElement.scrollTop=100
+    //   }
+
+    //      else{
+
+    //      }
+    //  }
+  },
+
+}
+</script>
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
->>>body {
-  height 100%
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.8s
 }
+.fade-enter, .fade-leave-to /* .fade-leave-active, 2.1.8 版本以下 */ {
+    opacity: 1
+}
+
 .all {
+  // height 0
   background #efefef
-  margin-top px2rem(252)
   margin-bottom px2rem(154)
   p {
-
     text-align center
     font-size px2rem(24)
     color #999
-    height px2rem(886)
-    line-height px2rem(900)
+    height px2rem(930)
+    line-height px2rem(944)
   }
 }
 .content {

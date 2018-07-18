@@ -1,5 +1,6 @@
 <template>
-  <div class="all">
+<div class="zong">
+  <div class="all" :style="bg">
     <header>
       <div class="tleft">
         <router-link to="conter">
@@ -19,10 +20,19 @@
         </router-link>
       </div>
     </header>
-    <router-link to="search" @mousemove="move" @touchmove="move">
-      <transition name="fade"><Input :style="sty" placeholder="在此输入你要查询的菜谱"/></transition>
-    </router-link>
+    <div class="sea">
+      <router-link class="sleft" to="home" :style="dis"><img src="./img/ZY-005.png" alt=""></router-link>
+      <router-link class="sright" to="home" :style="dis"><img src="./img/ZY-006.png" alt=""></router-link>
+      <router-link to="search" :style="sty" @mousemove="move" @touchmove="move">
+        <transition name="fade">
+          <div>
+          <Input placeholder="在此输入你要查询的菜谱"/>
+          </div>
+        </transition>
+      </router-link>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -32,21 +42,69 @@ export default {
     },
   data() {
     return{
+      bg: '',
       sty: '',
+      dis: 'opacity: 0',
     }
   },
   methods: {
+
      move() {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        // console.log(scrollTop)
-        if(document.documentElement.scrollTop>0){
-          this.sty= {transform:"scale(0.5)",
-         fontsize: '24px'
+        console.log(scrollTop)
+        if(scrollTop>0){
+          this.dis= {
+            opacity: 1,
+            transition: 'all 2s',
+            '-moz-transition': 'all 2s',
+            '-webkit-transition': 'all 2s',
+            '-o-transition': 'all 2s'
+          }
+          this.bg = {
+            background: '#FFF',
+            transition: 'all 0.5s',
+            '-moz-transition': 'all 0.5s',
+            '-webkit-transition': 'all 0.5s',
+            '-o-transition': 'all 0.5s'
+            }
+          this.sty= {
+         'transform': 'scale(0.8)',
+         '-ms-transform': 'scale(0.8)', 	/* IE 9 */
+         '-moz-transform': 'scale(0.8)', 	/* Firefox */
+         '-webkit-transform': 'scale(0.8)', /* Safari 和 Chrome */
+         '-o-transform': 'scale(0.8)',
+         transition: 'all 0.5s',
+         '-moz-transition': 'all 0.5s',
+         '-webkit-transition': 'all 0.5s',
+         '-o-transition': 'all 0.5s'
+
       }
          }
-         else{
-            this.sty= {transform:"scale(1)",
-         fontsize: 'px2rem(26)'
+        else{
+           this.bg = {
+             'background': '#EFEFEF',
+             'transition': 'all 0.5s',
+             '-moz-transition': 'all 0.5s',
+             '-webkit-transition': 'all 0.5s',
+             '-o-transition': 'all 0.5s'
+             }
+           this.dis= {
+            'opacity': 0,
+            'transition': 'all 0.2s',
+            '-moz-transition': 'all 0.2s',
+            '-webkit-transition': 'all 0.2s',
+            '-o-transition': 'all 0.2s'
+          }
+            this.sty= {
+         transform: 'scale(1)',
+         '-ms-transform': 'scale(1)', 	/* IE 9 */
+         '-moz-transform': 'scale(1)', 	/* Firefox */
+         '-webkit-transform': 'scale(1)', /* Safari 和 Chrome */
+         '-o-transform': 'scale(1)',
+         transition: 'all 0.5s',
+         '-moz-transition': 'all 0.5s',
+         '-webkit-transition': 'all 0.5s',
+         '-o-transition': 'all 0.5s'
       }
          }
      },
@@ -57,7 +115,9 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
-
+.zong {
+  height 208px
+}
 .all {
   position fixed
   top 0
@@ -100,11 +160,24 @@ header {
     margin-left px2rem(24)
   }
 }
+.sea {
+  position relative
+  .sleft {
+    position absolute
+    top 44px
+    left 30px
+  }
+  .sright {
+    position absolute
+    top 44px
+    right 30px
+  }
+}
 >>>.ivu-input {
-  height px2rem(100)
-  width px2rem(686)
-  margin px2rem(56) px2rem(30) px2rem(20) px2rem(30)
   text-align center
+  height px2rem(102)
+  width 92%
+  margin px2rem(16) px2rem(30) px2rem(16) px2rem(30)
   border-radius 20px
   box-shadow 8px 8px 4px rgba(204, 204, 204, 0.349019607843137);
   font-size px2rem(26)

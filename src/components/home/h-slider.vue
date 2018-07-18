@@ -3,7 +3,7 @@
   <swiper :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide><hmain/></swiper-slide>
-    <swiper-slide><food/><top/></swiper-slide>
+    <swiper-slide @mousedown.native="down" @touchstart.native="down"><food/><top/></swiper-slide>
   </swiper>
 </template>
 
@@ -55,6 +55,13 @@ import top from './top'
         return this.$refs.mySwiper.swiper
       }
     },
+    mounted() {
+    },
+    methods: {
+      down() {
+       this.swiper.allowTouchMove= false;
+      }
+    }
   }
 </script>
 
