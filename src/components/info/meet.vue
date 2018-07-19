@@ -9,42 +9,9 @@
          <div class="icon"><img src="../../assets/images/DR-019.png" alt=""></div>
       </div>
     <ul class="greens">
-       <li>
-         <img v-show="ishow" src="../../assets/images/DR-010-A.png" @click="onshow($event)">
-         <img v-show="ishide"  src="../../assets/images/DR-010.png" @click="onshow($event)">
-
-       </li>
-       <li>
-          <img v-show="ishow" src="../../assets/images/DR-011.png" @click="onshow">
-          <img v-show="ishide"  src="../../assets/images/DR-011-A.png" @click="onshow">
-       </li>
-       <li>
-          <img v-show="ishow" src="../../assets/images/DR-012.png" @click="onshow">
-          <img v-show="ishide"  src="../../assets/images/DR-012-A.png" @click="onshow">
-       </li>
-        <li>
-          <img v-show="ishow" src="../../assets/images/DR-013.png" @click="onshow">
-          <img v-show="ishide"  src="../../assets/images/DR-013A.png" @click="onshow">
-       </li>
-        <li>
-         <img v-show="ishow" src="../../assets/images/DR-014.png" @click="onshow">
-         <img v-show="ishide"  src="../../assets/images/DR-014-A.png" @click="onshow">
-       </li>
-        <li>
-         <img v-show="ishow" src="../../assets/images/DR-015.png" @click="onshow">
-         <img v-show="ishide"  src="../../assets/images/DR-015-A.png" @click="onshow">
-       </li>
-        <li>
-         <img v-show="ishow" src="../../assets/images/DR-016.png" @click="onshow">
-         <img v-show="ishide"  src="../../assets/images/DR-016A.png" @click="onshow">
-       </li>
-        <li>
-         <img v-show="ishow" src="../../assets/images/DR-017.png" @click="onshow">
-         <img v-show="ishide"  src="../../assets/images/DR-017-A.png" @click="onshow">
-       </li>
-        <li>
-        <img v-show="ishow" src="../../assets/images/DR-018.png" @click="onshow">
-        <img v-show="ishide"  src="../../assets/images/DR-018-A.png" @click="onshow">
+       <li v-for="(item,index) in imgs" :key="index">
+         <img v-show="item.ishow" :src="item.url1" @click="onshow(index)">
+         <img v-show="item.ishide"  :src="item.url2" @click="onshow(index)">
        </li>
     </ul>
       <div class="btn-meet">
@@ -53,6 +20,16 @@
          <button class="next">下一步</button>
         </router-link>
       </div>
+       <div class="end">
+        <div class="left"><img src="./xxx.png" alt=""></div>
+        <div class="con">
+            <p><span>'烹饪之心'</span>徽章</p>
+            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
+        </div>
+        <div class="right"><span>EXP+3</span>
+        <img src="./DR-007.png" alt="">
+        <span>+3</span></div>
+    </div>
   </div>
 </template>
 
@@ -61,13 +38,24 @@ export default {
   data () {
     return {
         ishow:1,
-        ishide:0
+        ishide:0,
+        imgs:[
+            {id:1,ishow:1,ishide:0,url1:require('../../assets/images/DR-010-A.png'),url2:require('../../assets/images/DR-010.png')},
+            {id:2,ishow:1,ishide:0,url1:require('../../assets/images/DR-011.png'),url2:require('../../assets/images/DR-011-A.png')},
+            {id:3,ishow:1,ishide:0,url1:require('../../assets/images/DR-012.png'),url2:require('../../assets/images/DR-012-A.png')},
+            {id:4,ishow:1,ishide:0,url1:require('../../assets/images/DR-013.png'),url2:require('../../assets/images/DR-013A.png')},
+            {id:5,ishow:1,ishide:0,url1:require('../../assets/images/DR-014.png'),url2:require('../../assets/images/DR-014-A.png')},
+            {id:6,ishow:1,ishide:0,url1:require('../../assets/images/DR-015.png'),url2:require('../../assets/images/DR-015-A.png')},
+            {id:7,ishow:1,ishide:0,url1:require('../../assets/images/DR-016.png'),url2:require('../../assets/images/DR-016A.png')},
+            {id:8,ishow:1,ishide:0,url1:require('../../assets/images/DR-017.png'),url2:require('../../assets/images/DR-017-A.png')},
+            {id:9,ishow:1,ishide:0,url1:require('../../assets/images/DR-018.png'),url2:require('../../assets/images/DR-018-A.png')},
+        ]
     }
   },
    methods:{
-     onshow(e){
-       this.ishow=!this.ishow
-       this.ishide=!this.ishide
+     onshow(id){
+       this.imgs[id].ishow=!this.imgs[id].ishow
+       this.imgs[id].ishide=!this.imgs[id].ishide
      },
      backto(){
       this.$router.go(-1);
@@ -101,7 +89,7 @@ export default {
   .tit{
     font-size: px2rem(22);
     color: #199ED8;
-    margin-top: px2rem(20);
+    margin-top: px2rem(10);
     p{
       color: #999;
       font-size: px2rem(16)
@@ -167,7 +155,38 @@ export default {
       font-size: px2rem(20)
     }
   }
-
+   .end{
+        position: relative;
+        display: flex;
+        width:  px2rem(260);
+        margin: px2rem(10) auto;
+        .left img{
+            margin-left:px2rem(-10) ;
+            width:px2rem(60);
+        }
+       .con{
+           margin: px2rem(10) px2rem(5);
+           text-align: left;
+            p{
+            font-size: px2rem(10);
+            line-height: px2rem(20);
+            color: #999;
+        }
+       }
+       span{
+           color: #199ED8;
+           font-size: px2rem(10);
+       }
+       .right{
+           position: absolute;
+           right: 0;
+           top: px2rem(10);
+           img{
+               width: px2rem(12);
+               vertical-align:bottom;
+           }
+       }
+    }
 
 }
 

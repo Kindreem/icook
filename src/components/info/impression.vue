@@ -5,7 +5,11 @@
       </header>
   <div class="demo-avatar">
       <p>留下您的印象</p>
-     <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+      <Upload
+       action="//jsonplaceholder.typicode.com/posts/"
+       :show-upload-list="false">
+     <Avatar :src="img.url" />
+      </Upload>
   </div>
 
    <form >
@@ -14,7 +18,7 @@
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
-            <input type="text" placeholder="输入您的年龄" class="age" v-model="age" @focus="openPicker">
+            <input type="text" placeholder="输入您的年龄" readonly="readonly" class="age" v-model="age" @focus="openPicker">
              <mt-datetime-picker
                 type="date"
                 ref="picker"
@@ -40,18 +44,30 @@
        <router-link to="/load/load">
            <input type="button" class="next" value="下一步">
        </router-link>
-
   </form>
-
+    <div class="end">
+        <div class="left"><img src="./xxx.png" alt=""></div>
+        <div class="con">
+            <p><span>'烹饪之心'</span>徽章</p>
+            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
+        </div>
+        <div class="right"><span>EXP+3</span>
+        <img src="./DR-007.png" alt="">
+        <span>+3</span></div>
+    </div>
 
   </div>
 </template>
 
 <script>
+import { DatetimePicker } from 'mint-ui';
 import moment from 'moment'
 export default {
   data () {
     return {
+            img:{
+                url:'https://i.loli.net/2017/08/21/599a521472424.jpg'
+            },
             nickname:'',
             startDate: new Date(),
             age:'',
@@ -81,7 +97,6 @@ export default {
 
 <style lang="scss">
 @import '@/assets/hotcss/px2rem.scss';
-
 .info{
   text-align: center;
       input{
@@ -117,12 +132,12 @@ export default {
 
   .item{
        margin: px2rem(20) auto;
-       width:  px2rem(238);
+       width:  px2rem(250);
        display: flex;
        position: relative;
     
     #nickname{
-        width:  px2rem(238);
+        width:  px2rem(250);
         height:  px2rem(25);
         font-size: px2rem(12);
         border: none;
@@ -164,7 +179,7 @@ export default {
 
   }
     .txt{
-        font-size:px2rem(10);
+        font-size:px2rem(11);
         margin-top:px2rem(80);
         color: #999;
         span{
@@ -175,13 +190,15 @@ export default {
         top: 50%;
         width: 65%;
         left: auto;
-        
-        height: px2rem(130);
+        border-radius: 10px;
+        background: rgba(255,255,255,.9);
+        height: px2rem(140);
         transform: none;
         .picker-items{
-            margin-top:px2rem(15) ;
+            height: px2rem(100);
+            margin:px2rem(10) 0;
             .picker-item{
-                font-size: px2rem(12);
+                font-size: px2rem(14);
             }
         }
         .picker-toolbar{
@@ -205,6 +222,38 @@ export default {
       box-shadow:8px 8px 2px #d7d7d7;
       color: #999;
       font-size: px2rem(20)
+    }
+    .end{
+        position: relative;
+        display: flex;
+        width:  px2rem(260);
+        margin: px2rem(10) auto;
+        .left img{
+            margin-left:px2rem(-10) ;
+            width:px2rem(60);
+        }
+       .con{
+           margin: px2rem(10) px2rem(5);
+           text-align: left;
+            p{
+            font-size: px2rem(10);
+            line-height: px2rem(20);
+            color: #999;
+        }
+       }
+       span{
+           color: #199ED8;
+           font-size: px2rem(10);
+       }
+       .right{
+           position: absolute;
+           right: 0;
+           top: px2rem(10);
+           img{
+               width: px2rem(12);
+               vertical-align:bottom;
+           }
+       }
     }
 
 }
