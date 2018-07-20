@@ -45,6 +45,7 @@ export default {
 },
 
 methods: {
+
   // 实现移动端拖拽
   down(){
     this.flags = true;
@@ -60,6 +61,8 @@ methods: {
     this.dy = moveDiv.offsetTop;
   },
   move(){
+    var pageWidth = document.documentElement.clientWidth-40
+    var pageHeight = document.documentElement.clientHeight-40
     if(this.flags){
       var touch ;
       if(event.touches){
@@ -71,8 +74,19 @@ methods: {
       this.ny = touch.clientY - this.position.y;
       this.xPum = this.dx+this.nx;
       this.yPum = this.dy+this.ny;
-      moveDiv.style.left = this.xPum+"px";
-      moveDiv.style.top = this.yPum +"px";
+      if(this.xPum>-40 && this.xPum<pageWidth ){
+        moveDiv.style.left = this.xPum+"px";
+
+      }
+      // else {
+      //   return false
+      // };
+      if( this.yPum>-40 && this.yPum<pageHeight) {
+        moveDiv.style.top = this.yPum +"px";
+      }
+      // else {
+      //   return false
+      // }
       // //阻止页面的滑动默认事件
       // document.addEventListener("touchmove",function(){
       //     event.preventDefault();
@@ -103,9 +117,10 @@ methods: {
 
 .xuanfu {
     touch-action: none;
-    z-index: 1000;
+    z-index: 2000;
     position: fixed;
-    bottom px2rem(28)
+    top px2rem(944)
     right: px2rem(32)
+    width px2rem(96)
 }
 </style>

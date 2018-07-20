@@ -8,6 +8,7 @@ import U_menu from '../components/user menu/index.vue'
 import Share from '../components/share/index.vue'
 import Upload from '../components/upload/index.vue'
 import Works from '../components/upload/works/index.vue'
+import Cook from '../components/upload/cook/index.vue'
 // import Upload from '../components/upload/menu/index.vue'
 
 import member from '@/components/member/member'
@@ -75,6 +76,10 @@ export default new Router({
           path: "/works",
           name: "works",
           component: Works,
+        },{
+          path: "/cook",
+          name: "cook",
+          component: Cook,
         },
         // {
         //   path: "/menu",
@@ -84,7 +89,7 @@ export default new Router({
       ]
     },
 	// -----华丽的分割线-----
-	
+
 	 {
       path: '/',
       name: 'member',
@@ -114,12 +119,12 @@ export default new Router({
       path: '/info/impression',
       name: 'impression',
       component:impression
-    },  
+    },
     {
       path: '/info/meet',
       name: 'meet',
       component: meet
-    },  
+    },
     {
       path: '/load/load',
       name: 'load',

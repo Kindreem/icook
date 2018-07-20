@@ -1,5 +1,5 @@
 <template>
-<div class="zong">
+<div class="zong" @mouseup="end" @touchend="end">
   <div class="all" :style="bg">
     <header>
       <div class="tleft">
@@ -21,9 +21,9 @@
       </div>
     </header>
     <div class="sea">
-      <router-link class="sleft" to="home" :style="dis"><img src="./img/ZY-005.png" alt=""></router-link>
-      <router-link class="sright" to="home" :style="dis"><img src="./img/ZY-006.png" alt=""></router-link>
-      <router-link to="search" :style="sty" @mousemove="move" @touchmove="move">
+      <!-- <router-link class="sleft" to="home" :style="dis"><img src="./img/ZY-005.png" alt=""></router-link> -->
+      <!-- <router-link class="sright" to="home" :style="dis"><img src="./img/ZY-006.png" alt=""></router-link> -->
+      <router-link to="search" :style="{'transform': 'scale(' + sty + ')','transition': 'all 0.2s'}" @mousemove="move" @touchmove="move">
         <transition name="fade">
           <div>
           <Input placeholder="在此输入你要查询的菜谱"/>
@@ -48,65 +48,94 @@ export default {
     }
   },
   methods: {
-
+     end() {
+       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      //  console.log(scrollTop)
+      if(scrollTop<=946&&scrollTop>900) {
+            document.documentElement.scrollTop=900
+            document.body.scrollTop=900
+       }
+       else if(scrollTop>=946&&scrollTop<1010) {
+         document.documentElement.scrollTop=1010
+         document.body.scrollTop=1010
+       }
+     },
      move() {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        console.log(scrollTop)
-        if(scrollTop>0){
-          this.dis= {
-            opacity: 1,
+        var n = 1-(scrollTop/1010*0.2)
+        // console.log(scrollTop)
+        if(scrollTop>0&&scrollTop<1010){
+            // console.log(n)
+          this.sty=n
+          // this.sty= {
+        //  'transform': "scale(i)",
+        //  '-ms-transform': 'scale(0.8)', 	/* IE 9 */
+        //  '-moz-transform': 'scale(0.8)', 	/* Firefox */
+        //  '-webkit-transform': 'scale(0.8)', /* Safari 和 Chrome */
+        //  '-o-transform': 'scale(0.8)',
+      //    transition: 'all 10s',
+      //    '-moz-transition': 'all 0.5s',
+      //    '-webkit-transition': 'all 0.5s',
+      //    '-o-transition': 'all 0.5s'
+
+      // }(i)
+         }
+
+        else if(scrollTop>=1010) {
+          this.sty=0.8
+        }
+        else if(scrollTop<902){
+
+             this.sty=1
+
+      //       this.sty= {
+      //    transform: 'scale(1)',
+      //    '-ms-transform': 'scale(1)', 	/* IE 9 */
+      //    '-moz-transform': 'scale(1)', 	/* Firefox */
+      //    '-webkit-transform': 'scale(1)', /* Safari 和 Chrome */
+      //    '-o-transform': 'scale(1)',
+      //    transition: 'all 0.5s',
+      //    '-moz-transition': 'all 0.5s',
+      //    '-webkit-transition': 'all 0.5s',
+      //    '-o-transition': 'all 0.5s'
+      // }
+         }
+        if(scrollTop>902) {
+          this.bg = {
+            background: '#FFF',
             transition: 'all 2s',
             '-moz-transition': 'all 2s',
             '-webkit-transition': 'all 2s',
             '-o-transition': 'all 2s'
-          }
-          this.bg = {
-            background: '#FFF',
-            transition: 'all 0.5s',
-            '-moz-transition': 'all 0.5s',
-            '-webkit-transition': 'all 0.5s',
-            '-o-transition': 'all 0.5s'
             }
-          this.sty= {
-         'transform': 'scale(0.8)',
-         '-ms-transform': 'scale(0.8)', 	/* IE 9 */
-         '-moz-transform': 'scale(0.8)', 	/* Firefox */
-         '-webkit-transform': 'scale(0.8)', /* Safari 和 Chrome */
-         '-o-transform': 'scale(0.8)',
-         transition: 'all 0.5s',
-         '-moz-transition': 'all 0.5s',
-         '-webkit-transition': 'all 0.5s',
-         '-o-transition': 'all 0.5s'
-
-      }
-         }
-        else{
-           this.bg = {
+        }
+        else if(scrollTop<=1080) {
+          this.bg = {
              'background': '#EFEFEF',
-             'transition': 'all 0.5s',
-             '-moz-transition': 'all 0.5s',
-             '-webkit-transition': 'all 0.5s',
-             '-o-transition': 'all 0.5s'
+             'transition': 'all 1.5s',
+             '-moz-transition': 'all 1.5s',
+             '-webkit-transition': 'all 1.5s',
+             '-o-transition': 'all 1.5s'
              }
-           this.dis= {
-            'opacity': 0,
-            'transition': 'all 0.2s',
-            '-moz-transition': 'all 0.2s',
-            '-webkit-transition': 'all 0.2s',
-            '-o-transition': 'all 0.2s'
-          }
-            this.sty= {
-         transform: 'scale(1)',
-         '-ms-transform': 'scale(1)', 	/* IE 9 */
-         '-moz-transform': 'scale(1)', 	/* Firefox */
-         '-webkit-transform': 'scale(1)', /* Safari 和 Chrome */
-         '-o-transform': 'scale(1)',
-         transition: 'all 0.5s',
-         '-moz-transition': 'all 0.5s',
-         '-webkit-transition': 'all 0.5s',
-         '-o-transition': 'all 0.5s'
-      }
-         }
+        }
+        //  if(scrollTop>150){
+        //     this.dis= {
+        //     opacity: 1,
+        //     'transition': 'all 4s',
+        //     '-moz-transition': 'all 4s',
+        //     '-webkit-transition': 'all 4s',
+        //     '-o-transition': 'all 4s'
+        //   }
+        //  }
+        //  else{
+        //     this.dis= {
+        //     'opacity': 0,
+        //     'transition': 'all 0.2s',
+        //     '-moz-transition': 'all 0.2s',
+        //     '-webkit-transition': 'all 0.2s',
+        //     '-o-transition': 'all 0.2s'
+        //   }
+        //  }
      },
    }
 }
@@ -116,7 +145,7 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .zong {
-  height 208px
+  height px2rem(210)
 }
 .all {
   position fixed
@@ -164,14 +193,17 @@ header {
   position relative
   .sleft {
     position absolute
-    top 44px
-    left 30px
+    top px2rem(44)
+    left px2rem(30)
   }
   .sright {
     position absolute
-    top 44px
-    right 30px
+    top px2rem(44)
+    right px2rem(30)
   }
+}
+>>>.ivu-input-wrapper {
+
 }
 >>>.ivu-input {
   text-align center

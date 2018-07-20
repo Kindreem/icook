@@ -1,5 +1,5 @@
 <template>
-  <div class="all">
+  <div class="all" @mouseup="end" @touchend="end">
     <header>
       <p>本周流行菜肴TOP10</p>
     </header>
@@ -60,6 +60,20 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    end() {
+       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      //  console.log(scrollTop)
+       if(scrollTop<=946&&scrollTop>900) {
+            document.documentElement.scrollTop=900
+            document.body.scrollTop=900
+       }
+       else if(scrollTop>=946&&scrollTop<1050) {
+         document.documentElement.scrollTop=1050
+         document.body.scrollTop=1050
+       }
+     },
   }
 
 }
@@ -68,7 +82,7 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 36px 30px 0px 30px
+  margin px2rem(36) px2rem(30) 0px px2rem(30)
   header {
     height px2rem(48)
     line-height px2rem(48)
