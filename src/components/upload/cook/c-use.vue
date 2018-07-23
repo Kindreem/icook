@@ -79,11 +79,12 @@
 </script>
 
 <style lang="stylus" scoped>
+@import '../../../assets/px2rem.styl'
 .all {
-  margin 0 66px 50px
+  margin 0 px2rem(66) px2rem(50)
   h2 {
-    font-size 30px
-    margin-bottom 20px
+    font-size px2rem(30)
+    margin-bottom px2rem(20)
 
   }
 }
@@ -93,18 +94,20 @@
     outline none
     border none
     color #888
-    height 74px
-    font-size 26px
+    height px2rem(74)
+    font-size px2rem(26)
+
    }
    img {
      position relative
-     top 20px
+     top px2rem(20)
    }
    .ivu-btn {
-     font-size 24px
-     border-radius 20px
+     font-size px2rem(24)
+     border-radius px2rem(20)
      color #888
      border-color: #444
+     margin-top px2rem(70)
    }
    .ivu-btn-dashed:active {
      color #5DB8E9

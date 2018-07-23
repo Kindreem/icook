@@ -5,7 +5,7 @@
       <router-link to="works">
         <div><img src="./img/RW-027.png" alt=""></div>
       </router-link>
-      <router-link to="home">
+      <router-link to="cook">
         <div><img src="./img/RW-028.png" alt=""></div>
       </router-link>
     </section>

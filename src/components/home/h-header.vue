@@ -55,9 +55,9 @@ export default {
             document.documentElement.scrollTop=900
             document.body.scrollTop=900
        }
-       else if(scrollTop>=946&&scrollTop<1010) {
-         document.documentElement.scrollTop=1010
-         document.body.scrollTop=1010
+       else if(scrollTop>=946&&scrollTop<1050) {
+         document.documentElement.scrollTop=1050
+         document.body.scrollTop=1050
        }
      },
      move() {
