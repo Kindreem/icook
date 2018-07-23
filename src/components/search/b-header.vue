@@ -8,7 +8,7 @@
     <div class="bot">
        <section class="left">
          <img src="./img/ZY-030.png" alt="">
-         <h3>定位</h3>
+         <h3 id="allmap">定位</h3>
        </section>
        <section class="min">
          <Dropdown placement="bottom-start">
@@ -47,6 +47,39 @@
     </div>
   </div>
 </template>
+
+<script>
+// import BMap from 'BMap'
+export default {
+      created:{
+          init: function (){
+        //console.log("初始化百度地图脚本...");
+        const AK = "Yy56npfvkgdnP89tXjZOiq0hqESxViSZ";
+        const BMap_URL = "https://api.map.baidu.com/api?v=2.0&ak="+ AK +"&s=1&callback=onBMapCallback";
+        return new Promise((resolve, reject) => {
+          // 如果已加载直接返回
+          if(typeof BMap !== "undefined") {
+            resolve(BMap);
+            return true;
+          }
+          // 百度地图异步加载回调处理
+          window.onBMapCallback = function () {
+            console.log("百度地图脚本初始化成功...");
+            resolve(BMap);
+          };
+
+          // 插入script脚本
+          let scriptNode = document.createElement("script");
+          scriptNode.setAttribute("type", "text/javascript");
+          scriptNode.setAttribute("src", BMap_URL);
+          document.body.appendChild(scriptNode);
+        });
+      } 
+   }
+}
+</script>
+
+
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';

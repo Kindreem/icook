@@ -18,8 +18,8 @@
       <p>如您幸运的上传了一个ICOOK从未收录的菜肴作品,您将获得更丰盛的专属奖励!</p>
       <p>赶紧上传您的惊天大作吧!</p>
       <div class="btn">
-      <router-link to="/home"><button>传传传,不传不是人</button></router-link>
-       <router-link to="/home"><button>等等 ! 一会儿再说</button></router-link>
+        <router-link to="/home"><button class="first">传传传,不传不是人</button></router-link>
+        <router-link to="/home"><button>等等 ! 一会儿再说</button></router-link>
       </div>
     </div>
 
@@ -57,7 +57,7 @@ export default {
     }
     .modal1{
       height:  px2rem(190);
-      margin-top: px2rem(80);
+      margin-top: px2rem(50);
       .badge{
         display: flex;
         justify-content: center;
@@ -70,7 +70,8 @@ export default {
     .modal2{
       height:  px2rem(320);
       .btn{
-        margin-top:  px2rem(30);
+        margin-top:px2rem(30);
+        margin-right: px2rem(25);
         display: flex;
         justify-content: center;
         button{
@@ -81,10 +82,9 @@ export default {
           background: #666;
           color: #fff;
         }
-        button:first-child{
+        button.first{
           background: #fff;
           color: #333;
-          margin-right:  px2rem(25);
         }
       }
     }

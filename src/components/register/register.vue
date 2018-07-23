@@ -59,8 +59,7 @@ export default {
         outline: none;
         border:none;
       }
-}
-.header{
+  .header{
     height: px2rem(44);
     background: none;
     text-align: left;
@@ -80,7 +79,8 @@ export default {
     margin-top: px2rem(20);
   }
   .tel_register{
-    margin-top: px2rem(100) ;
+    margin-top: px2rem(100);
+    height:px2rem(200) ;
     input{
       width: px2rem(238);
       height: px2rem(25);
@@ -92,13 +92,13 @@ export default {
       margin: px2rem(20) 0;
     }
     .code{
-      width: px2rem(60);
+      width: px2rem(70);
       height: px2rem(25);
       font-size: px2rem(10);
       background: white;
       color: #999;
       border: 1px solid #999;
-      border-radius:10px;
+      border-radius:px2rem(5);
       box-shadow: 2px 2px #cccccc;
       outline: none;
     }
@@ -117,14 +117,14 @@ export default {
     }
     a{
       display: block;
-      margin-top: 20px;
+      margin-top:10px;
       font-size: px2rem(10);
       color: #199ED8;
       text-decoration: none;
     }
   }
  .thirdparty{
-      margin-top: px2rem(104);
+      margin-top: px2rem(160);
       display: flex;
       justify-content: center;
       position: relative;
@@ -149,4 +149,6 @@ export default {
           margin: 0 px2rem(88);
       }
   }
+}
+
 </style>

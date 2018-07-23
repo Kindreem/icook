@@ -18,7 +18,7 @@
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
-            <input type="text" placeholder="输入您的年龄" class="age" v-model="age" @focus="openPicker">
+            <input type="text" placeholder="输入您的年龄" class="age" readonly="readonly" v-model="age" @focus="openPicker">
              <mt-datetime-picker
                 type="date"
                 ref="picker"
@@ -26,7 +26,6 @@
                 month-format="{value} 月"
                 date-format="{value} 日"
                 @confirm="handleConfirm"
-                :startDate="startDate"
                 >
                 </mt-datetime-picker>
             <p id="sel">仅自己可见></p>
@@ -41,7 +40,7 @@
              </div>
         </div>
        <p class="txt">选择您的性别完成奖励,完成后可获得<span>烹饪之心</span>的徽章</p>
-       <router-link to="info/meet">
+       <router-link to="/info/meet">
            <input type="button" class="next" value="下一步">
        </router-link>
 
@@ -52,12 +51,13 @@
 </template>
 
 <script>
+import { DatetimePicker } from 'mint-ui';
 import moment from 'moment'
 export default {
   data () {
     return {
             img:{
-                url:'https://i.loli.net/2017/08/21/599a521472424.jpg'
+                url:require('./TX.png')
             },
             nickname:'',
             startDate: new Date(),
@@ -88,7 +88,6 @@ export default {
 
 <style lang="scss">
 @import '@/assets/hotcss/px2rem.scss';
-
 .info{
   text-align: center;
       input{
@@ -124,12 +123,12 @@ export default {
 
   .item{
        margin: px2rem(20) auto;
-       width:  px2rem(238);
+       width:  px2rem(250);
        display: flex;
        position: relative;
     
     #nickname{
-        width:  px2rem(238);
+        width:  px2rem(250);
         height:  px2rem(25);
         font-size: px2rem(12);
         border: none;
@@ -154,6 +153,7 @@ export default {
     .age,.sex{
          font-size: px2rem(12);
          line-height: px2rem(20);
+         background: #fff;
          color: #666;
     }
     .sex2{
@@ -171,7 +171,7 @@ export default {
 
   }
     .txt{
-        font-size:px2rem(10);
+        font-size:px2rem(11);
         margin-top:px2rem(80);
         color: #999;
         span{
@@ -182,13 +182,18 @@ export default {
         top: 50%;
         width: 65%;
         left: auto;
-        
-        height: px2rem(130);
+        border-radius: 10px;
+        background: rgba(255,255,255,.9);
+        height: px2rem(140);
         transform: none;
+        .picker-slot-wrapper{
+            margin-top:px2rem(-15) ;
+        }
         .picker-items{
-            margin-top:px2rem(15) ;
+            height: px2rem(100);
+            margin:px2rem(10) 0;
             .picker-item{
-                font-size: px2rem(12);
+                font-size: px2rem(14);
             }
         }
         .picker-toolbar{
