@@ -180,30 +180,45 @@ export default {
     }
     .mint-popup{
         top: 50%;
-        width: 65%;
-        left: auto;
+        width: 70%;
+        left: 15%;
         border-radius: 10px;
         background: rgba(255,255,255,.9);
-        height: px2rem(140);
+        height: px2rem(200);
         transform: none;
         .picker-slot-wrapper{
             margin-top:px2rem(-15) ;
         }
         .picker-items{
             height: px2rem(100);
-            margin:px2rem(10) 0;
+            margin:px2rem(35) 0;
             .picker-item{
                 font-size: px2rem(14);
+                transform: perspective(600px) rotateY(20deg);
+            }
+            .picker-item.picker-selected{
+                font-size: px2rem(15);
             }
         }
         .picker-toolbar{
             position: absolute;
-            height: px2rem(20);
-            bottom: 0;
+            height: px2rem(25);
+            bottom: px2rem(10);
             width: 100%;
+            display: flex;
+            justify-content: center;
             span{
-                display: inline-block;
                 font-size: px2rem(14);
+                display: inline-block;
+                margin:0 px2rem(20);
+                width: px2rem(85); 
+                border:1px solid #999;
+                border-radius: px2rem(3);
+                color: #999;
+            }
+            span:last-child{
+                color: #199ED8;
+                border: 1px solid #199ED8;
             }
         }
     }
