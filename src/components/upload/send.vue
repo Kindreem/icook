@@ -25,7 +25,7 @@
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
 .all {
-  margin 0 px2rem(64)
+  margin 0 px2rem(64) px2rem(70)
   form {
     .icon {
       margin-top px2rem(30)

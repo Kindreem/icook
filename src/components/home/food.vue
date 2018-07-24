@@ -1,5 +1,5 @@
 <template>
-  <div class="all">
+  <div class="all" @mouseup="end" @touchend="end">
      <div class="top">
        <router-link to="home" class="left">
          <p>&lt;湘派</p>
@@ -28,14 +28,34 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    end() {
+       var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+       console.log(scrollTop)
+      if(scrollTop<=950&&scrollTop>900) {
+            document.documentElement.scrollTop=900
+            document.body.scrollTop=900
+       }
+       else if(scrollTop>=950&&scrollTop<1050) {
+         document.documentElement.scrollTop=1050
+         document.body.scrollTop=1050
+       }
+     },
+  }
+}
+</script>
+
+
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 100px 30px 0px
-  padding-top 198px
+  margin 0 px2rem(30) 0px
 }
 .top {
   font px2rem(24) '微软雅黑'
+  padding-bottom px2rem(72)
   p{
     color #727171
   }
@@ -49,7 +69,7 @@
 .ban {
   border-radius 20px
   box-shadow 8px 8px 4px rgba(204, 204, 204, 0.349019607843137)
-  margin-top px2rem(72)
+  // margin-top px2rem(72)
   margin-bottom px2rem(8)
   .b-top {
   border-top-left-radius 20px

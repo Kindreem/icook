@@ -3,7 +3,7 @@
     <router-link to="home"><img src="./img/RW-026.png" alt=""></router-link>
     <div class="title">
       <router-link to="works"><h4>上传作品</h4></router-link>
-      <router-link to="home"><h4>上传菜谱</h4></router-link>
+      <router-link to="cook"><h4>上传菜谱</h4></router-link>
     </div>
   </div>
 </template>

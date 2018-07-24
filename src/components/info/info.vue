@@ -180,17 +180,26 @@ export default {
     }
     .mint-popup{
         top: 50%;
+<<<<<<< HEAD
         width: 70%;
         left: 15%;
         border-radius: 10px;
         background: rgba(255,255,255,.9);
         height: px2rem(200);
+=======
+        width: 65%;
+        left: auto;
+        border-radius: 10px;
+        background: rgba(255,255,255,.9);
+        height: px2rem(140);
+>>>>>>> fb95aaac15be2a2e5b345da1179ba893cb97afe5
         transform: none;
         .picker-slot-wrapper{
             margin-top:px2rem(-15) ;
         }
         .picker-items{
             height: px2rem(100);
+<<<<<<< HEAD
             margin:px2rem(35) 0;
             .picker-item{
                 font-size: px2rem(14);
@@ -198,6 +207,11 @@ export default {
             }
             .picker-item.picker-selected{
                 font-size: px2rem(15);
+=======
+            margin:px2rem(10) 0;
+            .picker-item{
+                font-size: px2rem(14);
+>>>>>>> fb95aaac15be2a2e5b345da1179ba893cb97afe5
             }
         }
         .picker-toolbar{
