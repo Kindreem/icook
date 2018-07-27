@@ -59,7 +59,40 @@
          <div class="item genre">
            <div class="title">
                <img src="./GR-007.png" alt="">
-               <p>未获得徽章:粤派</p>
+               <p>粤派</p>
+               </div>
+           <ul class="meet">
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+                <li>
+                   <img src="./2.png" alt="">
+                   <img src="./lock.png" alt="">
+               </li>
+
+           </ul>
+       </div>
+        <div class="item genre">
+           <div class="title">
+               <img src="./GR-007.png" alt="">
+               <p>川派</p>
                </div>
            <ul class="meet">
                 <li>
@@ -141,6 +174,9 @@ export default {
             display: block;
             margin: px2rem(-2) auto;
             width: px2rem(35);
+            /deep/ .ivu-progress-inner{
+                background: #999;
+            }
            }
         li p{
             margin-top: px2rem(8);

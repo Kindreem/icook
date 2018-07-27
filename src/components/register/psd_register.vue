@@ -117,10 +117,12 @@ export default {
         }
     }
     .thirdparty{
-        margin-top: px2rem(160);
+        position: absolute;
+        bottom: px2rem(20);
+        left: 0;
+        right: 0;
         display: flex;
         justify-content: center;
-        position: relative;
         p{
             font-size: px2rem(14);
             position: absolute;

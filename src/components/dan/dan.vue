@@ -80,6 +80,9 @@ export default {
       }
       .ivu-progress{
           margin-top: px2rem(-10);
+          /deep/ .ivu-progress-inner{
+                background: #999;
+            }
       }
       span{
           margin-top: px2rem(-8);

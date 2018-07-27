@@ -43,7 +43,7 @@ export default {
     .modal2{
         width: 90%;
         font-size:px2rem(12);
-        margin:px2rem(20) auto;
+        margin:px2rem(10) auto;
         text-align: left;
         border-radius: px2rem(10);
         background: #666;
@@ -57,7 +57,7 @@ export default {
     }
     .modal1{
       height:  px2rem(190);
-      margin-top: px2rem(50);
+      margin-top: px2rem(30);
       .badge{
         display: flex;
         justify-content: center;

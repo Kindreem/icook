@@ -94,6 +94,7 @@ export default {
     img{
       width: px2rem(24);
       height: px2rem(24);
+      margin-left: px2rem(-20);;
     }
   }
     margin: 0 px2rem(40);

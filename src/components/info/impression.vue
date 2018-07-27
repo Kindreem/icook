@@ -34,7 +34,7 @@
          <div class="item" >
             <p class="sex">选择您的性别</p>
              <div class="sex2">
-                  <input type="radio" id="one" value="One" v-model="picked">
+                <input type="radio" id="one" value="One" v-model="picked">
                 <label for="one">男</label>
                 <input type="radio" id="two" value="Two" v-model="picked">
                 <label for="two">女</label>
@@ -91,7 +91,18 @@ export default {
      backto(){
       this.$router.go(-1);
     }
-  }
+  },
+  computed:{
+      dayList () {
+            /* get currentMonthLenght */
+            let currentMonthLength = new Date(this.tmpYear, this.tmpMonth + 1, 0).getDate();
+            /* get currentMonth day */
+            let daylist = Array.from({length: currentMonthLength}, (value, index) => {
+                return index + 1
+            });
+            return daylist
+        },
+    }      
 }
 </script>
 
@@ -168,12 +179,14 @@ export default {
         flex: 1;
         text-align: right;
         input{
-            width: px2rem(12);
-            height:px2rem(12);
+            width: px2rem(14);
+            height:px2rem(14);
             margin-left: px2rem(12);
+            vertical-align: middle;
         }
         label{
             font-size: px2rem(12);
+            vertical-align: middle;
          }
     }
 
@@ -188,27 +201,50 @@ export default {
     }
     .mint-popup{
         top: 50%;
-        width: 65%;
-        left: auto;
+        width: 70%;
+        left: 15%;
         border-radius: 10px;
         background: rgba(255,255,255,.9);
-        height: px2rem(140);
+        height: px2rem(180);
         transform: none;
+        .picker-slot-wrapper{
+            margin-top:px2rem(-15) ;
+        }
         .picker-items{
             height: px2rem(100);
-            margin:px2rem(10) 0;
+            margin:px2rem(25) 0;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
             .picker-item{
-                font-size: px2rem(14);
+                font-size: px2rem(15);
+                // transform: perspective(600px) rotateY(20deg);
+                transform: rotate3d(1, 0, 0, 50deg) translate3d(0px, 0px, px2rem(2));
+            }
+            .picker-item.picker-selected{
+                font-size: px2rem(16);
+                transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
             }
         }
         .picker-toolbar{
             position: absolute;
-            height: px2rem(20);
-            bottom: 0;
+            height: px2rem(25);
+            bottom: px2rem(12);
             width: 100%;
+            display: flex;
+            justify-content: center;
             span{
-                display: inline-block;
                 font-size: px2rem(14);
+                display: inline-block;
+                margin:0 px2rem(20);
+                width: px2rem(85); 
+                border:1px solid #999;
+                border-radius: px2rem(3);
+                line-height: px2rem(25); 
+                color: #999;
+            }
+            span:last-child{
+                color: #199ED8;
+                border: 1px solid #199ED8;
             }
         }
     }

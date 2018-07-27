@@ -8,7 +8,7 @@
           <div class="left"><img src="./2.png" alt=""></div>
           <div class="tit">
               <p>成就1是一个成就</p><span>在 特定的条件下,完成一个动作</span>
-             <Progress :percent="100" status="active"></Progress>
+             <Progress :percent="100" status="active" :stroke-width="6"></Progress>
           </div>
           <div class="right">
               <img src="./GR-016.png" alt="">
@@ -19,7 +19,7 @@
           <div class="left"><img src="./2.png" alt=""></div>
           <div class="tit">
               <p>成就1是一个成就</p><span>在 特定的条件下,完成一个动作</span>
-             <Progress :percent="76" status="active"></Progress>
+             <Progress :percent="76" status="active" :stroke-width="6"></Progress>
           </div>
           <div class="right">
               <img src="./GR-016.png" alt="">
@@ -30,7 +30,7 @@
           <div class="left"><img src="./2.png" alt=""></div>
           <div class="tit">
               <p>成就1是一个成就</p><span>在 特定的条件下,完成一个动作</span>
-             <Progress :percent="80" status="active"></Progress>
+             <Progress :percent="number" status="active" :stroke-width="6"></Progress>
           </div>
           <div class="right">
               <img src="./GR-016.png" alt="">
@@ -46,7 +46,7 @@
 export default {
   data () {
     return {
-   
+        number:88
     }
   },
   methods:{
@@ -114,6 +114,9 @@ export default {
                 // width: 92%;
                 font-size: px2rem(12);
                 display: flex;
+                /deep/ .ivu-progress-inner{
+                    background: #999;
+                }
             }
         }
         .right{

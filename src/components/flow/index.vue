@@ -1,24 +1,336 @@
 <template>
-  <div>
+  <div class="menu">
     <sheader :value='value'/>
-    <fready/>
+    <!-- <fready/> -->
+     <div class="item">
+      <div class="tit">PART1 食材准备</div>
+      <div class="item1">
+          <div class="top">
+              <img src="./0.png">
+              <p>食材</p>
+          </div>
+          <ul class="item-ul">
+            <li><p>五花肉</p>600克</li>
+            <li><p>五花肉</p>600克</li>
+            <li><p>五花肉</p>600克</li>
+          </ul>
+      </div>
+      <div class="item2">
+           <div class="top">
+              <img src="./0.png">
+              <p>调料</p>
+          </div>
+          <ul class="item-ul">
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+          </ul>
+      </div>
+    </div>
+    
+    <div class="item">
+        <div class="tit">PART2 食材处理</div>
+        <ul class="item3 item-ul">
+            <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+             <li><p>五花肉</p>600克</li> 
+        </ul>
+    </div>
+      <div class="item step">
+        <div class="tit">PART2 烹饪</div>
+          <div class="top">
+              <img src="./0.png">
+              <p>炒四季豆和梅菜</p>
+          </div>
+              <ul>
+                  <li  v-for="(item,index) in step" :key="index">
+                      <div class="left">
+                          <img src="./8.png">
+                          <p class="number">{{item.id}}</p>
+                          <div class="wire">
+                            <span></span>
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                          </div>
+                      </div>
+                      <div class="right">
+                         <p v-bind:style="{background:item.bg}">{{item.name}}</p>
+                         <img src="./9.png">
+                         <div class="cen">
+                            <div class="line"> 
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             </div>
+                         </div>
+                      </div>
+                      <div class="text">
+                          <p>{{item.tit}}</p>
+                      </div>
+                  </li>
+              </ul>
+              <div class="achieve">羊肉去血水完成</div>
+      </div>
   </div>
 </template>
 
 <script>
 import sheader from '../public/header'
-import fready from './f-ready'
+// import fready from './f-ready'
 export default {
   components: {
     sheader,
-    fready,
+    // fready,
   },
   data() {
     return {
       value: '梅干菜烧四季豆',
+      step:[
+          {id:1,bg:'#E3CC6F',name:'起汤锅',tit:'锅中加入冷水'},
+          {id:2,bg:'#625739',name:'煮羊肉',tit:'将羊肉加入水中,并将水煮至沸腾'},
+          {id:3,bg:'#6A7B8B',name:'起清洗',tit:'将带有血沫的汤倒掉,把羊肉洗干净'},
+          {id:4,bg:'#8C6270',name:'加热水煮羊肉',tit:'加入热水羊肉锅中煮'},
+          {id:5,bg:'#B1250E',name:'盛出冷却',tit:'羊肉盛出冷却至室温羊汤备用'},
+          {id:6,bg:'#BCB6B6',name:'切片',tit:'羊肉冷却后切片羊肉片备用'},
+      ]
     }
   }
 
 }
 </script>
 
+<style lang="scss" scoped>
+@import '@/assets/hotcss/px2rem.scss';
+.menu{
+    width: 90%;
+    margin: px2rem(20) auto;
+    li{
+        list-style: none;
+        font-size: px2rem(14);
+        margin-bottom: px2rem(15);
+    }
+   .item{
+       border-radius:px2rem(5);
+       overflow: hidden;
+       box-shadow: 8px 8px 2px 5px rgba(0,0,0,.1);
+       margin-bottom:px2rem(5) ;
+        .tit{
+            background: url('./1.png') repeat-x;
+            height: px2rem(40);
+            line-height: px2rem(40);
+            font-size:px2rem(16);
+            color: #fff;
+            padding-left: px2rem(15);
+        }
+        .top{
+            position: relative;
+            margin-top: px2rem(15);
+            img{
+                width:px2rem(120);
+                height:px2rem(40);  
+            }
+            p{
+                width:  100%;
+                height:  px2rem(30);
+                line-height:  px2rem(30);
+                top:  px2rem(2);
+                left:  px2rem(30);
+                padding-left:  px2rem(25);
+                position: absolute;
+                font-size:  px2rem(14);
+                background: url('./titles.png') no-repeat center left;
+                background-size:  px2rem(20) px2rem(15);
+            }
+        }
+        .item-ul{
+            width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+            li{
+            width: 42%;
+            height: px2rem(60);
+            margin:px2rem(10) ;
+            background: url(./1.png);
+            border-radius: px2rem(5);
+            text-align: center;
+            color: #fff;
+            p{
+                padding-top:px2rem(12);  
+            }
+         }
+        }
+        .item2 li{
+            background: url(./2.png);
+        }
+        .item3 li{
+            background: url(./3.png);
+        }
+   }
+   .item.step{
+       .top img{
+           width: px2rem(180); 
+           margin-bottom: px2rem(10);
+       }
+   }
+   .step li{
+       width: 100%;
+       margin: 0 auto;
+       height: px2rem(72); 
+       display: flex;
+        .left{
+            position: relative;
+            width: px2rem(50);
+            margin-left: px2rem(20);
+            img{
+                width: px2rem(30);
+                position: absolute;
+                top: px2rem(2);
+            }
+            p{
+                position: absolute;
+                font-size:  px2rem(16);
+                top: px2rem(5);
+                left:px2rem(10);
+            }
+            .wire{
+                position: absolute;
+                top:  px2rem(31);
+                left:px2rem(13);
+                width: px2rem(15);
+                height: px2rem(50);
+            span{
+                display:block;
+                width: px2rem(3);
+                height: px2rem(4);
+                margin-bottom: px2rem(2);
+                border-right:  px2rem(2) dotted #199ED8;
+            }
+
+            }
+        }
+        .right{
+            position: relative;
+            width: px2rem(160);
+            p{
+                width: px2rem(80);
+                height: px2rem(35);
+                padding: 0 px2rem(10);
+                text-align: center; 
+                border-radius: px2rem(8);
+                background: skyblue;
+                color: #FFFFFB;
+                line-height:px2rem(18); 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            img{
+                position: absolute;
+                width: px2rem(80);
+                left: px2rem(80);
+                top: px2rem(13);
+            }
+            .cen{
+                width: px2rem(115);
+                height:100%;
+                margin-top: px2rem(-18);
+                border-right:px2rem(3) solid #199ED8;
+                position: relative;
+                .line{
+                    position: absolute;
+                    width:px2rem(20);
+                    right: px2rem(-23);
+                    top:0;
+                    span{
+                        display: block;
+                        width: px2rem(8);
+                        height: px2rem(3); 
+                        background: #F0605F;
+                        margin-top: px2rem(4);
+                        border-radius: px2rem(3);
+                    }
+                    span:first-child,
+                    span:nth-of-type(6n){
+                        width: px2rem(16);
+                    }
+                }
+            }
+        }
+        .text{
+            margin-left: px2rem(3) ;
+            p{
+                width:  px2rem(100);
+                height: px2rem(35);
+                font-size: px2rem(12);
+                line-height:px2rem(15);
+                color: #A0A0A0;
+                display: flex;
+                align-items: center;
+                word-break: break-all;
+                word-wrap: break-word;
+                
+            }
+        }
+   }
+   .step li:last-child{
+       margin-bottom: px2rem(20);
+       height:px2rem(60); 
+    //    background: pink;
+       .left>.wire>span{
+           width: 0;
+           height: 0;
+       }
+       .cen{
+           height: px2rem(35);
+          .line>span{
+              background: none;
+            }
+          .line>span:nth-child(1),
+          .line>span:nth-child(2),
+          .line>span:nth-child(3){
+              background: #F0605F;
+          }
+          .line>span:last-child{
+              width: px2rem(42);
+              height: px2rem(42);
+              position: absolute;
+              top: px2rem(28);
+              left:  px2rem(-16);
+              background: url(./8.png) no-repeat;
+              background-size: px2rem(30) px2rem(30);
+          }
+       }
+   }
+   .achieve{
+       width: 80%;
+       margin: px2rem(25) auto;
+       height: px2rem(40);
+       line-height: px2rem(40);
+       background: url(./1.png);
+       color: #FFFFFB;
+       font-size:px2rem(18);
+       text-align: center;
+       border-radius: px2rem(8);
+       
+   }
+}
+
+</style>
