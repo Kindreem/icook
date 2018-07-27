@@ -87,10 +87,10 @@ methods: {
       // else {
       //   return false
       // }
-      // //阻止页面的滑动默认事件
-      // document.addEventListener("touchmove",function(){
-      //     event.preventDefault();
-      // },false);
+      //阻止页面的滑动默认事件
+      document.addEventListener("touchmove",function(){
+          event.preventDefault();
+      },false);
     }
   },
 //鼠标释放时候的函数

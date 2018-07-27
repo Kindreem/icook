@@ -4,15 +4,15 @@
       <div class="icon">
         <section class="weixin">
           <div><img src="./img/DR-002.png" alt=""><span>微信</span></div>
-          <div><input type="checkbox" name="weixin" value="Bike"/></div>
+          <div><Checkbox/></div>
         </section>
         <section class="qq">
           <div><img src="./img/DR-003.png" alt=""><span>QQ</span></div>
-          <div><input type="checkbox" name="qq" value="Bike"/></div>
+          <div><Checkbox/></div>
         </section>
         <section class="weibo">
           <div><img src="./img/RW-029.png" alt=""><span>微博</span></div>
-          <div><input type="checkbox" name="weibo" value="Bike"/></div>
+          <div><Checkbox/></div>
        </section>
       </div>
       <p>每勾选一个发布按钮可获200金奖励</p>
@@ -43,10 +43,7 @@
         img {
           width px2rem(48)
         }
-        input {
-          height px2rem(26)
-          width px2rem(26)
-        }
+
       }
     }
 
@@ -73,6 +70,32 @@
     line-height px2rem(36)
     margin-top px2rem(12)
   }
+}
+>>>.ivu-checkbox {
+  height px2rem(26)
+  width px2rem(26)
+}
+>>>.ivu-checkbox-inner {
+  height px2rem(26)
+  width px2rem(26)
+
+}
+>>>.ivu-checkbox-checked .ivu-checkbox-inner {
+    background-color #5DB8E9
+}
+>>>.ivu-checkbox-checked .ivu-checkbox-inner:after {
+    content: '';
+    display: table;
+    width: px2rem(12);
+    height: px2rem(20);
+    position: absolute;
+    top: px2rem(1);
+    left: px2rem(6);
+    border: 5px solid #fff;
+    border-top: 0;
+    border-left: 0;
+    transform: rotate(45deg) scale(1);
+    transition: all .2s ease-in-out;
 }
 </style>
 

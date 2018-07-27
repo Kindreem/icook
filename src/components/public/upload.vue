@@ -11,7 +11,9 @@
         </div>
       </section>
       <section class="but">
-        <Button shape="circle">点击上传</Button>
+        <router-link to="works">
+          <Button shape="circle">点击上传</Button>
+        </router-link>
       </section>
     </div>
   </div>

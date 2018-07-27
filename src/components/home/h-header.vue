@@ -51,9 +51,9 @@ export default {
      end() {
        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       //  console.log(scrollTop)
-      if(scrollTop<=946&&scrollTop>900) {
-            document.documentElement.scrollTop=900
-            document.body.scrollTop=900
+      if(scrollTop<=946&&scrollTop>884) {
+            document.documentElement.scrollTop=884
+            document.body.scrollTop=884
        }
        else if(scrollTop>=946&&scrollTop<1050) {
          document.documentElement.scrollTop=1050
@@ -102,8 +102,8 @@ export default {
          }
         if(scrollTop>902) {
           this.bg = {
-            background: '#FFF',
-            transition: 'all 2s',
+            'background': '#FFF',
+            'transition': 'all 2s',
             '-moz-transition': 'all 2s',
             '-webkit-transition': 'all 2s',
             '-o-transition': 'all 2s'
