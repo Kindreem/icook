@@ -19,7 +19,8 @@ import login from '@/components/login/login'
 
 import info from '@/components/info/info'
 import impression from '@/components/info/impression'
-import meet from '@/components/info/meet'
+// import meet from '@/components/info/meet'
+import meet from '@/components/info/test'
 
 import load from '@/components/load/load.vue'
 
@@ -165,6 +166,6 @@ export default new Router({
       path: '/dan/dan',
       name: 'dan',
       component:dan
-    }
+    },
   ]
 })

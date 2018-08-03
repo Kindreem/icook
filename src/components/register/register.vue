@@ -15,7 +15,7 @@
           <router-link to="/info">
           <button class="btn_register">登录</button>
           </router-link>
-          <router-link to='/register/psd'>密码登录</router-link>
+          <!-- <router-link to='/register/psd'>密码登录</router-link> -->
         </form>
      </div>
        <div class="thirdparty">
@@ -79,7 +79,10 @@ export default {
     margin-top: px2rem(20);
   }
   .tel_register{
-    margin-top: px2rem(100);
+    position: absolute;
+    top:  30%;
+    left: 50%;
+    transform: translateX(-50%);
     height:px2rem(200) ;
     input{
       width: px2rem(238);

@@ -16,7 +16,7 @@
     </ul>
       <div class="btn-meet">
         <p>完成奖励 : 完成后可获得 徽章</p>
-        <router-link to="/info/impression">
+        <router-link to="/load/load">
          <button class="next">下一步</button>
         </router-link>
       </div>
@@ -37,8 +37,6 @@
 export default {
   data () {
     return {
-        ishow:1,
-        ishide:0,
         imgs:[
             {id:1,ishow:1,ishide:0,url1:require('../../assets/images/DR-010-A.png'),url2:require('../../assets/images/DR-010.png')},
             {id:2,ishow:1,ishide:0,url1:require('../../assets/images/DR-011.png'),url2:require('../../assets/images/DR-011-A.png')},
@@ -151,6 +149,7 @@ export default {
       background: white;
       outline: none;
       box-shadow:8px 8px 2px #d7d7d7;
+      border: none;
       color: #999;
       font-size: px2rem(20)
     }

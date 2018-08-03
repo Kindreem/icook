@@ -14,7 +14,7 @@
 
    <form >
         <div class="item">
-            <input v-model="nickname" placeholder="请输入2至24个字符" id="nickname"/>
+            <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
@@ -45,7 +45,16 @@
        </router-link>
 
   </form>
-
+          <div class="end">
+        <div class="left"><img src="./xxx.png" alt=""></div>
+        <div class="con">
+            <p><span>'烹饪之心'</span>徽章</p>
+            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
+        </div>
+        <div class="right"><span>EXP+3</span>
+        <img src="./DR-007.png" alt="">
+        <span>+3</span></div>
+    </div>
 
   </div>
 </template>
@@ -127,7 +136,7 @@ export default {
        display: flex;
        position: relative;
     
-    #nickname{
+    .nickname{
         width:  px2rem(250);
         height:  px2rem(25);
         font-size: px2rem(12);
@@ -135,6 +144,9 @@ export default {
         position: relative;
 
    }
+    .nickname::-webkit-input-placeholder{
+        color:#999;
+    }
    img{
        width:  px2rem(15);
        height:  px2rem(15);
@@ -168,6 +180,7 @@ export default {
         label{
             font-size: px2rem(12);
             vertical-align: middle;
+            color: #999;
          }
     }
 
@@ -239,6 +252,38 @@ export default {
       box-shadow:8px 8px 2px #d7d7d7;
       color: #999;
       font-size: px2rem(20)
+    }
+    .end{
+    position: relative;
+    display: flex;
+    width:  px2rem(260);
+    margin: px2rem(10) auto;
+    .left img{
+        margin-left:px2rem(-10) ;
+        width:px2rem(60);
+    }
+    .con{
+        margin: px2rem(10) px2rem(5);
+        text-align: left;
+        p{
+        font-size: px2rem(10);
+        line-height: px2rem(20);
+        color: #999;
+    }
+    }
+    span{
+        color: #199ED8;
+        font-size: px2rem(10);
+    }
+    .right{
+        position: absolute;
+        right: 0;
+        top: px2rem(10);
+        img{
+            width: px2rem(12);
+            vertical-align:bottom;
+        }
+    }
     }
 
 }

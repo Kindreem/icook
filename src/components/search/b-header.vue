@@ -34,7 +34,7 @@ export default {
       data () {
       return {
         addressData: ChinaAddressV4Data,
-        addressValue: '',
+        addressValue: ['','',''],
         }
       },
 
@@ -136,7 +136,6 @@ export default {
           // 定位出错
           // console.log(data)
           // alert(data)
-
 
           }
          })

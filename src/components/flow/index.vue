@@ -126,9 +126,9 @@ export default {
         margin-bottom: px2rem(15);
     }
    .item{
-       border-radius:px2rem(5);
+       border-radius:20px;
        overflow: hidden;
-       box-shadow: 8px 8px 2px 5px rgba(0,0,0,.1);
+       box-shadow:8px 8px 4px 6px rgba(126,122,122,0.1);
        margin-bottom:px2rem(5) ;
         .tit{
             background: url('./1.png') repeat-x;
@@ -313,7 +313,7 @@ export default {
               height: px2rem(42);
               position: absolute;
               top: px2rem(28);
-              left:  px2rem(-16);
+              left:  px2rem(-16.5);
               background: url(./8.png) no-repeat;
               background-size: px2rem(30) px2rem(30);
           }
