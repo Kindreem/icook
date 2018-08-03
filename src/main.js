@@ -9,6 +9,7 @@ import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
 // import MintUI from 'mint-ui'
 // import 'mint-ui/lib/style.css'
+
 import { DatetimePicker } from 'mint-ui';
 
 Vue.component(DatetimePicker.name, DatetimePicker);
