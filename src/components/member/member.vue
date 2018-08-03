@@ -46,12 +46,15 @@ export default {
         }
         .logo p{
             color: #199ED8;
-            font-size: px2rem(14)
+            font-size: px2rem(14);
         }
         .btn{
-            margin-top: px2rem(250);
-            display: flex;
-            justify-content: center;
+            top:  70%;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            // display: flex;
+            // justify-content: center;
             .btn_register,
             .btn_login{
                 width: px2rem(150);

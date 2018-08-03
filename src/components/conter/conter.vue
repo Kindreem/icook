@@ -112,17 +112,10 @@
                <p>我的徽章</p>
            </div>
            <ul class="badges">
-               <li>
-                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
-               </li>
-                <li>
-                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
-               </li>
-                <li>
-                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
-               </li>
-                <li>
-                   <router-link to="conter/badge" ><img src="./2.png" alt=""></router-link>
+               <li v-for="(item,index) in imgs" :key="index">
+                   <router-link to="conter/badge" >
+                   <img :src="item.url" alt="">
+                   </router-link>
                </li>
 
            </ul>
@@ -157,6 +150,12 @@
 export default {
   data () {
     return {
+        imgs:[
+           { url:require('./1.png')},
+           { url:require('./8.png')},
+           { url:require('./3.png')},
+           { url:require('./4.png')},
+        ]
 
     }
   },
@@ -284,13 +283,13 @@ export default {
         ul.badges li{
             margin-top: px2rem(10);
             img{
-                width: px2rem(80);
+                width: px2rem(64);
             }
         }
          ul.badges2 {
-            margin: px2rem(30) px2rem(20);
+            // margin: px2rem(30) px2rem(20);
             img{
-                width: px2rem(55);
+                width: px2rem(64);
             }
         }
 
