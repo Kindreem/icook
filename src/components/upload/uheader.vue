@@ -1,12 +1,23 @@
 <template>
   <div class="all">
-    <router-link to="home"><img src="./img/RW-026.png" alt=""></router-link>
+    <router-link to="share"><img src="./img/RW-026.png" alt=""></router-link>
     <div class="title">
       <router-link to="works"><h4>上传作品</h4></router-link>
       <router-link to="cook"><h4>上传菜谱</h4></router-link>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  // methods:{
+  //   back(){
+  //       this.$router.go(-1);//返回上一层
+  //   },
+  // },
+}
+</script>
+
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
@@ -18,6 +29,7 @@
     position absolute
     top 0px
     right 0px
+    width px2rem(48)
   }
   .title {
     display flex

@@ -4,20 +4,21 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 
 
-module.exports = {
+const originalConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
   },
   // externals: {
   //   'BMap': 'BMap'
-  // }, 
+  // },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -83,3 +84,10 @@ module.exports = {
     child_process: 'empty'
   }
 }
+
+
+const vuxLoader = require('vux-loader')
+const webpackConfig = originalConfig // 原来的 module.exports 代码赋值给变量 webpackConfig
+module.exports = vuxLoader.merge(webpackConfig, {
+  plugins: ['vux-ui']
+})

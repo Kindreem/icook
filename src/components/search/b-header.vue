@@ -8,36 +8,10 @@
     <div class="bot">
        <section class="left">
          <img src="./img/ZY-030.png" alt="">
-         <h3 id="allmap">定位</h3>
+         <h3>定位</h3>
        </section>
        <section class="min">
-         <Dropdown placement="bottom-start">
-        <a href="javascript:void(0)">
-            湖北
-            <Icon type="arrow-down-b"></Icon>
-        </a>
-        <DropdownMenu slot="list">
-            <img src="../../common/img/links/1-015.png" alt="">
-        </DropdownMenu>
-      </Dropdown>
-      <Dropdown style="margin-left: 20px">
-        <a href="javascript:void(0)">
-            武汉
-            <Icon type="arrow-down-b"></Icon>
-        </a>
-        <DropdownMenu slot="list">
-            <img src="../../common/img/links/1-015.png" alt="">
-        </DropdownMenu>
-      </Dropdown>
-      <Dropdown style="margin-left: 20px" placement="bottom-end">
-          <a href="javascript:void(0)">
-            区域
-            <Icon type="arrow-down-b"></Icon>
-          </a>
-          <DropdownMenu slot="list">
-            <img src="../../common/img/links/1-016.png" alt="">
-          </DropdownMenu>
-         </Dropdown>
+         <x-address v-model="addressValue" raw-value :list="addressData" value-text-align="center" placeholder="请选择地址"></x-address>
        </section>
        <section class="right">
          <span>全区</span>
@@ -45,46 +19,110 @@
          <span>好友</span>
        </section>
     </div>
+    <div id="allmap"></div>
   </div>
 </template>
 
 <script>
+import { XAddress, ChinaAddressV4Data } from 'vux'
+import gcoord from 'gcoord'
 // import BMap from 'BMap'
 export default {
-      created:{
-          init: function (){
-        //console.log("初始化百度地图脚本...");
-        const AK = "Yy56npfvkgdnP89tXjZOiq0hqESxViSZ";
-        const BMap_URL = "https://api.map.baidu.com/api?v=2.0&ak="+ AK +"&s=1&callback=onBMapCallback";
-        return new Promise((resolve, reject) => {
-          // 如果已加载直接返回
-          if(typeof BMap !== "undefined") {
-            resolve(BMap);
-            return true;
-          }
-          // 百度地图异步加载回调处理
-          window.onBMapCallback = function () {
-            console.log("百度地图脚本初始化成功...");
-            resolve(BMap);
-          };
+      components: {
+         XAddress,
+      },
+      data () {
+      return {
+        addressData: ChinaAddressV4Data,
+        addressValue: '',
+        }
+      },
 
-          // 插入script脚本
-          let scriptNode = document.createElement("script");
-          scriptNode.setAttribute("type", "text/javascript");
-          scriptNode.setAttribute("src", BMap_URL);
-          document.body.appendChild(scriptNode);
-        });
-      } 
-   }
+      mounted() {
+         var _this = this
+        //  var map = new BMap.Map("allmap");
+        //  var point = new BMap.Point(116.331398,39.897445);
+        //   map.centerAndZoom(point,12);
+        //   var geolocation = new BMap.Geolocation();
+        //    geolocation.getCurrentPosition(function(r){
+	      //    if(this.getStatus() == BMAP_STATUS_SUCCESS){
+		    //    var mk = new BMap.Marker(r.point);
+		    //    map.addOverlay(mk);
+		    //    map.panTo(r.point);
+          //  alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+        //    var jinwei = gcoord.transform(
+        //       [ r.point.lng, r.point.lat ],    // 经纬度坐标
+        //       gcoord.WGS84,                 // 当前坐标系
+        //       gcoord.BD09                   // 目标坐标系
+        //       );
+        //       // console.log( jinwei );
+        //     map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+        //    // 创建地理编码实例
+        //    var myGeo = new BMap.Geocoder();
+        //    // 根据坐标得到地址描述
+        //    myGeo.getLocation(new BMap.Point(jinwei[0],jinwei[1]), function(result){
+        //   if (result){
+        //      var addComp = result.addressComponents;
+        //     //  console.log(result.addressComponents);
+        //      _this.addressValue = [addComp.province,addComp.city,addComp.district]
+        //    }
+        //  });
+
+	      // }
+	      // else {
+		    //   alert('failed'+this.getStatus());
+	      // }
+        // })
+
+        var map = new AMap.Map('allmap', {
+          resizeEnable: true
+          })
+        map.plugin('AMap.Geolocation', function() {
+          var geolocation = new AMap.Geolocation({
+          // 是否使用高精度定位，默认：true
+           enableHighAccuracy: true,
+          // 设置定位超时时间，默认：无穷大
+          //  timeout: 10000,
+          // 定位按钮的停靠位置的偏移量，默认：Pixel(10, 20)
+            buttonOffset: new AMap.Pixel(10, 20),
+          //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+           zoomToAccuracy: true,
+          //  定位按钮的排放位置,  RB表示右下
+           buttonPosition: 'RB'
+         })
+
+          geolocation.getCurrentPosition()
+          AMap.event.addListener(geolocation, 'complete', onComplete)
+          AMap.event.addListener(geolocation, 'error', onError)
+
+          function onComplete (data) {
+          // data是具体的定位信息
+           console.log(data)
+           alert(data)
+          }
+
+          function onError (data) {
+          // 定位出错
+          console.log(data)
+          alert(data)
+          }
+         })
+
+
+
+      }
 }
+
+
 </script>
 
 
 
 <style lang="stylus" scoped>
-@import '../../assets/px2rem.styl';
+@import '../../assets/px2rem.styl'
 .all {
-  margin 0 30px
+  margin px2rem(40) px2rem(30) 0px
   .top {
     height px2rem(62)
     padding-top px2rem(14)
@@ -92,6 +130,8 @@ export default {
     border-bottom 1px solid #ccc
     display flex
     justify-content space-between
+    padding-left 20px
+    padding-right 20px
     a {
       display block
       h4 {
@@ -119,6 +159,7 @@ export default {
       img {
         position relative
         top 10px
+        width px2rem(36)
       }
       h3 {
         display inline-block
@@ -133,15 +174,51 @@ export default {
     }
   }
 }
->>>.ivu-dropdown {
-  a {
-    color #999
-  }
-  a:hover {
-    color #6CBEE8
-  }
+>>>.scroller-item {
+  font-size 50px !important
 }
-
 </style>
+
+<style lang="stylus">
+@import '../../assets/px2rem.styl'
+.vux-popup-header-left {
+  font-size px2rem(28)
+}
+.vux-popup-header-right {
+  font-size px2rem(32)
+  color #5DB8E9 !important
+}
+.scroller-item {
+  font-size px2rem(30) !important
+  height px2rem(46) !important
+  line-height px2rem(46) !important
+}
+.scroller-item-selected {
+  font-size px2rem(30) !important
+  height px2rem(46) !important
+  line-height px2rem(46) !important
+}
+.vux-picker-item {
+  // height 600px !important
+}
+.scroller-component {
+  height px2rem(500) !important
+}
+.scroller-mask {
+background-size 102% px2rem(228) !important
+bottom 0px !important
+
+height 100% !important
+}
+.scroller-indicator {
+  height px2rem(46) !important
+  top px2rem(227) !important
+}
+.vux-popup-header {
+  height px2rem(56) !important
+  line-height px2rem(56) !important
+}
+</style>
+
 
 

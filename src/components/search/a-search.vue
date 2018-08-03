@@ -112,15 +112,15 @@
         white-space nowrap
       }
       >>>.ivu-tag-text {
-        line-height px2rem(48)
+        line-height px2rem(46)
         color #fff
         border-radius 20px
       }
       >>>.ivu-icon {
         font-size px2rem(26)
         position absolute
-        top px2rem(12)
-        right px2rem(12)
+        top px2rem(10)
+        right px2rem(11)
         color #fff
         font-weight 900
       }

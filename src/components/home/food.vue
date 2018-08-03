@@ -16,8 +16,14 @@
        <div class="b-bot">
          <div class="ex"><router-link to="O_recipe"><img src="../../common/img/links/1-017.png" alt=""></router-link><p>恭喜您已桨握：佛跳墙。在本道菜咬基础向债改变N个步骤即可学会粤派菜系两个船新的菜肴。快来看看！</p></div>
          <div class="step">
-           <router-link to="O_recipe">
-             <img src="../../common/img/links/1-023.png" alt="">
+           <router-link to="O_recipe" id="d3">
+             <img src="../../common/img/links/1-1.png" alt="">
+           </router-link>
+           <router-link to="O_recipe" id="d2">
+             <img src="../../common/img/links/1-2.png" alt="">
+           </router-link>
+           <router-link to="O_recipe" id="d1">
+             <img src="../../common/img/links/1-3.png" alt="">
            </router-link>
          </div>
          <router-link to="home" class="b-right">
@@ -110,8 +116,65 @@ export default {
     margin-top px2rem(20)
     margin-bottom px2rem(40)
     text-align center
+    height px2rem(356)
+    // position relative
+    display flex
+    justify-content space-around
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    text-align center
     img {
-      width px2rem(484)
+      width px2rem(138)
+    }
+    #d1 {
+    position relative
+    // top px2rem(16)
+    // left 40%
+    width 50%
+    }
+    #d1::before {
+        content ""
+        width 100%
+        height 4px
+        position absolute
+        top px2rem(69)
+        left 0
+        border-bottom 3px dashed #5DB8E9
+        z-index -11
+    }
+     #d2 {
+    position relative
+    // position absolute
+    // bottom px2rem(40)
+    // left px2rem(100)
+    width 50%
+    }
+    #d2::before {
+        content ""
+        width 4px
+        height px2rem(104)
+        position absolute
+        top -60%
+        left 50%
+        border-left 3px dashed #5DB8E9
+        z-index -11
+    }
+     #d3 {
+    position relative
+    // position absolute
+    // bottom px2rem(40)
+    // right px2rem(100)
+    width 50%
+    }
+    #d3::before {
+        content ""
+        width 4px
+        height px2rem(104)
+        position absolute
+        top -60%
+        right 50%
+        border-right 3px dashed #5DB8E9
+        z-index -11
     }
   }
 }

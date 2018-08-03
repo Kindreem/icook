@@ -9,6 +9,7 @@ import Share from '../components/share/index.vue'
 import Upload from '../components/upload/index.vue'
 import Works from '../components/upload/works/index.vue'
 import Cook from '../components/upload/cook/index.vue'
+
 // import Upload from '../components/upload/menu/index.vue'
 
 import member from '@/components/member/member'
