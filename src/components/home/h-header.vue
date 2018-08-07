@@ -39,32 +39,42 @@
 export default {
   mounted() {
         window.addEventListener('scroll', this.move)
+        var pageHeight = document.documentElement.clientHeight;
+        this.height = pageHeight*(930/1334)
+        this.pb = pageHeight*(146/1334)
     },
   data() {
     return{
       bg: '',
       sty: '',
       dis: 'opacity: 0',
+      height: '',
+      pb: ''
     }
   },
   methods: {
      end() {
+       var oheight = this.height-25
+       var pb = this.pb
        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       //  console.log(scrollTop)
-      if(scrollTop<=946&&scrollTop>884) {
-            document.documentElement.scrollTop=884
-            document.body.scrollTop=884
+       if(scrollTop<=(oheight+41)&&scrollTop>(oheight-21)) {
+            document.documentElement.scrollTop=oheight-21
+            document.body.scrollTop=oheight-21
        }
-       else if(scrollTop>=946&&scrollTop<1050) {
-         document.documentElement.scrollTop=1050
-         document.body.scrollTop=1050
+       else if(scrollTop>=(oheight+41)&&scrollTop<(oheight+pb)) {
+         document.documentElement.scrollTop=oheight+pb
+         document.body.scrollTop=oheight+pb
        }
      },
      move() {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        var n = 1-(scrollTop/1010*0.2)
+        var oheight = this.height-25
+        var pb = this.pb
+        var height = this.height
+        var n = 1-(scrollTop/(height+pb))*0.2
         // console.log(scrollTop)
-        if(scrollTop>0&&scrollTop<1010){
+        if(scrollTop>0&&scrollTop<(height+pb)){
             // console.log(n)
           this.sty=n
           // this.sty= {
@@ -81,7 +91,7 @@ export default {
       // }(i)
          }
 
-        else if(scrollTop>=1010) {
+        else if(scrollTop>=(height+pb)) {
           this.sty=0.8
         }
         else if(scrollTop<902){
@@ -109,7 +119,7 @@ export default {
             '-o-transition': 'all 2s'
             }
         }
-        else if(scrollTop<=1080) {
+        else if(scrollTop<=(height+pb)) {
           this.bg = {
              'background': '#EFEFEF',
              'transition': 'all 1.5s',

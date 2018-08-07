@@ -14,8 +14,15 @@
 
 <script>
 export default {
+  mounted() {
+        window.addEventListener('scroll', this.move)
+        //  window.addEventListener('scroll', this.end)
+        var pageHeight = document.documentElement.clientHeight;
+        this.height = pageHeight*(930/1334)
+    },
   data() {
     return {
+      height: '',
       items: [
         {
           ibg: require("../../common/img/links/1-006.jpg"),
@@ -63,15 +70,17 @@ export default {
   },
   methods: {
     end() {
+       var height = this.height
+       var oheight = this.height-25
        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       //  console.log(scrollTop)
-       if(scrollTop<=946&&scrollTop>884) {
-            document.documentElement.scrollTop=884
-            document.body.scrollTop=884
+       if(scrollTop<=(oheight+41)&&scrollTop>(oheight-21)) {
+            document.documentElement.scrollTop=oheight-21
+            document.body.scrollTop=oheight-21
        }
-       else if(scrollTop>=946&&scrollTop<1050) {
-         document.documentElement.scrollTop=1050
-         document.body.scrollTop=1050
+       else if(scrollTop>=(oheight+41)&&scrollTop<(height+145)) {
+         document.documentElement.scrollTop=height+145
+         document.body.scrollTop=height+145
        }
      },
   }

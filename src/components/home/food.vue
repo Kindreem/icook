@@ -36,17 +36,34 @@
 
 <script>
 export default {
+  mounted() {
+        window.addEventListener('scroll', this.move)
+        //  window.addEventListener('scroll', this.end)
+        var pageHeight = document.documentElement.clientHeight;
+        this.height = pageHeight*(930/1334)
+        this.pb = pageHeight*(146/1334)
+    },
+    data() {
+      return{
+        height: '',
+         pb: ''
+      }
+    },
   methods: {
+
     end() {
+       var height = this.height
+       var oheight = this.height-25
+       var pb = this.pb
        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-       console.log(scrollTop)
-      if(scrollTop<=950&&scrollTop>884) {
-            document.documentElement.scrollTop=884
-            document.body.scrollTop=884
+      //  console.log(scrollTop)
+       if(scrollTop<=(oheight+41)&&scrollTop>(oheight-21)) {
+            document.documentElement.scrollTop=oheight-21
+            document.body.scrollTop=oheight-21
        }
-       else if(scrollTop>=950&&scrollTop<1050) {
-         document.documentElement.scrollTop=1050
-         document.body.scrollTop=1050
+       else if(scrollTop>=(oheight+41)&&scrollTop<(height+pb)) {
+         document.documentElement.scrollTop=height+pb
+         document.body.scrollTop=height+pb
        }
      },
   }
@@ -57,7 +74,7 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {
-  margin 0 px2rem(30) 0px
+  margin px2rem(10) px2rem(30) 0px
 }
 .top {
   font px2rem(24) '微软雅黑'

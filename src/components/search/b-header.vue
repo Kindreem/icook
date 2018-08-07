@@ -6,7 +6,7 @@
       <router-link to="home"><h4>最新</h4></router-link>
     </div>
     <div class="bot">
-       <section class="left">
+       <section class="left" @click="DW">
          <img src="./img/ZY-030.png" alt="">
          <h3>定位</h3>
        </section>
@@ -35,10 +35,15 @@ export default {
       return {
         addressData: ChinaAddressV4Data,
         addressValue: ['','',''],
+        position: "",
         }
       },
-
-      mounted() {
+      methods : {
+        DW() {
+          this.position()
+        }
+      },
+      created() {
          var _this = this
 
 
@@ -76,20 +81,19 @@ export default {
 		    //   alert('failed'+this.getStatus());
 	      // }
         // })
+
+        this.position = function() {
         var map, geolocation;
         map = new AMap.Map('allmap',{
         resizeEnable: true
         })
-
-
-
 
         map.plugin('AMap.Geolocation', function() {
            geolocation = new AMap.Geolocation({
           // 是否使用高精度定位，默认：true
            enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
-           timeout: 10000,
+           timeout: 5000,
           // 定位按钮的停靠位置的偏移量，默认：Pixel(10, 20)
             buttonOffset: new AMap.Pixel(10, 20),
           //  定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
@@ -136,11 +140,14 @@ export default {
           // 定位出错
           // console.log(data)
           // alert(data)
-
+             alert('定位失败，请手动输入。')
           }
          })
 
       }
+      this.position()
+
+    }
 }
 
 
