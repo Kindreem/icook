@@ -4,8 +4,7 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
             <div class="title"> 
                 <p>粤派一段</p>
-                <Progress :percent="80" status="active" hide-info :stroke-width="4"></Progress>
-                <span>16/18</span>
+                <porgress :barwidth="barwidth" :color="color" :show="show"></porgress>
             </div>
       </header>
       <div class="content">
@@ -43,10 +42,16 @@
 </template>
 
 <script>
+import porgress from './porgress'
 export default {
+  components: {
+     porgress
+   },
   data () {
     return {
-
+        show:0,
+        barwidth:50,
+        color:'blue'
     }
   },
   methods:{
@@ -75,24 +80,13 @@ export default {
         transform: translateX(-50%);
         left: 50%;
       p{
+        white-space:nowrap;
         font-size:  px2rem(14);
         color: #199ED8;
       }
-      .ivu-progress{
-          margin-top: px2rem(-10);
-          /deep/ .ivu-progress-inner{
-                background: #999;
-            }
-      }
-      span{
-          margin-top: px2rem(-10);
-          display: block;
-          font-size:  px2rem(9);
-          color: #999;
-      }
     }
     div{
-      padding: 20px;
+      padding: px2rem(5) px2rem(8);
     }
     img{
       margin-top:  px2rem(20);
@@ -101,10 +95,11 @@ export default {
     }
   }
     .content{
+
        .badge{
             img{
             width: px2rem(60);
-            margin-top:px2rem(10);
+            margin-top:px2rem(15);
         }
        }
         .pic{

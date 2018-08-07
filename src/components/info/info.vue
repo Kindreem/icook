@@ -60,7 +60,6 @@
 </template>
 
 <script>
-import { DatetimePicker } from 'mint-ui';
 import moment from 'moment'
 export default {
   data () {

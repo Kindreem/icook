@@ -33,23 +33,10 @@
                 <p>我学会的菜肴:38道</p>
             </div>
            <ul class="meet">
-               <li>
+               <li v-for="(item,index) in imgs" :key="index">
                    <img src="./pic.png" alt="">
                    <p>蛋炒饭</p>
                </li>
-                <li>
-                   <img src="./pic.png" alt="">
-                   <p>蛋炒饭</p>
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-                   <p>蛋炒饭</p>
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-                   <p>蛋炒饭</p>
-               </li>
-
            </ul>
        </div>
        <div class="item menu">

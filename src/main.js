@@ -7,17 +7,17 @@ import router from './router'
 
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
-// import MintUI from 'mint-ui'
-// import 'mint-ui/lib/style.css'
-import { DatetimePicker } from 'mint-ui';
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+// import {DatetimePicker} from 'mint-ui';
 
-Vue.component(DatetimePicker.name, DatetimePicker);
+// Vue.component(DatetimePicker.name, DatetimePicker);
 
 import 'iview/dist/styles/iview.css';
 
 
 Vue.use(iview)
-// Vue.use(MintUI)
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 

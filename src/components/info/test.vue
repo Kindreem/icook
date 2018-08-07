@@ -5,9 +5,16 @@
       </header>
      <div class="tit">选择您拿手的或想做的<p>最多可选4个</p></div>
       <div class="search">
-         <input type="text" placeholder="输入菜系或菜谱" v-model="search" @keyup.enter="enter">
+         <input type="text" placeholder="输入菜系或菜谱" v-model="search" @keyup.enter="enter" @focus="open" @blur="close"
+        @input="handleQuery">
          <div class="icon"><img src="../../assets/images/DR-019.png" alt=""></div>
-         <div class="sel"></div>
+         <div class="sel">
+           <ul>
+             <li v-for="(item,index) in sel" :key="index" @click="add(item.id)" v-html="item.name">
+               <!-- {{item.name}} -->
+             </li>
+           </ul>
+         </div>
          <transition>
          <p class="warning" v-show="warning">最多可选4个！</p>
          </transition>
@@ -41,8 +48,20 @@
 export default {
   data () {
     return {
-        warning:0,
+        warning:0,  //警告提示
         search:'',  //搜索框内容
+        sel:[
+          // {id:1,name:'小炒肉'},
+          // {id:2,name:'鱼香肉丝'},
+          // {id:3,name:'番茄炒蛋'},
+          // {id:4,name:'可乐鸡翅'},
+        ],
+        sel2:[
+          {id:1,name:'小炒肉'},
+          {id:2,name:'鱼香肉丝'},
+          {id:3,name:'番茄炒蛋'},
+          {id:4,name:'可乐鸡翅'},
+        ],
         names:[
             {id:1,bg:'#CA2C50',name:'麻婆豆腐',ishow:0},
             {id:2,bg:'#5DB8E9',name:'佛跳墙',ishow:0},
@@ -61,7 +80,7 @@ export default {
     },
 
    methods:{
-     onshow(id){
+    onshow(id){
     //    this.imgs[id].ishow=!this.imgs[id].ishow
        this.names[id].ishow=!this.names[id].ishow
 
@@ -71,7 +90,7 @@ export default {
           if(item.ishow!=0){
            checked.push(item.ishow)
           }
-        })
+         })
           if(checked.length>4){
               this.names[id].ishow=0 
               //超过限制
@@ -81,15 +100,94 @@ export default {
                  },1000)
             }
      },
+     
+     clearTimer () {
+        if (this.timer) {
+          clearTimeout(this.timer)
+      }
+    },
+     handleQuery (event) {
+      this.clearTimer()
+      this.timer = setTimeout(() => {
+        // console.log(event.timeStamp)
+        // this.$http.post('/api/vehicle').then(res => {
+          // console.log(res.data.data)
+          // this.changeColor(res.data.data)
+          this.changeColor(this.sel2)
+        // })
+      }, 1000)
+    },
+
+    changeColor (resultsList) {
+    resultsList.map((item, index) => {
+      // console.log('item', item)
+      if (this.search && this.search.length > 0) {
+        // 匹配关键字正则
+        let replaceReg = new RegExp(this.search, 'g')
+        // 高亮替换v-html值
+        let replaceString =
+          '<span class="search-text">' + this.search+ '</span>'
+        resultsList[index].name = item.name.replace(
+          replaceReg,
+          replaceString
+        )
+        console.log(replaceString)
+      }
+    })
+    this.sel= []
+    this.sel = resultsList
+    },  
+
+
+
+
+
+
+
+
      backto(){
       this.$router.go(-1);
       },
-      enter(){
+     //搜索框获取焦点
+     open() {
+       this.isopen=1;
+     },
+     //失去焦点
+     close(){
+       this.isopen=0;
+     },
+
+      //搜索列表点击添加
+      add(id){
         let r, g, b;
         r = Math.floor(Math.random() * 220);
         g = Math.floor(Math.random() * 256);
         b = Math.floor(Math.random() * 256);
+         //获取已选个数
+         let checked = []
+            this.names.forEach(function(item){
+              if(item.ishow!=0){
+              checked.push(item.ishow)
+              }
+            })
+              
+          if(checked.length<4){
+          this.names.unshift({id:'',bg:"rgb(" +r + ',' +g+ ',' +b+ ")",name:this.sel[id].name,ishow:1})
+          }else{
+            //超出限制
+              this.warning=1;
+                  setTimeout(()=>{
+                    this.warning=0;
+                  },1000)
+          }
+      },
 
+     //搜索框回车添加
+      enter(){
+          let r, g, b;
+        r = Math.floor(Math.random() * 220);
+        g = Math.floor(Math.random() * 256);
+        b = Math.floor(Math.random() * 256);
       //获取已选个数
          let checked = []
             this.names.forEach(function(item){
@@ -149,27 +247,32 @@ export default {
     }
     .tit{
       font-size: px2rem(22);
-      color: #199ED8;
+      color: #5DB8E9;
       margin-top: px2rem(10);
       p{
         color: #999;
         font-size: px2rem(16)
       }
   }
-
+.search-text{
+color: red;
+}
   .search{
-    width: px2rem(285);
+    width: px2rem(280);
     height: px2rem(25);
-    border-radius: px2rem(10);
-    border:1px solid #199ED8;
+    // border-radius:20px 20px 0 0;
+    border-radius:20px;
+    border:1px solid #5DB8E9;
     margin:  px2rem(20) auto;
     position: relative;
     input{
+      height: 100%;
+      background: none;
+      width: 100%;
       border: none;
       outline: none;
       text-align: center;
       font-size:  px2rem(12);
-      margin-top: px2rem(3);
     }
     .icon{
       position: absolute;
@@ -178,12 +281,29 @@ export default {
       margin-right:px2rem(5);
       margin-top: px2rem(3);
       img{
-        width: px2rem(18);
-        height: px2rem(18);
+        width: px2rem(16);
+        height: px2rem(16);
       }
     }
     .sel{
-
+      width:px2rem(285.5);
+      margin-left: px2rem(-1);
+      margin-top:px2rem(2);
+      background: rgba(255,255,255,1);
+      // border-top: 1px solid rgba(25,158,216,.2);
+      // border-left: px2rem(1) solid #199ED8;
+      // border-right:px2rem(1) solid #199ED8;
+      border-radius:0 0 20px 20px;
+      position: absolute;
+      z-index: 999;
+      text-align: left;
+      // padding-top: px2rem(5);
+      li{
+        list-style: none;
+        padding: px2rem(2.5) px2rem(10);
+        font-size:px2rem(12);
+        position: relative;
+      }
     }
   }
 
@@ -191,15 +311,14 @@ export default {
       margin: px2rem(25) auto;
       display: flex;
       width: px2rem(300);
-      height:px2rem(280);
+      height:px2rem(300);
       flex-wrap: wrap;
       justify-content: center;
       overflow: hidden;
       li{
         list-style: none;
-        width: 33.3333%;
         width: px2rem(80);
-        height: px2rem(77);
+        height: px2rem(80);
         background: pink;
         margin:px2rem(10);
         display: flex;
@@ -216,12 +335,10 @@ export default {
         height: px2rem(13);
         border-radius: 50%;
         position: absolute;
-        right:px2rem(2);
-        bottom: px2rem(2);
+        right:px2rem(4);
+        bottom: px2rem(4);
           input{
-            // display:none;
             width: 0;
-            // position: relative;
         }
           input:checked::before{
             content: '';
@@ -231,8 +348,10 @@ export default {
             background: #fff;
             position: absolute;
             border-radius: 50%;
-            top: px2rem(2);
-            left:px2rem(2);
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%)
+
           }
       }
       }
