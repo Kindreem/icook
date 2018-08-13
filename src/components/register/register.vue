@@ -95,13 +95,13 @@ export default {
       margin: px2rem(20) 0;
     }
     .code{
-      width: px2rem(70);
+      width: px2rem(80);
       height: px2rem(25);
       font-size: px2rem(10);
       background: white;
       color: #999;
       border: 1px solid #999;
-      border-radius:px2rem(5);
+      border-radius:20px;
       box-shadow: 2px 2px #cccccc;
       outline: none;
     }

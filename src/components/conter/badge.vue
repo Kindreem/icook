@@ -27,7 +27,7 @@
                 <swiper-slide v-for="(item,index) in item2" :key="index">
                     <router-link to="/dan/dan">
                         <img :src="item.src" alt="">
-                        <porgress :barwidth="item.barwidth" :color="item.color" :show="show"></porgress>
+                        <porgress :barwidth="item.barwidth" :color="item.color"></porgress>
                         <!-- <Progress :percent="80" status="wrong" hide-info :stroke-width="4"></Progress> -->
                     </router-link>
                 </swiper-slide>
@@ -56,6 +56,7 @@
                 <ul class="meet">
                         <li v-for="(item,index) in all[id].badge" :key="index">
                         <router-link to="/dan/dan" ><img :src="item.url" alt=""></router-link>
+                        <p>{{item.text}}</p>
                         <img src="./lock.png" alt="">
                     </li>   
                 </ul>
@@ -122,26 +123,26 @@ export default {
           all:[
             {
              badge:[
-                    {id:1,url:require('./props/imgs1/1.png')},
-                    {id:2,url:require('./props/imgs1/2.png')},
-                    {id:3,url:require('./props/imgs1/3.png')},
-                    {id:4,url:require('./props/imgs1/4.png')},
-                    {id:5,url:require('./props/imgs1/5.png')},
-                    {id:6,url:require('./props/imgs1/6.png')},
-                    {id:7,url:require('./props/imgs1/7.png')},
-                    {id:8,url:require('./props/imgs1/8.png')},
+                    {id:1,url:require('./props/imgs1/1.png'),text:'粤派一段'},
+                    {id:2,url:require('./props/imgs1/2.png'),text:'粤派二段'},
+                    {id:3,url:require('./props/imgs1/3.png'),text:'粤派三段'},
+                    {id:4,url:require('./props/imgs1/4.png'),text:'粤派四段'},
+                    {id:5,url:require('./props/imgs1/5.png'),text:'粤派五段'},
+                    {id:6,url:require('./props/imgs1/6.png'),text:'粤派六段'},
+                    {id:7,url:require('./props/imgs1/7.png'),text:'粤派七段'},
+                    {id:8,url:require('./props/imgs1/8.png'),text:'粤派八段'},
                 ],
               },
             {
              badge:[
-                    {id:1,url:require('./props/imgs2/1.png')},
-                    {id:2,url:require('./props/imgs2/2.png')},
-                    {id:3,url:require('./props/imgs2/3.png')},
-                    {id:4,url:require('./props/imgs2/4.png')},
-                    {id:5,url:require('./props/imgs2/5.png')},
-                    {id:6,url:require('./props/imgs2/6.png')},
-                    {id:7,url:require('./props/imgs2/7.png')},
-                    {id:8,url:require('./props/imgs2/8.png')},
+                    {id:1,url:require('./props/imgs2/1.png'),text:'鲁派一段'},
+                    {id:2,url:require('./props/imgs2/2.png'),text:'鲁派二段'},
+                    {id:3,url:require('./props/imgs2/3.png'),text:'鲁派三段'},
+                    {id:4,url:require('./props/imgs2/4.png'),text:'鲁派四段'},
+                    {id:5,url:require('./props/imgs2/5.png'),text:'鲁派五段'},
+                    {id:6,url:require('./props/imgs2/6.png'),text:'鲁派六段'},
+                    {id:7,url:require('./props/imgs2/7.png'),text:'鲁派七段'},
+                    {id:8,url:require('./props/imgs2/8.png'),text:'鲁派⑧段'},
                 ]
             },
             {
@@ -353,7 +354,7 @@ export default {
     background: rgba(0, 0, 0, 0);
    .item{
         width: 100%;
-        height:  px2rem(250);
+        height:  px2rem(275);
         margin-top: px2rem(15);
         border-radius: px2rem(10);
         background: #fff;

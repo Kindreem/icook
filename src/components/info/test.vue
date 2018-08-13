@@ -308,7 +308,8 @@ color: red;
   }
 
   .greens{
-      margin: px2rem(25) auto;
+      margin: px2rem(20
+      ) auto;
       display: flex;
       width: px2rem(300);
       height:px2rem(300);

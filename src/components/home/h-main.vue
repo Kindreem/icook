@@ -1,9 +1,9 @@
 <template>
-<div  @mouseup="end" @touchend="end" class="zong">
+<div  @mouseup="end" @touchend="end" class="zong" :style="{'padding-bottom': pb+'px'}">
  <transition name = "fade">
   <div class="all" >
     <div class="content">
-      <p>游烹我生活！</p>
+      <p :style="{height: height+'px','line-height': height+'px'}">游烹我生活！</p>
       <div class="butt">
 
         <img id="bleft" v-show="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt="">
@@ -24,6 +24,9 @@ export default {
   mounted() {
         window.addEventListener('scroll', this.move)
         //  window.addEventListener('scroll', this.end)
+        var pageHeight = document.documentElement.clientHeight;
+        this.height = pageHeight*(930/1334)
+        this.pb = pageHeight*(146/1334)
     },
   data() {
     return{
@@ -33,36 +36,45 @@ export default {
       // rig: ''
       pLeft: '',
       pRight: '',
-      pTop: ''
+      pTop: '',
+      height: '',
+      pb: ''
     }
   },
   methods: {
      end() {
+       var height = this.height
+       var oheight = this.height-25
+       var pb = this.pb
        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
       //  console.log(scrollTop)
-       if(scrollTop<=946&&scrollTop>884) {
-            document.documentElement.scrollTop=884
-            document.body.scrollTop=884
+       if(scrollTop<=(oheight+41)&&scrollTop>(oheight-21)) {
+            document.documentElement.scrollTop=oheight-21
+            document.body.scrollTop=oheight-21
        }
-       else if(scrollTop>=946&&scrollTop<1050) {
-         document.documentElement.scrollTop=1050
-         document.body.scrollTop=1050
+       else if(scrollTop>=(oheight+41)&&scrollTop<(height+pb)) {
+         document.documentElement.scrollTop=height+pb
+         document.body.scrollTop=height+pb
        }
      },
 
      move() {
+       var pageHeight = document.documentElement.clientHeight;
+        // console.log(pageHeight)
+        var oheight = this.height-25
+        // console.log(oheight)
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        var pLeft = [-(scrollTop-902)/88*50]*320/750/20
-        var pRight = [(scrollTop-902)/88*216]*320/750/20
-        var pTop = [-(scrollTop-902)/88*102]*320/750/20
+        var pLeft = [-(scrollTop-oheight)/88*50]*320/750/20
+        var pRight = [(scrollTop-oheight)/88*216]*320/750/20
+        var pTop = [-(scrollTop-oheight)/88*102]*320/750/20
         // console.log(scrollTop)
 
-        if(scrollTop>=0&&scrollTop<902){
+        if(scrollTop>=0&&scrollTop<oheight){
            this.show=false
            this.on=true
 
       }
-       else if(scrollTop>=902&&scrollTop<990){
+       else if(scrollTop>=oheight&&scrollTop<(oheight+88)){
            this.show=true
            this.on=false
       }
@@ -71,7 +83,7 @@ export default {
            this.on=false
          }
 
-        if(scrollTop>=902&&scrollTop<990){
+        if(scrollTop>=oheight&&scrollTop<(oheight+88)){
         //  this.sty = {
         //    opacity: 0,
         //   'transform': 'translate(-50px,-1006px)',
@@ -86,16 +98,16 @@ export default {
            this.pRight=pRight
            this.pTop=pTop
       }
-      else if(scrollTop>=990) {
+      else if(scrollTop>=(oheight+88)) {
            this.pLeft=-50*320/750/20
            this.pRight=216*320/750/20
            this.pTop=-102*320/750/20
       }
-      else if(scrollTop<927) {
-            this.pLeft=0
-           this.pRight=0
-           this.pTop=0
-      }
+      // else if(scrollTop<927) {
+      //       this.pLeft=0
+      //      this.pRight=0
+      //      this.pTop=0
+      // }
       // else {
       //   this.sty = {
       //     opacity: 1,
@@ -126,7 +138,7 @@ export default {
     opacity: 1
 }
 .zong {
-  height 1050px
+  // padding-bottom px2rem(146)
   background #efefef
 }
 .all {
@@ -137,8 +149,8 @@ export default {
     text-align center
     font-size px2rem(24)
     color #999
-    height 930px
-    line-height 944px
+    // height 930px
+    // line-height 944px
   }
 }
 .content {

@@ -2,7 +2,7 @@
   <div class="porgress">
          <div class="progressContainer">        
             <div class="progressItem" v-bind:style="{width:barwidth+'%',background:color}"></div>
-            <div class="right" v-if="show">{{barwidth+'%'}}</div>
+            <div class="right" v-if="isshow">{{barwidth+'%'}}</div>
             <div class="center" v-else>16/18</div>
        </div>          
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props: ["barwidth","color","show"],
+    props: ["barwidth","color","isshow"],
   data () {
     return {
     }

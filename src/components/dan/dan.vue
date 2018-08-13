@@ -4,7 +4,7 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
             <div class="title"> 
                 <p>粤派一段</p>
-                <porgress :barwidth="barwidth" :color="color" :show="show"></porgress>
+                <porgress :barwidth="barwidth" :color="color"></porgress>
             </div>
       </header>
       <div class="content">
@@ -48,8 +48,7 @@ export default {
      porgress
    },
   data () {
-    return {
-        show:0,
+    return { 
         barwidth:50,
         color:'blue'
     }

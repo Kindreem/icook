@@ -7,9 +7,16 @@ import router from './router'
 
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
+<<<<<<< HEAD
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 // import {DatetimePicker} from 'mint-ui';
+=======
+// import MintUI from 'mint-ui'
+// import 'mint-ui/lib/style.css'
+
+import { DatetimePicker } from 'mint-ui';
+>>>>>>> ae0733f335b6dec61cfe1684c1b9cb514f0f3cef
 
 // Vue.component(DatetimePicker.name, DatetimePicker);
 
