@@ -7,12 +7,18 @@
           <img src="./img/head/TX (1).png" alt="">
           <h3>东南</h3>
         </router-link>
-        <router-link to="conter/badge">
-          <img src="./img/head/TX (4).png" alt="">
+        <router-link to="conter/badge" class="sicon">
+          <img src="../../common/img/36X36/资源 107自定.png" alt="">
+        </router-link>
+        <router-link to="conter/badge" class="sicon">
+          <img src="../../common/img/36X36/资源 43川.png" alt="">
+        </router-link>
+        <router-link to="conter/badge" class="sicon">
+          <img src="../../common/img/36X36/资源 51鲁.png" alt="">
         </router-link>
       </div>
       <div class="tright">
-        <router-link to="">
+        <router-link to="tast/tast">
           <img src="./img/ZY-004.png" alt="">
         </router-link>
         <router-link to="tast/tast">
@@ -25,8 +31,11 @@
       <!-- <router-link class="sright" to="home" :style="dis"><img src="./img/ZY-006.png" alt=""></router-link> -->
       <router-link to="search" :style="{'transform': 'scale(' + sty + ')','transition': 'all 0.2s'}" @mousemove="move" @touchmove="move">
         <transition name="fade">
-          <div>
+          <div class="i_search">
           <Input placeholder="在此输入你要查询的菜谱"/>
+          <transition name="slide-fade">
+            <img v-show="show" src="./img/1-005.png" alt="">
+          </transition>
           </div>
         </transition>
       </router-link>
@@ -49,7 +58,8 @@ export default {
       sty: '',
       dis: 'opacity: 0',
       height: '',
-      pb: ''
+      pb: '',
+      show: false
     }
   },
   methods: {
@@ -77,6 +87,7 @@ export default {
         if(scrollTop>0&&scrollTop<(height+pb)){
             // console.log(n)
           this.sty=n
+          this.show=false
           // this.sty= {
         //  'transform': "scale(i)",
         //  '-ms-transform': 'scale(0.8)', 	/* IE 9 */
@@ -93,6 +104,7 @@ export default {
 
         else if(scrollTop>=(height+pb)) {
           this.sty=0.8
+          this.show=true
         }
         else if(scrollTop<902){
 
@@ -187,10 +199,17 @@ header {
     float left
     font px2rem(24) '微软雅黑'
     color #000
-    margin-left px2rem(20)
-    margin-right px2rem(30)
+    margin-left px2rem(10)
+    margin-right px2rem(20)
     height px2rem(48)
     line-height px2rem(48)
+  }
+  .sicon {
+    img{
+      margin-right px2rem(10)
+      width px2rem(36)
+      margin-top px2rem(6)
+    }
   }
 }
 .tright {
@@ -228,7 +247,25 @@ header {
 // >>>input::-webkit-input-placeholder {
 //        font-size: 26px;
 //     }
-
-
+.i_search {
+  position relative
+  img {
+    position absolute
+    top px2rem(46)
+    right px2rem(60)
+    width px2rem(48)
+  }
+}
+.slide-fade-enter-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active {
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active 用于 2.1.8 以下版本 */ {
+  // transform: translateX(10px);
+  opacity: 0;
+}
 </style>
 

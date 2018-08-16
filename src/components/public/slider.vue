@@ -21,39 +21,39 @@ export default {
    data() {
      return {
         swiperOption: {
-                slidesPerView: 3.4,
+                slidesPerView: 3,
                 // spaceBetween: 24,
                 freeMode: true,
-                slidesOffsetBefore: 24,
+                slidesOffsetBefore: 30,
             },
         items: [{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "黄闷牛蛙",
                 content: "用料相似度：80%"
             },{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "干锅牛蛙",
                 content: "用料相似度：80%"
             },{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "红油牛蛙",
                 content: "用料相似度：80%"
             },{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "黄闷牛蛙",
                 content: "用料相似度：80%"
             },{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "红油牛蛙",
                 content: "用料相似度：80%"
             },{
                 href: "O_recipe",
-                src: require('../../common/img/links/1-007.jpg'),
+                src: require('../../common/img/links/1-025.png'),
                 title: "黄闷牛蛙",
                 content: "用料相似度：80%"
             }]
@@ -77,16 +77,16 @@ export default {
     #heart {
       width px2rem(36)
       position absolute
-      top px2rem(16)
-      left 0.75rem
+      top px2rem(14)
+      left px2rem(42)
     }
     #tag {
-      width px2rem(360)
+      width px2rem(320)
     }
     h3 {
       position absolute
-      top px2rem(18)
-      left 1.64rem
+      top px2rem(14)
+      left px2rem(100)
       font px2rem(24) Arial
       color #5A4030
       // text-align center
@@ -95,33 +95,28 @@ export default {
   }
 }
 >>>.swiper-container {
-   padding-bottom px2rem(28)
+   padding-bottom px2rem(20)
  }
 >>>.swiper-slide {
-  width px2rem(180) !important
-  margin-right px2rem(24)
+  width px2rem(192) !important
+  margin-right px2rem(26)
   a{
     display block
     img {
-      width px2rem(180)
+      width px2rem(192)
       display block
-      border-top-left-radius 20px
-      border-top-right-radius 20px
+      border-radius 20px
+      // border-top-right-radius 20px
     }
   }
   .ban {
-    background #5DB8E9
     text-align center
     padding px2rem(20) 0
-    border-bottom-left-radius 20px
-    border-bottom-right-radius 20px
+    // border-radius 20px
+    // border-bottom-right-radius 20px
     h3 {
-      font px2rem(22) Arail
-      color #fff
-    }
-    p {
-      font px2rem(20) Arail
-      color #fff
+      font px2rem(24) Arail
+      color #727272
     }
   }
 }

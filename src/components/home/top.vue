@@ -5,8 +5,8 @@
     </header>
     <div class="item" v-for="(item,index) in items" :key="index">
       <img class="bg" :src="item.ibg" alt="">
-      <img class="tab" :src="item.itab" alt="">
-      <img class="heart" :src="item.iheart" alt="">
+      <img class="tab" src="./img/ZY-009.png" alt="">
+      <img class="heart" src="./img/ZY-043.png" alt="">
       <p>ICOOK烹饪家推荐</p>
     </div>
   </div>

@@ -5,7 +5,6 @@
                     <img :src="item.src" alt="">
                     <div class="ban">
                       <h3>{{item.title}}</h3>
-                      <p>{{item.content}}</p>
                     </div>
         </router-link>
     </swiper-slide>

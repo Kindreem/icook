@@ -27,7 +27,7 @@ export default {
   },
   data (){
     return {
-      value: '用户菜谱',
+      value: '彩椒炒回锅肉',
       name: 'Ta的个人推荐'
     }
   }
