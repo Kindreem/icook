@@ -2,7 +2,7 @@
   <div class="all">
     <div v-for="(item,index) in items" :key="index">
       <div :class="item.seen?'o_ban':'p_ban'">
-        <router-link to="U_menu">
+        <router-link :to="item.seen?'O_recipe':'U_menu'">
         <section class="p_top">
           <img :src="item.img" alt="">
           <h4>{{item.title}}</h4>

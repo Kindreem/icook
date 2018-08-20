@@ -12,65 +12,115 @@
     </section>
     <section>
       <div class="title">
-        <input placeholder="香辣牛蛙" style="width: 100%"/>
+        <input placeholder="添加菜谱名称" style="width: 100%"/>
         <p>必填</p>
       </div>
       <div class="pic">
-        <input placeholder="添加此时心情" style="width: 100%"/>
-        <img src="./img/笑脸.jpg" alt="">
+        <i-input type="textarea" :autosize="true" placeholder="添加菜谱说明"></i-input>
       </div>
     </section>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      value: ""
+    };
+  }
+};
+</script>
+
+
 <style lang="stylus" scoped>
-@import '../../assets/px2rem.styl'
+@import '../../assets/px2rem.styl';
+
 .all {
-  margin 0 px2rem(66) px2rem(70)
+  margin: 0 px2rem(80) px2rem(0);
 }
+
 >>>.ivu-upload {
-  border none
-  box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
-  border-radius 20px
-  height px2rem(340)
+  border: none;
+  box-shadow: 10px 10px 16px rgba(204, 204, 204, 0.4);
+  border-radius: 20px;
+  height: px2rem(340);
+
   img {
-    margin-top px2rem(126)
+    margin-top: px2rem(126);
   }
 }
+
 input {
-  outline none
-  font-size px2rem(24)
-  height px2rem(72)
-  border none
-  border-bottom 1px solid #333
+  color: #999;
+  outline: none;
+  font-size: px2rem(26);
+  padding-bottom: px2rem(20);
+  border: none;
+  border-bottom: 1px solid #999;
 }
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+}
+
 input:hover {
-  border none
-  outline none
-  border-bottom 1px solid #333
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999;
 }
+
 .title {
-  margin-top px2rem(60)
-  height px2rem(72)
-  position relative
-  P {
-    position absolute
-    top px2rem(14)
-    right 0px
-    font-size px2rem(24)
-    color #666
+  margin-top: px2rem(40);
+  position: relative;
+
+  p {
+    color: #999;
+    position: absolute;
+    top: px2rem(0);
+    right: 0px;
+    font-size: px2rem(26);
   }
 }
+
 .pic {
-  margin-top px2rem(40)
-  height px2rem(72)
-  position relative
-  img {
-    position absolute
-    top px2rem(20)
-    right 0px
-    width px2rem(32)
+  margin-top: px2rem(22);
+
+  >>>.ivu-input-wrapper {
+    border-bottom: 1px solid #999 !important
   }
+
+  >>>.ivu-input {
+    // min-height: 40px;
+    color: #999;
+    outline: none;
+    border: none;
+    font-size: px2rem(26);
+    width: 100%;
+    border-bottom: 1px solid #999 !important
+    // line-height px2rem(30)
+    padding-bottom 16px
+    // height 60px
+    // padding-bottom 0px !important
+  }
+
+  >>>.ivu-input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+    // border-bottom: 1px solid #999;
+  }
+}
+
+>>>.ivu-input:hover {
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #999 !important
+}
+
+>>>.ivu-input:focus {
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #999 !important
+  box-shadow: none
 }
 </style>
 

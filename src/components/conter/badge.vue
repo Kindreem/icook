@@ -9,51 +9,29 @@
                 <img src="./GR-007.png" alt="">
                 <p>我已获得派系徽章</p>
               </div>
-            <ul class="badges">
-                <li>
-                     <router-link to="/genre/genre" ><img src="./5.png" alt=""></router-link>
-                </li>
-                <li>
-                    <router-link to="/genre/genre" ><img src="./5.png" alt=""></router-link>
-                </li>
-                <li>
-                    <router-link to="/genre/genre" ><img src="./5.png" alt=""></router-link>
-                </li>
-                <li>
-                    <router-link to="/genre/genre" ><img src="./5.png" alt=""></router-link>
-                </li>
-
-            </ul>
+                <swiper :options="swiperOption">
+                <swiper-slide v-for="(item,index) in items" :key="index">
+                    <router-link to="/conter/badge">
+                        <img :src="item.src" alt="">
+                    </router-link>
+                </swiper-slide>
+            </swiper>
        </div>
+
         <div class="item underway">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                 <p>进行中的派系徽章</p>
             </div>
-            <ul class="badges">
-                <li>
-                    <router-link to="/dan/dan" ><img src="./9.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info :stroke-width="4"></Progress>
-                    <p>16/18</p>
-
-                </li>
-                <li>
-                    <router-link to="/dan/dan" ><img src="./9.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info :stroke-width="4"></Progress>
-                    <p>16/18</p>
-                </li>
-                <li>
-                   <router-link to="/dan/dan" ><img src="./9.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info :stroke-width="4"></Progress>
-                    <p>16/18</p>
-                </li>
-                <li>
-                    <router-link to="/dan/dan" ><img src="./9.png" alt=""></router-link>
-                    <Progress :percent="80" status="active" hide-info :stroke-width="4"></Progress>
-                    <p>16/18</p>
-                </li>
-
-            </ul>
+            <swiper :options="swiperOption">
+                <swiper-slide v-for="(item,index) in item2" :key="index">
+                    <router-link to="/dan/dan">
+                        <img :src="item.src" alt="">
+                        <porgress :barwidth="item.barwidth" :color="item.color"></porgress>
+                        <!-- <Progress :percent="80" status="wrong" hide-info :stroke-width="4"></Progress> -->
+                    </router-link>
+                </swiper-slide>
+            </swiper>
        </div>
       
          <div class="item genre">
@@ -70,10 +48,6 @@
        </div>
 
         <Modal v-model="modal2" width="90%">
-        <!-- <p slot="header" style="color:#f60;text-align:center">
-            <Icon type="ios-information-circle"></Icon>
-            <span>Delete confirmation</span>
-        </p> -->
                 <div class="item genre">
                 <div class="title">
                     <img src="./GR-007.png" alt="">
@@ -82,6 +56,7 @@
                 <ul class="meet">
                         <li v-for="(item,index) in all[id].badge" :key="index">
                         <router-link to="/dan/dan" ><img :src="item.url" alt=""></router-link>
+                        <p>{{item.text}}</p>
                         <img src="./lock.png" alt="">
                     </li>   
                 </ul>
@@ -93,11 +68,44 @@
 </template>
 
 <script>
+import porgress from '../dan/porgress'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
+     components: {
+      swiper,
+      swiperSlide,
+      porgress
+  },
   data () {
     return {
         id:0,
         modal2:false,
+        swiperOption: {
+            slidesPerView: 3,
+            // spaceBetween: 24,
+            freeMode: true,
+            slidesOffsetBefore: 24,
+        },
+        items:[
+            {href:'/conter/badge',src:require('./1.png')},
+            {href:'/conter/badge',src:require('./2.png')},
+            {href:'/conter/badge',src:require('./3.png')},
+            {href:'/conter/badge',src:require('./4.png')},
+            {href:'/conter/badge',src:require('./4.png')},
+            {href:'/conter/badge',src:require('./4.png')},
+            {href:'/conter/badge',src:require('./4.png')},
+            {href:'/conter/badge',src:require('./4.png')},
+        ],
+         item2:[
+            {href:'/conter/badge',src:require('./5.png'),barwidth:50,color:'#1EAA39'},
+            {href:'/conter/badge',src:require('./6.png'),barwidth:60,color:'#009CA4'},
+            {href:'/conter/badge',src:require('./7.png'),barwidth:70,color:'#0b308e'},
+            {href:'/conter/badge',src:require('./8.png'),barwidth:80,color:'#008ed8'},
+            {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
+            {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
+            {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
+            {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
+        ],
         imgs:[
         //    { url:require('./1.png')},
             {id:1,tit:'川派',url:require('./1.png')},
@@ -115,26 +123,26 @@ export default {
           all:[
             {
              badge:[
-                    {id:1,url:require('./props/imgs1/1.png')},
-                    {id:2,url:require('./props/imgs1/2.png')},
-                    {id:3,url:require('./props/imgs1/3.png')},
-                    {id:4,url:require('./props/imgs1/4.png')},
-                    {id:5,url:require('./props/imgs1/5.png')},
-                    {id:6,url:require('./props/imgs1/6.png')},
-                    {id:7,url:require('./props/imgs1/7.png')},
-                    {id:8,url:require('./props/imgs1/8.png')},
+                    {id:1,url:require('./props/imgs1/1.png'),text:'粤派一段'},
+                    {id:2,url:require('./props/imgs1/2.png'),text:'粤派二段'},
+                    {id:3,url:require('./props/imgs1/3.png'),text:'粤派三段'},
+                    {id:4,url:require('./props/imgs1/4.png'),text:'粤派四段'},
+                    {id:5,url:require('./props/imgs1/5.png'),text:'粤派五段'},
+                    {id:6,url:require('./props/imgs1/6.png'),text:'粤派六段'},
+                    {id:7,url:require('./props/imgs1/7.png'),text:'粤派七段'},
+                    {id:8,url:require('./props/imgs1/8.png'),text:'粤派八段'},
                 ],
               },
             {
              badge:[
-                    {id:1,url:require('./props/imgs2/1.png')},
-                    {id:2,url:require('./props/imgs2/2.png')},
-                    {id:3,url:require('./props/imgs2/3.png')},
-                    {id:4,url:require('./props/imgs2/4.png')},
-                    {id:5,url:require('./props/imgs2/5.png')},
-                    {id:6,url:require('./props/imgs2/6.png')},
-                    {id:7,url:require('./props/imgs2/7.png')},
-                    {id:8,url:require('./props/imgs2/8.png')},
+                    {id:1,url:require('./props/imgs2/1.png'),text:'鲁派一段'},
+                    {id:2,url:require('./props/imgs2/2.png'),text:'鲁派二段'},
+                    {id:3,url:require('./props/imgs2/3.png'),text:'鲁派三段'},
+                    {id:4,url:require('./props/imgs2/4.png'),text:'鲁派四段'},
+                    {id:5,url:require('./props/imgs2/5.png'),text:'鲁派五段'},
+                    {id:6,url:require('./props/imgs2/6.png'),text:'鲁派六段'},
+                    {id:7,url:require('./props/imgs2/7.png'),text:'鲁派七段'},
+                    {id:8,url:require('./props/imgs2/8.png'),text:'鲁派⑧段'},
                 ]
             },
             {
@@ -244,52 +252,34 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
 .badge{
-   .header{
+     .header{
         height: px2rem(44);
         background: none;
         text-align: left;
         position: relative;
-    .title{
-        font-size: px2rem(20);
-        position: absolute;
-        font-size:  px2rem(14);
-        color: #199ED8;
-        top: px2rem(20);
-        left: 50%;
-        transform: translateX(-50%);
-    }
-        div{
-        padding: 20px;
+        .title{
+            font-size: px2rem(20);
+            position: absolute;
+            font-size:  px2rem(14);
+            color: #5DB8E9;
+            top: px2rem(20);
+            left: 50%;
+            transform: translateX(-50%);
         }
-        img{
-        margin-top: px2rem(20);
-        width: px2rem(24);
-        height: px2rem(24);
+            div{
+            padding: 20px;
+            }
+            img{
+            margin-top: px2rem(20);
+            width: px2rem(24);
+            height: px2rem(24);
+            }
         }
-  }
     padding:  px2rem(1)  px2rem(10);
     text-align: left;
-    .item.underway{
-        height: px2rem(160);
-         .ivu-progress{
-            display: block;
-            margin: px2rem(-2) auto;
-            width: px2rem(35);
-            /deep/ .ivu-progress-inner{
-                background: #999;
-            }
-           }
-        li p{
-            margin-top: px2rem(8);
-            font-size: px2rem(8);
-            color: #999;
-        }
-    }
-    .item.not{
-        height:  px2rem(250);
-        li{
-            margin-bottom:px2rem(20);
-        }
+    /deep/ .progressContainer{
+        margin:px2rem(5) auto;
+        width:px2rem(55) ;
     }
     .item.genre{
         height: px2rem(360);
@@ -309,6 +299,7 @@ export default {
         margin-top: px2rem(15);
         border-radius: px2rem(10);
         box-shadow:  12px 15px rgba(0,0,0,.1);
+        overflow: hidden;
         .title{
             width: px2rem(180);
             height: px2rem(30);
@@ -342,6 +333,19 @@ export default {
                 }
             }
         }
+        /deep/ .swiper-wrapper{
+                display:flex;
+                width: 200%;
+                margin:px2rem(17) px2rem(-10);
+            .swiper-slide{
+                width: 25%;
+                text-align: center;
+                // background: pink;
+                img{
+                    width: px2rem(64);
+                }
+            }
+        }
     }
 }
 .v-transfer-dom{
@@ -350,7 +354,7 @@ export default {
     background: rgba(0, 0, 0, 0);
    .item{
         width: 100%;
-        height:  px2rem(250);
+        height:  px2rem(275);
         margin-top: px2rem(15);
         border-radius: px2rem(10);
         background: #fff;
@@ -401,7 +405,7 @@ export default {
         margin-right: px2rem(10);
         i{
          font-size: px2rem(30);
-         color: #199ED8;
+         color: #5DB8E9;
          font-weight: bold;
         }
     
