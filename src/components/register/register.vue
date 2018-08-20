@@ -5,16 +5,19 @@
     </header>
   <div class="tit">手机号登录</div>
      <div class="tel_register">
-        <form action="" >
-           <input type="text" class="mui-input-clear" v-model="username" placeholder="输入手机号码">
+        <form >
+           <input type="text" class="mui-input-clear" v-model="userphone" placeholder="输入手机号码">
+             <transition>
+            <p class="warning" v-show="warning">{{tit}}</p>
+            </transition>
          <br>
            <input type="text" v-model="password" placeholder="输入验证码" class="psd">
          <br>
-          <input type="button" value="获取验证码" class="code">
+          <input type="button" :value="val+s" class="code" @click="code">
          <br>
-          <router-link to="/info">
-          <button class="btn_register">登录</button>
-          </router-link>
+          <!-- <router-link to="/info"> -->
+          <input class="btn_register" @click="login" value='登录' readonly="readonly">
+          <!-- </router-link> -->
           <!-- <router-link to='/register/psd'>密码登录</router-link> -->
         </form>
      </div>
@@ -36,24 +39,132 @@
 </template>
 
 <script>
+import {sendsms,register} from '@/api'
 export default {
   data () {
     return {
-      username:'',
-      password:''
+      userphone:'',
+      password:'',
+      tit:'',
+      val:'获取验证码',
+      timer: null,
+      warning:0,
+      s:''
     }
   },
    methods:{
       backto(){
       this.$router.go(-1);
-    }
-  },
+        },
+      //获取验证码
+      code(){
+        if((/^1(3|4|5|7|8)\d{9}$/.test(this.userphone))){
+         if (!this.timer) {
+                sendsms(this.userphone).then(res=>{
+                  console.log(res)
+                })
+                this.s=' s';
+                const TIME_COUNT= 60
+                this.val = TIME_COUNT;
+                this.timer = setInterval(() => {
+                  if (this.val > 0 && this.val <= TIME_COUNT) {
+                   this.val--;
+                  } else {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                    this.s='';
+                    this.val = '获取验证码';
+                  }
+                }, 1000)
+              }
+        }else{
+        this.tit = '请输入正确的手机号';
+        this.warning=1;
+        setTimeout(()=>{
+                  this.warning=0;
+                },700)
+          }
+      },
+      //登录
+      login() {
+      if(this.userphone){
+          if((/^1(3|4|5|7|8)\d{9}$/.test(this.userphone))){
+              if(this.password){
+                   register(this.userphone,this.password).then(res=>{
+                     console.log(res)
+                    if(res.code!=200){
+                       this.tit = '验证码有误';
+                       this.warning=1;
+                        setTimeout(()=>{
+                              this.warning=0;
+                            },700)
+                        }else{
+                        localStorage.setItem('myphone', res.userphone)
+                        localStorage.setItem('mytoken', res.token)
+                        this.$router.push({name: 'info'})
+                        }
+                   })
+                  }else{
+                    this.tit = '请输入验证码';
+                    this.warning=1;
+                    setTimeout(()=>{
+                              this.warning=0;
+                            },700)
+                  }
+          }else{
+            this.tit = '请输入正确的手机号';
+            this.warning=1;
+            setTimeout(()=>{
+                      this.warning=0;
+                    },700)
+              }
+        }else{
+             this.tit = '手机号不能为空';
+            this.warning=1;
+            setTimeout(()=>{
+                      this.warning=0;
+                    },700)
+        }
+       
+    },
+
+
+
+      }
+      
 }
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
 .register{
+   .warning{
+        position: absolute;
+        width:  px2rem(120);
+        height:px2rem(25);
+        line-height: px2rem(25);
+        background:rgba(0,0,0,.7);
+        border-radius: 8px;
+        left: 50%;
+        top: px2rem(135);
+        transform: translateX(-50%);
+        font-size: px2rem(12);
+        color: #fff;
+        z-index: 999;
+    } 
+      .v-enter {
+        opacity: 0;
+        top: px2rem(200); /*进入起点在屏幕100%部分,即屏幕最右*/
+        }
+        .v-leave-to {
+        opacity: 1;
+        // top: px2rem(180);
+        }
+        .v-enter-active,
+        .v-leave-active {
+        transition: all 0.2s ease-out;
+        }   
+        
       text-align: center;
       input{
         outline: none;

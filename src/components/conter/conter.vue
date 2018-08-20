@@ -143,7 +143,7 @@ export default {
            { url:require('./3.png')},
            { url:require('./4.png')},
         ]
-
+ 
     }
   },
   methods:{

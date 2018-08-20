@@ -125,6 +125,9 @@ export default {
         font-size: px2rem(14);
         margin-bottom: px2rem(15);
     }
+    /deep/ .all{
+        margin: px2rem(-15) 0 px2rem(10) 0;
+    }
    .item{
        border-radius:20px;
        overflow: hidden;

@@ -5,12 +5,12 @@
       </header>
      <div class="tit">选择您拿手的或想做的<p>最多可选4个</p></div>
       <div class="search">
-         <input type="text" placeholder="输入菜系或菜谱" v-model="search" @keyup.enter="enter" @focus="open" @blur="close"
+         <input type="text" placeholder="输入菜系或菜谱" v-model="search" @keyup.enter="enter"
         @input="handleQuery">
-         <div class="icon"><img src="../../assets/images/DR-019.png" alt=""></div>
+         <div class="icon"><img src="../../assets/images/DR-019.png" alt="" @click="clear"></div>
          <div class="sel">
            <ul>
-             <li v-for="(item,index) in sel" :key="index" @click="add(item.id)" v-html="item.name">
+             <li v-for="(item,index) in sel" :key="index" @click="add(index)" v-html="item.name">
                <!-- {{item.name}} -->
              </li>
            </ul>
@@ -21,7 +21,7 @@
       </div>
     <ul class="greens">
        <li v-for="(item,index) in names" :key="index" @click="onshow(index)" :style="{background:item.bg}">
-         <p>{{item.name}}</p>
+         <p v-html="item.name"></p>
          <span class="checkbox"><input type="radio" :checked="item.ishow"></span>
        </li>
     </ul>
@@ -45,6 +45,10 @@
 </template>
 
 <script>
+// import axios from 'axios'
+// import api from '@/api/index'
+// import VueResource from 'vue-resource'
+
 export default {
   data () {
     return {
@@ -55,12 +59,6 @@ export default {
           // {id:2,name:'鱼香肉丝'},
           // {id:3,name:'番茄炒蛋'},
           // {id:4,name:'可乐鸡翅'},
-        ],
-        sel2:[
-          {id:1,name:'小炒肉'},
-          {id:2,name:'鱼香肉丝'},
-          {id:3,name:'番茄炒蛋'},
-          {id:4,name:'可乐鸡翅'},
         ],
         names:[
             {id:1,bg:'#CA2C50',name:'麻婆豆腐',ishow:0},
@@ -76,10 +74,19 @@ export default {
         // name:['麻婆豆腐','佛跳墙','东坡肉','干炸响铃','剁椒鱼头','泉州肉粽','波丝芋头','土豆丝','太极豆腐']
     }
   },
-  created() {
+  created() { 
+    this.axios.get('http://127.0.0.1:3000/api/meet').then(res=>{
+      // console.log(res.data.message)
+          })
     },
 
    methods:{
+     clear(){
+       this.search=''
+       if(!this.search){
+         this.sel=[]
+       }
+     },
     onshow(id){
     //    this.imgs[id].ishow=!this.imgs[id].ishow
        this.names[id].ishow=!this.names[id].ishow
@@ -102,7 +109,7 @@ export default {
      },
      
      clearTimer () {
-        if (this.timer) {
+        if (this.timer) { 
           clearTimeout(this.timer)
       }
     },
@@ -110,12 +117,13 @@ export default {
       this.clearTimer()
       this.timer = setTimeout(() => {
         // console.log(event.timeStamp)
-        // this.$http.post('/api/vehicle').then(res => {
-          // console.log(res.data.data)
-          // this.changeColor(res.data.data)
-          this.changeColor(this.sel2)
-        // })
-      }, 1000)
+        if(!this.search){
+          return this.sel=[]
+        }
+        this.axios.get('http://192.168.0.102:3000/api/meet?search='+this.search).then(res => {
+          this.changeColor(res.data.message)
+        })
+      }, 500)
     },
 
     changeColor (resultsList) {
@@ -126,21 +134,17 @@ export default {
         let replaceReg = new RegExp(this.search, 'g')
         // 高亮替换v-html值
         let replaceString =
-          '<span class="search-text">' + this.search+ '</span>'
-        resultsList[index].name = item.name.replace(
-          replaceReg,
-          replaceString
-        )
-        console.log(replaceString)
+          '<span class="search-text">' +this.search+ '</span>'
+        resultsList[index].name = item.name.replace(replaceReg, replaceString)
+        let name = item.name.replace(replaceReg,replaceString)
+
+        // console.log(replaceString)
+        // console.log(name)
       }
     })
     this.sel= []
     this.sel = resultsList
     },  
-
-
-
-
 
 
 
@@ -254,9 +258,6 @@ export default {
         font-size: px2rem(16)
       }
   }
-.search-text{
-color: red;
-}
   .search{
     width: px2rem(280);
     height: px2rem(25);
@@ -303,6 +304,9 @@ color: red;
         padding: px2rem(2.5) px2rem(10);
         font-size:px2rem(12);
         position: relative;
+      /deep/ .search-text{
+        color: red;
+      }
       }
     }
   }
@@ -423,7 +427,7 @@ color: red;
     }
     .v-enter {
       opacity: 0;
-      top: px2rem(200); /*进入起点在屏幕100%部分,即屏幕最右*/
+      top: px2rem(200); 
     }
     .v-leave-to {
       opacity: 1;

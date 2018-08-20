@@ -25,14 +25,15 @@ export default {
             height: px2rem(3);
             width: 100%;
             background-color: #666666;
-             border-radius: 4px;
-             color: #999;
+            border-radius:px2rem(1.5);
+            color: #999;
+             
           .progressItem{
              position: absolute;
+             border-radius:px2rem(1.5);
              height: px2rem(3);
              width: 30%;
              background-color: orange;
-             border-radius: 4px;
         }
             .right{
                 font-size: px2rem(9);

@@ -88,7 +88,8 @@ export default {
       padding: px2rem(5) px2rem(8);
     }
     img{
-      margin-top:  px2rem(20);
+      margin-top:  px2rem(21);
+      margin-left:  px2rem(10);
       width: px2rem(24);
       height: px2rem(24);
     }
