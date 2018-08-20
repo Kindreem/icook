@@ -1,6 +1,5 @@
 <template>
   <div class="all">
-    <h2>用料</h2>
     <Form ref="formDynamic" :model="formDynamic">
         <FormItem
                 class="content"
@@ -10,21 +9,21 @@
                 :prop="'items.' + index + '.value'"
                 :rules="{required: true, message: 'Item ' + item.index +' can not be empty', trigger: 'blur'}">
             <Row>
-                <Col span="9" offset="1">
-                    <input type="text" v-model="item.value1" placeholder="调料：如盐"/>
+                <Col span="11">
+                    <input type="text" v-model="item.value1" placeholder="添加食材"/>
                 </Col>
-                <Col span="9">
-                    <input type="text" v-model="item.value2" placeholder="用量：如1勺"/>
+                <Col span="11">
+                    <input type="text" v-model="item.value2" placeholder="添加用量"/>
                 </Col>
-                <Col span="2" offset="3">
+                <Col span="1">
                     <img src="../img/DR-026.png" alt="" @click="handleRemove(index)"/>
                 </Col>
             </Row>
         </FormItem>
-        <FormItem>
+        <FormItem class="bot">
             <Row>
                 <Col span="12" offset="6">
-                    <Button type="dashed" long @click="handleAdd" icon="plus-round">再增加一行</Button>
+                    <Button type="dashed" long @click="handleAdd">添加食材</Button>
                 </Col>
             </Row>
         </FormItem>
@@ -81,33 +80,35 @@
 <style lang="stylus" scoped>
 @import '../../../assets/px2rem.styl'
 .all {
-  margin 0 px2rem(66) px2rem(50)
-  h2 {
-    font-size px2rem(30)
-    margin-bottom px2rem(20)
-
-  }
+  margin 0 px2rem(80) px2rem(50)
 }
 >>>.ivu-form{
   .ivu-form-item {
     input {
     outline none
     border none
-    color #888
+    color #999
     height px2rem(74)
     font-size px2rem(26)
-
    }
+   input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+  }
    img {
      position relative
      top px2rem(20)
    }
    .ivu-btn {
-     font-size px2rem(24)
+     font-size px2rem(32)
      border-radius px2rem(20)
-     color #888
+     box-shadow: 10px 10px 14px rgba(204, 204, 204, 0.4);
+     border none
+     color #5DB8E9
      border-color: #444
-     margin-top px2rem(70)
+     margin-top px2rem(40)
+     padding-left px2rem(72)
+     background url('../img/1-036.png') no-repeat 20% 50%
+     background-size px2rem(42)
    }
    .ivu-btn-dashed:active {
      color #5DB8E9

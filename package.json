@@ -5,7 +5,11 @@
   "author": "Kindreem �<906582318@qq.com>) ",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.0.105",
+=======
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js" ,
+>>>>>>> 39341eeb0c57444603e172f4b6a9e2396d7bdcb3
     "start": "npm run dev",
     "build": "node build/build.js"
   },

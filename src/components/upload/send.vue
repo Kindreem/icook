@@ -16,8 +16,8 @@
        </section>
       </div>
       <p>每勾选一个发布按钮可获200金奖励</p>
-      <input type="submit" value="发布" />
-      <h4>发布后总共可获得1000金奖励</h4>
+      <input type="submit" value="发布" /></input>
+      <h4>获得全部900金奖励</h4>
     </form>
   </div>
 </template>
@@ -25,7 +25,7 @@
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
 .all {
-  margin 0 px2rem(64) px2rem(70)
+  margin px2rem(80) px2rem(80) px2rem(40)
   form {
     .icon {
       margin-top px2rem(30)
@@ -50,8 +50,8 @@
   }
   p {
     font-size px2rem(24)
-    color #666
-    margin-top px2rem(16)
+    color #999
+    margin-top px2rem(40)
   }
   form >input {
     margin-top px2rem(40)
@@ -69,29 +69,39 @@
     font-size px2rem(22)
     line-height px2rem(36)
     margin-top px2rem(12)
+    color #999
   }
-}
->>>.ivu-checkbox {
-  height px2rem(26)
-  width px2rem(26)
-}
->>>.ivu-checkbox-inner {
-  height px2rem(26)
-  width px2rem(26)
 
 }
+>>>.ivu-checkbox {
+  height px2rem(32)
+  width px2rem(32)
+  border-radius 50%
+  border: 1px solid #717171;
+}
+>>>.ivu-checkbox-inner {
+  height px2rem(20)
+  width px2rem(20)
+  border-radius 50%
+  border none
+  top px2rem(5)
+}
 >>>.ivu-checkbox-checked .ivu-checkbox-inner {
-    background-color #5DB8E9
+    background-color #717171
+
+}
+>>>.ivu-checkbox-focus {
+  box-shadow none
 }
 >>>.ivu-checkbox-checked .ivu-checkbox-inner:after {
     content: '';
     display: table;
-    width: px2rem(12);
-    height: px2rem(20);
+    width: px2rem(0);
+    height: px2rem(0);
     position: absolute;
-    top: px2rem(1);
-    left: px2rem(6);
-    border: 5px solid #fff;
+    top: px2rem(8);
+    left: px2rem(8);
+    border: 5px solid #717171;
     border-top: 0;
     border-left: 0;
     transform: rotate(45deg) scale(1);

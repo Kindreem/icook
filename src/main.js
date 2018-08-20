@@ -9,11 +9,24 @@ import router from './router'
 
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
+<<<<<<< HEAD
 // import MintUI from 'mint-ui'
 // import 'mint-ui/lib/style.css'
 import {DatetimePicker} from 'mint-ui';
 
 Vue.component(DatetimePicker.name, DatetimePicker);
+=======
+
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+
+
+import { DatetimePicker,Checklist } from 'mint-ui';
+
+Vue.component(DatetimePicker.name, DatetimePicker);
+
+
+>>>>>>> 39341eeb0c57444603e172f4b6a9e2396d7bdcb3
 
 import 'iview/dist/styles/iview.css';
 
@@ -31,3 +44,9 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// 跳转后返回顶部
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
+

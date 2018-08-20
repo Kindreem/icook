@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return{
-      value: '官方菜谱',
+      value: '爆炒麻辣兔',
       name1: '关联菜谱（按用料关联）',
       name2: '关联菜谱（按做法关联）',
       items: [{
