@@ -24,7 +24,7 @@
             </Row>
             <Row class="content">
                 <Col span="20" offset="1">
-                    <i-input type="textarea" :autosize="true" placeholder="添加步骤说明"></i-input></textarea>
+                    <i-input type="textarea" :autosize="true" placeholder="添加步骤说明"></i-input>
                 </Col>
                 <Col span="2" offset="1">
                     <img src="../img/DR-026.png" alt="" @click="handleRemove(index)"/>
