@@ -23,3 +23,13 @@ export const sendsms = params=>{
 export const register = (userphone,smscode)=>{
     return axios.post(`/sign/login?userphone=${userphone}&smscode=${smscode}`).then(res=>res.data)
 }
+
+//上传凭证
+export const upload = (status,type)=>{
+    return axios.post(`/common/uploadToken?status=${status}&type=${type}`).then(res=>res.data)
+}
+
+//初次添加个人信息
+export const addinfo = (userid,userphoto,usernickname,userbirthday,usersex)=>{
+    return axios.post(`/userinfo/firstimpression?userid=${userid}&userphoto=${userphoto}&usernickname=${usernickname}&userbirthday=${userbirthday}&usersex=${usersex}`).then(res=>res.data)
+}

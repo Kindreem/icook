@@ -14,13 +14,11 @@ import Cook from '../components/upload/cook/index.vue'
 
 import member from '@/components/member/member'
 import register from '@/components/register/register'
-import pRegister from '@/components/register/psd_register'
 import login from '@/components/login/login'
 
 import info from '@/components/info/info'
 import impression from '@/components/info/impression'
-// import meet from '@/components/info/meet'
-import meet from '@/components/info/test'
+import meet from '@/components/info/meet'
 
 import load from '@/components/load/load.vue'
 
@@ -32,6 +30,8 @@ import show from '@/components/conter/show'
 import tast from '@/components/tast/tast'
 import genre from '@/components/genre/genre'
 import dan from '@/components/dan/dan'
+
+import test from '@/components/info/test'
 
 Vue.use(Router)
 
@@ -98,14 +98,9 @@ export default new Router({
       component: member,
     },
     {
-      path: '/register/register',
+      path: '/register',
       name: 'register',
       component: register
-    },
-    {
-      path: '/register/psd',
-      name: 'psd',
-      component: pRegister
     },
     {
       path: '/login/login',
@@ -166,6 +161,11 @@ export default new Router({
       path: '/dan/dan',
       name: 'dan',
       component:dan
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component:test
     },
   ]
 })

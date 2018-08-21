@@ -4,35 +4,17 @@ import '../static/js/viewport'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import axios from 'axios'
-// Vue.prototype.axios = axios;
 
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
-<<<<<<< HEAD
-// import MintUI from 'mint-ui'
-// import 'mint-ui/lib/style.css'
 import {DatetimePicker} from 'mint-ui';
 
 Vue.component(DatetimePicker.name, DatetimePicker);
-=======
-
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-
-
-import { DatetimePicker,Checklist } from 'mint-ui';
-
-Vue.component(DatetimePicker.name, DatetimePicker);
-
-
->>>>>>> 39341eeb0c57444603e172f4b6a9e2396d7bdcb3
 
 import 'iview/dist/styles/iview.css';
 
 
 Vue.use(iview)
-// Vue.use(MintUI)
 
 Vue.config.productionTip = false
 

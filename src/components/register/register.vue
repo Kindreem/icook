@@ -91,7 +91,7 @@ export default {
           if((/^1(3|4|5|7|8)\d{9}$/.test(this.userphone))){
               if(this.password){
                    register(this.userphone,this.password).then(res=>{
-                     console.log(res)
+                    //  console.log(res)
                     if(res.code!=200){
                        this.tit = '验证码有误';
                        this.warning=1;
@@ -99,9 +99,10 @@ export default {
                               this.warning=0;
                             },700)
                         }else{
-                        localStorage.setItem('myphone', res.userphone)
-                        localStorage.setItem('mytoken', res.token)
-                        this.$router.push({name: 'info'})
+                        localStorage.setItem('myphone', res.data.userphone)
+                        localStorage.setItem('mytoken', res.data.token)
+                        localStorage.setItem('userid', res.data.userid)
+                        this.$router.push({path: '/info'})
                         }
                    })
                   }else{

@@ -6,14 +6,16 @@
   <div class="demo-avatar">
       <p>完善个人信息</p>
       <Upload
-       action="//jsonplaceholder.typicode.com/posts/"
-       :show-upload-list="false">
+       :action="url"
+       :show-upload-list="false"
+       :before-upload="handleBeforeUpload"
+       :on-success="handleSuccess">
      <Avatar :src="img.url" />
       </Upload>
   </div>
 
    <form >
-        <div class="item">
+        <div class="item">  
             <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
@@ -60,6 +62,7 @@
 </template>
 
 <script>
+import {upload,addinfo} from '@/api'
 import moment from 'moment'
 export default {
   data () {
@@ -67,6 +70,7 @@ export default {
             img:{
                 url:require('./TX.png')
             },
+            url:'',
             nickname:'',
             startDate: new Date(),
             age:'',
@@ -74,6 +78,11 @@ export default {
     }
   },
   created() {
+      upload(1,1).then(res=>{
+          localStorage.setItem('uptoken', res.data.token)
+          this.url = res.data.key
+
+      })
   },
 
   methods:{
@@ -89,6 +98,14 @@ export default {
      } ,
      backto(){
       this.$router.go(-1);
+    },
+    //上传文件之前的钩子,参数为上传文件
+    handleBeforeUpload(){
+
+    },
+    //上传成功的钩子
+    handleSuccess (res, file){
+        console.log(res)
     }
   }
 }
