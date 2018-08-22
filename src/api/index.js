@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 
-//设置请求的跟路径 
+//设置请求的跟路径
 const baseURL = "http://192.168.1.37:8080"
 axios.defaults.baseURL = baseURL
 
@@ -14,11 +14,11 @@ axios.defaults.baseURL = baseURL
         return config
  })
 
-//获取验证码. 
+//获取验证码.
 export const sendsms = params=>{
     return axios.post(`/common/sendsms?userphone=${params}`).then(res=>res.data)
 }
-//登录 
+//登录
 export const register = (userphone,smscode)=>{
     return axios.post(`/sign/login?userphone=${userphone}&smscode=${smscode}`).then(res=>res.data)
 }
@@ -37,3 +37,9 @@ export const upload = (status,type)=>{
 export const addinfo = (userid,userphoto,usernickname,userbirthday,usersex)=>{
     return axios.post(`/userinfo/firstimpression?userid=${userid}&userphoto=${userphoto}&usernickname=${usernickname}&userbirthday=${userbirthday}&usersex=${usersex}`).then(res=>res.data)
 }
+
+// 实名认证
+export const addid = (userid,name,idcard)=>{
+  return axios.post(`/userinfo/idcardcheck?userid=${userid}&name=${name}&idcard=${idcard}`).then(res=>res.data)
+}
+
