@@ -1,10 +1,9 @@
-import axios from 'axios'
 
+import axios from 'axios'
 
 //设置请求的跟路径 
 const baseURL = "http://192.168.1.37:8080"
 axios.defaults.baseURL = baseURL
-
 
 // 请求拦截器,给所有的请求加上token
  axios.interceptors.request.use(function(config) {
@@ -22,6 +21,11 @@ export const sendsms = params=>{
 //登录 
 export const register = (userphone,smscode)=>{
     return axios.post(`/sign/login?userphone=${userphone}&smscode=${smscode}`).then(res=>res.data)
+}
+
+//自动登录
+export const authlogin = (userphone,token)=>{
+    return axios.post(`/sign/authlogin?userphone=${userphone}&token=${token}`).then(res=>res.data)
 }
 
 //上传凭证

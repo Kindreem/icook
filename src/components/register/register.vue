@@ -61,7 +61,7 @@ export default {
         if((/^1(3|4|5|7|8)\d{9}$/.test(this.userphone))){
          if (!this.timer) {
                 sendsms(this.userphone).then(res=>{
-                  console.log(res)
+                  // console.log(res)
                 })
                 this.s=' s';
                 const TIME_COUNT= 60

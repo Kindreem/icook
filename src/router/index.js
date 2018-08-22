@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from "../components/home/index.vue"
 import O_recipe from '../components/Official recipe/index.vue'
 import Flow from '../components/flow/index.vue'
@@ -31,11 +32,11 @@ import tast from '@/components/tast/tast'
 import genre from '@/components/genre/genre'
 import dan from '@/components/dan/dan'
 
-import test from '@/components/info/test'
+import {authlogin} from '@/api'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   scrollBehavior(to, from,savedPosition) {
     return {
@@ -46,7 +47,7 @@ export default new Router({
 
   routes: [
     {
-      path: "/home",
+      path: "/",
       name: "home",
       component: Home,
     },{
@@ -93,7 +94,7 @@ export default new Router({
 	// -----华丽的分割线-----
 
 	 {
-      path: '/',
+      path: '/member',
       name: 'member',
       component: member,
     },
@@ -161,11 +162,32 @@ export default new Router({
       path: '/dan/dan',
       name: 'dan',
       component:dan
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component:test
-    },
+    }
   ]
 })
+
+// 注册一个全局守卫，作用是在路由跳转前，对路由进行判断，防止未登录的用户跳转到其他需要登录的页面去
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem('mytoken')
+  let userphone = localStorage.getItem('myphone')
+  authlogin(userphone,token).then(res=>{
+    if(res.code==200){
+        localStorage.setItem('mytoken', res.data.token)
+        next()
+     } else{
+        //如果没有登录，访问非登录页面,则跳转到登录页面
+      if(to.path!== '/member' && to.path!=='/register'){
+        next({path: '/member'})
+      }
+      // if(to.path!=='/register'){
+      //   next({path: '/member'})
+      // }
+      else{
+        //如果没有登录，但访问的是登录页面,直接进入
+        next()
+      }
+    }
+  })
+})
+export default router
+

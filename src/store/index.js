@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 // 1定义数据存储仓库state
 const state = {
+    userid:''
 }
 
 
