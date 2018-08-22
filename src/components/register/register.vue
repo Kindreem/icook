@@ -102,6 +102,7 @@ export default {
                         localStorage.setItem('myphone', res.data.userphone)
                         localStorage.setItem('mytoken', res.data.token)
                         localStorage.setItem('userid', res.data.userid)
+                         localStorage.setItem('certificationstatus', res.data.certificationstatus)
                         this.$router.push({path: '/info'})
                         }
                    })
@@ -126,13 +127,13 @@ export default {
                       this.warning=0;
                     },700)
         }
-       
+
     },
 
 
 
       }
-      
+
 }
 </script>
 
@@ -152,7 +153,7 @@ export default {
         font-size: px2rem(12);
         color: #fff;
         z-index: 999;
-    } 
+    }
       .v-enter {
         opacity: 0;
         top: px2rem(200); /*进入起点在屏幕100%部分,即屏幕最右*/
@@ -164,8 +165,8 @@ export default {
         .v-enter-active,
         .v-leave-active {
         transition: all 0.2s ease-out;
-        }   
-        
+        }
+
       text-align: center;
       input{
         outline: none;

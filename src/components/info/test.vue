@@ -15,7 +15,7 @@
   </div>
 
    <form >
-        <div class="item">  
+        <div class="item">
             <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
@@ -87,7 +87,7 @@ export default {
     //       localStorage.setItem('uptoken', res.data.token)
     //       this.url = res.data.key
     //   })
-    
+
   },
 
   methods: {
@@ -105,6 +105,7 @@ export default {
       this.$router.go(-1);
     },
     add(){
+      console.log(this.url)
       let userid = localStorage.getItem('userid');
      addinfo(userid,this.url,this.nickname,this.age,this.picked).then(res=>{
          console.log(res)
@@ -118,14 +119,14 @@ export default {
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
       this.upkey = res.data.key;
-      
+
     });
 
     this.$refs.upload.addEventListener("change", function() {
       let newdate =Date.parse(new Date())
       let file = this.files[0]; // 对象，上传的文件
-      let key =file.name; // 文件资源名 
-      let newkey = key.split('.')[1];//2 
+      let key =file.name; // 文件资源名
+      let newkey = key.split('.')[1];//2
     let name = `${self.upkey}${newdate}.${newkey}`
       let config = {
         useCdnDomain: true,
@@ -147,11 +148,12 @@ export default {
       }; //开始上传 token 需要找后端获取(单独的方法)
       let observable = qiniu.upload(file, name,self.uploadToken, putExtra, config);
       let subscription = observable.subscribe(observe);
-    
+
       self.url = `http://img.yzlkeji.com/${self.upkey}${newdate}.${newkey}`;
-      
-    console.log(self.url)
+
+    // console.log(self.url)
     });
+
   }
 };
 </script>
