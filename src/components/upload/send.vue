@@ -16,8 +16,7 @@
        </section>
       </div>
       <p>每勾选一个发布按钮可获200金奖励</p>
-      <input type="submit" value="发布" /></input>
-      <h4>获得全部900金奖励</h4>
+      <button type="submit">发布<br/>获得全部900金奖励</button>
     </form>
   </div>
 </template>
@@ -53,24 +52,24 @@
     color #999
     margin-top px2rem(40)
   }
-  form >input {
+  form >button {
     margin-top px2rem(40)
     width 100%
     height px2rem(80)
-    font-size px2rem(30)
+    font-size px2rem(24)
     color #999
     background #fff
     border none
-    box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
+    box-shadow 12px 12px 15px rgba(204, 204, 204, 0.5)
     border-radius 20px
   }
-  h4 {
-    text-align center
-    font-size px2rem(22)
-    line-height px2rem(36)
-    margin-top px2rem(12)
-    color #999
-  }
+  // h4 {
+  //   text-align center
+  //   font-size px2rem(22)
+  //   line-height px2rem(36)
+  //   margin-top px2rem(12)
+  //   color #999
+  // }
 
 }
 >>>.ivu-checkbox {

@@ -136,12 +136,12 @@ export default {
     }
 
     .ivu-btn-dashed:active {
-      color: #5DB8E9;
+      color: #fff;
       border-color: #5DB8E9;
     }
 
     .ivu-btn-dashed:hover {
-      color: #5DB8E9;
+      color: #fff
       border-color: #5DB8E9;
     }
   }

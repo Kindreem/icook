@@ -62,19 +62,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import * as qiniu from "qiniu-js";
 import {upload,addinfo} from "@/api";
 import moment from "moment";
-=======
-import {upload,addinfo} from '@/api'
-import moment from 'moment'
-
->>>>>>> ef01d7680d86f03cd927678879680e7e6ad11ed4
 export default {
   data() {
     return {
-<<<<<<< HEAD
       files: [], // 文件
       uploadToken: "", // 上传文件 token
       previewAvatar: "", // 页面展示的avatar
@@ -90,25 +83,13 @@ export default {
       warning:0,      //提示显示隐藏
       tit:''          // 提示信息
     };
-=======
-            img:{
-                url:require('./TX.png')
-            },
-            url:'',
-            nickname:'',
-            startDate: new Date(),
-            age:'',
-            picked:'One',
-            upToken: "znxbKqOeqvKKDLWwqKRCNjmX64f_p2PrxTE4um5c:S2_O3CLukklYM35CgAmdbuJMZm8=:eyJzY29wZSI6Inl6bC1pbWciLCJyZXR1cm5Cb2R5Ijoie1wia2V5XCI6XCIkKGtleSlcIixcImhhc2hcIjpcIiQoZXRhZylcIixcImJ1Y2tldFwiOlwiJChidWNrZXQpXCIsXCJmc2l6ZVwiOiQoZnNpemUpLFwiaW5kZXhcIjokKHg6aW5kZXgpfSIsImRlYWRsaW5lIjoxNTM0ODM5OTAyfQ=="
-    }
->>>>>>> ef01d7680d86f03cd927678879680e7e6ad11ed4
   },
   created() {
     //   upload(1,1).then(res=>{
     //       localStorage.setItem('uptoken', res.data.token)
     //       this.url = res.data.key
     //   })
-    
+
   },
 
   methods: {
@@ -147,7 +128,6 @@ export default {
                   },1000)
        }
     }
-<<<<<<< HEAD
 
   },
   mounted() {
@@ -156,14 +136,14 @@ export default {
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
       this.upkey = res.data.key;
-      
+
     });
 
     this.$refs.upload.addEventListener("change", function() {
       let newdate =Date.parse(new Date())
       let file = this.files[0]; // 对象，上传的文件
-      let key =file.name; // 文件资源名 
-      let newkey = key.split('.')[1];//2 
+      let key =file.name; // 文件资源名
+      let newkey = key.split('.')[1];//2
     let name = `${self.upkey}${newdate}.${newkey}`
       let config = {
         useCdnDomain: true,
@@ -185,17 +165,12 @@ export default {
       }; //开始上传 token 需要找后端获取(单独的方法)
       let observable = qiniu.upload(file, name,self.uploadToken, putExtra, config);
       let subscription = observable.subscribe(observe);
-      self.img.url = 
+      self.img.url =
       self.url = `http://img.yzlkeji.com/${self.upkey}${newdate}.${newkey}`;
       self.img.url = self.url
     });
   }
 };
-=======
-  },
-
-}
->>>>>>> ef01d7680d86f03cd927678879680e7e6ad11ed4
 </script>
 
 <style lang="scss">
@@ -226,7 +201,7 @@ export default {
         .v-enter-active,
         .v-leave-active {
         transition: all 0.2s ease-out;
-        }   
+        }
   text-align: center;
   input {
     outline: none;
@@ -258,26 +233,11 @@ export default {
     }
   }
 
-<<<<<<< HEAD
   .item {
     margin: px2rem(20) auto;
     width: px2rem(250);
     display: flex;
     position: relative;
-=======
-  .item{
-       margin: px2rem(20) auto;
-       width:  px2rem(250);
-       display: flex;
-       position: relative;
-
-    .nickname{
-        width:  px2rem(250);
-        height:  px2rem(25);
-        font-size: px2rem(12);
-        border: none;
-        position: relative;
->>>>>>> ef01d7680d86f03cd927678879680e7e6ad11ed4
 
     .nickname {
       width: px2rem(250);
@@ -326,7 +286,6 @@ export default {
         color: #999;
       }
     }
-<<<<<<< HEAD
   }
   .txt {
     font-size: px2rem(11);
@@ -334,56 +293,6 @@ export default {
     color: #999;
     span {
       color: #199ed8;
-=======
-    .mint-popup{
-        top: 50%;
-        width: 70%;
-        left: 15%;
-        border-radius: 10px;
-        background: rgba(255,255,255,.9);
-        height: px2rem(180);
-        transform: none;
-        .picker-slot-wrapper{
-            margin-top:px2rem(-15) ;
-        }
-        .picker-items{
-            height: px2rem(100);
-            margin:px2rem(25) 0;
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            .picker-item{
-                font-size: px2rem(15);
-                // transform: perspective(600px) rotateY(20deg);
-                transform: rotate3d(1, 0, 0, 50deg) translate3d(0px, 0px, px2rem(2));
-            }
-            .picker-item.picker-selected{
-                font-size: px2rem(16);
-                transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
-            }
-        }
-        .picker-toolbar{
-            position: absolute;
-            height: px2rem(25);
-            bottom: px2rem(12);
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            span{
-                font-size: px2rem(14);
-                display: inline-block;
-                margin:0 px2rem(20);
-                width: px2rem(85);
-                border:1px solid #999;
-                border-radius: px2rem(3);
-                line-height: px2rem(25);
-                color: #999;
-            }
-            span:last-child{
-                color: #199ED8;
-                border: 1px solid #199ED8;
-            }
-        }
->>>>>>> ef01d7680d86f03cd927678879680e7e6ad11ed4
     }
   }
   .mint-popup {
