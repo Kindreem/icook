@@ -124,7 +124,7 @@ let router = new Router({
       component: meet
     },
     {
-      path: '/load/load',
+      path: '/load',
       name: 'load',
       component:load
     },
@@ -167,27 +167,24 @@ let router = new Router({
 })
 
 // 注册一个全局守卫，作用是在路由跳转前，对路由进行判断，防止未登录的用户跳转到其他需要登录的页面去
-router.beforeEach((to, from, next) => {
-  let token = localStorage.getItem('mytoken')
-  let userphone = localStorage.getItem('myphone')
-  authlogin(userphone,token).then(res=>{
-    if(res.code==200){
-        localStorage.setItem('mytoken', res.data.token)
-        next()
-     } else{
-        //如果没有登录，访问非登录页面,则跳转到登录页面
-      if(to.path!== '/member' && to.path!=='/register'){
-        next({path: '/member'})
-      }
-      // if(to.path!=='/register'){
-      //   next({path: '/member'})
-      // }
-      else{
-        //如果没有登录，但访问的是登录页面,直接进入
-        next()
-      }
-    }
-  })
-})
+// router.beforeEach((to, from, next) => {
+//   let token = localStorage.getItem('mytoken')
+//   let userphone = localStorage.getItem('myphone')
+//   authlogin(userphone,token).then(res=>{
+//     if(res.code==200){
+//         localStorage.setItem('mytoken', res.data.token)
+//         next()
+//      } else{
+//         //如果没有登录，访问非登录页面,则跳转到登录页面
+//       if(to.path!== '/member' && to.path!=='/register'){
+//         next({path: '/member'})
+//       }
+//       else{
+//         //如果没有登录，但访问的是登录页面,直接进入
+//         next()
+//       }
+//     }
+//   })
+// })
 export default router
 

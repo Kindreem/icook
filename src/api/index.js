@@ -43,3 +43,12 @@ export const addid = (userid,name,idcard)=>{
   return axios.post(`/userinfo/idcardcheck?userid=${userid}&name=${name}&idcard=${idcard}`).then(res=>res.data)
 }
 
+//获取所有流派信息
+export const faction = (userid)=>{
+    return axios.post(`/faction/getall?userid=${userid}`).then(res=>res.data)
+}
+
+//获取所有流派段位信息
+export const getrankall = (userid,factionsid)=>{
+    return axios.post(`faction/getrankall?userid=${userid}&factionsid=${factionsid}`).then(res=>res.data)
+}

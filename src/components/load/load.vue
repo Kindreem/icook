@@ -19,7 +19,7 @@
       <p>赶紧上传您的惊天大作吧!</p>
       <div class="btn">
         <router-link to="/cook"><button class="first">传传传,不传不是人</button></router-link>
-        <router-link to="/home"><button>等等 ! 一会儿再说</button></router-link>
+        <router-link to="/"><button>等等 ! 一会儿再说</button></router-link>
       </div>
     </div>
 

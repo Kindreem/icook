@@ -27,7 +27,7 @@
     </ul>
       <div class="btn-meet">
         <p>完成奖励 : 完成后可获得 徽章</p>
-        <router-link to="/load/load">
+        <router-link to="/load">
          <button class="next">下一步</button>
         </router-link>
       </div>
@@ -117,7 +117,7 @@ export default {
         if(!this.search){
           return this.sel=[]
         }
-        axios.get('http://192.168.0.103:3000/api/meet?search='+this.search).then(res => {
+        axios.get('http://192.168.0.105:3000/api/meet?search='+this.search).then(res => {
           this.changeColor(res.data.message)
         })
       }, 500)

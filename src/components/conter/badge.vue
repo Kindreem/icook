@@ -40,9 +40,9 @@
                <p>所有派系徽章</p>
                </div>
            <ul class="meet">
-                <li v-for="(item,id) in imgs" :key="id">
-                   <img :src="item.url" @click="open(id)">
-                   <p>{{item.tit}}</p>
+                <li v-for="(item,id) in data" :key="id">
+                   <img :src="item.factionsimg" @click="open(item.factionsid)">
+                   <p>{{item.factionsname}}派</p>
                </li>
            </ul>
        </div>
@@ -51,12 +51,12 @@
                 <div class="item genre">
                 <div class="title">
                     <img src="./GR-007.png" alt="">
-                    <p>{{tit[id]}}</p>
+                    <p>{{tit[id-1]}}</p>
                     </div>
                 <ul class="meet">
-                        <li v-for="(item,index) in all[id].badge" :key="index">
-                        <router-link to="/dan/dan" ><img :src="item.url" alt=""></router-link>
-                        <p>{{item.text}}</p>
+                        <li v-for="(item,index) in badges" :key="index">
+                        <router-link to="/dan/dan" ><img :src="item.rankimg" alt=""></router-link>
+                        <p>{{item.rankname}}</p>
                         <img src="./lock.png" alt="">
                     </li>   
                 </ul>
@@ -70,6 +70,7 @@
 <script>
 import porgress from '../dan/porgress'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {faction,getrankall} from '@/api'
 export default {
      components: {
       swiper,
@@ -81,11 +82,12 @@ export default {
         id:0,
         modal2:false,
         swiperOption: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             // spaceBetween: 24,
             freeMode: true,
             slidesOffsetBefore: 24,
         },
+        data:[],
         items:[
             {href:'/conter/badge',src:require('./1.png')},
             {href:'/conter/badge',src:require('./2.png')},
@@ -106,134 +108,18 @@ export default {
             {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
             {href:'/conter/badge',src:require('./9.png'),barwidth:50,color:'#946134'},
         ],
-        imgs:[
-        //    { url:require('./1.png')},
-            {id:1,tit:'川派',url:require('./1.png')},
-            {id:2,tit:'鲁派',url:require('./2.png')},
-            {id:3,tit:'粤派',url:require('./3.png')},
-            {id:4,tit:'闽派',url:require('./4.png')},
-            {id:5,tit:'苏派',url:require('./5.png')},
-            {id:6,tit:'浙派',url:require('./6.png')},
-            {id:7,tit:'徽派',url:require('./7.png')},
-            {id:8,tit:'湘派',url:require('./8.png')},
-            {id:9,tit:'自定菜',url:require('./9.png')},
-        ],
           tit:['川派等级徽章','鲁派等级徽章','粤派等级徽章','闽派等级徽章','苏派等级徽章',
           '浙派等级徽章','徽派等级徽章','湘派等级徽章','自定菜等级徽章'],
-          all:[
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs1/1.png'),text:'粤派一段'},
-                    {id:2,url:require('./props/imgs1/2.png'),text:'粤派二段'},
-                    {id:3,url:require('./props/imgs1/3.png'),text:'粤派三段'},
-                    {id:4,url:require('./props/imgs1/4.png'),text:'粤派四段'},
-                    {id:5,url:require('./props/imgs1/5.png'),text:'粤派五段'},
-                    {id:6,url:require('./props/imgs1/6.png'),text:'粤派六段'},
-                    {id:7,url:require('./props/imgs1/7.png'),text:'粤派七段'},
-                    {id:8,url:require('./props/imgs1/8.png'),text:'粤派八段'},
-                ],
-              },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs2/1.png'),text:'鲁派一段'},
-                    {id:2,url:require('./props/imgs2/2.png'),text:'鲁派二段'},
-                    {id:3,url:require('./props/imgs2/3.png'),text:'鲁派三段'},
-                    {id:4,url:require('./props/imgs2/4.png'),text:'鲁派四段'},
-                    {id:5,url:require('./props/imgs2/5.png'),text:'鲁派五段'},
-                    {id:6,url:require('./props/imgs2/6.png'),text:'鲁派六段'},
-                    {id:7,url:require('./props/imgs2/7.png'),text:'鲁派七段'},
-                    {id:8,url:require('./props/imgs2/8.png'),text:'鲁派⑧段'},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs3/1.png')},
-                    {id:2,url:require('./props/imgs3/2.png')},
-                    {id:3,url:require('./props/imgs3/3.png')},
-                    {id:4,url:require('./props/imgs3/4.png')},
-                    {id:5,url:require('./props/imgs3/5.png')},
-                    {id:6,url:require('./props/imgs3/6.png')},
-                    {id:7,url:require('./props/imgs3/7.png')},
-                    {id:8,url:require('./props/imgs3/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs4/1.png')},
-                    {id:2,url:require('./props/imgs4/2.png')},
-                    {id:3,url:require('./props/imgs4/3.png')},
-                    {id:4,url:require('./props/imgs4/4.png')},
-                    {id:5,url:require('./props/imgs4/5.png')},
-                    {id:6,url:require('./props/imgs4/6.png')},
-                    {id:7,url:require('./props/imgs4/7.png')},
-                    {id:8,url:require('./props/imgs4/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs5/1.png')},
-                    {id:2,url:require('./props/imgs5/2.png')},
-                    {id:3,url:require('./props/imgs5/3.png')},
-                    {id:4,url:require('./props/imgs5/4.png')},
-                    {id:5,url:require('./props/imgs5/5.png')},
-                    {id:6,url:require('./props/imgs5/6.png')},
-                    {id:7,url:require('./props/imgs5/7.png')},
-                    {id:8,url:require('./props/imgs5/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs6/1.png')},
-                    {id:2,url:require('./props/imgs6/2.png')},
-                    {id:3,url:require('./props/imgs6/3.png')},
-                    {id:4,url:require('./props/imgs6/4.png')},
-                    {id:5,url:require('./props/imgs6/5.png')},
-                    {id:6,url:require('./props/imgs6/6.png')},
-                    {id:7,url:require('./props/imgs6/7.png')},
-                    {id:8,url:require('./props/imgs6/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs7/1.png')},
-                    {id:2,url:require('./props/imgs7/2.png')},
-                    {id:3,url:require('./props/imgs7/3.png')},
-                    {id:4,url:require('./props/imgs7/4.png')},
-                    {id:5,url:require('./props/imgs7/5.png')},
-                    {id:6,url:require('./props/imgs7/6.png')},
-                    {id:7,url:require('./props/imgs7/7.png')},
-                    {id:8,url:require('./props/imgs7/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs8/1.png')},
-                    {id:2,url:require('./props/imgs8/2.png')},
-                    {id:3,url:require('./props/imgs8/3.png')},
-                    {id:4,url:require('./props/imgs8/4.png')},
-                    {id:5,url:require('./props/imgs8/5.png')},
-                    {id:6,url:require('./props/imgs8/6.png')},
-                    {id:7,url:require('./props/imgs8/7.png')},
-                    {id:8,url:require('./props/imgs8/8.png')},
-                ]
-            },
-            {
-             badge:[
-                    {id:1,url:require('./props/imgs9/1.png')},
-                    {id:2,url:require('./props/imgs9/2.png')},
-                    {id:3,url:require('./props/imgs9/3.png')},
-                    {id:4,url:require('./props/imgs9/4.png')},
-                    {id:5,url:require('./props/imgs9/5.png')},
-                    {id:6,url:require('./props/imgs9/6.png')},
-                    {id:7,url:require('./props/imgs9/7.png')},
-                    {id:8,url:require('./props/imgs9/8.png')},
-                ]
-            },
-        ], 
+          badges:[], 
 
     }
   },
   created(){
+      let userid = localStorage.getItem('userid')
+      faction(userid).then(res=>{
+         this.data = res.data
+        //  console.log(res)
+      })
   },
   methods:{
     backto(){
@@ -242,7 +128,10 @@ export default {
     open(index){
         this.modal2=true;
         this.id = index;
-        // console.log(this.tit[index])
+        let userid = localStorage.getItem('userid')
+        getrankall(userid,this.id).then(res=>{
+            this.badges = res.data
+        })
     }
    
   }
