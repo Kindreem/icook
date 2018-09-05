@@ -5,13 +5,34 @@
       </header>
   <div class="demo-avatar">
       <p>完善个人信息</p>
-      <label class="avatar-bg">
+      <label class="avatar-bg" >
         <!--默认显示的一张图片-->
-        <img :src='img.url' v-if="!previewAvatar" />
+         <img :src="url" v-if="!previewAvatar" >  
         <!--七牛回调的图片path-->
-        <img :src="previewAvatar" class="real-photo" v-if="previewAvatar">
-        <input ref="upload" id="upload" type="file" class="realfilebt" style="display: none;"/>
-    </label>
+        <img :src="previewAvatar" class="real-photo" v-if="previewAvatar" >
+        <input ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>     
+      </label>
+      <Modal v-model="infoimg" width="100%" class="infoimg">
+            <vueCropper
+            ref="cropper"
+            :img="url"
+              :outputSize = "option.size"
+              outputType="png"
+              :full="option.full"
+              :autoCrop = "option.autoCrop"
+              :autoCropWidth= "option.autoCropWidth"
+              :autoCropHeight= "option.autoCropHeight"
+              :fixedBox="option.fixedBox"
+              :centerBox="option.centerBox"
+              :canMoveBox="option.canMoveBox"
+              :original="option.original"
+              :canMove="option.canMove"
+              @realTime="realTime"
+            ></vueCropper>    
+          <div slot="footer" class="footer">
+            <Button type="primary" @click="achieve">完成</Button>
+          </div>
+    </Modal>
   </div>
     <transition>
             <p class="warning" v-show="warning">{{tit}}</p>
@@ -30,6 +51,8 @@
                 month-format="{value} 月"
                 date-format="{value} 日"
                 @confirm="handleConfirm"
+                :startDate="startDate"
+                :endDate="endDate"
                 >
                 </mt-datetime-picker>
             <p id="sel">仅自己可见></p>
@@ -64,20 +87,41 @@
 <script>
 import * as qiniu from "qiniu-js";
 import md5 from 'js-md5';
+let Base64 = require('js-base64').Base64;
 import {upload,addinfo} from "@/api";
+import vueCropper from 'vue-cropper'
 import moment from "moment";
 export default {
+    components: {  
+    vueCropper
+  },
   data() {
     return {
+      previews:'',
+      option: {
+				size: 1,
+				full: false,
+        outputType: 'png',
+        autoCrop:true,
+        fixedBox:true,
+				original: false,
+        canMoveBox: false,
+        centerBox:true,
+        canMove:true,
+        autoCropWidth:300,
+        autoCropHeight:300
+			},
+      infoimg:false,
       files: [], // 文件
       uploadToken: "", // 上传文件 token
       previewAvatar: "", // 页面展示的avatar
       img: {
         url: require("./TX.png")
       },
-      url: "",
+      url: require("./TX.png"),
       nickname: "",
-      startDate: new Date(),
+      endDate: new Date(),
+      startDate: new Date('1970-1-1'),
       age: "",
       picked: "1",
       upkey:'',       //拼接路径
@@ -94,6 +138,93 @@ export default {
   },
 
   methods: {
+		// 实时预览函数
+		realTime (data) {
+		},
+
+    	uploadImg (e, num) {
+         this.infoimg=true
+			//上传图片
+			// this.option.img
+			var file = e.target.files[0]
+			if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+				 alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+				 return false
+			 }
+			var reader = new FileReader()
+			reader.onload = (e) => {
+				let data
+				if (typeof e.target.result === 'object') {
+					// 把Array Buffer转化为blob 如果是base64不需要
+					data = window.URL.createObjectURL(new Blob([e.target.result]))
+				} else {
+					data = e.target.result
+				}
+				if (num === 1) {
+					this.url = data
+				} 
+			}
+			// 转化为base64
+			reader.readAsDataURL(file)
+			// 转化为blob
+        // reader.readAsArrayBuffer(file)
+    },
+   achieve() {
+      var self = this
+       this.infoimg = false;
+      // this. finish('glob')
+        this.$refs.cropper.getCropData((data) => {
+        // this.url = data 
+      /*picUrl用来存储返回来的url*/
+      var picUrl;
+    /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
+      let picBase=data.substring(22);
+        /*通过base64编码字符流计算文件流大小函数*/
+        // let str = picBase
+        function fileSize(str) {
+            var fileSize;
+            if(str.indexOf('=')>0)  {
+                var indexOf=str.indexOf('=');
+                str=str.substring(0,indexOf);//把末尾的’=‘号去掉
+            }
+            fileSize=parseInt(str.length-(str.length/8)*2);
+            return fileSize;
+            // console.log(fileSize)
+        }
+    //  console.log(fileSize(str))
+     /*把字符串转换成json*/
+     function strToJson(str) {
+         var json = eval('(' + str + ')');
+         return json;
+     }
+    //  console.log(strToJson(picBase))
+    let newdate = md5(Date.parse(new Date()).toString());
+      // console.log(newdate);
+      let newk = `${this.upkey}${newdate}.png`
+      let nkey=Base64.encode(newk)
+      // let EncodedKey = UrlSafeBase64.encodeToString(key)
+     // //http://upload-z2.qiniu.com/putb64/ 只适用于七牛云华南空间 因为我的是七牛云华南空间，如果不是华南空间需要根据七牛云文档进行更改
+     var url = `http://upload-z2.qiniu.com/putb64/${fileSize(picBase)}/key/${nkey}`;
+     var xhr = new XMLHttpRequest();
+     xhr.onreadystatechange=function(){
+
+         if (xhr.readyState==4){
+          //  console.log(xhr)
+              var keyText=xhr.responseText;
+            // /*返回的key是字符串，需要装换成json*/
+              keyText=strToJson(keyText);
+            /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
+              picUrl="http://img.yzlkeji.com/"+keyText.key;
+              self.url = picUrl
+         }
+     }
+     xhr.open("POST", url, true);
+     xhr.setRequestHeader("Content-Type", "application/octet-stream");
+     xhr.setRequestHeader("Authorization", "UpToken "+this.uploadToken+"");
+     xhr.send(picBase);
+    })
+  },
+  
     clear() {
       this.nickname = "";
     },
@@ -139,45 +270,52 @@ export default {
       this.upkey = res.data.key;
       
     });
-
-    this.$refs.upload.addEventListener("change", function() {
-      let newdate = md5('Date.parse(new Date())')
-      console.log(newdate)
-      let file = this.files[0]; // 对象，上传的文件
-      let key =file.name; // 文件资源名 
-      let arr = key.split('.'); 
-      let newkey =arr[arr.length-1]
-    let name = `${self.upkey}${newdate}.${newkey}`
-      let config = {
-        useCdnDomain: true,
-        region: qiniu.region.z2
-      };
-      let putExtra = {
-        fname: file,
-        params: {},
-        mimeType: ["image/png", "image/jpeg", "image/gif"]
-      };
-      let observe = {
-        next(res) {
-        },
-        error(err) {
-        },
-        complete(res) {
-          console.log(res);
-        }
-      }; //开始上传 token 需要找后端获取(单独的方法)
-      let observable = qiniu.upload(file, name,self.uploadToken, putExtra, config);
-      let subscription = observable.subscribe(observe);
-      self.img.url = 
-      self.url = `http://img.yzlkeji.com/${self.upkey}${newdate}.${newkey}`;
-      self.img.url = self.url
-    });
   }
 };
 </script>
 
 <style lang="scss">
 @import "@/assets/hotcss/px2rem.scss";
+   .infoimg{
+     .ivu-modal{
+      top: 0;
+      height: 100%;
+   .vue-cropper{
+      background-image:none!important;
+      background: #000;
+      height: 100%;
+      height: px2rem(600); 
+       img{
+          // margin-top: 40%;
+          position: relative;
+          width: 100%;
+          // height:100%;
+        }
+        .cropper-view-box{
+          border-radius: 50%;
+          position: absolute;
+          border: none;
+          overflow: hidden;
+        } 
+        .cropper-view-box{
+          outline: none;
+        }
+        .cropper-face{
+          background: none;
+        }
+    }
+    .ivu-modal-footer{
+      padding: 0;
+      .ivu-btn{
+        width: px2rem(60);
+        margin-top:px2rem(-2);
+        margin-right:px2rem(10);
+        font-size: px2rem(12);
+        margin-left: 20px;
+      }
+    }
+ }
+ }
 .info {
    .warning{
         position: absolute;
@@ -229,10 +367,17 @@ export default {
       color: #199ed8;
       margin: 20px 0;
     }
-    .avatar-bg img {
-      width: px2rem(96);
-      height: px2rem(96);
-      border-radius: 50%;
+    .avatar-bg{
+          width: px2rem(96);
+          height: px2rem(96);
+          border-radius: 50%;
+          display: block; 
+          margin: 0 auto;
+          overflow: hidden;
+        img {
+          width: px2rem(96);
+          height: px2rem(96);
+          }
     }
   }
 
@@ -300,22 +445,22 @@ export default {
   }
   .mint-popup {
     top: 50%;
-    width: 70%;
-    left: 15%;
+    width: 85%;
+    left: 8%;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.9);
-    height: px2rem(180);
+    height: px2rem(200);
     transform: none;
     .picker-slot-wrapper {
       margin-top: px2rem(-15);
     }
     .picker-items {
       height: px2rem(100);
-      margin: px2rem(25) 0;
+      margin: px2rem(30) 0;
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       .picker-item {
-        font-size: px2rem(15);
+        font-size: px2rem(16);
         // transform: perspective(600px) rotateY(20deg);
         transform: rotate3d(1, 0, 0, 50deg) translate3d(0px, 0px, px2rem(2));
       }

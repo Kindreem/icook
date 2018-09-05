@@ -83,6 +83,7 @@
                </swiper>
            </ul>
        </div>
+         <router-link to="conter/badge" >
        <div class="item badge">
             <div class="title">
                 <img src="./GR-007.png" alt="">
@@ -91,15 +92,13 @@
            <ul class="badges">
                <swiper :options="swiperOption">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
-                       <router-link to="conter/badge" >
-                        <img :src="item.url" alt="">
+                        <img :src="item.url" alt=""   @click="bag">
                         <p>段位</p>
-                      </router-link>
                 </swiper-slide>
                </swiper>
-
            </ul>
-       </div>
+                      
+       </div></router-link>
         <div class="item badge">
              <div class="title">
                 <img src="./GR-007.png" alt="">
@@ -108,10 +107,10 @@
            <ul class="badges">
                 <swiper :options="swiperOption">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
-                    <router-link to="conter/achieve" >
+                    <!-- <router-link to="dan/dan" > -->
                      <img src="./2.png" alt="">
                      <p>段位</p>
-                    </router-link>
+                    <!-- </router-link> -->
                 </swiper-slide>
                </swiper>
 
@@ -142,6 +141,10 @@ export default {
            { url:require('./3.png')},
            { url:require('./4.png')},
            { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
         ]
  
     }
@@ -149,7 +152,10 @@ export default {
   methods:{
       backto(){
       this.$router.go(-1);
-    }
+    },
+  bag() {
+    //   this.$router.push({path: 'dan/dan'})
+  }
   },
 }
 </script>
@@ -210,9 +216,9 @@ export default {
              width:100%;
             .swiper-wrapper{
                     display:flex;
-                    width: 200%;
+                    width: 700%;
                 .swiper-slide{
-                    width: 33.333%;
+                    // width: 33.333%;
                     text-align: center;
                     img{
                         width: px2rem(90);
@@ -222,9 +228,25 @@ export default {
                   }
               }
             }
-
-
-    }
+         }
+         
+        ul.badges {
+            overflow: hidden;
+            color: #666;
+            /deep/ .swiper-container{
+                width: 100%;
+              .swiper-wrapper{
+                display:flex;
+                width:220%;
+            .swiper-slide{
+                text-align: center;
+                img{
+                    width: px2rem(64);
+                 }
+                }
+            }
+          }
+        }
     .item.badge{
         height:  px2rem(150);
     }
@@ -250,6 +272,7 @@ export default {
                 background: url(./titles.png)no-repeat center left;
                 background-size: px2rem(20) px2rem(15);
                 position: absolute;
+                color: #666;
                 top: 0;
             }
         }
@@ -266,23 +289,6 @@ export default {
             text-align: left;
             margin:px2rem(8) px2rem(20);
             }
-        }
-        ul.badges {
-            overflow: hidden;
-            /deep/ .swiper-container{
-                width: 100%;
-              .swiper-wrapper{
-                display:flex;
-                width: 120%;
-            .swiper-slide{
-                width: 25%;
-                text-align: center;
-                img{
-                    width: px2rem(64);
-                 }
-                }
-            }
-          }
         }
 
     }
