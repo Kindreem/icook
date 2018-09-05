@@ -43,3 +43,27 @@ export const addid = (userid,name,idcard)=>{
   return axios.post(`/userinfo/idcardcheck?userid=${userid}&name=${name}&idcard=${idcard}`).then(res=>res.data)
 }
 
+// 获取流派信息
+export const getall = (userid)=>{
+  return axios.post(`/faction/getall?userid=${userid}`).then(res=>res.data)
+}
+
+// 获取段位信息
+export const getrankall = (userid,factionsid)=>{
+  return axios.post(`/faction/getrankall?userid=${userid}&factionsid=${factionsid}`).then(res=>res.data)
+}
+
+//兴趣菜谱搜索
+export const likesearch = (searchkey)=>{
+  return axios.post(`/search/likesearch?searchkey=${searchkey}`).then(res=>res.data)
+}
+
+//获取官方菜谱
+export const getcookbookbyid = (cookbookid)=>{
+  return axios.post(`/cookbook/getcookbookbyid?cookbookid=${cookbookid}`).then(res=>res.data)
+}
+
+//兴趣推荐菜谱
+export const likelist = ()=>{
+  return axios.post('/search/likelist').then(res=>res.data)
+}

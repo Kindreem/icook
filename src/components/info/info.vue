@@ -143,8 +143,9 @@ export default {
       let newdate =Date.parse(new Date())
       let file = this.files[0]; // 对象，上传的文件
       let key =file.name; // 文件资源名
-      let newkey = key.split('.')[1];//2
-    let name = `${self.upkey}${newdate}.${newkey}`
+      let newkey = key.substring(key.lastIndexOf('.'))
+      console.log(newkey)
+      let name = `${self.upkey}${newdate}.${newkey}`
       let config = {
         useCdnDomain: true,
         region: qiniu.region.z2

@@ -20,7 +20,7 @@
    <div class="win" v-show="show">
       <P>根据网信办2016年6月28日发布的《移动互联网应用程序信息服务管理规定》当中规定，为了加强对移动互联网应用程序(APP)信息服务的规范管理，促进行业健康有序发展，保护公民、法人和其他组织的合法权益，将从2016年8月1日开始落实安全责任，实行实名制管理，从今天开始当用户注册APP时将提供较为严格的个人信息进行认证，以减少窃取隐私、恶意扣费、诱骗欺诈等损害用户合法权益的行为发生。</P>
       <div><span>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</span><input type="text" name="name" v-model="name"/></div>
-      <div><span>身份证：</span><input type="text" mame='id' v-model="id"/></div>
+      <div><span>身份证：</span><input type="text" mame='id' maxlength="18" v-model="id"/></div>
       <button @click="check">提交</button>
    </div>
    <div class="mask" v-show="show"></div>
@@ -74,6 +74,8 @@ export default {
     } else {
       this.show = false;
     }
+    let id = this.id.toUpperCase()
+    console.log(id)
   },
   methods: {
     //  真实姓名身份证
@@ -90,9 +92,12 @@ export default {
           this.warning = false;
         }, 1000);
         // return false;
-      } else {
+      }
+      else {
         let userid = localStorage.getItem("userid");
-        addid(userid, this.name, this.id).then(res => {
+        let id = this.id.toUpperCase()
+        // console.log(id)
+        addid(userid, this.name, id).then(res => {
           console.log(res);
           if (res.code == 200) {
             this.show = false;

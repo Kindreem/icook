@@ -7,6 +7,7 @@
         action="//jsonplaceholder.typicode.com/posts/">
         <div>
             <img src="./img/RW-027.png" alt="">
+            <h4>添加图片或短视频</h4>
         </div>
       </Upload>
     </section>
@@ -44,10 +45,15 @@ export default {
   border: none;
   box-shadow: 10px 10px 16px rgba(204, 204, 204, 0.4);
   border-radius: 20px;
-  height: px2rem(340);
+  height: px2rem(360);
 
   img {
-    margin-top: px2rem(126);
+    margin-top: px2rem(114);
+    width px2rem(96)
+  }
+  h4{
+    margin-top px2rem(20)
+    font-size px2rem(25)
   }
 }
 

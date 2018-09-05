@@ -247,7 +247,7 @@ bottom 0px !important
 height 100% !important
 }
 .scroller-indicator {
-  height px2rem(46) !important
+  height px2rem(46) !important//修改需刷新
   top px2rem(227) !important
 }
 .vux-popup-header {

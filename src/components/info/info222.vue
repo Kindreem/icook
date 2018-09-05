@@ -15,7 +15,7 @@
   </div>
 
    <form >
-        <div class="item">  
+        <div class="item">
             <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
@@ -151,7 +151,7 @@ export default {
        width:  px2rem(250);
        display: flex;
        position: relative;
-    
+
     .nickname{
         width:  px2rem(250);
         height:  px2rem(25);
@@ -246,10 +246,10 @@ export default {
                 font-size: px2rem(14);
                 display: inline-block;
                 margin:0 px2rem(20);
-                width: px2rem(85); 
+                width: px2rem(85);
                 border:1px solid #999;
                 border-radius: px2rem(3);
-                line-height: px2rem(25); 
+                line-height: px2rem(25);
                 color: #999;
             }
             span:last-child{

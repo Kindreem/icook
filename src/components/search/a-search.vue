@@ -99,9 +99,9 @@
       padding-bottom px2rem(30)
     }
       >>>.ivu-tag {
-        height px2rem(48)
-        width px2rem(140)
-        margin-right px2rem(10)
+        height px2rem(50)
+        width px2rem(144)
+        margin-right px2rem(20)
         margin-bottom px2rem(16)
         background #5DB8E9
         font px2rem(20) Arail
@@ -109,10 +109,11 @@
         border-radius 20px
         overflow hidden
         text-overflow ellipsis
-        white-space nowrap
+        padding-right 20px
+        // white-space nowrap
       }
       >>>.ivu-tag-text {
-        line-height px2rem(46)
+        line-height px2rem(50)
         color #fff
         border-radius 20px
       }
