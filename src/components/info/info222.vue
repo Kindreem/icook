@@ -1,19 +1,23 @@
-<template>
-  <div class="info">
-      <header class="header">
-            <img src="@/assets/images/DR-005.png" @click="backto">
-      </header>
-  <div class="demo-avatar">
-      <p>完善个人信息</p>
-      <Upload
-       :action="url"
-       :show-upload-list="false"
-       :before-upload="handleBeforeUpload"
-       :on-success="handleSuccess">
-     <Avatar :src="img.url" />
-      </Upload>
-  </div>
+<template>  
+  <div id="demo">  
+    <vueCropper
+    ref="cropper"
+    :img = "option.img"
+    :outputSize = "option.size"
+    outputType="png"
+    :full="option.full"
+    :autoCrop = "option.autoCrop"
+    :autoCropWidth= "option.autoCropWidth"
+    :autoCropHeight= "option.autoCropHeight"
+    :fixedBox="option.fixedBox"
+    :canMoveBox="option.canMoveBox"
+    :original="option.original"
+    @realTime="realTime"
+    ></vueCropper>
+<label class="btn" for="uploads">upload</label>
+<input type="file" id="uploads" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)">
 
+<<<<<<< HEAD
    <form >
         <div class="item">
             <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
@@ -45,89 +49,145 @@
        <router-link to="/info/meet">
            <input type="button" class="next" value="下一步">
        </router-link>
+=======
+  </div>  
+</template>  
+>>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
 
-  </form>
-          <div class="end">
-        <div class="left"><img src="./xxx.png" alt=""></div>
-        <div class="con">
-            <p><span>'烹饪之心'</span>徽章</p>
-            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
-        </div>
-        <div class="right"><span>EXP+3</span>
-        <img src="./DR-007.png" alt="">
-        <span>+3</span></div>
-    </div>
-
-  </div>
-</template>
-
-<script>
-import {upload,addinfo} from '@/api'
-import moment from 'moment'
-export default {
-  data () {
-    return {
-            img:{
-                url:require('./TX.png')
-            },
-            url:'',
-            nickname:'',
-            startDate: new Date(),
-            age:'',
-            picked:'One'
+<script>  
+import vueCropper from 'vue-cropper' 
+export default {  
+  components: {  
+    vueCropper
+  },  
+  data() {
+    return{
+      crap: false,
+			previews: {},
+			lists: [
+				{
+					img: 'https://fengyuanchen.github.io/cropper/images/picture.jpg'
+				},
+				{
+					img: 'http://ofyaji162.bkt.clouddn.com/touxiang.jpg'
+				}
+			],
+      option: {
+				img: 'http://ofyaji162.bkt.clouddn.com/touxiang.jpg',
+				size: 1,
+				full: false,
+        outputType: 'png',
+        fixedNumber:[1,1],
+        autoCrop:true,
+        fixedBox:true,
+				original: false,
+        canMoveBox: false,
+        autoCropWidth:400,
+        autoCropHeight:400
+			},
     }
   },
-  created() {
-      upload(1,1).then(res=>{
-          localStorage.setItem('uptoken', res.data.token)
-          this.url = res.data.key
-
-      })
-  },
-
   methods:{
-      clear(){
-        this.nickname="";
-      },
-       openPicker () {
-         this.$refs.picker.open()
-        },
-      handleConfirm (data) {
-        let date = moment(data).format('YYYY.MM.DD')
-        this.age = date
-     } ,
-     backto(){
-      this.$router.go(-1);
-    },
-    //上传文件之前的钩子,参数为上传文件
-    handleBeforeUpload(){
+    changeImg () {
+			this.option.img = this.lists[~~(Math.random() * this.lists.length)].img
+		},
+		startCrop () {
+			// start
+			this.crap = true
+			this.$refs.cropper.startCrop()
+		},
+		stopCrop () {
+			//  stop
+			this.crap = false
+			this.$refs.cropper.stopCrop()
+		},
+		clearCrop () {
+			// clear
+			this.$refs.cropper.clearCrop()
+		},
+		// 实时预览函数
+		realTime (data) {
+			this.previews = data
+		},
+		finish (type) {
+			// 输出
+			var test = window.open('about:blank')
+			test.document.body.innerHTML = '图片生成中..'
+			if (type === 'blob') {
+				this.$refs.cropper.getCropBlob((data) => {
+					var test = window.open('')
+					test.location.href = window.URL.createObjectURL(data)
+				})
+			} else {
+				this.$refs.cropper.getCropData((data) => {
+					test.location.href = data
+				})
+			}
+		},
 
-    },
-    //上传成功的钩子
-    handleSuccess (res, file){
-        console.log(res)
-    }
-  }
+		down (type) {
+			// event.preventDefault()
+			var aLink = document.createElement('a')
+			aLink.download = 'demo'
+			// 输出
+			if (type === 'blob') {
+				this.$refs.cropper.getCropBlob((data) => {
+					this.downImg = data
+					aLink.href = data
+					aLink.click()
+				})
+			} else {
+				this.$refs.cropper.getCropData((data) => {
+					this.downImg = data
+					aLink.href = data
+					aLink.click()
+				})
+			}
+		},
+	
+		uploadImg (e, num) {
+			//上传图片
+			// this.option.img
+			var file = e.target.files[0]
+			if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+				 alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+				 return false
+			 }
+			var reader = new FileReader()
+			reader.onload = (e) => {
+				let data
+				if (typeof e.target.result === 'object') {
+					// 把Array Buffer转化为blob 如果是base64不需要
+					data = window.URL.createObjectURL(new Blob([e.target.result]))
+				} else {
+					data = e.target.result
+				}
+				if (num === 1) {
+					this.option.img = data
+				} else if (num === 2) {
+					this.example2.img = data
+				}
+			}
+			// 转化为base64
+			// reader.readAsDataURL(file)
+			// 转化为blob
+			reader.readAsArrayBuffer(file)
+					this.$refs.cropper.getCropBlob((data) => {
+			// do something
+			console.log(data)  
+		})
+		}
+  },
 }
-</script>
+</script>  
 
-<style lang="scss">
-@import '@/assets/hotcss/px2rem.scss';
-.info{
-  text-align: center;
-      input{
-        outline: none;
-        border:none;
-      }
-    .header{
-    height: px2rem(44);
-    background: none;
-    text-align: left;
-    margin-left: px2rem(20);
-    div{
-      padding: 20px;
-    }
+<style lang="scss">  
+#demo{
+  .vue-cropper{
+    height:600px;
+    // background: pink;
     img{
+<<<<<<< HEAD
       margin-top: px2rem(20);
       width: px2rem(24);
     }
@@ -264,45 +324,23 @@ export default {
       margin-top: px2rem(10);
       border-radius:  px2rem(10);
       background: white;
+=======
+      width: 100%;
+      height:100%;
+    }
+    .cropper-view-box{
+      border-radius: 50%;
+      border: none;
+      overflow: hidden;
+    } 
+    .cropper-view-box{
+>>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
       outline: none;
-      box-shadow:8px 8px 2px #d7d7d7;
-      color: #999;
-      font-size: px2rem(20)
     }
-    .end{
-    position: relative;
-    display: flex;
-    width:  px2rem(260);
-    margin: px2rem(10) auto;
-    .left img{
-        margin-left:px2rem(-10) ;
-        width:px2rem(60);
+    .cropper-face{
+      background: none;
     }
-    .con{
-        margin: px2rem(10) px2rem(5);
-        text-align: left;
-        p{
-        font-size: px2rem(10);
-        line-height: px2rem(20);
-        color: #999;
-    }
-    }
-    span{
-        color: #199ED8;
-        font-size: px2rem(10);
-    }
-    .right{
-        position: absolute;
-        right: 0;
-        top: px2rem(10);
-        img{
-            width: px2rem(12);
-            vertical-align:bottom;
-        }
-    }
-    }
-
+  }
 }
 
-
-</style>
+</style>  

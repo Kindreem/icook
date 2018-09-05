@@ -29,7 +29,7 @@
     </ul>
       <div class="btn-meet">
         <p>完成奖励 : 完成后可获得 徽章</p>
-        <router-link to="/load/load">
+        <router-link to="/load">
          <button class="next">下一步</button>
         </router-link>
       </div>
@@ -130,6 +130,7 @@ export default {
         if (!this.search) {
           return (this.sel = []);
         }
+<<<<<<< HEAD
         likesearch(this.search).then(res => {
           console.log(res);
           // console.log(res.msg);
@@ -139,6 +140,12 @@ export default {
         //   this.changeColor(res.data.message)
         // })
       }, 500);
+=======
+        axios.get('http://192.168.0.105:3000/api/meet?search='+this.search).then(res => {
+          this.changeColor(res.data.message)
+        })
+      }, 500)
+>>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
     },
 
     changeColor(resultsList) {

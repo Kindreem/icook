@@ -27,16 +27,18 @@
                <li>第三种货币:999999</li>
            </ul>
        </div>
-        <div class="item">
+        <div class="item menu">
            <div class="title">
                 <img src="./GR-007.png" alt="">
                 <p>我学会的菜肴:38道</p>
             </div>
-           <ul class="meet">
-               <li v-for="(item,index) in imgs" :key="index">
+           <ul class="menus">
+             <swiper :options="swiperOption">
+               <swiper-slide v-for="(item,index) in imgs" :key="index">
                    <img src="./pic.png" alt="">
                    <p>蛋炒饭</p>
-               </li>
+               </swiper-slide>
+               </swiper>
            </ul>
        </div>
        <div class="item menu">
@@ -44,17 +46,13 @@
                 <img src="./GR-007.png" alt="">
                <p>我的菜谱(共36个)</p>
             </div>
-           <ul class="menus">
-               <li>
+            <ul class="menus">
+             <swiper :options="swiperOption">
+               <swiper-slide v-for="(item,index) in imgs" :key="index">
                    <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-
+                   <p>菜名</p>
+               </swiper-slide>
+               </swiper>
            </ul>
        </div>
        <div class="item menu">
@@ -63,16 +61,12 @@
                 <p>我的作品(共36个)</p>
             </div>
            <ul class="menus">
-               <li>
+             <swiper :options="swiperOption">
+               <swiper-slide v-for="(item,index) in imgs" :key="index">
                    <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-
+                   <p>菜名菜名</p>
+               </swiper-slide>
+               </swiper>
            </ul>
        </div>
          <div class="item menu">
@@ -81,51 +75,44 @@
                <p>我的收藏(共36个)</p>
             </div>
            <ul class="menus">
-               <li>
+             <swiper :options="swiperOption">
+               <swiper-slide v-for="(item,index) in imgs" :key="index">
                    <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-                <li>
-                   <img src="./pic.png" alt="">
-               </li>
-
+                   <p>蛋炒饭</p>
+               </swiper-slide>
+               </swiper>
            </ul>
        </div>
+         <router-link to="conter/badge" >
        <div class="item badge">
             <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的徽章</p>
            </div>
            <ul class="badges">
-               <li v-for="(item,index) in imgs" :key="index">
-                   <router-link to="conter/badge" >
-                   <img :src="item.url" alt="">
-                   </router-link>
-               </li>
-
+               <swiper :options="swiperOption">
+                     <swiper-slide v-for="(item,index) in imgs" :key="index">
+                        <img :src="item.url" alt=""   @click="bag">
+                        <p>段位</p>
+                </swiper-slide>
+               </swiper>
            </ul>
-       </div>
+                      
+       </div></router-link>
         <div class="item badge">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的成就</p>
             </div>
-           <ul class="badges2">
-               <li>
-                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
-               </li>
-                <li>
-                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
-
-               </li>
-                <li>
-                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
-               </li>
-                <li>
-                    <router-link to="conter/achieve" ><img src="./2.png" alt=""></router-link>
-               </li>
+           <ul class="badges">
+                <swiper :options="swiperOption">
+                     <swiper-slide v-for="(item,index) in imgs" :key="index">
+                    <!-- <router-link to="dan/dan" > -->
+                     <img src="./2.png" alt="">
+                     <p>段位</p>
+                    <!-- </router-link> -->
+                </swiper-slide>
+               </swiper>
 
            </ul>
        </div>
@@ -134,13 +121,29 @@
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
+     components: {
+      swiper,
+      swiperSlide,
+  },
   data () {
     return {
+        swiperOption: {
+            slidesPerView: 3,
+            // spaceBetween: 24,
+            freeMode: true,
+            slidesOffsetBefore: 24,
+        },
         imgs:[
            { url:require('./1.png')},
            { url:require('./8.png')},
            { url:require('./3.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
+           { url:require('./4.png')},
            { url:require('./4.png')},
         ]
  
@@ -149,7 +152,10 @@ export default {
   methods:{
       backto(){
       this.$router.go(-1);
-    }
+    },
+  bag() {
+    //   this.$router.push({path: 'dan/dan'})
+  }
   },
 }
 </script>
@@ -203,7 +209,44 @@ export default {
     }
     .item.menu{
         height:  px2rem(170);
-    }
+        // ===========================修改处
+         /deep/ .swiper-container{
+             overflow: hidden;
+             margin-left: px2rem(-10);
+             width:100%;
+            .swiper-wrapper{
+                    display:flex;
+                    width: 700%;
+                .swiper-slide{
+                    // width: 33.333%;
+                    text-align: center;
+                    img{
+                        width: px2rem(90);
+                        border-radius:px2rem(10);
+                        overflow: hidden;
+                     }
+                  }
+              }
+            }
+         }
+         
+        ul.badges {
+            overflow: hidden;
+            color: #666;
+            /deep/ .swiper-container{
+                width: 100%;
+              .swiper-wrapper{
+                display:flex;
+                width:220%;
+            .swiper-slide{
+                text-align: center;
+                img{
+                    width: px2rem(64);
+                 }
+                }
+            }
+          }
+        }
     .item.badge{
         height:  px2rem(150);
     }
@@ -212,7 +255,7 @@ export default {
         height:  px2rem(130);
         margin-top: px2rem(15);
         border-radius: px2rem(10);
-        box-shadow:  12px 15px rgba(0,0,0,.1);
+        box-shadow: 5px 6px 3px 6px rgba(0,0,0,.1);
         .title{
             width: px2rem(180);
             height: px2rem(30);
@@ -229,6 +272,7 @@ export default {
                 background: url(./titles.png)no-repeat center left;
                 background-size: px2rem(20) px2rem(15);
                 position: absolute;
+                color: #666;
                 top: 0;
             }
         }
@@ -237,46 +281,13 @@ export default {
             font-size: px2rem(12);
             margin-top: px2rem(15);
             display: flex;
-            li{
-                flex-direction: column;
-                flex: 1;
-                text-align: center;
-            }
+            flex-wrap: wrap;
         }
         ul.money{
             display: block;
             li{
             text-align: left;
             margin:px2rem(8) px2rem(20);
-            }
-        }
-        ul.meet li{
-            img{
-                width: px2rem(45);
-                height: px2rem(45);
-                border-radius: 50%;
-                overflow: hidden;
-            }
-        }
-        ul.menus{
-            margin:px2rem(20) px2rem(10);
-            img{
-             width: px2rem(90);
-             height: px2rem(100);
-             border-radius:px2rem(10);
-             overflow: hidden;
-            }
-        }
-        ul.badges li{
-            margin-top: px2rem(10);
-            img{
-                width: px2rem(64);
-            }
-        }
-         ul.badges2 {
-            // margin: px2rem(30) px2rem(20);
-            img{
-                width: px2rem(64);
             }
         }
 
