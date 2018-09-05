@@ -97,6 +97,7 @@ export default {
   },
   data() {
     return {
+<<<<<<< HEAD
       previews:'',
       option: {
 				size: 1,
@@ -112,6 +113,8 @@ export default {
         autoCropHeight:300
 			},
       infoimg:false,
+=======
+>>>>>>> e8442291cde26fcbf8506b644b6d7514ab7e1366
       files: [], // 文件
       uploadToken: "", // 上传文件 token
       previewAvatar: "", // 页面展示的avatar
@@ -134,7 +137,7 @@ export default {
     //       localStorage.setItem('uptoken', res.data.token)
     //       this.url = res.data.key
     //   })
-    
+
   },
 
   methods: {
@@ -268,8 +271,42 @@ export default {
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
       this.upkey = res.data.key;
-      
+
     });
+<<<<<<< HEAD
+=======
+
+    this.$refs.upload.addEventListener("change", function() {
+      let newdate =Date.parse(new Date())
+      let file = this.files[0]; // 对象，上传的文件
+      let key =file.name; // 文件资源名
+      let newkey = key.split('.')[1];//2
+    let name = `${self.upkey}${newdate}.${newkey}`
+      let config = {
+        useCdnDomain: true,
+        region: qiniu.region.z2
+      };
+      let putExtra = {
+        fname: file,
+        params: {},
+        mimeType: ["image/png", "image/jpeg", "image/gif"]
+      };
+      let observe = {
+        next(res) {
+        },
+        error(err) {
+        },
+        complete(res) {
+          console.log(res);
+        }
+      }; //开始上传 token 需要找后端获取(单独的方法)
+      let observable = qiniu.upload(file, name,self.uploadToken, putExtra, config);
+      let subscription = observable.subscribe(observe);
+      self.img.url =
+      self.url = `http://img.yzlkeji.com/${self.upkey}${newdate}.${newkey}`;
+      self.img.url = self.url
+    });
+>>>>>>> e8442291cde26fcbf8506b644b6d7514ab7e1366
   }
 };
 </script>
@@ -342,7 +379,7 @@ export default {
         .v-enter-active,
         .v-leave-active {
         transition: all 0.2s ease-out;
-        }   
+        }
   text-align: center;
   input {
     outline: none;
