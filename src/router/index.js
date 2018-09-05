@@ -182,12 +182,9 @@ let router = new Router({
 //       if(to.path!== '/member' && to.path!=='/register'){
 //         next({path: '/member'})
 //       }
-<<<<<<< HEAD
 //       // if(to.path!=='/register'){
 //       //   next({path: '/member'})
 //       // }
-=======
->>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
 //       else{
 //         //如果没有登录，但访问的是登录页面,直接进入
 //         next()

@@ -7,10 +7,10 @@
       <p>完善个人信息</p>
       <label class="avatar-bg" >
         <!--默认显示的一张图片-->
-         <img :src="url" v-if="!previewAvatar" >  
+         <img :src="url" v-if="!previewAvatar" >
         <!--七牛回调的图片path-->
         <img :src="previewAvatar" class="real-photo" v-if="previewAvatar" >
-        <input ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>     
+        <input ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>
       </label>
       <Modal v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
@@ -28,7 +28,7 @@
               :original="option.original"
               :canMove="option.canMove"
               @realTime="realTime"
-            ></vueCropper>    
+            ></vueCropper>
           <div slot="footer" class="footer">
             <Button type="primary" @click="achieve">完成</Button>
           </div>
@@ -92,12 +92,11 @@ import {upload,addinfo} from "@/api";
 import vueCropper from 'vue-cropper'
 import moment from "moment";
 export default {
-    components: {  
+    components: {
     vueCropper
   },
   data() {
     return {
-<<<<<<< HEAD
       previews:'',
       option: {
 				size: 1,
@@ -113,8 +112,6 @@ export default {
         autoCropHeight:300
 			},
       infoimg:false,
-=======
->>>>>>> e8442291cde26fcbf8506b644b6d7514ab7e1366
       files: [], // 文件
       uploadToken: "", // 上传文件 token
       previewAvatar: "", // 页面展示的avatar
@@ -165,7 +162,7 @@ export default {
 				}
 				if (num === 1) {
 					this.url = data
-				} 
+				}
 			}
 			// 转化为base64
 			reader.readAsDataURL(file)
@@ -177,7 +174,7 @@ export default {
        this.infoimg = false;
       // this. finish('glob')
         this.$refs.cropper.getCropData((data) => {
-        // this.url = data 
+        // this.url = data
       /*picUrl用来存储返回来的url*/
       var picUrl;
     /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
@@ -227,7 +224,7 @@ export default {
      xhr.send(picBase);
     })
   },
-  
+
     clear() {
       this.nickname = "";
     },
@@ -273,41 +270,6 @@ export default {
       this.upkey = res.data.key;
 
     });
-<<<<<<< HEAD
-=======
-
-    this.$refs.upload.addEventListener("change", function() {
-      let newdate =Date.parse(new Date())
-      let file = this.files[0]; // 对象，上传的文件
-      let key =file.name; // 文件资源名
-      let newkey = key.substring(key.lastIndexOf('.'))
-      console.log(newkey)
-      let name = `${self.upkey}${newdate}.${newkey}`
-      let config = {
-        useCdnDomain: true,
-        region: qiniu.region.z2
-      };
-      let putExtra = {
-        fname: file,
-        params: {},
-        mimeType: ["image/png", "image/jpeg", "image/gif"]
-      };
-      let observe = {
-        next(res) {
-        },
-        error(err) {
-        },
-        complete(res) {
-          console.log(res);
-        }
-      }; //开始上传 token 需要找后端获取(单独的方法)
-      let observable = qiniu.upload(file, name,self.uploadToken, putExtra, config);
-      let subscription = observable.subscribe(observe);
-      self.img.url =
-      self.url = `http://img.yzlkeji.com/${self.upkey}${newdate}.${newkey}`;
-      self.img.url = self.url
-    });
->>>>>>> e8442291cde26fcbf8506b644b6d7514ab7e1366
   }
 };
 </script>
@@ -322,7 +284,7 @@ export default {
       background-image:none!important;
       background: #000;
       height: 100%;
-      height: px2rem(600); 
+      height: px2rem(600);
        img{
           // margin-top: 40%;
           position: relative;
@@ -334,7 +296,7 @@ export default {
           position: absolute;
           border: none;
           overflow: hidden;
-        } 
+        }
         .cropper-view-box{
           outline: none;
         }
@@ -409,7 +371,7 @@ export default {
           width: px2rem(96);
           height: px2rem(96);
           border-radius: 50%;
-          display: block; 
+          display: block;
           margin: 0 auto;
           overflow: hidden;
         img {

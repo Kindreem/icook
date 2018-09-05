@@ -5,19 +5,15 @@
   "author": "Kindreem �<906582318@qq.com>) ",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.0.101",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "cropperjs": "^1.4.1",
     "gcoord": "^0.1.2",
     "js-base64": "^2.4.9",
-<<<<<<< HEAD
-=======
     "js-md5": "^0.7.3",
->>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
     "mint-ui": "^2.2.13",
     "qiniu-js": "^2.4.0",
     "vue": "^2.5.2",

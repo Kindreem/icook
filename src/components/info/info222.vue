@@ -1,5 +1,5 @@
-<template>  
-  <div id="demo">  
+<template>
+  <div id="demo">
     <vueCropper
     ref="cropper"
     :img = "option.img"
@@ -17,7 +17,6 @@
 <label class="btn" for="uploads">upload</label>
 <input type="file" id="uploads" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)">
 
-<<<<<<< HEAD
    <form >
         <div class="item">
             <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
@@ -49,17 +48,13 @@
        <router-link to="/info/meet">
            <input type="button" class="next" value="下一步">
        </router-link>
-=======
-  </div>  
-</template>  
->>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
 
-<script>  
-import vueCropper from 'vue-cropper' 
-export default {  
-  components: {  
+<script>
+import vueCropper from 'vue-cropper'
+export default {
+  components: {
     vueCropper
-  },  
+  },
   data() {
     return{
       crap: false,
@@ -144,7 +139,7 @@ export default {
 				})
 			}
 		},
-	
+
 		uploadImg (e, num) {
 			//上传图片
 			// this.option.img
@@ -174,20 +169,19 @@ export default {
 			reader.readAsArrayBuffer(file)
 					this.$refs.cropper.getCropBlob((data) => {
 			// do something
-			console.log(data)  
+			console.log(data)
 		})
 		}
   },
 }
-</script>  
+</script>
 
-<style lang="scss">  
+<style lang="scss">
 #demo{
   .vue-cropper{
     height:600px;
     // background: pink;
     img{
-<<<<<<< HEAD
       margin-top: px2rem(20);
       width: px2rem(24);
     }
@@ -324,17 +318,6 @@ export default {
       margin-top: px2rem(10);
       border-radius:  px2rem(10);
       background: white;
-=======
-      width: 100%;
-      height:100%;
-    }
-    .cropper-view-box{
-      border-radius: 50%;
-      border: none;
-      overflow: hidden;
-    } 
-    .cropper-view-box{
->>>>>>> 9f58c2e57dec78b862df7dcdff7f2c3bcbd346c7
       outline: none;
     }
     .cropper-face{
@@ -343,4 +326,4 @@ export default {
   }
 }
 
-</style>  
+</style>
