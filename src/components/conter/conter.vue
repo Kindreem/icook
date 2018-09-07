@@ -14,6 +14,7 @@
         <div class="right">
             <router-link to="conter/show" ><img src="./2.png" alt=""></router-link>
             <router-link to="conter/show" ><img src="./2.png" alt=""></router-link>
+            <router-link to="conter/show" ><img src="./2.png" alt=""></router-link>
         </div>
       </div>
        <div class="item">
@@ -108,7 +109,7 @@
                 <swiper :options="swiperOption">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
                     <!-- <router-link to="dan/dan" > -->
-                     <img src="./2.png" alt="">
+                     <img src="./YES-SIR.png" alt="">
                      <p>段位</p>
                     <!-- </router-link> -->
                 </swiper-slide>

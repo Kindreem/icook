@@ -6,8 +6,7 @@
       </header>
       <div class="badge">
           <img src="./2.png" alt="">
-          <h2>粤派高级徽章</h2>
-          <p>★★★★</p>
+          <p>粤派二段</p>
           <span>通过粤派菜系获得</span>
       </div>
        <div class="btn">
@@ -68,14 +67,11 @@ export default {
             margin: px2rem(10) auto;
             color: #999;
             img{
-                width: px2rem(80);
-                height: px2rem(90);
+                width: px2rem(90);
                 margin-top:px2rem(100);
             }
-            h2{
-                font-size: px2rem(18);
-            }
             p{
+                margin-top:  px2rem(10);
                 font-size: px2rem(12);
             }
             span{

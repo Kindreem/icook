@@ -8,7 +8,8 @@ import router from './router'
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
 
-var qiniu = require('qiniu-js')
+import Calendar from 'vue2-datepick';
+Vue.use(Calendar);
 
 
 import { DatetimePicker } from 'mint-ui';

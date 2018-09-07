@@ -25,6 +25,7 @@
               :fixedBox="option.fixedBox"
               :centerBox="option.centerBox"
               :canMoveBox="option.canMoveBox"
+              :fixedNumber="option.fixedNumber"
               :original="option.original"
               :canMove="option.canMove"
               @realTime="realTime"
@@ -39,7 +40,7 @@
             </transition>
    <form >
         <div class="item">
-            <input v-model="nickname" placeholder="请输入2至24个字符" class="nickname"/>
+            <input v-model="nickname" placeholder="请输入最多6个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
@@ -55,6 +56,7 @@
                 :endDate="endDate"
                 >
                 </mt-datetime-picker>
+                <!-- <datepick :date2 = "date2"></datepick> -->
             <p id="sel">仅自己可见></p>
         </div>
          <div class="item" >
@@ -91,12 +93,15 @@ let Base64 = require('js-base64').Base64;
 import {upload,addinfo} from "@/api";
 import vueCropper from 'vue-cropper'
 import moment from "moment";
+import datepick from "./datepick"
 export default {
     components: {
-    vueCropper
+    vueCropper,
+    datepick
   },
   data() {
     return {
+      date2:'',
       previews:'',
       option: {
 				size: 1,
@@ -108,8 +113,9 @@ export default {
         canMoveBox: false,
         centerBox:true,
         canMove:true,
-        autoCropWidth:300,
-        autoCropHeight:300
+        fixedNumber: [4, 4], 
+        autoCropWidth:500,
+        autoCropHeight:500
 			},
       infoimg:false,
       files: [], // 文件
@@ -239,7 +245,7 @@ export default {
       this.$router.go(-1);
     },
     add(){
-      if(this.nickname.length>1&&this.nickname.length<25){
+      if(this.nickname.length>0&&this.nickname.length<7){
         if(this.age){
           let userid = localStorage.getItem('userid')
           addinfo(5,this.url,this.nickname,this.age,this.picked).then(res=>{
@@ -254,7 +260,7 @@ export default {
        }
       }else{
         this.warning = 1;
-        this.tit = '请输入2-24字符昵称'
+        this.tit = '请输入1-6个字符昵称'
         setTimeout(()=>{
                     this.warning=0;
                   },1000)
@@ -302,6 +308,9 @@ export default {
         }
         .cropper-face{
           background: none;
+        }
+        .crop-info{
+          display: none;
         }
     }
     .ivu-modal-footer{
@@ -455,19 +464,24 @@ export default {
       margin-top: px2rem(-15);
     }
     .picker-items {
-      height: px2rem(100);
+      height: px2rem(110);
       margin: px2rem(30) 0;
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
       .picker-item {
-        font-size: px2rem(16);
+        font-size: px2rem(17);
         // transform: perspective(600px) rotateY(20deg);
-        transform: rotate3d(1, 0, 0, 50deg) translate3d(0px, 0px, px2rem(2));
+        transform: rotate3d(1, 0, 0, 30deg) translate3d(0px, 0px, px2rem(2));
       }
       .picker-item.picker-selected {
-        font-size: px2rem(16);
+        height:px2rem(25)!important;
+        line-height: px2rem(25)!important;
+        font-size: px2rem(19);
         transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
       }
+    }
+    .picker-center-highlight{
+      height: px2rem(20)!important;
     }
     .picker-toolbar {
       position: absolute;
