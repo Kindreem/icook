@@ -10,6 +10,11 @@
              <transition>
             <p class="warning" v-show="warning">{{tit}}</p>
             </transition>
+            <div class = "spin" v-show="tips">
+              <p>{{tit}}</p>
+              <mt-spinner v-if="spin" :type="3" :size="30"></mt-spinner>
+              <Icon v-else type="md-checkmark-circle-outline" />
+            </div>
          <br>
            <input type="text" v-model="password" placeholder="输入验证码" class="psd">
          <br>
@@ -48,6 +53,8 @@ export default {
       tit:'',
       val:'获取验证码',
       timer: null,
+      tips:0,
+      spin:1,   
       warning:0,
       s:''
     }
@@ -60,7 +67,16 @@ export default {
       code(){
         if((/^1(3|4|5|7|8)\d{9}$/.test(this.userphone))){
          if (!this.timer) {
+                this.tit = "正在发送"
+                this.tips=1;
                 sendsms(this.userphone).then(res=>{
+                  if(res.code==200){
+                      this.tit = "发送成功"
+                      this.spin=0;
+                    setTimeout(()=>{
+                              this.tips=0;
+                            },700)
+                  }
                   // console.log(res)
                 })
                 this.s=' s';
@@ -153,6 +169,29 @@ export default {
         font-size: px2rem(12);
         color: #fff;
         z-index: 999;
+    }
+    .spin{
+        position: absolute;
+        width:  px2rem(100);
+        left: 50%;
+        top: px2rem(135);
+        transform: translateX(-50%);
+        background:rgba(0,0,0,.7);
+        font-size: px2rem(12);
+        border-radius: 8px;
+        color: #fff;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        p{
+          margin-right: 7px;
+        }
+        i{
+          font-size: 30px;
+          color: #fff;
+        }
+      
     }
       .v-enter {
         opacity: 0;

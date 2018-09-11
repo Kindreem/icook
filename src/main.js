@@ -12,9 +12,10 @@ import Calendar from 'vue2-datepick';
 Vue.use(Calendar);
 
 
-import { DatetimePicker } from 'mint-ui';
+import {DatetimePicker,Spinner} from 'mint-ui';
 
 Vue.component(DatetimePicker.name, DatetimePicker);
+Vue.component(Spinner.name, Spinner);
 
 
 
