@@ -73,7 +73,7 @@
 
   </form>
           <div class="end">
-        <div class="left"><img src="./xxx.png" alt=""></div>
+        <div class="left"><img src="./1-003（烹饪之心）.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
             <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
@@ -113,7 +113,7 @@ export default {
         canMoveBox: false,
         centerBox:true,
         canMove:true,
-        fixedNumber: [4, 4], 
+        fixedNumber: [4, 4],
         autoCropWidth:500,
         autoCropHeight:500
 			},
@@ -220,7 +220,7 @@ export default {
             // /*返回的key是字符串，需要装换成json*/
               keyText=strToJson(keyText);
             /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
-              picUrl="http://img.yzlkeji.com/"+keyText.key;
+              picUrl="http://img.ichushen.cn/"+keyText.key;
               self.url = picUrl
          }
      }
@@ -523,21 +523,22 @@ export default {
     width: px2rem(260);
     margin: px2rem(10) auto;
     .left img {
+      margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(60);
+      width: px2rem(32);
     }
     .con {
       margin: px2rem(10) px2rem(5);
       text-align: left;
       p {
-        font-size: px2rem(10);
+        font-size: px2rem(10.5);
         line-height: px2rem(20);
         color: #999;
       }
     }
     span {
       color: #199ed8;
-      font-size: px2rem(10);
+      font-size: px2rem(10.5);
     }
     .right {
       position: absolute;
