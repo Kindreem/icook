@@ -4,7 +4,7 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
             <p class="title">展示中</p>
       </header>
-      <div class="badge">
+      <div class="badge" :style="{height:height}">
           <img src="./2.png" alt="">
           <p>粤派二段</p>
           <span>通过粤派菜系获得</span>
@@ -21,8 +21,12 @@
 export default {
   data () {
     return {
-
+        height:''
     }
+  },
+  mounted(){
+      let number= document.documentElement.clientHeight*0.75
+      this.height = number+'px';
   },
   methods:{
       backto(){
@@ -61,18 +65,19 @@ export default {
             }
         }
         .badge{
-            width:px2rem(350);
-            height: px2rem(460);
+            width:90%;
             box-shadow: 8px 8px 2px rgba(0,0,0,.1);
+            border-radius: 20px;
             margin: px2rem(10) auto;
             color: #999;
             img{
                 width: px2rem(90);
-                margin-top:px2rem(100);
+                margin-top:38%;
             }
             p{
                 margin-top:  px2rem(10);
-                font-size: px2rem(12);
+                color: #666;
+                font-size: px2rem(13);
             }
             span{
                 font-size: px2rem(10);
@@ -81,8 +86,9 @@ export default {
         .btn{
             font-size:  px2rem(16);
             display: flex;
-            justify-content: center;
-            margin-top:px2rem(20) ;
+            justify-content: space-between;
+            width:90%;
+            margin:px2rem(20) auto ;
             button{
                 width: px2rem(150);
                 height: px2rem(40);

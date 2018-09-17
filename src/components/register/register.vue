@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="register" :style="{height:height}">
   <header class="header">
            <img src="@/assets/images/DR-005.png" @click="backto">
     </header>
@@ -56,8 +56,13 @@ export default {
       tips:0,
       spin:1,   
       warning:0,
-      s:''
+      s:'',
+      height:''     //屏幕高度
     }
+  },
+  created(){
+      this.height = document.documentElement.clientHeight+'px'
+      console.log(this.height)
   },
    methods:{
       backto(){
@@ -156,6 +161,8 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
 .register{
+  position: relative;
+  // height: 1000px; 
    .warning{
         position: absolute;
         width:  px2rem(120);

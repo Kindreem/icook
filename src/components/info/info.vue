@@ -9,13 +9,13 @@
         <!--默认显示的一张图片-->
          <img :src="url" v-if="!previewAvatar" >
         <!--七牛回调的图片path-->
-        <img :src="previewAvatar" class="real-photo" v-if="previewAvatar" >
+        <!-- <img :src="previewAvatar" class="real-photo" v-if="previewAvatar" >   -->
         <input ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>
       </label>
       <Modal v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
-            ref="cropper"
-            :img="url"
+              ref="cropper"
+              :img="img.url"
               :outputSize = "option.size"
               outputType="png"
               :full="option.full"
@@ -31,6 +31,7 @@
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
+            <Button @click="infoimg=false">取消</Button>
             <Button type="primary" @click="achieve">完成</Button>
           </div>
     </Modal>
@@ -114,10 +115,10 @@ export default {
         centerBox:true,
         canMove:true,
         fixedNumber: [4, 4], 
-        autoCropWidth:500,
-        autoCropHeight:500
+        autoCropWidth:200,
+        autoCropHeight:200
 			},
-      infoimg:false,
+      infoimg:false,       //截图
       files: [], // 文件
       uploadToken: "", // 上传文件 token
       previewAvatar: "", // 页面展示的avatar
@@ -132,17 +133,23 @@ export default {
       picked: "1",
       upkey:'',       //拼接路径
       warning:0,      //提示显示隐藏
-      tit:''          // 提示信息
+      tit:'',          // 提示信息=
     };
   },
-  created() {
-    //   upload(1,1).then(res=>{
-    //       localStorage.setItem('uptoken', res.data.token)
-    //       this.url = res.data.key
-    //   })
+   mounted() {
+      // this.height = document.documentElement.clientHeight+'px'
+      let width = document.documentElement.clientWidth*0.5
+      this.option.autoCropWidth= width
+      this.option.autoCropHeight = width
 
+    let self = this;
+    //页面加载 拉去token
+    upload(1, 1).then(res => {
+      this.uploadToken = res.data.token;
+      this.upkey = res.data.key;
+
+    });
   },
-
   methods: {
 		// 实时预览函数
 		realTime (data) {
@@ -167,7 +174,7 @@ export default {
 					data = e.target.result
 				}
 				if (num === 1) {
-					this.url = data
+					this.img.url = data
 				}
 			}
 			// 转化为base64
@@ -220,7 +227,7 @@ export default {
             // /*返回的key是字符串，需要装换成json*/
               keyText=strToJson(keyText);
             /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
-              picUrl="http://img.yzlkeji.com/"+keyText.key;
+              picUrl="http://img.ichushen.cn/"+keyText.key;
               self.url = picUrl
          }
      }
@@ -268,29 +275,25 @@ export default {
     }
 
   },
-  mounted() {
-    let self = this;
-    //页面加载 拉去token
-    upload(1, 1).then(res => {
-      this.uploadToken = res.data.token;
-      this.upkey = res.data.key;
-
-    });
-  }
+ 
 };
 </script>
 
 <style lang="scss">
 @import "@/assets/hotcss/px2rem.scss";
    .infoimg{
+    background: #199ed8;
      .ivu-modal{
       top: 0;
       height: 100%;
-   .vue-cropper{
-      background-image:none!important;
-      background: #000;
-      height: 100%;
-      height: px2rem(600);
+      .ivu-modal-content{
+         height:100% ;
+          background: #000;
+      .vue-cropper{
+          background-image:none!important;
+          background: #000;
+          height: 100%;
+          height: px2rem(480);
        img{
           // margin-top: 40%;
           position: relative;
@@ -312,15 +315,19 @@ export default {
         .crop-info{
           display: none;
         }
+        }
     }
     .ivu-modal-footer{
-      padding: 0;
+        padding: 0;
+     .footer{
+        width: 100%;
+        display: flex;
+        justify-content:space-around;
       .ivu-btn{
         width: px2rem(60);
-        margin-top:px2rem(-2);
-        margin-right:px2rem(10);
+        margin-top:px2rem(2);
         font-size: px2rem(12);
-        margin-left: 20px;
+      }
       }
     }
  }
@@ -474,8 +481,8 @@ export default {
         transform: rotate3d(1, 0, 0, 30deg) translate3d(0px, 0px, px2rem(2));
       }
       .picker-item.picker-selected {
-        height:px2rem(25)!important;
-        line-height: px2rem(25)!important;
+        height:px2rem(30)!important;
+        line-height: px2rem(30)!important;
         font-size: px2rem(19);
         transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
       }
