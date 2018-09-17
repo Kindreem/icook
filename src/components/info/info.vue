@@ -74,7 +74,7 @@
 
   </form>
           <div class="end">
-        <div class="left"><img src="./xxx.png" alt=""></div>
+        <div class="left"><img src="./1-003（烹饪之心）.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
             <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
@@ -114,9 +114,15 @@ export default {
         canMoveBox: false,
         centerBox:true,
         canMove:true,
+<<<<<<< HEAD
         fixedNumber: [4, 4], 
         autoCropWidth:200,
         autoCropHeight:200
+=======
+        fixedNumber: [4, 4],
+        autoCropWidth:500,
+        autoCropHeight:500
+>>>>>>> 550eb449dba5b7206894b5bb1709f5d0d112f424
 			},
       infoimg:false,       //截图
       files: [], // 文件
@@ -530,21 +536,22 @@ export default {
     width: px2rem(260);
     margin: px2rem(10) auto;
     .left img {
+      margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(60);
+      width: px2rem(32);
     }
     .con {
       margin: px2rem(10) px2rem(5);
       text-align: left;
       p {
-        font-size: px2rem(10);
+        font-size: px2rem(10.5);
         line-height: px2rem(20);
         color: #999;
       }
     }
     span {
       color: #199ed8;
-      font-size: px2rem(10);
+      font-size: px2rem(10.5);
     }
     .right {
       position: absolute;
