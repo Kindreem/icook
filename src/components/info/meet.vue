@@ -29,7 +29,7 @@
     </ul>
       <div class="btn-meet">
         <p>完成奖励 : 完成后可获得 徽章</p>
-        <router-link to="/load">
+        <router-link to="/">
          <button class="next">下一步</button>
         </router-link>
       </div>

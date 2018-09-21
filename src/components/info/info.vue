@@ -114,15 +114,9 @@ export default {
         canMoveBox: false,
         centerBox:true,
         canMove:true,
-<<<<<<< HEAD
-        fixedNumber: [4, 4], 
+        fixedNumber: [4, 4],
         autoCropWidth:200,
         autoCropHeight:200
-=======
-        fixedNumber: [4, 4],
-        autoCropWidth:500,
-        autoCropHeight:500
->>>>>>> 550eb449dba5b7206894b5bb1709f5d0d112f424
 			},
       infoimg:false,       //截图
       files: [], // 文件
@@ -190,10 +184,11 @@ export default {
     },
    achieve() {
       var self = this
-       this.infoimg = false;
+       this.infoimg = false
       // this. finish('glob')
         this.$refs.cropper.getCropData((data) => {
         // this.url = data
+        console.log(data)
       /*picUrl用来存储返回来的url*/
       var picUrl;
     /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
@@ -261,7 +256,8 @@ export default {
       if(this.nickname.length>0&&this.nickname.length<7){
         if(this.age){
           let userid = localStorage.getItem('userid')
-          addinfo(5,this.url,this.nickname,this.age,this.picked).then(res=>{
+          addinfo(userid,this.url,this.nickname,this.age,this.picked).then(res=>{
+            console.log(res)
                this.$router.push({path: '/info/meet'})
             })
        }else{
@@ -281,7 +277,7 @@ export default {
     }
 
   },
- 
+
 };
 </script>
 
