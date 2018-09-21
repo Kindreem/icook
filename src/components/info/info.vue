@@ -7,10 +7,10 @@
       <p>完善个人信息</p>
       <label class="avatar-bg" >
         <!--默认显示的一张图片-->
-         <img :src="url" v-if="!previewAvatar" >
+         <img :src="url" >
         <!--七牛回调的图片path-->
         <!-- <img :src="previewAvatar" class="real-photo" v-if="previewAvatar" >   -->
-        <input ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>
+        <input v-if="previewAvatar" ref="upload" id="upload" type="file" class="realfilebt"  style="position:absolute; clip:rect(0 0 0 0);display: none;" accept="image/png, image/jpeg, image/gif, image/jpg" @change="uploadImg($event, 1)"/>
       </label>
       <Modal v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
@@ -20,18 +20,19 @@
               outputType="png"
               :full="option.full"
               :autoCrop = "option.autoCrop"
-              :autoCropWidth= "option.autoCropWidth"
-              :autoCropHeight= "option.autoCropHeight"
+              :fixedNumber= "option.fixedNumber"
+              :fixed = "option.fixed"
+              :autoCropWidth="option.autoCropWidth"
+              :autoCropHeight="option.autoCropHeight"
               :fixedBox="option.fixedBox"
-              :centerBox="option.centerBox"
               :canMoveBox="option.canMoveBox"
-              :fixedNumber="option.fixedNumber"
               :original="option.original"
               :canMove="option.canMove"
+              :maxImgSize ="option.maxImgSize"
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
-            <Button @click="infoimg=false">取消</Button>
+            <Button @click="call">取消</Button>
             <Button type="primary" @click="achieve">完成</Button>
           </div>
     </Modal>
@@ -114,22 +115,18 @@ export default {
         canMoveBox: false,
         centerBox:true,
         canMove:true,
-<<<<<<< HEAD
-        fixedNumber: [4, 4], 
+        fixed:true,
+        fixedNumber: [1,1], 
         autoCropWidth:200,
-        autoCropHeight:200
-=======
-        fixedNumber: [4, 4],
-        autoCropWidth:500,
-        autoCropHeight:500
->>>>>>> 550eb449dba5b7206894b5bb1709f5d0d112f424
+        autoCropHeight:200,
+        maxImgSize:4000
 			},
       infoimg:false,       //截图
       files: [], // 文件
       uploadToken: "", // 上传文件 token
-      previewAvatar: "", // 页面展示的avatar
+      previewAvatar: true, // 页面展示
       img: {
-        url: require("./TX.png")
+        url: ''
       },
       url: require("./TX.png"),
       nickname: "",
@@ -144,9 +141,10 @@ export default {
   },
    mounted() {
       // this.height = document.documentElement.clientHeight+'px'
-      let width = document.documentElement.clientWidth*0.5
+      let width = document.documentElement.clientWidth*0.6
       this.option.autoCropWidth= width
-      this.option.autoCropHeight = width
+      this.option.autoCropHeight = this.option.autoCropWidth
+      // console.log(this.option.autoCropHeight)
 
     let self = this;
     //页面加载 拉去token
@@ -155,6 +153,8 @@ export default {
       this.upkey = res.data.key;
 
     });
+
+    // this.$refs.cropper.changeScale(2)
   },
   methods: {
 		// 实时预览函数
@@ -162,12 +162,13 @@ export default {
 		},
 
     	uploadImg (e, num) {
+        this.previewAvatar=false
          this.infoimg=true
 			//上传图片
 			// this.option.img
 			var file = e.target.files[0]
 			if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-				 alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+				//  alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
 				 return false
 			 }
 			var reader = new FileReader()
@@ -188,7 +189,15 @@ export default {
 			// 转化为blob
         // reader.readAsArrayBuffer(file)
     },
+
+    //取消
+  call(){
+    this.infoimg=false
+    this.previewAvatar=true
+  },
+
    achieve() {
+      this.previewAvatar= false
       var self = this
        this.infoimg = false;
       // this. finish('glob')
@@ -288,7 +297,7 @@ export default {
 <style lang="scss">
 @import "@/assets/hotcss/px2rem.scss";
    .infoimg{
-    background: #199ed8;
+    // background: #000;
      .ivu-modal{
       top: 0;
       height: 100%;
@@ -300,20 +309,19 @@ export default {
           background: #000;
           height: 100%;
           height: px2rem(480);
-       img{
-          // margin-top: 40%;
-          position: relative;
-          width: 100%;
-          // height:100%;
-        }
+          img{
+              // margin-top: 40%;
+              // position: relative;
+              width: 100%;
+              // height:100%;
+            }
         .cropper-view-box{
           border-radius: 50%;
           position: absolute;
-          border: none;
+          border: px2rem(1) solid #199ed8;
           overflow: hidden;
-        }
-        .cropper-view-box{
           outline: none;
+
         }
         .cropper-face{
           background: none;
@@ -336,7 +344,7 @@ export default {
       }
       }
     }
- }
+   }
  }
 .info {
    .warning{

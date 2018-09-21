@@ -93,12 +93,13 @@
            <ul class="badges">
                <swiper :options="swiperOption">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
+                        <router-link to="dan/dan" >
                         <img :src="item.url" alt=""   @click="bag">
+                        </router-link>
                         <p>段位</p>
                 </swiper-slide>
                </swiper>
-           </ul>
-                      
+           </ul>   
        </div></router-link>
         <div class="item badge">
              <div class="title">
@@ -156,7 +157,7 @@ export default {
     },
   bag() {
     //   this.$router.push({path: 'dan/dan'})
-  }
+     }
   },
 }
 </script>

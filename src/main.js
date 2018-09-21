@@ -4,6 +4,7 @@ import '../static/js/viewport'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from '@/store/index.js'
 
 import iview from 'iview'
 import '@/assets/hotcss/hotcss.js'
@@ -12,7 +13,8 @@ import Calendar from 'vue2-datepick';
 Vue.use(Calendar);
 
 
-import {DatetimePicker,Spinner} from 'mint-ui';
+import {DatetimePicker,Spinner, InfiniteScroll} from 'mint-ui';
+Vue.use(InfiniteScroll);
 
 Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Spinner.name, Spinner);
@@ -30,6 +32,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   iview,
   components: { App },
   template: '<App/>'

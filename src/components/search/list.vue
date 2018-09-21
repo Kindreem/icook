@@ -1,26 +1,37 @@
 <template>
-  <div class="all">
-    <div v-for="(item,index) in items" :key="index">
-      <div :class="item.seen?'o_ban':'p_ban'">
-        <router-link :to="item.seen?'O_recipe':'U_menu'">
+  <div class="all"
+  v-infinite-scroll="loadMore"
+  infinite-scroll-disabled="loading"
+  infinite-scroll-immediate-check="false"
+  infinite-scroll-distance="10">
+    <div v-for="(item,index) in cooklist" :key="index">
+      <div :class="item.booktype==1?'o_ban':'p_ban'">
+        <router-link :to="item.booktype==1?'O_recipe/'+item.id:'U_menu/'+item.id">
         <section class="p_top">
-          <img :src="item.img" alt="">
-          <h4>{{item.title}}</h4>
+          <!-- <img :src="item.img" alt=""> -->
+          <div :class="item.booktype==2?'p-imgs':'o-imgs'" :style="{backgroundImage: 'url(' + (item.img) + ')'}"></div>
+          <h4>{{item.name}}</h4>
           <p>{{item.top}}</p>
         </section>
-        <section :class="item.seen?'o_bot':'p_bot'">
-          <div class="head"><img :src="item.src" alt=""><h4>{{item.name}}</h4></div>
+        <section :class="item.booktype==1?'o_bot':'p_bot'">
+          <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.fknickname}}</h4></div>
           <div class="icon"><img :src="item.icon1" alt=""><img :src="item.icon2" alt=""></div>
-          <div class="good"><img src="./img/ZY-012.png" alt=""><h4>{{item.good}}</h4></div>
+          <div class="good"><img src="./img/ZY-012.png" alt=""><h4>{{item.star}}</h4></div>
           <!-- <div class="save"><img src="./img/ZY-042.png" alt=""></div> -->
         </section>
         </router-link>
       </div>
     </div>
+    <li class="more_loading" v-show="!queryLoading">
+      <mt-spinner type="snake" color="#ccc" :size="70" v-show="loading&&!allLoaded"></mt-spinner>
+      <span class="allload" v-show="allLoaded">已全部加载</span>
+    </li>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import {searchbook} from '@/api'
 export default {
   data() {
     return {
@@ -77,7 +88,63 @@ export default {
           bg: require('./img/帽子.png'),
           o_good: '9898'
         },
-      ]
+      ],
+      cooklist:'',
+      pagesize:5,  //页数
+      loading:false,
+      queryLoading:false,
+      allLoaded:false,
+      num:0,
+      value:""
+    }
+  },
+  computed:
+  mapGetters({
+      list:'getlist'
+  }),
+  mounted(){
+    // console.log(this.$store.state.getlist)
+
+  },
+  methods:{
+    loadMore() { 
+      //  if(this.allLoaded){
+      //   this.loading = true;
+      //   return;
+      //   }
+      //  if(this.queryLoading){
+      //   return;
+      //   }
+          // this.loading = !this.queryLoading;
+          this.loading = true;
+      setTimeout(() => {
+          this.size = this.$store.state.size
+          this.value = this.$store.state.val
+          console.log(this.value)
+          // this.size+=5
+          this.num++
+          // console.log(this.num)
+        // this.$store.commit('setsize',this.pagesize)
+          searchbook(this.value,this.num,5).then(res=>{
+            // this.cooklist= res.data
+           if(res.code==200){
+              this.cooklist = this.cooklist.concat(res.data);
+           }else{
+            //  this.allLoaded = false
+             this.allLoaded =true
+           }
+        })
+         this.loading = false;
+      }, 2500);
+    }
+
+  },
+ watch: {
+    list: {
+      handler: function (val, oldVal) {
+        this.cooklist = val
+      },
+      deep: true
     }
   }
 }
@@ -88,6 +155,15 @@ export default {
 @import '../../assets/px2rem.styl';
 .all {
   margin 36px 30px 0px
+  >>> .mint-spinner-snake{
+    margin 0 auto
+  }
+  .allload{
+    margin-top px2rem(-10)
+    font-size px2rem(40)
+    display block
+    text-align center
+  }
   a {
     display inline-block
     height px2rem(238)
@@ -116,43 +192,31 @@ export default {
       color #fff
     }
   }
-  // .o_ban {
-  //   margin-bottom px2rem(40)
-  //   position relative
-  //   height px2rem(238)
-  //   box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
-  //   border-radius 20px
-  //   background #5DB8E9
-  //   .pic {
-  //    height px2rem(192)
-  //    width px2rem(204)
-  //    text-align center
-  //    position absolute
-  //    top px2rem(20)
-  //    left px2rem(20)
-  //    background #fff
-  //    border-radius 20px
-  //    img {
-  //     margin-top px2rem(42)
-  //     width px2rem(108)
-  //     }
-  //   }
-  //   .otitle {
-  //     font px2rem(28) Arail
-  //     color #fff
-  //     position absolute
-  //     top px2rem(100)
-  //     left px2rem(246)
-  //   }
-  // }
+
 }
 .p_top {
-  img {
+  .p-imgs {
     border-radius 20px
     position absolute
-    top px2rem(20)
+    top 50%
+    transform translateY(-70%)
     left px2rem(30)
     width px2rem(144)
+    height px2rem(144)
+    background-size px2rem(250) px2rem(250)
+    background-repeat:no-repeat
+    background-position center center
+  }
+  .o-imgs{
+    border-radius 20px
+    position absolute
+    top 50%
+    transform translateY(-70%)
+    left px2rem(30)
+    width px2rem(144)
+    height px2rem(144)
+    background-repeat:no-repeat
+    background-size px2rem(140) px2rem(140)
   }
   h4 {
     font px2rem(28) Arail

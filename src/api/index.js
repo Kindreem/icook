@@ -66,3 +66,13 @@ export const getcookbookbyid = (cookbookid)=>{
 export const likelist = ()=>{
   return axios.post('/search/likelist').then(res=>res.data)
 }
+
+//菜谱搜索
+export const searchbook = (searchkey,pagenum,pagesize)=>{
+  return axios.post(`/search/searchbook?searchkey=${searchkey}&pagenum=${pagenum}&pagesize=${pagesize}`).then(res=>res.data)
+}
+
+//根据菜谱id获取官方菜谱
+export const getcook = (cookbookid)=>{
+  return axios.post(`/cookbook/getcookbookbyid?cookbookid=${cookbookid}`).then(res=>res.data)
+}

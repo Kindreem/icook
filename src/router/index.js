@@ -54,11 +54,11 @@ let router = new Router({
       path: "/",
       redirect: 'home',
     },{
-      path: "/O_recipe",
+      path: "/O_recipe/:id",
       name: "O_recipe",
       component: O_recipe,
     },{
-      path: "/U_menu",
+      path: "/U_menu/:id",
       name: "U_menu",
       component: U_menu,
     },{

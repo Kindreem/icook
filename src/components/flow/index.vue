@@ -44,6 +44,10 @@
           <div class="top">
               <img src="./0.png">
               <p>炒四季豆和梅菜</p>
+              <div class="top_step">
+                  <span>步</span>
+                  <span>骤</span>
+              </div>
           </div>
               <ul>
                   <li  v-for="(item,index) in step" :key="index">
@@ -159,6 +163,19 @@ export default {
                 font-size:  px2rem(14);
                 background: url('./titles.png') no-repeat center left;
                 background-size:  px2rem(20) px2rem(15);
+            }
+            .top_step{
+                position: absolute;
+                top: 0;
+                right: px2rem(20);
+                font-size: px2rem(16);
+                color: #5CB8E7;
+                span:last-child{
+                    margin-left: px2rem(15);
+                    margin-top: px2rem(-5);
+                    display: block;
+                    font-size: px2rem(15                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             )
+                }
             }
         }
         .item-ul{

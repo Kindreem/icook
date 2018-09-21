@@ -1,14 +1,21 @@
 <template>
   <div class="all">
-    <section class="top"><img src="./img/彩椒炒回锅肉/回锅肉封面.jpg" alt=""></section>
+    <section class="top"><img :src="userlist.cbthumbimg" alt=""></section>
     <section class="bot">
       <div class="head"><img src="./img/head/TX (2).png" alt=""><h4>取什么名</h4></div>
       <div class="icon"><img src="../../common/img/川派徽章/1川派学员.png" alt=""><img src="../../common/img/川派徽章/4川派达人.png" alt=""></div>
       <div class="good"><img src="./img/ZY-012.png" alt=""><h4>9898</h4></div>
     </section>
-    <section class="text"><p>回锅肉是北方家庭过年时常常会做的，今天用它来与彩椒一起炒了这道菜，炒好的菜颜色亮丽，吃到嘴里味道鲜美。彩椒中含丰富的维生素，是蔬菜中维生素A和C含量最高的，能够预防心血管疾病，促进新陈代谢，抗老化，具有的强大抗氧化作用，可抗白内障、心脏病和癌症，防止身体老化，并且使体内的细胞活化，有着非常明显的效果。与煮熟的五花肉一起炒，肉的咸香浸入彩椒中，味道非常好吃！所以炒好刚上桌，就被我们一家三口秒光了！</p></section>
+    <section class="text"><p>{{userlist.cbtext}}</p></section>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["userlist"],
+}
+</script>
+
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
@@ -74,8 +81,8 @@
   .text {
     margin-top 20px
     p {
-      font-size 28px
-      line-height 36px
+      font-size 32px
+      line-height 38px
       color #727272
     }
   }

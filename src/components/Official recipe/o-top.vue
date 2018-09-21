@@ -1,10 +1,10 @@
 <template>
   <div class="all">
      <section>
-       <img :src="tops.index" alt="">
+       <img :src="getlist.cbthumbimg" alt="">
      </section>
      <section class="text">
-       <p>{{tops.text}}</p>
+       <p>{{getlist.cbtext}}</p>
      </section>
      <section class="but">
        <router-link to="flow">
@@ -15,15 +15,23 @@
        </router-link>
      </section>
      <section class="step">
-       <div v-for="(item,index) in items" :key="index"><img :src="item.img" alt=""></div>
+       <div v-for="(item,index) in getlist.cbimg.split('$')" :key="index"><img :src="item" alt=""></div>
      </section>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["items","tops"]
+  props: ["items","tops","getlist"],
+  data(){
+    return{
+      imglist:''
+    }
+  },
+  created(){
+  }
 }
+
 </script>
 
 

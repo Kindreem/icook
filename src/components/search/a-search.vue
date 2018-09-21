@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <section class="top">
-      <Input v-model="value" placeholder="输入菜系或菜谱" clearable @on-enter="handleAdd"/>
+      <Input v-model="value" placeholder="输入菜系或菜谱" clearable search @on-enter="handleAdd"/>
       <img class="left" src="./img/DR-005.png" alt="" @click="back">
       <img class="right" src="./img/ZY-028.png" alt="">
     </section>
@@ -19,13 +19,22 @@
 </template>
 
 <script>
+import {mapGetters } from 'vuex'
+import {mapState} from 'vuex'
+import {searchbook} from '@/api'
     export default {
         data () {
             return {
               items: ['麻辣鸡丝','水煮肉','叉烧肉'],
-              value: ''
+              list:[],
+              value: '',
+              psize:5
             }
         },
+        //  computed:
+        //   mapGetters({
+        //       size:'getsize'
+        //   }),
         methods: {
             back(){
             this.$router.go(-1);//返回上一层
@@ -37,14 +46,32 @@
               this.items.splice(name, 1);
             },
             handleAdd () {
+              // let size = this.$store.state.size
+              searchbook(this.value,1,this.psize).then(res=>{
+                this.list = res.data
+                this.$store.commit('setsize',this.psize)
+                this.$store.commit('setval',this.value)
+                this.$store.commit('setlist',this.list)
+                console.log(res)
+              })
               for(var i=0;i<this.items.length;i++) {
                 if(this.value == this.items[i]) {
                     return false
                 }
                }
               this.items.push(this.value)
+              // this.value = ""
             }
 
+        },
+        watch: {
+          // size: {
+          //   handler: function (val, oldVal) {
+          //     this.psize = val
+           
+          //   },
+          //   deep: true
+          // }
         }
     }
 </script>

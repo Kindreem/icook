@@ -1,7 +1,7 @@
 <template>
   <div>
-    <uheader :value='value'/>
-    <uimg/>
+    <uheader :value='userlist.cbname'/>
+    <uimg :userlist="userlist"/>
     <upart/>
     <ustep/>
     <look/>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import {getcook} from '@/api'
 import uheader from '../public/header'
 import uimg from './uimg'
 import upart from './upart'
@@ -28,9 +29,17 @@ export default {
   data (){
     return {
       value: '彩椒炒回锅肉',
-      name: 'Ta的个人推荐'
+      name: 'Ta的个人推荐',
+      userlist:[]
     }
-  }
+  },
+  created(){
+    let cbid= this.$route.params.id 
+    getcook(cbid).then(res=>{
+      this.userlist = res.data
+      console.log(res)
+    })
+  },
 }
 </script>
 
