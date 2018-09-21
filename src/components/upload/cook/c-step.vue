@@ -126,7 +126,7 @@ export default {
     };
   },
   mounted() {
-     let width = document.documentElement.clientWidth*0.6
+     let width = document.documentElement.clientWidth*0.7
       this.option.autoCropWidth= width
       this.option.autoCropHeight = width/5*3
     //页面加载 拉去token
@@ -178,23 +178,25 @@ export default {
       //上传图片
       // this.option.img
       var file = e.target.files[0];
+      this.ishow=false
       console.log(file)
-      if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-        alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
-        return false;
-      }
+      // if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+      //   alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+      //   return false;
+      // }
       var reader = new FileReader();
       reader.onload = e => {
         let data;
-        if (typeof e.target.result === "object") {
-          // 把Array Buffer转化为blob 如果是base64不需要
-          data = window.URL.createObjectURL(new Blob([e.target.result]));
-        } else {
+        // if (typeof e.target.result === "object") {
+        //   // 把Array Buffer转化为blob 如果是base64不需要
+        //   data = window.URL.createObjectURL(new Blob([e.target.result]));
+        // } else {
           data = e.target.result;
-        }
-        if (num === 1) {
+        // }
+        // if (num === 1) {
+          console.log(data)
           this.img = data;
-        }
+        // }
       };
       // 转化为base64
       reader.readAsDataURL(file);
@@ -209,7 +211,7 @@ export default {
       //   self.formDynamic.items[index].img = self.url;
       //   console.log(self.formDynamic.items[index].img);
       // }, 800);
-      this.ishow=false
+
     },
 
     achieve() {

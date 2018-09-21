@@ -73,3 +73,7 @@ export const add = (list)=>{
   return axios.post('/userbook/add',list).then(res=>res.data)
 }
 
+//用户点赞排行榜
+export const userbooktopten = ()=>{
+  return axios.post('/userbook/userbooktopten').then(res=>res.data)
+}
