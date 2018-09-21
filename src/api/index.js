@@ -11,6 +11,7 @@ axios.defaults.baseURL = baseURL
      let token = localStorage.getItem('mytoken')
      // 设置到请求头中 Access-Token这个名字是后台规定的
         config.headers['Access-Token'] = token
+        config.headers['Content-type']='application/json'
         return config
  })
 
@@ -75,4 +76,19 @@ export const searchbook = (searchkey,pagenum,pagesize)=>{
 //根据菜谱id获取官方菜谱
 export const getcook = (cookbookid)=>{
   return axios.post(`/cookbook/getcookbookbyid?cookbookid=${cookbookid}`).then(res=>res.data)
+}
+
+//根据菜谱id获取用户菜谱
+export const getuser = (ubid)=>{
+  return axios.post(`/userbook/getuserbookbyid?ubid=${ubid}`).then(res=>res.data)
+}
+
+// 新增用户菜谱
+export const add = (list)=>{
+  return axios.post('/userbook/add',list).then(res=>res.data)
+}
+
+//用户点赞排行榜
+export const userbooktopten = ()=>{
+  return axios.post('/userbook/userbooktopten').then(res=>res.data)
 }

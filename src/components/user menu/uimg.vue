@@ -1,12 +1,12 @@
 <template>
   <div class="all">
-    <section class="top"><img :src="userlist.cbthumbimg" alt=""></section>
+    <section class="top"><img :src="userlist.ubthumbimg" alt=""></section>
     <section class="bot">
-      <div class="head"><img src="./img/head/TX (2).png" alt=""><h4>取什么名</h4></div>
+      <div class="head"><img :src="userlist.userphoto" alt=""><h4>{{userlist.usernickname}}</h4></div>
       <div class="icon"><img src="../../common/img/川派徽章/1川派学员.png" alt=""><img src="../../common/img/川派徽章/4川派达人.png" alt=""></div>
-      <div class="good"><img src="./img/ZY-012.png" alt=""><h4>9898</h4></div>
+      <div class="good"><img src="./img/ZY-012.png" alt=""><h4>{{userlist.star}}</h4></div>
     </section>
-    <section class="text"><p>{{userlist.cbtext}}</p></section>
+    <section class="text"><p>{{userlist.ubtext}}</p></section>
   </div>
 </template>
 

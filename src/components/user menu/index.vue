@@ -1,16 +1,16 @@
 <template>
   <div>
-    <uheader :value='userlist.cbname'/>
+    <uheader :value='userlist.ubname'/>
     <uimg :userlist="userlist"/>
-    <upart/>
-    <ustep/>
+    <upart :userlist="userlist"/>
+    <ustep :userlist="userlist"/>
     <look/>
     <uslider :name='name'/>
   </div>
 </template>
 
 <script>
-import {getcook} from '@/api'
+import {getuser} from '@/api'
 import uheader from '../public/header'
 import uimg from './uimg'
 import upart from './upart'
@@ -35,7 +35,7 @@ export default {
   },
   created(){
     let cbid= this.$route.params.id 
-    getcook(cbid).then(res=>{
+    getuser(cbid).then(res=>{
       this.userlist = res.data
       console.log(res)
     })

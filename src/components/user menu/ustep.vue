@@ -1,14 +1,14 @@
 <template>
   <div class="all">
-    <div class="ban" v-for="(item,index) in items" :key="index">
+    <div class="ban" v-for="(item,index) in userlist.userStepDtos" :key="index">
       <header>
         <img class="tab" src="./img/1-021.png" alt="">
         <img class="heart" src="./img/1-012.png" alt="">
-        <p>{{item.step}}</p>
+        <p>步骤{{index+1}}</p>
       </header>
       <div class="item">
-        <img class="bg" :src="item.ibg" alt="">
-        <p>{{item.content}}</p>
+        <img class="bg" :src="item.ubsimg" alt="">
+        <p>{{item.ubsdescription}}</p>
       </div>
     </div>
   </div>
@@ -16,6 +16,7 @@
 
 <script>
 export default {
+   props: ["userlist"],
   data() {
     return {
       items: [

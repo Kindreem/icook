@@ -54,10 +54,11 @@ export default {
       val:'获取验证码',
       timer: null,
       tips:0,
-      spin:1,   
+      spin:1,
       warning:0,
       s:'',
-      height:''     //屏幕高度
+      height:'',     //屏幕高度
+      usernickname: ''
     }
   },
   created(){
@@ -123,8 +124,15 @@ export default {
                         localStorage.setItem('myphone', res.data.userphone)
                         localStorage.setItem('mytoken', res.data.token)
                         localStorage.setItem('userid', res.data.userid)
-                         localStorage.setItem('certificationstatus', res.data.certificationstatus)
-                        this.$router.push({path: '/info'})
+                        localStorage.setItem('certificationstatus', res.data.certificationstatus)
+                        this.usernickname = res.data.usernickname
+                         console.log(this.usernickname)
+                         if(this.usernickname == null) {
+                           this.$router.push({path: '/info'})
+                         }
+                         else {
+                           this.$router.push({path: '/'})
+                         }
                         }
                    })
                   }else{
@@ -162,7 +170,7 @@ export default {
 @import '@/assets/hotcss/px2rem.scss';
 .register{
   position: relative;
-  // height: 1000px; 
+  // height: 1000px;
    .warning{
         position: absolute;
         width:  px2rem(120);
@@ -198,7 +206,7 @@ export default {
           font-size: 30px;
           color: #fff;
         }
-      
+
     }
       .v-enter {
         opacity: 0;

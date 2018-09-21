@@ -1,12 +1,12 @@
 <template>
   <div class="all">
     <div class="ban">
-      <section class="top"><h1>{{name}}</h1><img src="./img/ZY-041.png" alt=""></section>
+      <section class="top"><h1>{{userlist.ubname}}</h1><img src="./img/ZY-041.png" alt=""></section>
       <section class="bot">
         <h4>食材</h4>
         <div class="con">
           <ul>
-            <li v-for="(item,index) in items" :key="index"><h4>{{item.stuff}}</h4><h4>{{item.dose}}</h4></li>
+            <li v-for="(item,index) in userlist.userFoodDtos" :key="index"><h4>{{item.ubfname}}</h4><h4>{{item.ubfdescription}}</h4></li>
           </ul>
         </div>
       </section>
@@ -16,6 +16,7 @@
 
 <script>
 export default {
+   props: ["userlist"],
   data() {
     return {
       name: '彩椒炒回锅肉',

@@ -199,10 +199,11 @@ export default {
    achieve() {
       this.previewAvatar= false
       var self = this
-       this.infoimg = false;
+       this.infoimg = false
       // this. finish('glob')
         this.$refs.cropper.getCropData((data) => {
         // this.url = data
+        console.log(data)
       /*picUrl用来存储返回来的url*/
       var picUrl;
     /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
@@ -270,7 +271,8 @@ export default {
       if(this.nickname.length>0&&this.nickname.length<7){
         if(this.age){
           let userid = localStorage.getItem('userid')
-          addinfo(5,this.url,this.nickname,this.age,this.picked).then(res=>{
+          addinfo(userid,this.url,this.nickname,this.age,this.picked).then(res=>{
+            console.log(res)
                this.$router.push({path: '/info/meet'})
             })
        }else{
@@ -290,7 +292,7 @@ export default {
     }
 
   },
- 
+
 };
 </script>
 
