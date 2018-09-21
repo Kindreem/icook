@@ -64,7 +64,8 @@
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
-            <Button @click="end">取消</Button>
+            <Button type="primary" @click="end">取消</Button>
+            <Button type="primary" @click="rotate">旋转</Button>
             <Button type="primary" @click="achieve">完成</Button>
           </div>
     </Modal>
@@ -136,6 +137,9 @@ export default {
     });
   },
   methods: {
+    rotate() {
+      this.$refs.cropper.rotateRight()
+    },
     end() {
       this.infoimg=false
       this.ishow=true
