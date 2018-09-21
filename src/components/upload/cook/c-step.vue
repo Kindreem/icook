@@ -262,14 +262,14 @@ export default {
               picUrl="http://img.ichushen.cn/"+keyText.key;
               self.url = picUrl
               console.log(self.url)
-
-              var t;
-              clearTimeout(t);
-              console.log(self.shu);
-              t = setTimeout(function() {
               self.formDynamic.items[self.shu].img = self.url;
-               console.log(self.formDynamic.items[self.shu].img)
-            }, 500);
+            //   var t;
+            //   clearTimeout(t);
+            //   console.log(self.shu);
+            //   t = setTimeout(function() {
+            //   self.formDynamic.items[self.shu].img = self.url;
+            //    console.log(self.formDynamic.items[self.shu].img)
+            // }, 0);
          }
      }
      xhr.open("POST", url, true);

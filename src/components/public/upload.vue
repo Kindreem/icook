@@ -11,7 +11,7 @@
         </div>
       </section>
       <section class="but">
-        <router-link to="works">
+        <router-link to="Share">
           <Button shape="circle">点击上传</Button>
         </router-link>
       </section>
