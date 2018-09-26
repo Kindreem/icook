@@ -5,10 +5,10 @@
       </header>
       <div class="head">
          <div class="demo-avatar">
-            <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+            <Avatar :src="url" />
         </div>
         <div class="name">
-            <p>昵称</p>
+            <p>{{$store.state.name}}</p>
             <p>所属公会</p>
         </div>
         <div class="right">
@@ -124,8 +124,10 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {mapGetters } from 'vuex'  
+import {mapState} from 'vuex'  
 export default {
-     components: {
+    components: {
       swiper,
       swiperSlide,
   },
@@ -137,6 +139,7 @@ export default {
             freeMode: true,
             slidesOffsetBefore: 24,
         },
+        url:'',     //头像
         imgs:[
            { url:require('./1.png')},
            { url:require('./8.png')},
@@ -150,6 +153,10 @@ export default {
         ]
  
     }
+  },
+  mounted(){
+      this.url=this.$store.state.picimg
+      console.log(this.$store.state.name)
   },
   methods:{
       backto(){

@@ -160,7 +160,7 @@ export default {
   }
   .allload{
     margin-top px2rem(-10)
-    font-size px2rem(40)
+    font-size px2rem(28)
     display block
     text-align center
   }

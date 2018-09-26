@@ -25,7 +25,7 @@ import {searchbook} from '@/api'
     export default {
         data () {
             return {
-              items: ['麻辣鸡丝','水煮肉','叉烧肉'],
+              items: [],
               list:[],
               value: '',
               psize:5
@@ -55,11 +55,13 @@ import {searchbook} from '@/api'
                 console.log(res)
               })
               for(var i=0;i<this.items.length;i++) {
-                if(this.value == this.items[i]) {
+                if(this.value == this.items[i]||this.value.length == 0) {
                     return false
                 }
+
                }
               this.items.push(this.value)
+              
               // this.value = ""
             }
 

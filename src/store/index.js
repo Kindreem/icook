@@ -9,7 +9,9 @@ const state = {
     userid:'',
     items:'' ,       //菜谱搜索列表
     val:'',        //搜索框值
-    size:''
+    size:'',         //条数
+    name:'',        //昵称
+    picimg:''       //头像地址
 }
 
 
@@ -23,6 +25,12 @@ const mutations = {
         },
         setval:(state,val)=>{
             state.val= val
+        },
+        setimg:(state,picimg)=>{
+            state.picimg= picimg
+        },
+        setname:(state,name)=>{
+            state.name= name
         }
 }
 
@@ -39,6 +47,12 @@ const getters = {
     },
     getval:(state)=>{
         return state.val
+    },
+    getimg:(state)=>{
+        return state.picimg
+    },
+    getname:(state)=>{
+        return state.name
     }
 }
 

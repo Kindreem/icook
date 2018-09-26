@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 //设置请求的跟路径
-const baseURL = "http://192.168.1.37:8080"
+const baseURL = "http://api.ichushen.cn/"
 axios.defaults.baseURL = baseURL
 
 // 请求拦截器,给所有的请求加上token
@@ -27,6 +27,11 @@ export const register = (userphone,smscode)=>{
 //自动登录
 export const authlogin = (userphone,token)=>{
     return axios.post(`/sign/authlogin?userphone=${userphone}&token=${token}`).then(res=>res.data)
+}
+
+//微信登录
+export const wxlogin = (code)=>{
+    return axios.post(`/sign/getWxUserinfo?code=${code}`).then(res=>res.data)
 }
 
 //上传凭证

@@ -75,7 +75,7 @@
 
   </form>
           <div class="end">
-        <div class="left"><img src="./1-003（烹饪之心）.png" alt=""></div>
+        <div class="left"><img src="./1-003.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
             <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
@@ -95,13 +95,15 @@ let Base64 = require('js-base64').Base64;
 import {upload,addinfo} from "@/api";
 import vueCropper from 'vue-cropper'
 import moment from "moment";
-import datepick from "./datepick"
+import {mapState} from 'vuex'
+// import datepick from "./datepick"
 export default {
     components: {
     vueCropper,
-    datepick
+    // datepick
   },
   data() {
+
     return {
       date2:'',
       previews:'',
@@ -137,8 +139,34 @@ export default {
       upkey:'',       //拼接路径
       warning:0,      //提示显示隐藏
       tit:'',          // 提示信息=
-    };
+
+       handler: function(e){
+        e.preventDefault()
+    }
+
+    }
   },
+  watch: {
+    //picker关闭没有回调函数，所以侦听该属性替代
+     signReasonVisible:function(newvs,oldvs){
+        if(newvs) {
+            this.closeTouch()
+        } else {
+            this.openTouch()
+        }
+    },
+    nickname(val,old){
+      if(val.length>6){
+          this.nickname=this.nickname.substring(0,6)
+          this.warning = 1;
+          this.tit = '请上传头像'
+          setTimeout(()=>{
+                      this.warning=0;
+                   },1000)
+       
+      }
+    }
+},
    mounted() {
       // this.height = document.documentElement.clientHeight+'px'
       let width = document.documentElement.clientWidth*0.6
@@ -162,8 +190,8 @@ export default {
 		},
 
     	uploadImg (e, num) {
-        this.previewAvatar=false
          this.infoimg=true
+         this.previewAvatar=false
 			//上传图片
 			// this.option.img
 			var file = e.target.files[0]
@@ -197,9 +225,9 @@ export default {
   },
 
    achieve() {
-      this.previewAvatar= false
-      var self = this
        this.infoimg = false
+      this.previewAvatar= true
+      var self = this
       // this. finish('glob')
         this.$refs.cropper.getCropData((data) => {
         // this.url = data
@@ -257,23 +285,46 @@ export default {
     clear() {
       this.nickname = "";
     },
+
+
+    //年龄选择
+    closeTouch:function(){
+        document.getElementsByTagName("body")[0].addEventListener('touchmove',
+            this.handler,{passive:false});//阻止默认事件
+        // console.log("closeTouch haved happened.");
+    },
+    openTouch:function(){
+        document.getElementsByTagName("body")[0].removeEventListener('touchmove',
+            this.handler,{passive:false});//打开默认事件
+        // console.log("openTouch haved happened.");
+    },
+
     openPicker() {
       this.$refs.picker.open();
+      this.closeTouch();    //关闭默认事件
     },
     handleConfirm(data) {
+      this.openTouch();   //打开默认事件
       let date = moment(data).format("YYYY-­­­­­MM-DD");
       this.age = date;
+      this.age = this.age.toString()
+      // console.log(this.age.toString())
     },
     backto() {
       this.$router.go(-1);
     },
     add(){
+      if(this.img.url){
       if(this.nickname.length>0&&this.nickname.length<7){
         if(this.age){
           let userid = localStorage.getItem('userid')
           addinfo(userid,this.url,this.nickname,this.age,this.picked).then(res=>{
-            console.log(res)
-               this.$router.push({path: '/info/meet'})
+              if(res.code==200){
+                  this.$store.commit('setimg',this.url)
+                  this.$store.commit('setname',this.nickname)
+                    this.$router.push({path: '/info/meet'})
+                      
+                    }
             })
        }else{
           this.warning = 1;
@@ -289,6 +340,13 @@ export default {
                     this.warning=0;
                   },1000)
        }
+      }else{
+        this.warning = 1;
+        this.tit = '请上传头像'
+        setTimeout(()=>{
+                    this.warning=0;
+                  },1000)
+      }
     }
 
   },
@@ -548,14 +606,14 @@ export default {
     .left img {
       margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(32);
+      width: px2rem(48);
     }
     .con {
       margin: px2rem(10) px2rem(5);
       text-align: left;
       p {
         font-size: px2rem(10.5);
-        line-height: px2rem(20);
+        line-height: px2rem(25);
         color: #999;
       }
     }

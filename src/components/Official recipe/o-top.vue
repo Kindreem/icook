@@ -7,10 +7,10 @@
        <p>{{getlist.cbtext}}</p>
      </section>
      <section class="but">
-       <router-link to="flow">
+       <router-link to="/flow">
          <Button id="but1" type="ghost">分解流程</Button>
        </router-link>
-       <router-link to="home">
+       <router-link to="#">
          <Button id="but2" type="ghost">语音帮手</Button>
        </router-link>
      </section>

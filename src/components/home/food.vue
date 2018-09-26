@@ -64,23 +64,23 @@ export default {
       },
       items: [
         {
-          href: "O_recipe",
+          href: "home",
           src: require("./img/1-025.png"),
           title: "黄闷牛蛙 lv5"
         },
         {
-          href: "O_recipe",
+          href: "home",
           src: require("./img/1-025.png"),
           title: "干锅牛蛙 lv5",
           tag: "已完成"
         },
         {
-          href: "O_recipe",
+          href: "home",
           src: require("./img/1-025.png"),
           title: "红油牛蛙 lv5"
         },
         {
-          href: "O_recipe",
+          href: "home",
           src: require("./img/1-025.png"),
           title: "黄闷牛蛙 lv5"
         }
