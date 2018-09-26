@@ -46,8 +46,8 @@
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
-            <input type="text" placeholder="输入您的年龄" class="age" readonly="readonly" v-model="age" @focus="openPicker">
-             <mt-datetime-picker
+            <!-- <input type="text" placeholder="输入您的年龄" class="age" readonly="readonly" v-model="age" @focus="openPicker"> -->
+             <!-- <mt-datetime-picker
                 type="date"
                 ref="picker"
                 year-format="{value} 年"
@@ -57,8 +57,15 @@
                 :startDate="startDate"
                 :endDate="endDate"
                 >
-                </mt-datetime-picker>
-                <!-- <datepick :date2 = "date2"></datepick> -->
+                </mt-datetime-picker> -->
+
+                    <datetime
+                      v-model="age"
+                      :title="title"
+                      :end-date="endDate"
+                      :min-year="minYear"
+                      @on-confirm="onConfirm">
+                    </datetime>
             <p id="sel">仅自己可见></p>
         </div>
          <div class="item" >
@@ -75,7 +82,7 @@
 
   </form>
           <div class="end">
-        <div class="left"><img src="./1-003.png" alt=""></div>
+        <div class="left"><img src="./1.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
             <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
@@ -96,15 +103,20 @@ import { upload, addinfo } from "@/api";
 import vueCropper from "vue-cropper";
 import moment from "moment";
 import {mapState} from 'vuex'
-// import datepick from "./datepick"
+import { Datetime } from 'vux'
 export default {
   components: {
     vueCropper,
+    Datetime,
     // datepick
   },
   data() {
 
     return {
+      minYear:'1977',
+      startDate: '2017-11-11',
+      endDate: '2017-10-11',
+      title:'请选择你的年龄',
       date2: "",
       previews: "",
       option: {
@@ -159,7 +171,7 @@ export default {
       if(val.length>6){
           this.nickname=this.nickname.substring(0,6)
           this.warning = 1;
-          this.tit = '请上传头像'
+          this.tit = '昵称不能超过6个字符'
           setTimeout(()=>{
                       this.warning=0;
                    },1000)
@@ -184,6 +196,9 @@ export default {
     // this.$refs.cropper.changeScale(2)
   },
   methods: {
+    onConfirm(){
+      this.title=''
+    },
     // 实时预览函数
     realTime(data) {},
 
@@ -302,8 +317,9 @@ export default {
     },
 
     openPicker() {
-      this.$refs.picker.open();
+      // this.$refs.picker.open();
       this.closeTouch();    //关闭默认事件
+
     },
     handleConfirm(data) {
       // console.log(data)
@@ -339,8 +355,11 @@ export default {
             ).then(res => {
               if(res.code==200) {
                 // console.log(res);
-              localStorage.setItem("usernickname", this.nickname);
-              localStorage.setItem("userphoto", this.url);
+              this.$store.commit('setname',this.nickname)
+              this.$store.commit('setimg',this.url)
+
+              // localStorage.setItem("usernickname", this.nickname);
+              // localStorage.setItem("userphoto", this.url);
               this.$router.push({ path: "/info/meet" });
               }
             });
@@ -372,6 +391,72 @@ export default {
 
 <style lang="scss">
 @import "@/assets/hotcss/px2rem.scss";
+.vux-datetime{
+  span,p{
+    font-size:  px2rem(14);
+    color: #999;
+  }
+}
+.dp-container{
+        width: 80%!important;
+        left: 10%!important;
+        height: px2rem(200);
+        margin-bottom:px2rem(80);
+        transform: none!important;
+        border-radius: 20px;
+        overflow: hidden;
+    /deep/ .dp-content{
+      .dp-item{
+        height:  px2rem(160);
+        margin-top: px2rem(14);
+        .scroller-component{
+          height: px2rem(120);
+          position: relative;
+        .scroller-mask {
+            background-size:100% px2rem(50) !important;
+            bottom :0px !important;
+            // height:100% !important;
+              }
+          .scroller-indicator{
+              height: px2rem(25);
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+          }
+        }
+        .scroller-item{
+            height: px2rem(25)!important;
+            line-height:  px2rem(20)!important;
+            font-size: px2rem(20);
+        }
+        }
+    }
+    /deep/ .dp-header{
+            width:80%;
+            left: 10%;
+            position: absolute!important;
+            bottom:px2rem(10)!important;
+        .dp-item{
+            font-size:  px2rem(14);
+            width: px2rem(85);
+            border: 1px solid #999;
+            border-radius: px2rem(3);
+            height: px2rem(25);
+            line-height: px2rem(25);
+            color: #999;
+            padding: 0;
+            text-align: center;
+        }
+        .dp-item:nth-child(2){
+          border: none;
+           margin: 0 px2rem(30);
+        }
+        .dp-item:nth-child(3){
+            color: #199ed8;
+            border: 1px solid #199ed8;
+        }
+    }
+}
 .infoimg {
   // background: #000;
   .ivu-modal {
@@ -621,7 +706,7 @@ export default {
     .left img {
       margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(48);
+      width: px2rem(42);
     }
     .con {
       margin: px2rem(10) px2rem(5);

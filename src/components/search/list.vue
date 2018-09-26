@@ -35,52 +35,6 @@ import {searchbook} from '@/api'
 export default {
   data() {
     return {
-      items: [
-         {
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP1',
-          src: require('./img/head/TX (1).png'),
-          name: '什么名',
-          icon1: require('../../common/img/36X36/资源 101徽.png'),
-          icon2: require('../../common/img/36X36/资源 51鲁.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP2',
-          src: require('./img/head/TX (2).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP3',
-          src: require('./img/head/TX (3).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP4',
-          src: require('./img/head/TX (4).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '超级油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          good: '9898',
-          name: '官方菜谱 ICOOK运营团队',
-          src: require('./img/1-025(官方菜头像).png'),
-          seen: true,
-        },
-      ],
       lists: [
          {
           seen: true,
@@ -94,7 +48,7 @@ export default {
       loading:false,
       queryLoading:false,
       allLoaded:false,
-      num:0,
+      num:1,
       value:""
     }
   },
@@ -128,10 +82,13 @@ export default {
           searchbook(this.value,this.num,5).then(res=>{
             // this.cooklist= res.data
            if(res.code==200){
+              this.allLoaded =false
               this.cooklist = this.cooklist.concat(res.data);
            }else{
             //  this.allLoaded = false
-             this.allLoaded =true
+            this.num =1;
+            this.allLoaded =true
+            return false
            }
         })
          this.loading = false;

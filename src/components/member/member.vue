@@ -7,7 +7,7 @@
       </div>
 
        <div class="btn">
-           <router-link to="register"><button class="btn_register">登录</button></router-link>
+           <router-link to="/register"><button class="btn_register">登录</button></router-link>
        </div>
        <div class="thirdparty">
            <!-- <p>第三方登录</p> -->

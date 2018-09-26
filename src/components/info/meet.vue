@@ -34,7 +34,7 @@
         </router-link>
       </div>
        <div class="end">
-        <div class="left"><img src="./1-004（妙厨之心）.png" alt=""></div>
+        <div class="left"><img src="./2.png" alt=""></div>
         <div class="con">
             <p><span>'妙厨之手'</span>徽章</p>
             <p>您的拿手菜引起了ICOOK的注意！</p>
@@ -466,7 +466,7 @@ export default {
     .left img {
       margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(32);
+      width: px2rem(42);
     }
     .con {
       margin: px2rem(10) px2rem(5);

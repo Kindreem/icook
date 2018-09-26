@@ -1,32 +1,13 @@
 <template>
-  <div>
+  <div class="imp">
 
-    <group title="默认格式">
       <datetime
         v-model="value1"
         @on-change="change"
-        title="哈哈哈"
         @on-cancel="log('cancel')"
         @on-confirm="onConfirm"
-        @on-hide="log('hide', $event)"></datetime>
-    </group>
-
-   
-   
-    <!-- <group :title="$t('Default format: YYYY-MM-DD')">
-      <datetime
-        :order-map="{
-          year: 3,
-          month: 2,
-          day: 1
-        }"
-        v-model="value1"
-        @on-change="change"
-        title="customize column order"
-        @on-cancel="log('cancel')"
-        @on-confirm="onConfirm"
-        @on-hide="log('hide', $event)"></datetime>
-    </group> -->
+        @on-hide="log('hide', $event)">
+      </datetime>
 
 
   </div>
@@ -34,54 +15,23 @@
 
 
 <script>
-import { Datetime, Group, XButton } from 'vux'
+import { Datetime } from 'vux'
 
 export default {
+  props: ["value1"],
   components: {
     Datetime,
-    Group,
-    XButton
   },
   data () {
     return {
+      value1:'',
       noonValue: '2018-04-13 PM',
       readonly: true,
-      minuteListValue: '2017-06-12 09:00',
-      hourListValue: '2017-06-12 09:00',
       format: 'YYYY-MM-DD HH:mm',
       value1: '2015-11-12',
-      valueReadonly: '2015-11-12',
-      value2: '',
-      value3: '',
-      value3_1: '',
-      value4: '',
-      value5: '',
-      value6: '2016-08-18',
-      value7: '',
-      value8: '',
-      limitHourValue: '',
       startDate: '2015-11-11',
       endDate: '2017-10-11',
       formatValue: '2017-10-11',
-      formatValueFunction (val) {
-        return val.replace(/-/g, '$')
-      },
-      value9: '',
-      visibility: false,
-      computeHoursValue: '',
-      computeDaysValue: '',
-      computeHoursFunction (date, isToday, generateRange) {
-        if (isToday) {
-          return generateRange(new Date().getHours(), 23)
-        } else {
-          return generateRange(0, 23)
-        }
-      },
-      computeDaysFunction (options, generateRange) {
-        return [options.month] // if current month is n, days are [n]
-      },
-      onlySetEndDate: '2017-10-11',
-      onlySetEndDateValue: ''
     }
   },
   methods: {
@@ -92,48 +42,30 @@ export default {
       console.log('on-confirm arg', val)
       console.log('current value', this.value1)
     },
-    showPlugin () {
-      this.$vux.datetime.show({
-        cancelText: '取消',
-        confirmText: '确定',
-        format: 'YYYY-MM-DD HH',
-        value: '2017-05-20 18',
-        onConfirm (val) {
-          console.log('plugin confirm', val)
-        },
-        onShow () {
-          console.log('plugin show')
-        },
-        onHide () {
-          console.log('plugin hide')
-        }
-      })
-    },
-    toggleFormat () {
-      if (this.format === 'YYYY-MM-DD') {
-        this.format = 'YYYY-MM-DD HH:mm'
-      } else if (this.format === 'YYYY-MM-DD HH:mm') {
-        this.format = 'YYYY-MM-DD'
-      }
-    },
+    // showPlugin () {
+    //   this.$vux.datetime.show({
+    //     cancelText: '取消',
+    //     confirmText: '确定',
+    //     format: 'YYYY-MM-DD HH',
+    //     value: '2017-05-20 18',
+    //     onConfirm (val) {
+    //       console.log('plugin confirm', val)
+    //     },
+    //     onHide () {
+    //       console.log('plugin hide')
+    //     }
+    //   })
+    // },
+    // toggleFormat () {
+    //   if (this.format === 'YYYY-MM-DD') {
+    //     this.format = 'YYYY-MM-DD HH:mm'
+    //   } else if (this.format === 'YYYY-MM-DD HH:mm') {
+    //     this.format = 'YYYY-MM-DD'
+    //   }
+    // },
     change (value) {
       console.log('change', value)
     },
-    clearValue (value) {
-      this.value6 = ''
-    },
-    clearValue8 (value) {
-      this.value8 = ''
-    },
-    setToday (value) {
-      let now = new Date()
-      let cmonth = now.getMonth() + 1
-      let day = now.getDate()
-      if (cmonth < 10) cmonth = '0' + cmonth
-      if (day < 10) day = '0' + day
-      this.value7 = now.getFullYear() + '-' + cmonth + '-' + day
-      console.log('set today ok')
-    }
   }
 }
 </script>
@@ -145,31 +77,68 @@ export default {
 //   padding-left: 15px;
 //   color: green;
 }
+.vux-datetime{
+  span,p{
+    font-size:  px2rem(15);
+  }
+}
 .dp-container{
-        width: 86%!important;
-        left: 7%!important;
+        width: 80%!important;
+        left: 10%!important;
         height: px2rem(200);
         margin-bottom:px2rem(120);
         transform: none!important;
         border-radius: 20px;
         overflow: hidden;
     /deep/ .dp-content{
-        margin-top: px2rem(20);
-        .scroller-indicator{
-            height: px2rem(30);
+      .dp-item{
+        height:  px2rem(160);
+        margin-top: px2rem(14);
+        .scroller-component{
+          height: px2rem(120);
+          position: relative;
+        .scroller-mask {
+            background-size:100% px2rem(50) !important;
+            bottom :0px !important;
+            // height:100% !important;
+              }
+          .scroller-indicator{
+              height: px2rem(25);
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+          }
         }
         .scroller-item{
-            height: px2rem(25);
-            font-size: px2rem(18);
+            height: px2rem(25)!important;
+            line-height:  px2rem(20)!important;
+            font-size: px2rem(20);
+        }
         }
     }
     /deep/ .dp-header{
-            width: 80%;
+            width:80%;
             left: 10%;
-            position: absolute;
-            bottom:px2rem(10);
+            position: absolute!important;
+            bottom:px2rem(10)!important;
         .dp-item{
-            font-size:  px2rem(20);
+            font-size:  px2rem(14);
+            width: px2rem(85);
+            border: 1px solid #999;
+            border-radius: px2rem(3);
+            height: px2rem(25);
+            line-height: px2rem(25);
+            color: #999;
+            padding: 0;
+            text-align: center;
+        }
+        .dp-item:nth-child(2){
+          border: none;
+           margin: 0 px2rem(30);
+        }
+        .dp-item:nth-child(3){
+            color: #199ed8;
+            border: 1px solid #199ed8;
         }
     }
 }
