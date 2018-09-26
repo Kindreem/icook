@@ -124,8 +124,10 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {mapGetters } from 'vuex'
+import {mapState} from 'vuex'
 export default {
-     components: {
+    components: {
       swiper,
       swiperSlide,
   },
@@ -137,6 +139,7 @@ export default {
             freeMode: true,
             slidesOffsetBefore: 24,
         },
+        url:'',     //头像
         imgs:[
            { url:require('./1.png')},
            { url:require('./8.png')},
@@ -152,6 +155,10 @@ export default {
         userphoto: ''
 
     }
+  },
+  mounted(){
+      this.url=this.$store.state.picimg
+      console.log(this.$store.state.name)
   },
   methods:{
       backto(){

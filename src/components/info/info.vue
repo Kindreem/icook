@@ -75,7 +75,7 @@
 
   </form>
           <div class="end">
-        <div class="left"><img src="./1-003（烹饪之心）.png" alt=""></div>
+        <div class="left"><img src="./1-003.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
             <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
@@ -95,13 +95,15 @@ let Base64 = require("js-base64").Base64;
 import { upload, addinfo } from "@/api";
 import vueCropper from "vue-cropper";
 import moment from "moment";
-import datepick from "./datepick";
+import {mapState} from 'vuex'
+// import datepick from "./datepick"
 export default {
   components: {
     vueCropper,
-    datepick
+    // datepick
   },
   data() {
+
     return {
       date2: "",
       previews: "",
@@ -134,17 +136,43 @@ export default {
       startDate: new Date("1970-1-1"),
       age: "",
       picked: "1",
-      upkey: "", //拼接路径
-      warning: 0, //提示显示隐藏
-      tit: "" // 提示信息=
-    };
+      upkey:'',       //拼接路径
+      warning:0,      //提示显示隐藏
+      tit:'',          // 提示信息=
+
+       handler: function(e){
+        e.preventDefault()
+    }
+
+    }
   },
-  mounted() {
-    // this.height = document.documentElement.clientHeight+'px'
-    let width = document.documentElement.clientWidth * 0.6;
-    this.option.autoCropWidth = width;
-    this.option.autoCropHeight = this.option.autoCropWidth;
-    // console.log(this.option.autoCropHeight)
+  watch: {
+    //picker关闭没有回调函数，所以侦听该属性替代
+     signReasonVisible:function(newvs,oldvs){
+        if(newvs) {
+            this.closeTouch()
+        } else {
+            this.openTouch()
+        }
+    },
+    nickname(val,old){
+      if(val.length>6){
+          this.nickname=this.nickname.substring(0,6)
+          this.warning = 1;
+          this.tit = '请上传头像'
+          setTimeout(()=>{
+                      this.warning=0;
+                   },1000)
+       
+      }
+    }
+},
+   mounted() {
+      // this.height = document.documentElement.clientHeight+'px'
+      let width = document.documentElement.clientWidth*0.6
+      this.option.autoCropWidth= width
+      this.option.autoCropHeight = this.option.autoCropWidth
+      // console.log(this.option.autoCropHeight)
 
     let self = this;
     //页面加载 拉去token
@@ -159,33 +187,33 @@ export default {
     // 实时预览函数
     realTime(data) {},
 
-    uploadImg(e, num) {
-      this.previewAvatar = false;
-      this.infoimg = true;
-      //上传图片
-      // this.option.img
-      var file = e.target.files[0];
-      if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-        //  alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
-        return false;
-      }
-      var reader = new FileReader();
-      reader.onload = e => {
-        let data;
-        if (typeof e.target.result === "object") {
-          // 把Array Buffer转化为blob 如果是base64不需要
-          data = window.URL.createObjectURL(new Blob([e.target.result]));
-        } else {
-          data = e.target.result;
-        }
-        if (num === 1) {
-          this.img.url = data;
-        }
-      };
-      // 转化为base64
-      reader.readAsDataURL(file);
-      // 转化为blob
-      // reader.readAsArrayBuffer(file)
+    	uploadImg (e, num) {
+         this.infoimg=true
+         this.previewAvatar=false
+			//上传图片
+			// this.option.img
+			var file = e.target.files[0]
+			if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+				//  alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+				 return false
+			 }
+			var reader = new FileReader()
+			reader.onload = (e) => {
+				let data
+				if (typeof e.target.result === 'object') {
+					// 把Array Buffer转化为blob 如果是base64不需要
+					data = window.URL.createObjectURL(new Blob([e.target.result]))
+				} else {
+					data = e.target.result
+				}
+				if (num === 1) {
+					this.img.url = data
+				}
+			}
+			// 转化为base64
+			reader.readAsDataURL(file)
+			// 转化为blob
+        // reader.readAsArrayBuffer(file)
     },
 
     //取消
@@ -194,10 +222,10 @@ export default {
       this.previewAvatar = true;
     },
 
-    achieve() {
-      this.previewAvatar = false;
-      var self = this;
-      this.infoimg = false;
+   achieve() {
+       this.infoimg = false
+      this.previewAvatar= true
+      var self = this
       // this. finish('glob')
       this.$refs.cropper.getCropData(data => {
         // this.url = data
@@ -259,8 +287,23 @@ export default {
     clear() {
       this.nickname = "";
     },
+
+
+    //年龄选择
+    closeTouch:function(){
+        document.getElementsByTagName("body")[0].addEventListener('touchmove',
+            this.handler,{passive:false});//阻止默认事件
+        // console.log("closeTouch haved happened.");
+    },
+    openTouch:function(){
+        document.getElementsByTagName("body")[0].removeEventListener('touchmove',
+            this.handler,{passive:false});//打开默认事件
+        // console.log("openTouch haved happened.");
+    },
+
     openPicker() {
       this.$refs.picker.open();
+      this.closeTouch();    //关闭默认事件
     },
     handleConfirm(data) {
       // console.log(data)
@@ -578,14 +621,14 @@ export default {
     .left img {
       margin-top: px2rem(14);
       margin-left: px2rem(-10);
-      width: px2rem(32);
+      width: px2rem(48);
     }
     .con {
       margin: px2rem(10) px2rem(5);
       text-align: left;
       p {
         font-size: px2rem(10.5);
-        line-height: px2rem(20);
+        line-height: px2rem(25);
         color: #999;
       }
     }

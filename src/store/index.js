@@ -10,7 +10,10 @@ const state = {
     items:'' ,       //菜谱搜索列表
     val:'',        //搜索框值
     size:'',
-    sea: ['麻辣鸡丝','水煮肉','叉烧肉']   //历史搜索
+    sea: ['麻辣鸡丝','水煮肉','叉烧肉'],   //历史搜索
+    size:'',         //条数
+    name:'',        //昵称
+    picimg:''       //头像地址
 }
 
 
@@ -27,8 +30,14 @@ const mutations = {
         },
         setsea:(state,sea)=>{
           state.sea= sea
-      }
+      },
 
+        setimg:(state,picimg)=>{
+            state.picimg= picimg
+        },
+        setname:(state,name)=>{
+            state.name= name
+        }
 }
 
 //  3异步修改数据
@@ -45,10 +54,16 @@ const getters = {
     getval:(state)=>{
         return state.val
     },
-    
+
     getsea:(state)=>{
         return state.sea
-  }
+  },
+    getimg:(state)=>{
+        return state.picimg
+    },
+    getname:(state)=>{
+        return state.name
+    }
 }
 
 

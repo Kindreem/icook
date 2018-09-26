@@ -21,7 +21,7 @@
           <input type="button" :value="val+s" class="code" @click="code">
          <br>
           <!-- <router-link to="/info"> -->
-          <input class="btn_register" @click="login" value='登录' readonly="readonly">
+          <input class="btn_register" @click="login" value='登录' readonly="readonly" :style="style">
           <!-- </router-link> -->
           <!-- <router-link to='/register/psd'>密码登录</router-link> -->
         </form>
@@ -32,13 +32,13 @@
                <img src="../../assets/images/DR-002.png" alt="">
                <span>微信</span>
            </div>
-           <div class="qq">
+           <!-- <div class="qq">
                <img src="../../assets/images/DR-003.png" alt="">
                <span>QQ</span>
            </div>
             <div class="more">
                 <img src="../../assets/images/DR-004.png" alt="">
-            </div>
+            </div> -->
        </div>
   </div>
 </template>
@@ -58,12 +58,32 @@ export default {
       warning:0,
       s:'',
       height:'',     //屏幕高度
-      usernickname: ''
+      usernickname: '',
+      style:{
+      }
     }
   },
-  created(){
+  mounted(){
       this.height = document.documentElement.clientHeight+'px'
-      console.log(this.height)
+      console.log(this.height);
+      if(this.userphone&&this.password){
+      }
+  },
+  watch:{
+    userphone(val,old){
+      console.log('111')
+    },
+    password(val,old){
+       if(val.length>3){
+          this.style={
+            background:"#199ED8",
+            color:"#fff", 
+            boxShadow:"none"
+         }
+       }else{
+           this.style=''
+         }
+    }
   },
    methods:{
       backto(){

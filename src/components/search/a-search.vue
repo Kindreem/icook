@@ -57,9 +57,10 @@ import {searchbook} from '@/api'
                 console.log(res)
               })
               for(var i=0;i<this.items.length;i++) {
-                if(this.value == this.items[i] || this.value.length == 0) {
+                if(this.value == this.items[i]||this.value.length == 0) {
                     return false
                 }
+
                }
 
               this.items.push(this.value)

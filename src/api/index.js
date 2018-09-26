@@ -29,6 +29,11 @@ export const authlogin = (userphone,token)=>{
     return axios.post(`/sign/authlogin?userphone=${userphone}&token=${token}`).then(res=>res.data)
 }
 
+//微信登录
+export const wxlogin = (code)=>{
+    return axios.post(`/sign/getWxUserinfo?code=${code}`).then(res=>res.data)
+}
+
 //上传凭证
 export const upload = (status,type)=>{
     return axios.post(`/common/uploadToken?status=${status}&type=${type}`).then(res=>res.data)
