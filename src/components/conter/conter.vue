@@ -5,10 +5,10 @@
       </header>
       <div class="head">
          <div class="demo-avatar">
-            <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+            <Avatar :src="userphoto" />
         </div>
         <div class="name">
-            <p>昵称</p>
+            <p>{{usernickname}}</p>
             <p>所属公会</p>
         </div>
         <div class="right">
@@ -99,7 +99,7 @@
                         <p>段位</p>
                 </swiper-slide>
                </swiper>
-           </ul>   
+           </ul>
        </div></router-link>
         <div class="item badge">
              <div class="title">
@@ -147,8 +147,10 @@ export default {
            { url:require('./4.png')},
            { url:require('./4.png')},
            { url:require('./4.png')},
-        ]
- 
+        ],
+        usernickname: '',
+        userphoto: ''
+
     }
   },
   methods:{
@@ -159,6 +161,10 @@ export default {
     //   this.$router.push({path: 'dan/dan'})
      }
   },
+  mounted() {
+    this.usernickname = localStorage.getItem("usernickname");
+    this.userphoto = localStorage.getItem("userphoto");
+  }
 }
 </script>
 
@@ -231,7 +237,7 @@ export default {
               }
             }
          }
-         
+
         ul.badges {
             overflow: hidden;
             color: #666;

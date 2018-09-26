@@ -25,7 +25,7 @@ import {searchbook} from '@/api'
     export default {
         data () {
             return {
-              items: ['麻辣鸡丝','水煮肉','叉烧肉'],
+              items: '',
               list:[],
               value: '',
               psize:5
@@ -44,9 +44,11 @@ import {searchbook} from '@/api'
             },
             handleClose (event, name) {
               this.items.splice(name, 1);
+              this.$store.commit('setsea',this.items)
             },
             handleAdd () {
               // let size = this.$store.state.size
+              this.$store.state.items=''
               searchbook(this.value,1,this.psize).then(res=>{
                 this.list = res.data
                 this.$store.commit('setsize',this.psize)
@@ -59,10 +61,15 @@ import {searchbook} from '@/api'
                     return false
                 }
                }
+
               this.items.push(this.value)
+              this.$store.commit('setsea',this.items)
               // this.value = ""
             }
 
+        },
+        mounted() {
+          this.items = this.$store.state.sea
         },
         watch: {
           // size: {

@@ -34,8 +34,10 @@ export default {
     }
   },
   created(){
-    let cbid= this.$route.params.id 
-    getuser(cbid).then(res=>{
+    // console.log(this.userlist)
+    let cbid= this.$route.params.id
+    let userid = localStorage.getItem("userid");
+    getuser(cbid,userid).then(res=>{
       this.userlist = res.data
       console.log(res)
     })

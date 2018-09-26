@@ -9,7 +9,8 @@ const state = {
     userid:'',
     items:'' ,       //菜谱搜索列表
     val:'',        //搜索框值
-    size:''
+    size:'',
+    sea: ['麻辣鸡丝','水煮肉','叉烧肉']   //历史搜索
 }
 
 
@@ -23,10 +24,14 @@ const mutations = {
         },
         setval:(state,val)=>{
             state.val= val
-        }
+        },
+        setsea:(state,sea)=>{
+          state.sea= sea
+      }
+
 }
 
-//  3异步修改数据 
+//  3异步修改数据
 const actions = {}
 
 //  4就算属性
@@ -39,7 +44,11 @@ const getters = {
     },
     getval:(state)=>{
         return state.val
-    }
+    },
+    
+    getsea:(state)=>{
+        return state.sea
+  }
 }
 
 

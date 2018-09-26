@@ -11,7 +11,7 @@
           <!-- <img :src="item.img" alt=""> -->
           <div :class="item.booktype==2?'p-imgs':'o-imgs'" :style="{backgroundImage: 'url(' + (item.img) + ')'}"></div>
           <h4>{{item.name}}</h4>
-          <p>{{item.top}}</p>
+          <p>TOP{{i++}}</p>
         </section>
         <section :class="item.booktype==1?'o_bot':'p_bot'">
           <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.fknickname}}</h4></div>
@@ -35,76 +35,25 @@ import {searchbook} from '@/api'
 export default {
   data() {
     return {
-      items: [
-         {
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP1',
-          src: require('./img/head/TX (1).png'),
-          name: '什么名',
-          icon1: require('../../common/img/36X36/资源 101徽.png'),
-          icon2: require('../../common/img/36X36/资源 51鲁.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP2',
-          src: require('./img/head/TX (2).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP3',
-          src: require('./img/head/TX (3).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '经典油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          top: 'TOP4',
-          src: require('./img/head/TX (4).png'),
-          name: '什么名',
-          icon1: require('../../common/img/川派徽章/6川派大师.png'),
-          icon2: require('../../common/img/川派徽章/8川派厨神.png'),
-          good: "9898"
-        },{
-          title: '超级油焖大虾',
-          img: require('../../common/img/links/1-017.png'),
-          good: '9898',
-          name: '官方菜谱 ICOOK运营团队',
-          src: require('./img/1-025(官方菜头像).png'),
-          seen: true,
-        },
-      ],
-      lists: [
-         {
-          seen: true,
-          o_title: '经典油焖大虾',
-          bg: require('./img/帽子.png'),
-          o_good: '9898'
-        },
-      ],
       cooklist:'',
       pagesize:5,  //页数
       loading:false,
       queryLoading:false,
       allLoaded:false,
-      num:0,
-      value:""
+      num:1,
+      value:"",
+      i:1,
+      top: false,
+      utop: true
     }
   },
   computed:
   mapGetters({
       list:'getlist'
   }),
-  mounted(){
-    // console.log(this.$store.state.getlist)
-
+  created(){
+    // console.log(this.$store.state.items)
+    this.cooklist = this.$store.state.items
   },
   methods:{
     loadMore() {
@@ -128,10 +77,15 @@ export default {
           searchbook(this.value,this.num,5).then(res=>{
             // this.cooklist= res.data
            if(res.code==200){
+             this.allLoaded = false
+            //  console.log(res.data)
               this.cooklist = this.cooklist.concat(res.data);
+              this.$store.commit('setlist',this.cooklist)
            }else{
             //  this.allLoaded = false
+             this.num = 1
              this.allLoaded =true
+             return false
            }
         })
          this.loading = false;
@@ -180,6 +134,14 @@ export default {
     h4{
       color #666
     }
+    p{
+      font px2rem(24) Arail
+      color #fff
+      position absolute
+      top px2rem(17)
+      right px2rem(-2)
+      transform rotate(45deg)
+  }
   }
   .o_ban {
     margin-bottom 40px
@@ -190,6 +152,9 @@ export default {
     background #5DB8E9
     h4 {
       color #fff
+    }
+    p {
+      display none
     }
   }
 
@@ -224,24 +189,36 @@ export default {
     top px2rem(72)
     left px2rem(186)
   }
-  p{
-    font px2rem(24) Arail
-    color #fff
-    position absolute
-    top px2rem(17)
-    right px2rem(-2)
-    transform rotate(45deg)
-  }
+
 }
 .p_bot {
-   height px2rem(238)
-   background url('./img/ZY-042.png') no-repeat 96% 86%
-   background-size px2rem(36) auto
+  .good {
+  position absolute
+  bottom px2rem(26)
+  right px2rem(40)
+  img{
+    width px2rem(26)
+  }
+  h4 {
+    display inline-block
+    font px2rem(22) Arail
+    // color #666
+    position relative
+    top -5px
+    left 10px
+  }
+}
+  //  height px2rem(238)
+  //  background url('./img/ZY-042.png') no-repeat 96% 86%
+  //  background-size px2rem(36) auto
 }
 .o_bot {
-   height px2rem(238)
-   background url('./img/ZY-042-1.png') no-repeat 96% 86%
-   background-size px2rem(36) auto
+  .good {
+    display none
+  }
+  //  height px2rem(238)
+  //  background url('./img/ZY-042-1.png') no-repeat 96% 86%
+  //  background-size px2rem(36) auto
 }
 .head {
   position relative
@@ -250,6 +227,7 @@ export default {
   float left
   img {
     width px2rem(48)
+    border-radius 50%
   }
   h4 {
     display inline-block
@@ -270,21 +248,6 @@ export default {
     margin-right px2rem(10)
   }
 }
-.good {
-  position absolute
-  bottom px2rem(25)
-  right px2rem(168)
-  img{
-    width px2rem(24)
-  }
-  h4 {
-    display inline-block
-    font px2rem(22) Arail
-    // color #666
-    position relative
-    top -5px
-    left 10px
-  }
-}
+
 
 </style>

@@ -79,8 +79,8 @@ export const getcook = (cookbookid)=>{
 }
 
 //根据菜谱id获取用户菜谱
-export const getuser = (ubid)=>{
-  return axios.post(`/userbook/getuserbookbyid?ubid=${ubid}`).then(res=>res.data)
+export const getuser = (ubid,userid)=>{
+  return axios.post(`/userbook/getuserbookbyid?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
 }
 
 // 新增用户菜谱
@@ -91,4 +91,24 @@ export const add = (list)=>{
 //用户点赞排行榜
 export const userbooktopten = ()=>{
   return axios.post('/userbook/userbooktopten').then(res=>res.data)
+}
+
+//用户菜谱点赞
+export const bookstar = (ubid,userid)=>{
+  return axios.post(`/userbook/bookstar?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
+}
+
+//取消点赞
+export const bookunstar = (ubid,userid)=>{
+  return axios.post(`/userbook/bookunstar?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
+}
+
+//收藏
+export const bookcollect = (ubid,userid)=>{
+  return axios.post(`/userbook/bookcollect?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
+}
+
+//取消收藏
+export const bookuncollect = (ubid,userid)=>{
+  return axios.post(`/userbook/bookuncollect?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
 }
