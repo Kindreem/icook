@@ -5,10 +5,10 @@
       </header>
       <div class="head">
          <div class="demo-avatar">
-            <Avatar :src="url" />
+            <Avatar :src="userphoto" />
         </div>
         <div class="name">
-            <p>{{$store.state.name}}</p>
+            <p>{{usernickname}}</p>
             <p>所属公会</p>
         </div>
         <div class="right">
@@ -99,7 +99,7 @@
                         <p>段位</p>
                 </swiper-slide>
                </swiper>
-           </ul>   
+           </ul>
        </div></router-link>
         <div class="item badge">
              <div class="title">
@@ -124,8 +124,8 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import {mapGetters } from 'vuex'  
-import {mapState} from 'vuex'  
+import {mapGetters } from 'vuex'
+import {mapState} from 'vuex'
 export default {
     components: {
       swiper,
@@ -150,8 +150,10 @@ export default {
            { url:require('./4.png')},
            { url:require('./4.png')},
            { url:require('./4.png')},
-        ]
- 
+        ],
+        usernickname: '',
+        userphoto: ''
+
     }
   },
   mounted(){
@@ -166,6 +168,10 @@ export default {
     //   this.$router.push({path: 'dan/dan'})
      }
   },
+  mounted() {
+    this.usernickname = localStorage.getItem("usernickname");
+    this.userphoto = localStorage.getItem("userphoto");
+  }
 }
 </script>
 
@@ -238,7 +244,7 @@ export default {
               }
             }
          }
-         
+
         ul.badges {
             overflow: hidden;
             color: #666;

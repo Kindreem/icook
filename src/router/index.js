@@ -38,12 +38,23 @@ Vue.use(Router)
 
 let router = new Router({
   mode: 'history',
-  scrollBehavior(to, from,savedPosition) {
-    return {
-      x: 0,
-      y: 0
-    }
-  },
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+           return savedPosition
+   } else {
+       if (from.meta.keepAlive) {
+       　　from.meta.savedPosition = document.body.scrollTop;
+       }
+       return { x: 0, y: to.meta.savedPosition ||0}
+   }
+},
+
+  // scrollBehavior(to, from,savedPosition) {
+  //   return {
+  //     x: 0,
+  //     y: 0
+  //   }
+  // },
 
   routes: [
     {

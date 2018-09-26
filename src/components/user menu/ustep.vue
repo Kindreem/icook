@@ -86,6 +86,7 @@ export default {
       font-size px2rem(26)
       line-height px2rem(36)
       color #727272
+      text-indent px2rem(45)
     }
   }
 }
