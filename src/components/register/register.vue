@@ -125,6 +125,9 @@ export default {
                         localStorage.setItem('mytoken', res.data.token)
                         localStorage.setItem('userid', res.data.userid)
                         localStorage.setItem('certificationstatus', res.data.certificationstatus)
+                        localStorage.setItem('usernickname', res.data.usernickname)
+                        localStorage.setItem('userphoto', res.data.userphoto)
+
                         this.usernickname = res.data.usernickname
                          console.log(this.usernickname)
                          if(this.usernickname == null) {

@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 //设置请求的跟路径
-const baseURL = "http://192.168.1.37:8080"
+const baseURL = "http://api.ichushen.cn/"
 axios.defaults.baseURL = baseURL
 
 // 请求拦截器,给所有的请求加上token

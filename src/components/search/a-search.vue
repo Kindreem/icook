@@ -55,7 +55,7 @@ import {searchbook} from '@/api'
                 console.log(res)
               })
               for(var i=0;i<this.items.length;i++) {
-                if(this.value == this.items[i]) {
+                if(this.value == this.items[i] || this.value.length == 0) {
                     return false
                 }
                }
@@ -68,7 +68,7 @@ import {searchbook} from '@/api'
           // size: {
           //   handler: function (val, oldVal) {
           //     this.psize = val
-           
+
           //   },
           //   deep: true
           // }
