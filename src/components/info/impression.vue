@@ -30,34 +30,23 @@
                 >
                 </mt-datetime-picker>
             <p id="sel">仅自己可见></p>
-        </div>
-         <div class="item" >
-            <p class="sex">选择您的性别</p>
-             <div class="sex2">
-                <input type="radio" id="one" value="One" v-model="picked">
-                <label for="one">男</label>
-                <input type="radio" id="two" value="Two" v-model="picked">
-                <label for="two">女</label>
-             </div>
-        </div>
-       <p class="txt">选择您的性别完成奖励,完成后可获得<span>烹饪之心</span>的徽章</p>
-       <router-link to="/load/load">
-           <input type="button" class="next" value="下一步">
-       </router-link>
-  </form>
-    <div class="end">
-        <div class="left"><img src="./xxx.png" alt=""></div>
-        <div class="con">
-            <p><span>'烹饪之心'</span>徽章</p>
-            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
-        </div>
-        <div class="right"><span>EXP+3</span>
-        <img src="./DR-007.png" alt="">
-        <span>+3</span></div>
-    </div>
-
   </div>
 </template>
+
+<i18n>
+Current value:
+  zh-CN: 选中值
+Set 2017-11-11:
+  zh-CN: 设置为 2017-11-11
+Set 2016-08-08:
+  zh-CN: 设置为 2016-08-08
+Toggle format:
+  zh-CN: 切换时间格式
+Format 2019-10-23 10:
+  zh-CN: 时间格式设置为 2019-10-23 10
+Show popup with datetime-view:
+  zh-CN: 显示弹窗样式
+</i18n>
 
 <script>
 import { DatetimePicker } from 'mint-ui';
