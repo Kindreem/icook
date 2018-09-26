@@ -63,7 +63,8 @@ export default {
       id: "",
       show: false,
       warning: false,
-      tit: ""
+      tit: "",
+      certificationstatus: ""
     };
   },
 
@@ -100,8 +101,10 @@ export default {
         addid(userid, this.name, id).then(res => {
           console.log(res);
           if (res.code == 200) {
+            localStorage.setItem('certificationstatus', 1)
             this.$router.push({path: '/load'})
             this.show = false;
+
           } else {
             this.tit = res.msg;
             this.warning = true;

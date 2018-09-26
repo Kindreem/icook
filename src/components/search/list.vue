@@ -107,7 +107,7 @@ export default {
 
   },
   methods:{
-    loadMore() { 
+    loadMore() {
       //  if(this.allLoaded){
       //   this.loading = true;
       //   return;

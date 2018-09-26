@@ -180,7 +180,7 @@ export default {
           // border-top-right-radius 20px
         }
       }
-      
+
       .ban {
         text-align: center;
         padding: px2rem(20) 0;
