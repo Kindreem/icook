@@ -6,7 +6,7 @@
   <div class="tit">手机号登录</div>
      <div class="tel_register">
         <form >
-           <input type="text" class="mui-input-clear" v-model="userphone" placeholder="输入手机号码">
+           <input type="number" class="mui-input-clear" v-model="userphone" placeholder="输入手机号码">
              <transition>
             <p class="warning" v-show="warning">{{tit}}</p>
             </transition>
@@ -16,7 +16,7 @@
               <Icon v-else type="md-checkmark-circle-outline" />
             </div>
          <br>
-           <input type="text" v-model="password" placeholder="输入验证码" class="psd">
+           <input type="number" v-model="password" placeholder="输入验证码" class="psd">
          <br>
           <input type="button" :value="val+s" class="code" @click="code">
          <br>

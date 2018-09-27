@@ -117,3 +117,13 @@ export const bookcollect = (ubid,userid)=>{
 export const bookuncollect = (ubid,userid)=>{
   return axios.post(`/userbook/bookuncollect?ubid=${ubid}&userid=${userid}`).then(res=>res.data)
 }
+
+//我的菜谱
+export const mybook = (userid)=>{
+  return axios.post(`/user/mybook?userid=${userid}`).then(res=>res.data)
+}
+
+//我的收藏的菜谱
+export const mybookcollect = (userid)=>{
+  return axios.post(`/user/mybookcollect?userid=${userid}`).then(res=>res.data)
+}
