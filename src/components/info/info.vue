@@ -15,6 +15,7 @@
       <Modal v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
               ref="cropper"
+              :style="{height:height+'px'}"
               :img="img.url"
               :outputSize = "option.size"
               outputType="png"
@@ -64,6 +65,7 @@
                       :title="title"
                       :end-date="endDate"
                       :min-year="minYear"
+                      :default-selected-value="defaulted"
                       @on-confirm="onConfirm">
                     </datetime>
             <p id="sel">仅自己可见></p>
@@ -116,6 +118,7 @@ export default {
       minYear:'1977',
       startDate: '2017-11-11',
       endDate: '2017-10-11',
+      defaulted:'2000-1-11',   //默认选中时间
       title:'请选择你的年龄',
       date2: "",
       previews: "",
@@ -135,6 +138,7 @@ export default {
         autoCropHeight: 200,
         maxImgSize: 4000
       },
+      height:'',    //屏幕高度
       infoimg: false, //截图
       files: [], // 文件
       uploadToken: "", // 上传文件 token
@@ -180,7 +184,8 @@ export default {
     }
 },
    mounted() {
-      // this.height = document.documentElement.clientHeight+'px'
+      this.height = document.documentElement.clientHeight-50
+      console.log(this.height)
       let width = document.documentElement.clientWidth*0.6
       this.option.autoCropWidth= width
       this.option.autoCropHeight = this.option.autoCropWidth
@@ -409,6 +414,7 @@ export default {
       .dp-item{
         height:  px2rem(160);
         margin-top: px2rem(14);
+           transform: perspective(860px) rotateX(10deg); 
         .scroller-component{
           height: px2rem(120);
           position: relative;
@@ -428,6 +434,7 @@ export default {
             height: px2rem(25)!important;
             line-height:  px2rem(20)!important;
             font-size: px2rem(20);
+            transform:rotate3d(0, 0, 0,0deg) translate3d(8px, 0px, px2rem(2));
         }
         }
     }
@@ -458,18 +465,16 @@ export default {
     }
 }
 .infoimg {
-  // background: #000;
+  background: #000;
   .ivu-modal {
-    top: 0;
+      top: 0;
     height: 100%;
     .ivu-modal-content {
-      height: 100%;
       background: #000;
       .vue-cropper {
         background-image: none !important;
         background: #000;
         height: 100%;
-        height: px2rem(480);
         img {
           // margin-top: 40%;
           // position: relative;

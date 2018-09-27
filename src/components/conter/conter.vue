@@ -42,7 +42,7 @@
                </swiper>
            </ul>
        </div>
-       <div class="item menu">
+       <div class="item menu" v-if="mycook">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的菜谱({{mycook.length}})</p>
@@ -50,9 +50,10 @@
             <ul class="menus">
              <swiper :options="swiperOption">
                <swiper-slide v-for="(item,index) in mycook" :key="index">
+                   <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
                    <!-- <img :src="item.ubthumbimg" alt=""> -->
-                   </div>
+                   </div></router-link>
                    <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
@@ -72,16 +73,17 @@
                </swiper>
            </ul>
        </div>
-         <div class="item menu">
+         <div class="item menu" v-if="mybookcollect">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-               <p>我的收藏(共36个)</p>
+               <p>我的收藏(共{{mybookcollect.length}}个)</p>
             </div>
            <ul class="menus">
              <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in imgs" :key="index">
-                   <img src="./pic.png" alt="">
-                   <p>蛋炒饭</p>
+               <swiper-slide v-for="(item,index) in mybookcollect" :key="index">
+                   <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
+                   </div>
+                   <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
            </ul>
@@ -155,7 +157,8 @@ export default {
         usernickname: '',
         userphoto: '',
         userid:'',
-        mycook:[],       //我的菜谱
+        mycook:false,          //我的菜谱
+        mybookcollect:false,   //我的收藏
 
     }
   },
@@ -163,10 +166,20 @@ export default {
     this.usernickname = localStorage.getItem("usernickname");
     this.userphoto = localStorage.getItem("userphoto");
     this.userid = localStorage.getItem("userid");
+    //我的菜谱
       mybook(this.userid).then(res=>{
-          console.log(res.data)
-          this.mycook = res.data
+         if(res.code==200){
+              this.mycook = res.data
+         }
       })
+    //我收藏的菜谱
+    mybookcollect(this.userid).then(res=>{
+        if(res.data==200){
+            this.mybookcollect = res.data
+        }
+        console.log(res.data)
+    })
+
   },
   mounted(){
       this.url=this.$store.state.picimg
