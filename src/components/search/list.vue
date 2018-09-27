@@ -11,7 +11,7 @@
           <!-- <img :src="item.img" alt=""> -->
           <div :class="item.booktype==2?'p-imgs':'o-imgs'" :style="{backgroundImage: 'url(' + (item.img) + ')'}"></div>
           <h4>{{item.name}}</h4>
-          <p>TOP{{i++}}</p>
+          <p>TOP{{$store.state.i++}}</p>
         </section>
         <section :class="item.booktype==1?'o_bot':'p_bot'">
           <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.fknickname}}</h4></div>
@@ -42,7 +42,7 @@ export default {
       allLoaded:false,
       num:1,
       value:"",
-      i:1,
+      // i:1,
       top: false,
       utop: true
     }
@@ -54,6 +54,7 @@ export default {
   created(){
     // console.log(this.$store.state.items)
     this.cooklist = this.$store.state.items
+    // this.i=this.$store.state.i
   },
   methods:{
     loadMore() {

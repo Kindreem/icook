@@ -13,7 +13,9 @@ const state = {
     sea: ['麻辣鸡丝','水煮肉','叉烧肉'],   //历史搜索
     size:'',         //条数
     name:'',        //昵称
-    picimg:''       //头像地址
+    picimg:'',       //头像地址
+    i: 1,   //top
+    top: ''      //top排行
 }
 
 
@@ -37,7 +39,13 @@ const mutations = {
         },
         setname:(state,name)=>{
             state.name= name
-        }
+        },
+        seti:(state,i)=>{
+          state.i= i
+      },
+      settop:(state,top)=>{
+        state.top= top
+    },
 }
 
 //  3异步修改数据
@@ -63,7 +71,13 @@ const getters = {
     },
     getname:(state)=>{
         return state.name
-    }
+    },
+    geti:(state)=>{
+      return state.i
+  },
+  gettop:(state)=>{
+    return state.top
+}
 }
 
 

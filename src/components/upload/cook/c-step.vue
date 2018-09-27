@@ -510,7 +510,7 @@ export default {
       .vue-cropper{
           background-image:none !important;
           // background: #000;
-          height: px2rem(1100);
+          height: px2rem(480);
        img{
           // margin-top: 40%;
           // position: relative;

@@ -49,6 +49,8 @@ import {searchbook} from '@/api'
             handleAdd () {
               // let size = this.$store.state.size
               this.$store.state.items=''
+              // this.$store.state.i=1
+              this.$store.commit('seti',1)
               searchbook(this.value,1,this.psize).then(res=>{
                 this.list = res.data
                 this.$store.commit('setsize',this.psize)

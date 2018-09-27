@@ -3,7 +3,7 @@
     <header>
       <p>本周流行菜肴TOP10</p>
     </header>
-    <div class="item" v-for="(item,index) in items" :key="index">
+    <div class="item" v-for="(item,index) in $store.state.top" :key="index">
       <router-link :to="'U_menu/'+item.ubid">
       <img class="bg" :src="item.ubthumbimg" alt="">
      <div class="tab">
@@ -19,71 +19,31 @@
 <script>
 import { userbooktopten } from "@/api";
 export default {
+  created() {},
   mounted() {
+    //  console.log(document.body.scrollTop)
     window.addEventListener("scroll", this.move);
     //  window.addEventListener('scroll', this.end)
     var pageHeight = document.documentElement.clientHeight;
     this.height = pageHeight * (930 / 1334);
 
     userbooktopten().then(res => {
-      this.items=res.data
+      if (res.code == 200) {
+        if (this.$store.state.top == res.data) {
+          this.$store.state.top = this.$store.state.top;
+          // console.log(1)
+        }
+        else {
+           this.$store.state.top = res.data
+            // console.log(2)
+        }
+      }
     });
   },
   data() {
     return {
       height: "",
-      items: [
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        },
-        {
-          ibg: require("../../common/img/links/1-006.jpg"),
-          itab: require("./img/ZY-009.png"),
-          iheart: require("./img/ZY-043.png")
-        }
-      ]
+      // items: ""
     };
   },
   methods: {
@@ -145,13 +105,13 @@ export default {
 
   .tab {
     // width: px2rem(320);
-    padding-right px2rem(46)
-    height px2rem(88)
+    padding-right: px2rem(46);
+    height: px2rem(88);
     position: absolute;
     top: px2rem(-4);
     left: px2rem(-2);
-    background url('./img/ZY-009.png') no-repeat 100% 100%
-    background-size 100% 100%
+    background: url('./img/ZY-009.png') no-repeat 100% 100%;
+    background-size: 100% 100%;
   }
 
   .heart {
@@ -159,13 +119,13 @@ export default {
     position: relative;
     top: 0.26rem;
     // left: 0.73rem;
-    margin-top px2rem(6)
-    margin-left px2rem(27)
-    display inline-block
+    margin-top: px2rem(6);
+    margin-left: px2rem(27);
+    display: inline-block;
   }
 
   p {
-    margin-left px2rem(12)
+    margin-left: px2rem(12);
     // position: relative;
     // top: 0.29rem;
     // left: 0.6rem;
@@ -173,7 +133,7 @@ export default {
     // text-align: left;
     font: px2rem(24) '微软雅黑';
     color: #5A4030;
-    display inline-block
+    display: inline-block;
   }
 }
 </style>
