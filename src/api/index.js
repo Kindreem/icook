@@ -127,3 +127,8 @@ export const mybook = (userid)=>{
 export const mybookcollect = (userid)=>{
   return axios.post(`/user/mybookcollect?userid=${userid}`).then(res=>res.data)
 }
+
+//修改个人信息
+export const updateuser = (userid,userphoto,usernickname,userbirthday,usersex)=>{
+  return axios.post(`/userinfo/updateuser?userid=${userid}${userphoto}${usernickname}${userbirthday}${usersex}`).then(res=>res.data)
+}

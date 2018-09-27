@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <header>
-      <div class="head"><img src="./img/head/TX (2).png" alt=""><h4>真聪明</h4></div>
+      <div class="head"><img :src="userphoto" alt=""><h4>{{usernickname}}</h4></div>
       <div class="icon"><img src="../../common/img/川派徽章/1川派学员.png" alt=""><img src="../../common/img/川派徽章/4川派达人.png" alt=""></div>
       <router-link to="home"><div class="close"><img src="./img/RW-026.png" alt=""></div></router-link>
     </header>
@@ -11,11 +11,21 @@
 <script>
 export default {
   props: ['value'],
+  data() {
+    return {
+      usernickname: '',
+      userphoto: ''
+    }
+  },
   // methods:{
   //   back(){
   //       this.$router.go(-1);//返回上一层
   //   },
   // },
+  mounted() {
+    this.usernickname = localStorage.getItem("usernickname");
+    this.userphoto = localStorage.getItem("userphoto");
+  },
 }
 </script>
 
@@ -30,6 +40,7 @@ export default {
       float left
       margin-right px2rem(24)
       img {
+        border-radius 50%
         width px2rem(64)
       }
       h4 {

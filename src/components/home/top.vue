@@ -17,10 +17,24 @@
 </template>
 
 <script>
-import { userbooktopten } from "@/api";
+import { userbooktopten,updateuser } from "@/api";
 export default {
   created() {},
   mounted() {
+    // let usernicknam
+    // if(this.usernickname.length==0){
+    //    usernicknam=''
+
+    // }else{
+    //    usernicknam =`&usernickname=${this.usernickname}`
+    // }
+    // updateuser(28,usernicknam,'','','').then(res => {
+    //     console.log(res)
+    // })
+
+
+
+
     //  console.log(document.body.scrollTop)
     window.addEventListener("scroll", this.move);
     //  window.addEventListener('scroll', this.end)
@@ -43,6 +57,7 @@ export default {
   data() {
     return {
       height: "",
+      usernickname: "kin"
       // items: ""
     };
   },

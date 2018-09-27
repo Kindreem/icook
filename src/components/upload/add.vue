@@ -24,6 +24,7 @@
 
     <Modal :closable="false" v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
+              :style="{height:height+'px'}"
               ref="cropper"
               :img="img"
               :outputSize = "option.size"
@@ -62,6 +63,7 @@ export default {
   },
   data() {
     return {
+      height: '',
       previews: {},
       option: {
         size: 1,
@@ -207,6 +209,7 @@ export default {
 
   },
   created() {
+      this.height = document.documentElement.clientHeight-180
 
     let width = document.documentElement.clientWidth*0.7
       this.option.autoCropWidth= width
@@ -357,7 +360,7 @@ input:hover {
           background-image:none !important;
           // background: #000;
           // height: 100%;
-          height: px2rem(1100);
+          // height: px2rem(1100);
        img{
           // margin-top: 40%;
           // position: relative;

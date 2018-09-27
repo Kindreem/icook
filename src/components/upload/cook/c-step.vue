@@ -45,6 +45,7 @@
     </Form>
     <Modal v-model="infoimg" width="100%" class="infoimg">
             <vueCropper
+              :style="{height:height+'px'}"
               ref="cropper"
               :img="img"
               :outputSize = "option.size"
@@ -85,6 +86,7 @@ export default {
   },
   data() {
     return {
+      height: '',
       date2: "",
       previews: "",
       option: {
@@ -127,6 +129,7 @@ export default {
     };
   },
   mounted() {
+      this.height = document.documentElement.clientHeight-180
      let width = document.documentElement.clientWidth*0.7
       this.option.autoCropWidth= width
       this.option.autoCropHeight = width/5*3
@@ -510,7 +513,7 @@ export default {
       .vue-cropper{
           background-image:none !important;
           // background: #000;
-          height: px2rem(480);
+          // height: px2rem(1100);
        img{
           // margin-top: 40%;
           // position: relative;
