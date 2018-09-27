@@ -32,6 +32,11 @@ import tast from '@/components/tast/tast'
 import genre from '@/components/genre/genre'
 import dan from '@/components/dan/dan'
 
+import user from '@/components/member/user'
+import cookinfo from '@/components/cookinfo/cookinfo'
+import tow from '@/components/cookinfo/tow'
+
+
 import {authlogin} from '@/api'
 
 Vue.use(Router)
@@ -176,6 +181,24 @@ let router = new Router({
       path: '/dan/dan',
       name: 'dan',
       component:dan
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component:user
+    },
+    {
+      path: '/cookinfo',
+      name: 'cookinfo',
+      component:cookinfo,
+      redirect:'/tow',
+      children:[
+        {
+          path: '/tow',
+          name: 'tow',
+          component:tow
+        },
+      ]
     }
   ]
 })

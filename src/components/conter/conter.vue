@@ -45,7 +45,7 @@
        <div class="item menu" v-if="mycook">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-               <p>我的菜谱({{mycook.length}})</p>
+               <p>我的菜谱(共{{mycook.length}}个)</p>
             </div>
             <ul class="menus">
              <swiper :options="swiperOption">
@@ -73,7 +73,7 @@
                </swiper>
            </ul>
        </div>
-         <div class="item menu" v-if="mybookcollect">
+         <div class="item menu"  v-if="mybookcollect">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的收藏(共{{mybookcollect.length}}个)</p>
@@ -81,8 +81,9 @@
            <ul class="menus">
              <swiper :options="swiperOption">
                <swiper-slide v-for="(item,index) in mybookcollect" :key="index">
+                   <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
-                   </div>
+                   </div></router-link>
                    <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
@@ -157,8 +158,8 @@ export default {
         usernickname: '',
         userphoto: '',
         userid:'',
-        mycook:false,          //我的菜谱
-        mybookcollect:false,   //我的收藏
+        mycook:'',          //我的菜谱
+        mybookcollect:'',   //我的收藏
 
     }
   },
@@ -174,7 +175,7 @@ export default {
       })
     //我收藏的菜谱
     mybookcollect(this.userid).then(res=>{
-        if(res.data==200){
+        if(res.code==200){
             this.mybookcollect = res.data
         }
         console.log(res.data)

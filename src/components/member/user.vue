@@ -4,7 +4,7 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
       </header>
   <div class="demo-avatar">
-      <p>完善个人信息</p>
+      <p>个人中心</p>
       <label class="avatar-bg" >
         <!--默认显示的一张图片-->
          <img :src="url" >
@@ -79,20 +79,9 @@
                 <label for="two">女</label>
              </div>
         </div>
-       <p class="txt">选择您的性别完成奖励,完成后可获得<span>烹饪之心</span>的徽章</p>
-           <input type="button" class="next" value="下一步" @click="add">
+           <input type="button" class="next" value="保存" @click="add">
 
-  </form>
-          <div class="end">
-        <div class="left"><img src="./1.png" alt=""></div>
-        <div class="con">
-            <p><span>'烹饪之心'</span>徽章</p>
-            <p>褒奖给每位ICOOK烹饪之旅的烹饪家</p>
-        </div>
-        <div class="right"><span>EXP+3</span>
-        <img src="./DR-007.png" alt="">
-        <span>+3</span></div>
-    </div>
+         </form>
 
   </div>
 </template>
@@ -101,7 +90,7 @@
 import * as qiniu from "qiniu-js";
 import md5 from "js-md5";
 let Base64 = require("js-base64").Base64;
-import { upload, addinfo } from "@/api";
+import { updateuser} from "@/api";
 import vueCropper from "vue-cropper";
 import moment from "moment";
 import {mapState} from 'vuex'
@@ -146,8 +135,9 @@ export default {
       img: {
         url: ""
       },
-      url: require("./TX.png"),
+      url: '',
       nickname: "",
+      id:'',
       endDate: new Date(),
       startDate: new Date("1970-1-1"),
       age: "",
@@ -190,8 +180,11 @@ export default {
       this.option.autoCropWidth= width
       this.option.autoCropHeight = this.option.autoCropWidth
       // console.log(this.option.autoCropHeight)
-
-    let self = this;
+    
+    //id,姓名和头像
+    this.id = localStorage.getItem("userid");
+     this.url = localStorage.getItem("userphoto");
+     this.nickname = localStorage.getItem("usernickname");
     //页面加载 拉去token
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
@@ -203,6 +196,26 @@ export default {
   methods: {
     onConfirm(){
       this.title=''
+    },
+    
+    add() {
+        // let id =`&userid=${this.id}`
+        let url =`&userphoto=${this.url}`
+        let nickname =`&usernickname=${this.nickname}`
+        let picked = `&userbirthday=${this.picked}`
+        let age
+            if(!this.age){
+             age=''
+        }else{
+            age=`&userbirthday=${this.age}`
+        }
+        updateuser(this.id,url,nickname,age,picked).then(res=>{
+          if(res.code==200){
+                localStorage.setItem("usernickname", this.nickname);
+                localStorage.setItem("userphoto", this.url);
+                 this.$router.push({ path: "/" });
+          }
+        })
     },
     // 实时预览函数
     realTime(data) {},
@@ -315,70 +328,9 @@ export default {
       this.closeTouch();    //关闭默认事件
 
     },
-    handleConfirm(data) {
-      // console.log(data)
-      // let date =
-      // console.log(moment(data).format("YYYY-­­­­­MM-DD"))
-      let da = moment(data).format("YYYY-MM-DD");
-      console.log(da);
-      console.log(da.split("-"));
-      da.split("-").forEach(val => {
-        this.age += "-" + val;
-      });
-      this.age = this.age.substr(1);
-      console.log(this.age);
-    },
     backto() {
       this.$router.go(-1);
     },
-    add() {
-      // console.log(this.age)
-      if (this.img.url) {
-        if (this.nickname.length > 0 && this.nickname.length < 7) {
-          if (this.age.length) {
-            // console.log(this.age)
-            // console.log(this.nickname)
-
-            let userid = localStorage.getItem("userid");
-            addinfo(
-              userid,
-              this.url,
-              this.nickname,
-              this.age,
-              this.picked
-            ).then(res => {
-              if(res.code==200) {
-                // console.log(res);
-              // this.$store.commit('setname',this.nickname)
-              // this.$store.commit('setimg',this.url)
-              
-              localStorage.setItem("usernickname", this.nickname);
-              localStorage.setItem("userphoto", this.url);
-              this.$router.push({ path: "/info/meet" });
-              }
-            });
-          } else {
-            this.warning = 1;
-            this.tit = "请选择年龄";
-            setTimeout(() => {
-              this.warning = 0;
-            }, 1000);
-          }
-        } else {
-          this.warning = 1;
-          this.tit = "请输入1-6个字符昵称";
-          setTimeout(() => {
-            this.warning = 0;
-          }, 1000);
-        }
-      } else {
-        this.warning = 1;
-        this.tit = "请上传头像";
-        setTimeout(() => {
-          this.warning = 0;
-        }, 1000);
-      }
-    }
   }
 };
 </script>
@@ -392,6 +344,7 @@ export default {
   }
 }
 .dp-container{
+        position: relative;
         width: 80%!important;
         left: 10%!important;
         height: px2rem(200);
@@ -427,7 +380,7 @@ export default {
         }
         }
     }
-    /deep/ .dp-header{
+    .dp-header{
             width:80%;
             left: 10%;
             position: absolute!important;
@@ -547,9 +500,11 @@ export default {
   }
   .demo-avatar {
     p {
-      font-size: px2rem(20);
+      font-size: px2rem(16);
       color: #199ed8;
-      margin: 20px 0;
+      margin-top: px2rem(-24);
+      margin-bottom:px2rem(44); ;
+
     }
     .avatar-bg {
       width: px2rem(96);

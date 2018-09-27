@@ -18,9 +18,18 @@
         </router-link>
       </div>
       <div class="tright">
-        <router-link to="tast/tast">
-          <img src="./img/ZY-004.png" alt="">
+        <div class="set">
+          <router-link to="/user">
+             <img src="./img/ZY-004.png" alt="">
         </router-link>
+           <!-- <Dropdown>
+             <img src="./img/ZY-004.png" alt="">
+                <DropdownMenu slot="list">
+                    <DropdownItem>个人中心</DropdownItem>
+                    <DropdownItem>退出登录</DropdownItem>
+                </DropdownMenu>
+            </Dropdown> -->
+        </div>
         <router-link to="tast/tast">
           <img src="./img/ZY-003.png" alt="">
         </router-link>
@@ -226,6 +235,19 @@ header {
 }
 
 .tright {
+  .set{
+    float: right;
+    >>> .ivu-dropdown{ 
+        .ivu-select-dropdown{
+         margin-top:px2rem(64);
+         li {
+           font-size :px2rem(16)!important;
+         }
+        
+      }
+    }
+    
+  }
   img {
     float: right;
     margin-left: px2rem(24);
