@@ -45,13 +45,15 @@
        <div class="item menu">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-               <p>我的菜谱(共36个)</p>
+               <p>我的菜谱({{mycook.length}})</p>
             </div>
             <ul class="menus">
              <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in imgs" :key="index">
-                   <img src="./pic.png" alt="">
-                   <p>菜名</p>
+               <swiper-slide v-for="(item,index) in mycook" :key="index">
+                   <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
+                   <!-- <img :src="item.ubthumbimg" alt=""> -->
+                   </div>
+                   <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
            </ul>
@@ -59,7 +61,7 @@
        <div class="item menu">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-                <p>我的作品(共36个)</p>
+                <p>我的作品(共1个)</p>
             </div>
            <ul class="menus">
              <swiper :options="swiperOption">
@@ -94,7 +96,7 @@
                <swiper :options="swiperOption">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
                         <router-link to="dan/dan" >
-                        <img :src="item.url" alt=""   @click="bag">
+                        <img :src="item.url" alt="">
                         </router-link>
                         <p>段位</p>
                 </swiper-slide>
@@ -124,8 +126,7 @@
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import {mapGetters } from 'vuex'
-import {mapState} from 'vuex'
+import {mybook,mybookcollect} from '@/api'
 export default {
     components: {
       swiper,
@@ -152,26 +153,30 @@ export default {
            { url:require('./4.png')},
         ],
         usernickname: '',
-        userphoto: ''
+        userphoto: '',
+        userid:'',
+        mycook:[],       //我的菜谱
 
     }
   },
+  created(){
+    this.usernickname = localStorage.getItem("usernickname");
+    this.userphoto = localStorage.getItem("userphoto");
+    this.userid = localStorage.getItem("userid");
+      mybook(this.userid).then(res=>{
+          console.log(res.data)
+          this.mycook = res.data
+      })
+  },
   mounted(){
       this.url=this.$store.state.picimg
-      console.log(this.$store.state.name)
   },
   methods:{
       backto(){
-      this.$router.go(-1);
-    },
-  bag() {
-    //   this.$router.push({path: 'dan/dan'})
-     }
-  },
-  mounted() {
-    this.usernickname = localStorage.getItem("usernickname");
-    this.userphoto = localStorage.getItem("userphoto");
-  }
+        this.$router.go(-1);
+        },
+
+     },
 }
 </script>
 
@@ -225,6 +230,9 @@ export default {
     .item.menu{
         height:  px2rem(170);
         // ===========================修改处
+        .menus{
+             overflow: hidden;
+        }
          /deep/ .swiper-container{
              overflow: hidden;
              margin-left: px2rem(-10);
@@ -233,11 +241,19 @@ export default {
                     display:flex;
                     width: 700%;
                 .swiper-slide{
-                    // width: 33.333%;
-                    text-align: center;
+                        // width: 33.333%;
+                        text-align: center;
                     img{
                         width: px2rem(90);
+                    }
+                    .ubimg{
+                        margin: 0 auto;
+                        width: px2rem(90);
+                        height: px2rem(90);
                         border-radius:px2rem(10);
+                        background-repeat: no-repeat;
+                        background-size: px2rem(120) px2rem(120);
+                        background-position: center center;
                         overflow: hidden;
                      }
                   }
@@ -257,6 +273,7 @@ export default {
                 text-align: center;
                 img{
                     width: px2rem(64);
+                    height: px2rem(64);
                  }
                 }
             }
