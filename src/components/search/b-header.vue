@@ -25,6 +25,7 @@
 <script>
 import { XAddress, ChinaAddressV4Data } from "vux";
 import gcoord from "gcoord";
+import { searchbook } from "@/api";
 // import BMap from 'BMap'
 export default {
   components: {
@@ -35,7 +36,9 @@ export default {
       addressData: ChinaAddressV4Data,
       addressValue: ["", "", ""],
       position: "",
-      active: true
+      active: true,
+      psize: 5,
+      list: '',
     };
   },
   methods: {
@@ -45,16 +48,34 @@ export default {
     change1() {
       this.$store.state.searchsort = 1;
       this.active = true;
+
+      this.$store.state.items = "";
+      searchbook(this.$store.state.val, 1, this.psize,this.$store.state.searchsort).then(res => {
+        this.list = res.data;
+        this.$store.commit("setlist", this.list);
+        // console.log(this.$store.state.val);
+      });
     },
     change2() {
       this.$store.state.searchsort = 2;
       this.active = false;
+
+      this.$store.state.items = "";
+      searchbook(this.$store.state.val, 1, this.psize,this.$store.state.searchsort).then(res => {
+        this.list = res.data;
+        this.$store.commit("setlist", this.list);
+        // console.log(this.$store.state.val);
+      });
     }
   },
   created() {
     var _this = this;
-    this.active = true;
-
+    // this.active = true;
+     if (this.$store.state.searchsort==1) {
+       this.active = true;
+     }else {
+        this.active = false;
+     }
     //  var map = new BMap.Map("allmap");
     //  var point = new BMap.Point(116.331398,39.897445);
     //   map.centerAndZoom(point,12);

@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <section class="top">
-      <Input v-model="value" placeholder="输入菜系或菜谱" clearable search @on-enter="handleAdd"/>
+      <Input v-model="value" ref="in" placeholder="输入菜系或菜谱" clearable search @on-enter="handleAdd" autofocus="autofocus"/>
       <img class="left" src="./img/DR-005.png" alt="" @click="back">
       <img class="right" src="./img/ZY-028.png" alt="">
     </section>
@@ -42,6 +42,7 @@ export default {
     },
     handleshow(item) {
       this.value = item;
+      this.$refs.in.focus()
     },
     handleClose(event, name) {
       this.items.splice(name, 1);
@@ -50,8 +51,6 @@ export default {
     handleAdd() {
       // let size = this.$store.state.size
       this.$store.state.items = "";
-      // this.$store.state.i=1
-      // this.$store.commit("seti", 1);
       searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
         this.list = res.data;
         this.$store.commit("setsize", this.psize);
