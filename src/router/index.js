@@ -33,6 +33,7 @@ import genre from '@/components/genre/genre'
 import dan from '@/components/dan/dan'
 
 import user from '@/components/member/user'
+import fstyle from '@/components/cookinfo/fstyle'
 import cookinfo from '@/components/cookinfo/cookinfo'
 import one from '@/components/cookinfo/one'
 import tow from '@/components/cookinfo/tow'
@@ -187,6 +188,11 @@ let router = new Router({
       path: '/user',
       name: 'user',
       component:user
+    },
+    {
+      path: '/fstyle',
+      name: 'fstyle',
+      component:fstyle
     },
     {
       path: '/cookinfo',

@@ -162,158 +162,107 @@ export default {
 </script>
 
 
-
 <style lang="stylus" scoped>
-@import '../../assets/px2rem.styl';
-
+@import '../../assets/px2rem.styl'
 .all {
-  .cactive {
-    color: #6CBEE8 !important;
-  }
-
-  margin: px2rem(40) px2rem(30) 0px;
-
+  margin px2rem(40) px2rem(30) 0px
   .top {
-    height: px2rem(62);
-    padding-top: px2rem(14);
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-
+    height px2rem(62)
+    padding-top px2rem(14)
+    border-top 1px solid #ccc
+    border-bottom 1px solid #ccc
+    display flex
+    justify-content space-between
+    padding-left 20px
+    padding-right 20px
     a {
-      display: block;
-
+      display block
       h4 {
-        height: px2rem(60);
-        line-height: px2rem(60);
-        font: px2rem(24) Arail;
-        color: #666;
+        height px2rem(60)
+        line-height px2rem(60)
+        font px2rem(24) Arail
+        color #666
       }
     }
   }
-
-  .router-link-active {
-    h4 {
-      color: #6CBEE8 !important;
-    }
+  .cactive {
+    color #6CBEE8 !important
   }
-
   .bot {
-    height: px2rem(66);
-    font: px2rem(24) Arail;
-    color: #999;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-
+    height px2rem(66)
+    font px2rem(24) Arail
+    color #999
+    border-bottom 1px solid #ccc
+    display flex
+    justify-content space-between
     .left {
-      line-height: px2rem(66);
-
+      line-height px2rem(66)
       img {
-        position: relative;
-        top: 10px;
-        width: px2rem(36);
+        position relative
+        top 10px
+        width px2rem(36)
       }
-
       h3 {
-        display: inline-block;
-        color: #6CBEE8;
+        display inline-block
+        color #6CBEE8
       }
     }
-
     .min {
-      line-height: px2rem(66);
+      line-height px2rem(66)
     }
-
     .right {
-      line-height: px2rem(66);
+      line-height px2rem(66)
     }
   }
 }
-
 >>>.scroller-item {
-  font-size: 50px !important;
+  font-size 50px !important
 }
 </style>
 
 <style lang="stylus">
-@import '../../assets/px2rem.styl';
-
-.all {
-  .cactive {
-    color: #6CBEE8 !important;
-  }
-
-  margin: px2rem(40) px2rem(30) 0px;
-
-  .top {
-    height: px2rem(62);
-    padding-top: px2rem(14);
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    a {
-      display: block;
-
-      h4 {
-        height: px2rem(60);
-        line-height: px2rem(60);
-        font: px2rem(24) Arail;
-        color: #666;
-      }
-    }
-  }
-
-  .router-link-active {
-    h4 {
-      color: #6CBEE8 !important;
-    }
-  }
-
-  .bot {
-    height: px2rem(66);
-    font: px2rem(24) Arail;
-    color: #999;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-
-    .left {
-      line-height: px2rem(66);
-
-      img {
-        position: relative;
-        top: 10px;
-        width: px2rem(36);
-      }
-
-      h3 {
-        display: inline-block;
-        color: #6CBEE8;
-      }
-    }
-
-    .min {
-      line-height: px2rem(66);
-    }
-
-    .right {
-      line-height: px2rem(66);
-    }
-  }
+@import '../../assets/px2rem.styl'
+.vux-popup-header-left {
+  font-size px2rem(28)
 }
-
->>>.scroller-item {
-  font-size: 50px !important;
+.vux-popup-header-right {
+  font-size px2rem(32)
+  color #5DB8E9 !important
 }
+.scroller-item {
+  font-size px2rem(30) !important
+  height px2rem(46) !important
+  line-height px2rem(46) !important
+}
+.scroller-item-selected {
+  font-size px2rem(30) !important
+  height px2rem(46) !important
+  line-height px2rem(46) !important
+}
+.vux-picker-item {
+  // height 600px !important
+}
+.scroller-component {
+  height px2rem(500) !important
+}
+.scroller-mask {
+background-size 102% px2rem(228) !important
+bottom 0px !important
+
+height 100% !important
+}
+.scroller-indicator {
+  height px2rem(46) !important//修改需刷新
+  top px2rem(227) !important
+}
+.vux-popup-header {
+  height px2rem(56) !important
+  line-height px2rem(56) !important
+}
+// #allmap {
+//   height 100px
+//   width 100px
+// }
 </style>
-
 
 
