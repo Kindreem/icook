@@ -128,7 +128,7 @@ export default {
   }
 
   .p_ban {
-    margin-bottom: 40px;
+    margin-bottom: px2rem(40);
     position: relative;
     height: px2rem(470);
     box-shadow: 12px 12px 12px rgba(204, 204, 204, 0.4);
@@ -194,10 +194,11 @@ export default {
 }
 
 .p_bot {
+  height px2rem(82)
   .good {
     position: absolute;
-    bottom: px2rem(24);
-    right: px2rem(230);
+    bottom: px2rem(22);
+    right: px2rem(300);
 
     img {
       width: px2rem(26);
@@ -209,20 +210,21 @@ export default {
       // color #666
       position: relative;
       top: -5px;
-      left: 10px;
+      left: 5px;
     }
   }
   >h4{
     position: absolute;
-    bottom: px2rem(26);
+    bottom: px2rem(22);
     right: px2rem(20);
     // display: inline-block;
-    font-size px2rem(26)
+    font-size px2rem(24)
 
   }
 }
 
 .o_bot {
+  height px2rem(82)
   .good {
     display: none;
   }

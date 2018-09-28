@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <header>
-      <div class="head"><img :src="userphoto" alt=""><h4>{{usernickname}}</h4></div>
+      <router-link to="conter"><div class="head"><img :src="userphoto" alt=""><h4>{{usernickname}}</h4></div></router-link>
       <div class="icon"><img src="../../common/img/川派徽章/1川派学员.png" alt=""><img src="../../common/img/川派徽章/4川派达人.png" alt=""></div>
       <router-link to="home"><div class="close"><img src="./img/RW-026.png" alt=""></div></router-link>
     </header>

@@ -21,7 +21,7 @@
             </Row>
         </FormItem>
         <FormItem class="bot">
-            <Row>  
+            <Row>
                 <Col span="12" offset="6">
                     <Button type="dashed" long @click="handleAdd">添加食材</Button>
                 </Col>

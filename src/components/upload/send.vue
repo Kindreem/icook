@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import { add } from "@/api";
+import { add,addfeed } from "@/api";
 export default {
-  props: ["userBookDto"],
+  props: ["userBookDto", "ubdescription", "ubname", "ubthumbimg", "userid"],
   data() {
     return {
       tit: "",
@@ -36,137 +36,142 @@ export default {
   },
   methods: {
     sendj() {
-      // console.log(this.userBookDto.userFoodDtos);
-      let self = this
-      let checkubname = () =>{
-      if (this.userBookDto.ubname.length == 0) {
-        this.tit = "菜谱名称不能为空";
-        this.warning = true;
-        setTimeout(() => {
-          this.warning = false;
-        }, 1000);
-        return false;
-      }
-      else {
-        return true;
-      }
-      }
-      checkubname()
-      let cubdescription = () =>{
-        if (this.userBookDto.ubdescription.length == 0) {
-        this.tit = "菜谱说明不能为空";
-        this.warning = true;
-        setTimeout(() => {
-          this.warning = false;
-        }, 1000);
-        return false;
-      }
-      else {
-        return true;
-      }
-      }
-      cubdescription()
-      let cubthumbimg = () =>{
-      if (this.userBookDto.ubthumbimg.length == 0) {
-        this.tit = "请上传封面图片";
-        this.warning = true;
-        setTimeout(() => {
-          this.warning = false;
-        }, 1000);
-        return false;
-      }
-      else {
-        return true;
-      }
-      }
-      cubthumbimg()
-      let cuserFoodDtos
-      let cuserStepDtos
-      if (this.userBookDto.userFoodDtos.length == 0) {
-        this.tit = "食材或用量不能为空";
-        this.warning = true;
-        setTimeout(() => {
-          this.warning = false;
-        }, 1000);
-      } else if (this.userBookDto.userFoodDtos.length > 0) {
-        var mun = 0
-        this.userBookDto.userFoodDtos.forEach(function(val) {
-          // console.log(val.foodname.length);
-          if (val.foodname.length == 0 || val.weight.length == 0) {
-            self.tit = "食材或用量不能为空";
-            self.warning = true;
-            setTimeout(() => {
-              self.warning = false;
-            }, 1000);
-          }
-          else if(val.foodname.length > 0 && val.weight.length > 0) {
-                mun++
-                console.log(mun)
-
-          }
+      let self = this;
+      console.log(this.$route);
+      if (this.$route.name == "works") {
+        addfeed(this.userid,this.ubname,this.ubthumbimg,this.userid).then(res => {
+          console.log(res);
+          this.$router.push({ path: "/Share" });
         });
-        // console.log(this.userBookDto.userFoodDtos.length)
-        cuserFoodDtos = () =>{
-        if (mun==self.userBookDto.userFoodDtos.length) {
-          console.log(self.userBookDto.userFoodDtos.length)
-          console.log(mun)
-               return true
-               mun = 0
-
-        }
-        else {
-          return false
-        }
-        }
-        cuserFoodDtos()
-      }
-
-       if (this.userBookDto.userStepDtos.length == 0) {
-        this.tit = "步骤图片或说明不能为空";
-        this.warning = true;
-        setTimeout(() => {
-          this.warning = false;
-        }, 1000);
-      } else if (this.userBookDto.userStepDtos.length > 0) {
-        var aa = 0
-        console.log(this.userBookDto.userStepDtos);
-        this.userBookDto.userStepDtos.forEach(function(val) {
-          // console.log(val.img.length);
-          if (val.description.length==0||val.img.length==0) {
-            self.tit = "步骤图片或说明不能为空";
-            self.warning = true;
+      } else if (this.$route.name == "cook") {
+        // console.log(this.userBookDto.userFoodDtos);
+        let checkubname = () => {
+          if (this.userBookDto.ubname.length == 0) {
+            this.tit = "菜谱名称不能为空";
+            this.warning = true;
             setTimeout(() => {
-              self.warning = false;
+              this.warning = false;
             }, 1000);
+            return false;
+          } else {
+            return true;
           }
-          if(val.description.length > 0 && val.img.length > 0) {
-                aa++
-                // console.log(aa)
+        };
+        checkubname();
+        let cubdescription = () => {
+          if (this.userBookDto.ubdescription.length == 0) {
+            this.tit = "菜谱说明不能为空";
+            this.warning = true;
+            setTimeout(() => {
+              this.warning = false;
+            }, 1000);
+            return false;
+          } else {
+            return true;
           }
-        });
-        // console.log(this.userBookDto.userFoodDtos.length)
-        cuserStepDtos = () =>{
-        if (aa==self.userBookDto.userStepDtos.length) {
-          // console.log(aa)
-              return true
-               aa = 0
+        };
+        cubdescription();
+        let cubthumbimg = () => {
+          if (this.userBookDto.ubthumbimg.length == 0) {
+            this.tit = "请上传封面图片";
+            this.warning = true;
+            setTimeout(() => {
+              this.warning = false;
+            }, 1000);
+            return false;
+          } else {
+            return true;
+          }
+        };
+        cubthumbimg();
+        let cuserFoodDtos;
+        let cuserStepDtos;
+        if (this.userBookDto.userFoodDtos.length == 0) {
+          this.tit = "食材或用量不能为空";
+          this.warning = true;
+          setTimeout(() => {
+            this.warning = false;
+          }, 1000);
+        } else if (this.userBookDto.userFoodDtos.length > 0) {
+          var mun = 0;
+          this.userBookDto.userFoodDtos.forEach(function(val) {
+            // console.log(val.foodname.length);
+            if (val.foodname.length == 0 || val.weight.length == 0) {
+              self.tit = "食材或用量不能为空";
+              self.warning = true;
+              setTimeout(() => {
+                self.warning = false;
+              }, 1000);
+            } else if (val.foodname.length > 0 && val.weight.length > 0) {
+              mun++;
+              console.log(mun);
+            }
+          });
+          // console.log(this.userBookDto.userFoodDtos.length)
+          cuserFoodDtos = () => {
+            if (mun == self.userBookDto.userFoodDtos.length) {
+              console.log(self.userBookDto.userFoodDtos.length);
+              console.log(mun);
+              return true;
+              mun = 0;
+            } else {
+              return false;
+            }
+          };
+          cuserFoodDtos();
+        }
 
+        if (this.userBookDto.userStepDtos.length == 0) {
+          this.tit = "步骤图片或说明不能为空";
+          this.warning = true;
+          setTimeout(() => {
+            this.warning = false;
+          }, 1000);
+        } else if (this.userBookDto.userStepDtos.length > 0) {
+          var aa = 0;
+          console.log(this.userBookDto.userStepDtos);
+          this.userBookDto.userStepDtos.forEach(function(val) {
+            // console.log(val.img.length);
+            if (val.description.length == 0 || val.img.length == 0) {
+              self.tit = "步骤图片或说明不能为空";
+              self.warning = true;
+              setTimeout(() => {
+                self.warning = false;
+              }, 1000);
+            }
+            if (val.description.length > 0 && val.img.length > 0) {
+              aa++;
+              // console.log(aa)
+            }
+          });
+          // console.log(this.userBookDto.userFoodDtos.length)
+          cuserStepDtos = () => {
+            if (aa == self.userBookDto.userStepDtos.length) {
+              // console.log(aa)
+              return true;
+              aa = 0;
+            } else {
+              return false;
+            }
+          };
+          cuserStepDtos();
         }
-        else {
-          return false
+        // console.log(cuserFoodDtos())
+        // console.log(cuserStepDtos())
+
+        if (
+          checkubname() &&
+          cubdescription() &&
+          cubthumbimg() &&
+          cuserStepDtos() &&
+          cuserFoodDtos()
+        ) {
+          add(JSON.stringify(this.userBookDto)).then(res => {
+            console.log(res);
+            this.$router.push({ path: "/Share" });
+          });
         }
-        }
-        cuserStepDtos()
       }
-      // console.log(cuserFoodDtos())
-      // console.log(cuserStepDtos())
-
-     if(checkubname()&&cubdescription()&&cubthumbimg()&&cuserStepDtos()&&cuserFoodDtos()){
-      add(JSON.stringify(this.userBookDto)).then(res => {
-        console.log(res);
-        this.$router.push({path: '/Share'})
-      });
-     }
     }
   }
 };

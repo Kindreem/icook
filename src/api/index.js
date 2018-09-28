@@ -138,3 +138,13 @@ export const updateuser = (userid,userphoto,usernickname,userbirthday,usersex)=>
 export const getcooklist = (factionsid,pagenum,pagesize)=>{
   return axios.post(`/cookbook/listbyfactionsid?factionsid=${factionsid}&pagenum=${pagenum}&pagesize=${pagesize}`).then(res=>res.data)
 }
+
+//上传作品
+export const addfeed = (userid,ufname,ufimg,uftext)=>{
+  return axios.post(`/userfeed/addfeed?userid=${userid}&ufname=${ufname}&ufimg=${ufimg}&uftext=${uftext}`).then(res=>res.data)
+}
+
+//我的作品
+export const myfeed = (userid)=>{
+  return axios.post(`/userfeed/myfeed?userid=${userid}`).then(res=>res.data)
+}

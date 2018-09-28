@@ -14,11 +14,11 @@
     </section>
     <section>
       <div class="title">
-        <input @input="childByValue1" placeholder="添加菜谱名称" style="width: 100%" v-model="ubname"/>
+        <input @input="childByValue1" placeholder="添加上传名称" style="width: 100%" v-model="ubname"/>
         <p>必填</p>
       </div>
       <div class="pic">
-        <i-input @input="childByValue2" type="textarea" :autosize="true" placeholder="添加菜谱说明" v-model="ubdescription"></i-input>
+        <i-input @input="childByValue2" type="textarea" :autosize="true" placeholder="添加上传说明" v-model="ubdescription"></i-input>
       </div>
     </section>
 
@@ -76,7 +76,7 @@ export default {
         centerBox: false,
         canMove: true,
         autoCropWidth: 480,
-        autoCropHeight: 288,
+        autoCropHeight: 270,
         scalable: true,
         // autoCropArea:1,
         // 开启宽度和高度比例
@@ -213,7 +213,7 @@ export default {
 
     let width = document.documentElement.clientWidth*0.7
       this.option.autoCropWidth= width
-      this.option.autoCropHeight = width/5*3
+      this.option.autoCropHeight = width/16*9
 
 
     //页面加载 拉去token
@@ -298,7 +298,7 @@ input:hover {
     border: none;
     font-size: px2rem(26);
     width: 100%;
-    border-bottom: 1px solid #999 !important;
+    // border-bottom: 1px solid #999 !important;
     // line-height px2rem(30)
     padding-bottom: 16px;
     // height 60px
@@ -314,13 +314,13 @@ input:hover {
 >>>.ivu-input:hover {
   border: 0;
   outline: 0;
-  border-bottom: 1px solid #999 !important;
+  border: none !important;
 }
 
 >>>.ivu-input:focus {
   border: 0;
   outline: 0;
-  border-bottom: 1px solid #999 !important;
+  // border-bottom: 1px solid #999 !important;
   box-shadow: none;
 }
 .imgb {

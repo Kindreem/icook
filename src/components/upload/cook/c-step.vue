@@ -101,7 +101,7 @@ export default {
         canMove: true,
         canScale: true,
         autoCropWidth: 480,
-        autoCropHeight: 288,
+        autoCropHeight: 270,
         // 开启宽度和高度比例
 					// fixed: true,
 					// fixedNumber: [5, 3]
@@ -132,7 +132,7 @@ export default {
       this.height = document.documentElement.clientHeight-180
      let width = document.documentElement.clientWidth*0.7
       this.option.autoCropWidth= width
-      this.option.autoCropHeight = width/5*3
+      this.option.autoCropHeight = width/16*9
     //页面加载 拉去token
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
