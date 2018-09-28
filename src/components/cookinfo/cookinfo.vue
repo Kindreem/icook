@@ -3,7 +3,7 @@
      <header class="header">
             <img src="@/assets/images/DR-005.png" @click="backto">
             <div class="title"> 
-                <p>川菜</p>
+                <p> {{id==1?'川':id==2?'鲁':id==3?'粤':id==4?'闽':id==5?'苏':id==6?'浙':id==7?'湘':id==8?'徽':'家常'}}菜</p>
             </div>
             <img src="./1.png" alt="" @click="tab">
       </header>
@@ -20,8 +20,12 @@ export default {
    },
   data () {
     return { 
-       istab:true
+       istab:true,
+       id:''
     }
+  },
+  created(){
+    this.id= this.$route.params.id 
   },
   methods:{
      backto(){
@@ -29,9 +33,9 @@ export default {
     },
     tab(){
       if(this.istab==true){
-        this.$router.push({path: '/tow'})
+        this.$router.push({path: '/tow/'+this.id})
       }else{
-         this.$router.push({path: '/one'})
+         this.$router.push({path: '/one/'+this.id})
       }
         this.istab=!this.istab
     }

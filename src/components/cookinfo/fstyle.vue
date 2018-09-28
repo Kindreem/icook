@@ -7,7 +7,9 @@
     <div class="genre">
       <ul class="meet">
                 <li v-for="(item,id) in data" :key="id">
-                   <img :src="item.factionsimg" @click="open(item.factionsid)">
+                  <router-link :to="'cookinfo/'+item.factionsid">
+                   <img :src="item.factionsimg">
+                   </router-link>
                    <p>{{item.factionsname}}派</p>
                </li>
            </ul>
@@ -42,7 +44,7 @@ export default {
 @import '../../assets/px2rem.styl';
 
 .all {
-  margin: 0 px2rem(32);
+  margin: px2rem(12) px2rem(32);
 }
 
 header {

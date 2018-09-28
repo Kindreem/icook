@@ -195,19 +195,20 @@ let router = new Router({
       component:fstyle
     },
     {
-      path: '/cookinfo',
+      path: '/cookinfo/:id',
       name: 'cookinfo',
       component:cookinfo,
-      redirect:'/one',
+      redirect:'/one/:id',
       children:[
         {
-          path: '/tow',
-          name: 'tow',
-          component:tow
-        },{
-          path: '/one',
+          path: '/one/:id',
           name: 'one',
           component:one
+        },
+        {
+          path: '/tow/:id',
+          name: 'tow',
+          component:tow
         },
       ]
     }

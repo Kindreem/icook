@@ -600,7 +600,7 @@ export default {
     .sex {
       font-size: px2rem(12);
       line-height: px2rem(20);
-      background: #fff;
+      background: none;
       color: #999;
     }
     .sex2 {

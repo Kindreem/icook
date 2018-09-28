@@ -6,16 +6,14 @@
   infinite-scroll-distance="10">
     <div v-for="(item,index) in cooklist" :key="index">
       <div class="o_ban">
-        <router-link :to="'O_recipe/'+item.id">
+        <router-link :to="'/O_recipe/'+item.cookbookid">
         <section class="p_top">
           <!-- <img :src="item.img" alt=""> -->
           <div class="aimg"><img :src="item.cbthumbimg" alt=""></div>
           <!-- <p>TOP{{$store.state.i++}}</p> -->
         </section>
         <section class="o_bot">
-          <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.cbname}}</h4></div>
-          <div class="icon"><img :src="item.icon1" alt=""><img :src="item.icon2" alt=""></div>
-          <div class="good"><img src="./ZY-012.png" alt=""><h4>{{item.star}}</h4></div>
+          <div class="head"><img src="./tx.png" alt=""><h4>官方菜谱i厨神运营团队</h4></div>
           <h4>{{item.name}}</h4>
           <!-- <div class="save"><img src="./img/ZY-042.png" alt=""></div> -->
         </section>
@@ -32,6 +30,7 @@
 import { mapGetters } from "vuex";
 import { getcooklist } from "@/api";
 export default {
+    props: ["id"],
   data() {
     return {
       cooklist: "",
@@ -40,19 +39,12 @@ export default {
       queryLoading: false,
       allLoaded: false,
       num: 1,
-      value: "",
-      // i:1,
-      top: false,
-      utop: true
+      id:''
     };
   },
-  computed: mapGetters({
-    list: "getlist"
-  }),
-  created() {
-    // console.log(this.$store.state.items)
-    // this.cooklist = this.$store.state.items;
-    getcooklist(1,this.num,this.pagesize).then(res=>{
+  mounted() {
+    this.id = this.$route.params.id
+    getcooklist(this.id,this.num,this.pagesize).then(res=>{
         if(res.code==200){
             this.cooklist=res.data
         }
@@ -71,20 +63,16 @@ export default {
       // this.loading = !this.queryLoading;
       this.loading = true;
       setTimeout(() => {
-        this.size = this.$store.state.size;
-        this.value = this.$store.state.val;
-        console.log(this.value);
         // this.size+=5
         this.num++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
-        searchbook(this.value, this.num, 5,this.$store.state.searchsort).then(res => {
+        getcooklist(this.id, this.num,this.pagesize).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
             this.allLoaded = false;
             //  console.log(res.data)
             this.cooklist = this.cooklist.concat(res.data);
-            this.$store.commit("setlist", this.cooklist);
           } else {
             //  this.allLoaded = false
             this.num = 1;
@@ -110,6 +98,7 @@ export default {
 @import '../../assets/px2rem.styl';
 
 .all {
+    list-style none
 //   margin: px2rem(36) px2rem(30) 0px;
 
   >>> .mint-spinner-snake {

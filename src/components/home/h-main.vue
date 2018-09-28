@@ -10,7 +10,7 @@
         <img id="bright" v-show="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
         <img id="abl" v-show="on" src="./img/ZY-005.png" alt="">
         <img id="abr" v-show="on" src="./img/ZY-006.png" alt="">
-        <Button id="but1" type="ghost">烹饪菜系</Button>
+        <router-link to="/fstyle"><Button id="but1" type="ghost">烹饪菜系</Button></router-link>
         <Button id="but2" type="ghost">语音查询</Button>
       </div>
     </div>

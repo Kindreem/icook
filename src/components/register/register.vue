@@ -326,7 +326,9 @@ export default {
       left: 0;
       right: 0;
       display: flex;
+      -webkit-display: flex;
       justify-content: center;
+      -webkit-justify-content: center;
       p{
         font-size: px2rem(14);
         position: absolute;

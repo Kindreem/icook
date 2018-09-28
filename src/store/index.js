@@ -16,7 +16,8 @@ const state = {
     picimg:'',       //头像地址
     i: 1,   //top
     top: '',      //top排行
-    searchsort: 1 //搜索排行类型
+    searchsort: 1, //搜索排行类型
+    factionsid:''      //菜谱id
 
 }
 
@@ -50,6 +51,9 @@ const mutations = {
     },
     setsearchsort: (state, searchsort) => {
         state.searchsort = searchsort
+      },
+    setfactionsid: (state, factionsid) => {
+        state.factionsid = factionsid
       },
     
 }
@@ -86,6 +90,9 @@ const getters = {
         },
     getsearchsort: (state) => {
         return state.searchsort
+    },
+    getfactionsid: (state) => {
+        return state.factionsid
     }
 
 
