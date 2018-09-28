@@ -48,3 +48,9 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
   color: black;
   cursor: pointer;
 }
+/* input {
+  -webkit-appearance: none;
+}
+select{
+  -webkit-appearance: none;
+} */
