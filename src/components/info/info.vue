@@ -387,7 +387,7 @@ export default {
 @import "@/assets/hotcss/px2rem.scss";
 .vux-datetime{
   span,p{
-    font-size:  px2rem(14);
+    font-size:  px2rem(12);
     color: #999;
   }
 }

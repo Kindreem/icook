@@ -137,7 +137,7 @@ export default {
           if(( /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/.test(this.userphone))){
               if(this.password){
                    register(this.userphone,this.password).then(res=>{
-                    //  console.log(res)
+                     console.log(res)
                     if(res.code!=200){
                        this.tit = '验证码有误';
                        this.warning=1;
@@ -147,13 +147,13 @@ export default {
                         }else{
                         localStorage.setItem('myphone', res.data.userphone)
                         localStorage.setItem('mytoken', res.data.token)
-                        localStorage.setItem('userid', res.data.userid)
                         localStorage.setItem('certificationstatus', res.data.certificationstatus)
+                        localStorage.setItem('userid', res.data.userid)
                         localStorage.setItem('usernickname', res.data.usernickname)
-                        localStorage.setItem('userphoto', res.data.userphoto)
+                        localStorage.setItem('userbirthday', res.data.userbirthday)
+                        localStorage.setItem('usersex', res.data.usersex)
 
                         this.usernickname = res.data.usernickname
-                         console.log(this.usernickname)
                          if(this.usernickname == null) {
                            this.$router.push({path: '/info'})
                          }

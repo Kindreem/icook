@@ -62,7 +62,6 @@
 
                     <datetime
                       v-model="age"
-                      :title="title"
                       :end-date="endDate"
                       :min-year="minYear"
                       :default-selected-value="defaulted"
@@ -173,7 +172,7 @@ export default {
       }
     }
 },
-   mounted() {
+   created() {
       this.height = document.documentElement.clientHeight-120
       console.log(this.height)
       let width = document.documentElement.clientWidth*0.6
@@ -182,9 +181,12 @@ export default {
       // console.log(this.option.autoCropHeight)
     
     //id,姓名和头像
-    this.id = localStorage.getItem("userid");
+     this.id = localStorage.getItem("userid");
      this.url = localStorage.getItem("userphoto");
      this.nickname = localStorage.getItem("usernickname");
+     this.age = localStorage.getItem("userbirthday");
+     this.picked = localStorage.getItem("usersex");
+     console.log(this.age)
     //页面加载 拉去token
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
@@ -209,10 +211,12 @@ export default {
         }else{
             age=`&userbirthday=${this.age}`
         }
-        updateuser(this.id,url,nickname,age,picked).then(res=>{
+        updateuser(this.id,this.url,this.nickname,this.age,this.picked).then(res=>{
           if(res.code==200){
                 localStorage.setItem("usernickname", this.nickname);
                 localStorage.setItem("userphoto", this.url);
+                localStorage.setItem('userbirthday', this.age)
+                localStorage.setItem('usersex', this.picked)
                  this.$router.push({ path: "/" });
           }
         })
@@ -339,7 +343,7 @@ export default {
 @import "@/assets/hotcss/px2rem.scss";
 .vux-datetime{
   span,p{
-    font-size:  px2rem(14);
+    font-size:  px2rem(12);
     color: #999;
   }
 }

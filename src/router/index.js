@@ -34,6 +34,7 @@ import dan from '@/components/dan/dan'
 
 import user from '@/components/member/user'
 import cookinfo from '@/components/cookinfo/cookinfo'
+import one from '@/components/cookinfo/one'
 import tow from '@/components/cookinfo/tow'
 
 
@@ -191,12 +192,16 @@ let router = new Router({
       path: '/cookinfo',
       name: 'cookinfo',
       component:cookinfo,
-      redirect:'/tow',
+      redirect:'/one',
       children:[
         {
           path: '/tow',
           name: 'tow',
           component:tow
+        },{
+          path: '/one',
+          name: 'one',
+          component:one
         },
       ]
     }

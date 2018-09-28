@@ -5,17 +5,17 @@
   infinite-scroll-immediate-check="false"
   infinite-scroll-distance="10">
     <div v-for="(item,index) in cooklist" :key="index">
-      <div :class="item.booktype==1?'o_ban':'p_ban'">
-        <router-link :to="item.booktype==1?'O_recipe/'+item.id:'U_menu/'+item.id">
+      <div class="o_ban">
+        <router-link :to="'O_recipe/'+item.id">
         <section class="p_top">
           <!-- <img :src="item.img" alt=""> -->
-          <div class="aimg"><img :src="item.img" alt=""></div>
+          <div class="aimg"><img :src="item.cbthumbimg" alt=""></div>
           <!-- <p>TOP{{$store.state.i++}}</p> -->
         </section>
-        <section :class="item.booktype==1?'o_bot':'p_bot'">
-          <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.fknickname}}</h4></div>
+        <section class="o_bot">
+          <div class="head"><img :src="item.fkphoto" alt=""><h4>{{item.cbname}}</h4></div>
           <div class="icon"><img :src="item.icon1" alt=""><img :src="item.icon2" alt=""></div>
-          <div class="good"><img src="./img/ZY-012.png" alt=""><h4>{{item.star}}</h4></div>
+          <div class="good"><img src="./ZY-012.png" alt=""><h4>{{item.star}}</h4></div>
           <h4>{{item.name}}</h4>
           <!-- <div class="save"><img src="./img/ZY-042.png" alt=""></div> -->
         </section>
@@ -28,11 +28,9 @@
     </li>
   </div>
 </template>
-
-
 <script>
 import { mapGetters } from "vuex";
-import { searchbook } from "@/api";
+import { getcooklist } from "@/api";
 export default {
   data() {
     return {
@@ -53,8 +51,13 @@ export default {
   }),
   created() {
     // console.log(this.$store.state.items)
-    this.cooklist = this.$store.state.items;
-    // this.i=this.$store.state.i
+    // this.cooklist = this.$store.state.items;
+    getcooklist(1,this.num,this.pagesize).then(res=>{
+        if(res.code==200){
+            this.cooklist=res.data
+        }
+    })
+    
   },
   methods: {
     loadMore() {
@@ -103,12 +106,11 @@ export default {
   }
 };
 </script>
-
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 
 .all {
-  margin: px2rem(36) px2rem(30) 0px;
+//   margin: px2rem(36) px2rem(30) 0px;
 
   >>> .mint-spinner-snake {
     margin: 0 auto;

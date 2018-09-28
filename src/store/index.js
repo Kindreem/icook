@@ -15,7 +15,9 @@ const state = {
     name:'',        //昵称
     picimg:'',       //头像地址
     i: 1,   //top
-    top: ''      //top排行
+    top: '',      //top排行
+    searchsort: 1 //搜索排行类型
+
 }
 
 
@@ -46,6 +48,10 @@ const mutations = {
       settop:(state,top)=>{
         state.top= top
     },
+    setsearchsort: (state, searchsort) => {
+        state.searchsort = searchsort
+      },
+    
 }
 
 //  3异步修改数据
@@ -75,9 +81,14 @@ const getters = {
     geti:(state)=>{
       return state.i
   },
-  gettop:(state)=>{
-    return state.top
-}
+    gettop:(state)=>{
+        return state.top
+        },
+    getsearchsort: (state) => {
+        return state.searchsort
+    }
+
+
 }
 
 

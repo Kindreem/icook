@@ -2,7 +2,7 @@
   <div class="tow">
       <ul class="imgs">
           <li v-for="(item,index) in imgs" :key="index">
-              <img :src="item.url" alt="">
+              <img :src="item.url" alt="" ref="imgwidth">
           </li>
       </ul>
   </div>
@@ -12,6 +12,7 @@
 export default {
   data () {
     return { 
+        imgheight:'',
         imgs:[
             {url:require('./2.jpg')},
             {url:require('./2.jpg')},
@@ -22,7 +23,12 @@ export default {
         ]
     }
   },
+  mounted(){
+      this.imgheight =this.$refs.$el.clientWidth
+      console.log(this.imgheight)
+  },
   methods:{
+      
   },
 }
 </script>

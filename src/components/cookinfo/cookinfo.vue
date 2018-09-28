@@ -3,9 +3,9 @@
      <header class="header">
             <img src="@/assets/images/DR-005.png" @click="backto">
             <div class="title"> 
-                <p>粤派一段</p>
+                <p>川菜</p>
             </div>
-            <img src="./1.png" alt="">
+            <img src="./1.png" alt="" @click="tab">
       </header>
       <div class="style">
            <router-view/>
@@ -20,13 +20,20 @@ export default {
    },
   data () {
     return { 
-        barwidth:50,
-        color:'blue'
+       istab:true
     }
   },
   methods:{
-      backto(){
+     backto(){
       this.$router.go(-1);
+    },
+    tab(){
+      if(this.istab==true){
+        this.$router.push({path: '/tow'})
+      }else{
+         this.$router.push({path: '/one'})
+      }
+        this.istab=!this.istab
     }
   },
 }

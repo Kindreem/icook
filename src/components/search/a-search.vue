@@ -18,74 +18,71 @@
   </div>
 </template>
 
+
 <script>
-import {mapGetters } from 'vuex'
-import {mapState} from 'vuex'
-import {searchbook} from '@/api'
-    export default {
-        data () {
-            return {
-              items: '',
-              list:[],
-              value: '',
-              psize:5
-            }
-        },
-        //  computed:
-        //   mapGetters({
-        //       size:'getsize'
-        //   }),
-        methods: {
-            back(){
-            this.$router.go(-1);//返回上一层
-            },
-            handleshow(item) {
-              this.value = item
-            },
-            handleClose (event, name) {
-              this.items.splice(name, 1);
-              this.$store.commit('setsea',this.items)
-            },
-            handleAdd () {
-              // let size = this.$store.state.size
-              this.$store.state.items=''
-              // this.$store.state.i=1
-              this.$store.commit('seti',1)
-              searchbook(this.value,1,this.psize).then(res=>{
-                this.list = res.data
-                this.$store.commit('setsize',this.psize)
-                this.$store.commit('setval',this.value)
-                this.$store.commit('setlist',this.list)
-                console.log(res)
-              })
-              for(var i=0;i<this.items.length;i++) {
-                if(this.value == this.items[i]||this.value.length == 0) {
-                    return false
-                }
-
-               }
-
-              this.items.push(this.value)
-              this.$store.commit('setsea',this.items)
-              // this.value = ""
-            }
-
-        },
-        mounted() {
-          this.items = this.$store.state.sea
-        },
-        watch: {
-          // size: {
-          //   handler: function (val, oldVal) {
-          //     this.psize = val
-
-          //   },
-          //   deep: true
-          // }
+import { mapGetters } from "vuex";
+import { mapState } from "vuex";
+import { searchbook } from "@/api";
+export default {
+  data() {
+    return {
+      items: "",
+      list: [],
+      value: "",
+      psize: 5
+    };
+  },
+  //  computed:
+  //   mapGetters({
+  //       size:'getsize'
+  //   }),
+  methods: {
+    back() {
+      this.$router.go(-1); //返回上一层
+    },
+    handleshow(item) {
+      this.value = item;
+    },
+    handleClose(event, name) {
+      this.items.splice(name, 1);
+      this.$store.commit("setsea", this.items);
+    },
+    handleAdd() {
+      // let size = this.$store.state.size
+      this.$store.state.items = "";
+      // this.$store.state.i=1
+      // this.$store.commit("seti", 1);
+      searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
+        this.list = res.data;
+        this.$store.commit("setsize", this.psize);
+        this.$store.commit("setval", this.value);
+        this.$store.commit("setlist", this.list);
+        console.log(res);
+      });
+      for (var i = 0; i < this.items.length; i++) {
+        if (this.value == this.items[i] || this.value.length == 0) {
+          return false;
         }
-    }
-</script>
+      }
 
+      this.items.push(this.value);
+      this.$store.commit("setsea", this.items);
+      // this.value = ""
+    }
+  },
+  mounted() {
+    this.items = this.$store.state.sea;
+  },
+  watch: {
+    // size: {
+    //   handler: function (val, oldVal) {
+    //     this.psize = val
+    //   },
+    //   deep: true
+    // }
+  }
+};
+</script>
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
 .all {

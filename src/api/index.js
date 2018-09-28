@@ -74,8 +74,9 @@ export const likelist = ()=>{
 }
 
 //菜谱搜索
-export const searchbook = (searchkey,pagenum,pagesize)=>{
-  return axios.post(`/search/searchbook?searchkey=${searchkey}&pagenum=${pagenum}&pagesize=${pagesize}`).then(res=>res.data)
+export const searchbook = (searchkey,pagenum,pagesize,searchsort)=>{
+  return axios.post(`/search/searchbook?searchkey=${searchkey}&pagenum=${pagenum}&pagesize=${pagesize}&searchsort=${searchsort}
+  `).then(res=>res.data)
 }
 
 //根据菜谱id获取官方菜谱
@@ -130,5 +131,10 @@ export const mybookcollect = (userid)=>{
 
 //修改个人信息
 export const updateuser = (userid,userphoto,usernickname,userbirthday,usersex)=>{
-  return axios.post(`/userinfo/updateuser?userid=${userid}${userphoto}${usernickname}${userbirthday}${usersex}`).then(res=>res.data)
+  return axios.post(`/userinfo/updateuser?userid=${userid}&serphoto=${userphoto}&usernickname=${usernickname}&userbirthday=${userbirthday}&usersex=${usersex}`).then(res=>res.data)
+}
+
+//根据流派id获取官方菜谱
+export const getcooklist = (factionsid,pagenum,pagesize)=>{
+  return axios.post(`/cookbook/listbyfactionsid?factionsid=${factionsid}&pagenum=${pagenum}&pagesize=${pagesize}`).then(res=>res.data)
 }
