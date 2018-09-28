@@ -116,6 +116,7 @@ export default {
   .bg {
     width: 100%;
     border-radius: 20px;
+    height px2rem(690/16*9)
   }
 
   .tab {

@@ -21,7 +21,7 @@
           <input type="button" :value="val+s" class="code" @click="code">
          <br>
           <!-- <router-link to="/info"> -->
-          <input class="btn_register" @click="login" value='登录' readonly="readonly" :style="style">
+          <input type="button" class="btn_register" @click="login" value='登录' readonly="readonly" :style="style">
           <!-- </router-link> -->
           <!-- <router-link to='/register/psd'>密码登录</router-link> -->
         </form>
@@ -77,7 +77,7 @@ export default {
        if(val.length==6){
           this.style={
             background:"#199ED8",
-            color:"#fff", 
+            color:"#fff",
             boxShadow:"none"
          }
        }else if(val.length>6){
@@ -87,7 +87,7 @@ export default {
            this.style=''
          }
     }
-    
+
   },
    methods:{
       backto(){
@@ -279,6 +279,7 @@ export default {
     transform: translateX(-50%);
     height:px2rem(200) ;
     input{
+
       width: px2rem(238);
       height: px2rem(25);
       font-size:  px2rem(14);
@@ -298,8 +299,10 @@ export default {
       border-radius:20px;
       box-shadow: 2px 2px #cccccc;
       outline: none;
+
     }
     .btn_register{
+      -webkit-appearance:none !important;
       width: px2rem(150);
       height: px2rem(40);
       margin-top: px2rem(65);
@@ -326,10 +329,13 @@ export default {
       left: 0;
       right: 0;
       display: flex;
-      -webkit-display: flex;
+      display: -webkit-flex;
       justify-content: center;
       -webkit-justify-content: center;
       p{
+        // margin: 0 auto;
+        // -webkit-box-pack:center;
+        // -webkit-box-align:center;
         font-size: px2rem(14);
         position: absolute;
         bottom:  px2rem(30);
@@ -337,6 +343,8 @@ export default {
       }
       div{
           flex-direction: row;
+          // flex-direction: -webkit-row;
+
           img{
               width:px2rem(24);
               height: px2rem(24);
@@ -347,7 +355,7 @@ export default {
           }
       }
       .qq{
-          margin: 0 px2rem(88);
+          margin: 0 auto;
       }
   }
 }

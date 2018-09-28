@@ -42,14 +42,14 @@
                </swiper>
            </ul>
        </div>
-       <div class="item menu" v-if="mycook">
+       <div class="item menu" v-if="$store.state.caipu">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-               <p>我的菜谱(共{{mycook.length}}个)</p>
+               <p>我的菜谱(共{{$store.state.caipu.length}}个)</p>
             </div>
             <ul class="menus">
              <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in mycook" :key="index">
+               <swiper-slide v-for="(item,index) in $store.state.caipu" :key="index">
                    <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
                    <!-- <img :src="item.ubthumbimg" alt=""> -->
@@ -59,28 +59,30 @@
                </swiper>
            </ul>
        </div>
-       <div class="item menu">
+       <div class="item menu" v-if="$store.state.feed">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-                <p>我的作品(共1个)</p>
+                <p>我的作品(共{{$store.state.feed.length}}个)</p>
             </div>
            <ul class="menus">
              <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in imgs" :key="index">
-                   <img src="./pic.png" alt="">
-                   <p>菜名菜名</p>
+               <swiper-slide v-for="(item,index) in $store.state.feed" :key="index">
+                   <router-link :to="'U_menu/'+item.ufid" >
+                   <div class="ubimg" :style="{backgroundImage:'url(' + (item.ufimg) + ')'}">
+                   </div></router-link>
+                   <p>{{item.ufname}}</p>
                </swiper-slide>
                </swiper>
            </ul>
        </div>
-         <div class="item menu"  v-if="mybookcollect">
+         <div class="item menu"  v-if="$store.state.shoucang">
              <div class="title">
                 <img src="./GR-007.png" alt="">
-               <p>我的收藏(共{{mybookcollect.length}}个)</p>
+               <p>我的收藏(共{{$store.state.shoucang.length}}个)</p>
             </div>
            <ul class="menus">
              <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in mybookcollect" :key="index">
+               <swiper-slide v-for="(item,index) in $store.state.shoucang" :key="index">
                    <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
                    </div></router-link>
@@ -96,7 +98,7 @@
                <p>我的徽章</p>
            </div>
            <ul class="badges">
-               <swiper :options="swiperOption">
+               <swiper :options="swiperOption1">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
                         <router-link to="dan/dan" >
                         <img :src="item.url" alt="">
@@ -112,7 +114,7 @@
                <p>我的成就</p>
             </div>
            <ul class="badges">
-                <swiper :options="swiperOption">
+                <swiper :options="swiperOption1">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
                     <!-- <router-link to="dan/dan" > -->
                      <img src="./YES-SIR.png" alt="">
@@ -128,215 +130,246 @@
 </template>
 
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import {mybook,mybookcollect} from '@/api'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import { mybook, mybookcollect,myfeed } from "@/api";
 export default {
-    components: {
-      swiper,
-      swiperSlide,
+  components: {
+    swiper,
+    swiperSlide
   },
-  data () {
+  data() {
     return {
-        swiperOption: {
-            slidesPerView: 3,
-            // spaceBetween: 24,
-            freeMode: true,
-            slidesOffsetBefore: 24,
-        },
-        url:'',     //头像
-        imgs:[
-           { url:require('./1.png')},
-           { url:require('./8.png')},
-           { url:require('./3.png')},
-           { url:require('./4.png')},
-           { url:require('./4.png')},
-           { url:require('./4.png')},
-           { url:require('./4.png')},
-           { url:require('./4.png')},
-           { url:require('./4.png')},
-        ],
-        usernickname: '',
-        userphoto: '',
-        userid:'',
-        mycook:'',          //我的菜谱
-        mybookcollect:'',   //我的收藏
-
-    }
+      swiperOption: {
+        slidesPerView: 3,
+        // spaceBetween: 24,
+        freeMode: true,
+        slidesOffsetBefore: 24
+      },
+      swiperOption1: {
+        slidesPerView: 4,
+        // spaceBetween: 24,
+        freeMode: true
+        // slidesOffsetBefore: 24,
+      },
+      url: "", //头像
+      imgs: [
+        { url: require("./1.png") },
+        { url: require("./8.png") },
+        { url: require("./3.png") },
+        { url: require("./4.png") },
+        { url: require("./4.png") },
+        { url: require("./4.png") },
+        { url: require("./4.png") },
+        { url: require("./4.png") },
+        { url: require("./4.png") }
+      ],
+      usernickname: "",
+      userphoto: "",
+      userid: "",
+      // mycook: "", //我的菜谱
+      // mybookcollect: "" //我的收藏
+    };
   },
-  created(){
+  created() {
     this.usernickname = localStorage.getItem("usernickname");
     this.userphoto = localStorage.getItem("userphoto");
     this.userid = localStorage.getItem("userid");
     //我的菜谱
-      mybook(this.userid).then(res=>{
-         if(res.code==200){
-              this.mycook = res.data
-         }
-      })
-    //我收藏的菜谱
-    mybookcollect(this.userid).then(res=>{
-        if(res.code==200){
-            this.mybookcollect = res.data
+    mybook(this.userid).then(res => {
+      if (res.code == 200) {
+        // this.mycook = res.data;
+        if (this.$store.state.caipu == res.data) {
+          this.$store.state.caipu = this.$store.state.caipu;
+          console.log(1)
+        } else {
+          this.$store.state.caipu = res.data;
+          console.log(this.$store.state.caipu)
         }
-        console.log(res.data)
-    })
-
+      }
+    });
+    //我de收藏
+    mybookcollect(this.userid).then(res => {
+      if (res.code == 200) {
+        // this.mybookcollect = res.data;
+        if (this.$store.state.shoucang == res.data) {
+          this.$store.state.shoucang = this.$store.state.shoucang;
+          // console.log(1)
+        } else {
+          this.$store.state.shoucang = res.data;
+          // console.log(this.$store.state.shoucang)
+        }
+      }
+      // console.log(res.data);
+    });
+    //我的作品
+    myfeed(this.userid).then(res => {
+      if (res.code == 200) {
+        // this.mybookcollect = res.data;
+        if (this.$store.state.feed == res.data) {
+          this.$store.state.feed = this.$store.state.feed;
+          // console.log(1)
+        } else {
+          this.$store.state.feed = res.data;
+          // console.log(this.$store.state.shoucang)
+        }
+      }
+      // console.log(res.data);
+    });
   },
-  mounted(){
-      this.url=this.$store.state.picimg
+  mounted() {
+    this.url = this.$store.state.picimg;
   },
-  methods:{
-      backto(){
-        this.$router.go(-1);
-        },
-
-     },
-}
+  methods: {
+    backto() {
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 
 <style lang="scss">
-@import '@/assets/hotcss/px2rem.scss';
-.conter{
-    .header{
+@import "@/assets/hotcss/px2rem.scss";
+.conter {
+  .header {
     height: px2rem(44);
     background: none;
     text-align: left;
-    div{
+    div {
       padding: 20px;
     }
-    img{
+    img {
       margin-top: px2rem(5);
       width: px2rem(24);
     }
   }
-    padding:  px2rem(10);
-    text-align: left;
-    .head{
-        position: relative;
-        span{
-            width: px2rem(65);
-            height: px2rem(65);
-            border-radius: 50%;
-         }
-         .name{
-            position: absolute;
-            font-size: px2rem(12);
-            top: 0;
-            left: px2rem(75);
-            transform: translateY(50%);
-            p:last-child{
-                color: #999;
-            }
-         }
-         .right{
-             vertical-align: middle;
-             position: absolute;
-             transform: translateY(50%);
-             text-align: right;
-             top: 0;
-             right: 0;
-             img{
-                  width: px2rem(35);
-                  height: px2rem(35);
-             }
-         }
+  padding: px2rem(10);
+  text-align: left;
+  .head {
+    position: relative;
+    span {
+      width: px2rem(65);
+      height: px2rem(65);
+      border-radius: 50%;
     }
-    .item.menu{
-        height:  px2rem(170);
-        // ===========================修改处
-        .menus{
-             overflow: hidden;
-        }
-         /deep/ .swiper-container{
-             overflow: hidden;
-             margin-left: px2rem(-10);
-             width:100%;
-            .swiper-wrapper{
-                    display:flex;
-                    width: 700%;
-                .swiper-slide{
-                        // width: 33.333%;
-                        text-align: center;
-                    img{
-                        width: px2rem(90);
-                    }
-                    .ubimg{
-                        margin: 0 auto;
-                        width: px2rem(90);
-                        height: px2rem(90);
-                        border-radius:px2rem(10);
-                        background-repeat: no-repeat;
-                        background-size: px2rem(120) px2rem(120);
-                        background-position: center center;
-                        overflow: hidden;
-                     }
-                  }
-              }
-            }
-         }
-
-        ul.badges {
+    .name {
+      position: absolute;
+      font-size: px2rem(12);
+      top: 0;
+      left: px2rem(75);
+      transform: translateY(50%);
+      p:last-child {
+        color: #999;
+      }
+    }
+    .right {
+      vertical-align: middle;
+      position: absolute;
+      transform: translateY(50%);
+      text-align: right;
+      top: 0;
+      right: 0;
+      img {
+        width: px2rem(35);
+        height: px2rem(35);
+      }
+    }
+  }
+  .item.menu {
+    height: px2rem(170);
+    // padding-left: px2rem(28);
+    // ===========================修改处
+    .menus {
+      overflow: hidden;
+    }
+    /deep/ .swiper-container {
+      overflow: hidden;
+      margin-left: px2rem(-10);
+      width: 100%;
+      .swiper-wrapper {
+        display: flex;
+        width: 700%;
+        .swiper-slide {
+          // width: 33.333%;
+          text-align: center;
+          img {
+            width: px2rem(90);
+          }
+          .ubimg {
+            margin: 0 auto;
+            width: px2rem(90);
+            height: px2rem(90);
+            border-radius: px2rem(10);
+            background-repeat: no-repeat;
+            background-size: px2rem(120) px2rem(120);
+            background-position: center center;
             overflow: hidden;
-            color: #666;
-            /deep/ .swiper-container{
-                width: 100%;
-              .swiper-wrapper{
-                display:flex;
-                width:220%;
-            .swiper-slide{
-                text-align: center;
-                img{
-                    width: px2rem(64);
-                    height: px2rem(64);
-                 }
-                }
-            }
           }
         }
-    .item.badge{
-        height:  px2rem(150);
+      }
     }
-    .item{
-        width: 100%;
-        height:  px2rem(130);
-        margin-top: px2rem(15);
-        border-radius: px2rem(10);
-        box-shadow: 5px 6px 3px 6px rgba(0,0,0,.1);
-        .title{
-            width: px2rem(180);
-            height: px2rem(30);
-            position: relative;
-                img{
-                width: px2rem(180);
-                height: px2rem(40);
-                 }
-            p{
-                font-size: px2rem(12);
-                line-height: px2rem(30);
-                margin-left: px2rem(20);
-                padding-left:  px2rem(25);
-                background: url(./titles.png)no-repeat center left;
-                background-size: px2rem(20) px2rem(15);
-                position: absolute;
-                color: #666;
-                top: 0;
-            }
-        }
-        ul{
-            list-style: none;
-            font-size: px2rem(12);
-            margin-top: px2rem(15);
-            display: flex;
-            flex-wrap: wrap;
-        }
-        ul.money{
-            display: block;
-            li{
-            text-align: left;
-            margin:px2rem(8) px2rem(20);
-            }
-        }
+  }
 
+  ul.badges {
+    overflow: hidden;
+    color: #666;
+    /deep/ .swiper-container {
+      width: 100%;
+      .swiper-wrapper {
+        display: flex;
+        width: 220%;
+        .swiper-slide {
+          text-align: center;
+          img {
+            width: px2rem(64);
+            height: px2rem(64);
+          }
+        }
+      }
     }
+  }
+  .item.badge {
+    height: px2rem(150);
+  }
+  .item {
+    width: 100%;
+    height: px2rem(130);
+    margin-top: px2rem(15);
+    border-radius: px2rem(10);
+    box-shadow: 5px 6px 3px 6px rgba(0, 0, 0, 0.1);
+    .title {
+      width: px2rem(180);
+      height: px2rem(30);
+      position: relative;
+      img {
+        width: px2rem(180);
+        height: px2rem(40);
+      }
+      p {
+        font-size: px2rem(12);
+        line-height: px2rem(30);
+        margin-left: px2rem(20);
+        padding-left: px2rem(25);
+        background: url(./titles.png) no-repeat center left;
+        background-size: px2rem(20) px2rem(15);
+        position: absolute;
+        color: #666;
+        top: 0;
+      }
+    }
+    ul {
+      list-style: none;
+      font-size: px2rem(12);
+      margin-top: px2rem(15);
+      display: flex;
+      flex-wrap: wrap;
+    }
+    ul.money {
+      display: block;
+      li {
+        text-align: left;
+        margin: px2rem(8) px2rem(20);
+      }
+    }
+  }
 }
 </style>
