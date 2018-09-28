@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <div class="for">
-      <div class="icon">
+      <!-- <div class="icon">
         <section class="weixin">
           <div><img src="./img/DR-002.png" alt=""><span>微信</span></div>
           <div><Checkbox/></div>
@@ -14,9 +14,9 @@
           <div><img src="./img/RW-029.png" alt=""><span>微博</span></div>
           <div><Checkbox/></div>
        </section>
-      </div>
-      <p>每勾选一个发布按钮可获200金奖励</p>
-      <button @click="sendj">发布<br/>获得全部900金奖励</button>
+      </div> -->
+      <!-- <p>每勾选一个发布按钮可获200金奖励</p> -->
+      <button @click="sendj">发布</button>
     </div>
     <transition>
       <p class="warning" v-show="warning">{{tit}}</p>
@@ -208,10 +208,10 @@ export default {
   }
 
   .for >button {
-    margin-top: px2rem(40);
+    // margin-top: px2rem(40);
     width: 100%;
     height: px2rem(80);
-    font-size: px2rem(24);
+    font-size: px2rem(30);
     color: #999;
     background: #fff;
     border: none;
