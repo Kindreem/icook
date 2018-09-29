@@ -192,7 +192,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index 999
   padding-top: px2rem(28);
   background: #EFEFEF;
 

@@ -25,8 +25,8 @@
   margin 0 px2rem(66)
   h1 {
     line-height px2rem(84)
-    font-size px2rem(28)
-    color #5DB8E9
+    font-size px2rem(32)
+    color #199ed8
     text-align center
   }
   section {

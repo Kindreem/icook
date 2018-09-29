@@ -39,7 +39,7 @@ header {
     padding-top px2rem(26)
   }
   h3 {
-    font px2rem(26) Arial
+    font px2rem(32) Arial
     color #5DB8E9
     line-height px2rem(96)
   }

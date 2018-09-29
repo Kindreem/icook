@@ -199,7 +199,7 @@ export default {
   height px2rem(82)
   .good {
     position: absolute;
-    bottom: px2rem(22);
+    bottom: px2rem(26);
     right: px2rem(300);
 
     img {
@@ -217,7 +217,7 @@ export default {
   }
   >h4{
     position: absolute;
-    bottom: px2rem(22);
+    bottom: px2rem(26);
     right: px2rem(20);
     // display: inline-block;
     font-size px2rem(24)

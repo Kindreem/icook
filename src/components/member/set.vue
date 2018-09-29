@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { faction } from "@/api";
 export default {
   data() {
     return {
@@ -60,14 +61,16 @@ header {
   line-height: px2rem(88);
 
   img {
+    line-height: px2rem(88);
     margin-top: px2rem(18);
     float: left;
     width: px2rem(48);
   }
 
   h3 {
+    font-size px2rem(32)
+    font-weight 300
     text-align: center;
-    font-size: px2rem(26);
     color: #199ed8;
   }
 }

@@ -70,8 +70,9 @@ header {
 
   h3 {
     text-align: center;
-    font-size: px2rem(26);
-    color: #5DB8E9;
+    font-size px2rem(32)
+    font-weight 300
+    color: #199ed8;
   }
 }
 

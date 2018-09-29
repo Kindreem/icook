@@ -22,6 +22,7 @@
     h2 {
       font-size px2rem(28)
       color #fff
+      font-weight 600
     }
   }
 }

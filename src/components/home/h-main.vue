@@ -7,8 +7,8 @@
       <div class="butt">
         <img id="bleft" v-if="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt="">
         <img id="bright" v-if="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
-        <img id="abl" v-if="on" src="./img/ZY-005.png" alt="">
-        <img id="abr" v-if="on" src="./img/ZY-006.png" alt="">
+        <img id="abl" v-if="on" ref="abl" :class="bb?'ab1':'ab2'" src="./img/ZY-005.png" alt="">
+        <img id="abr" v-if="on" ref="abr" :class="bb?'ab1':'ab2'" src="./img/ZY-006.png" alt="">
         <router-link to="/fstyle"><Button id="but1" type="ghost">烹饪菜系</Button></router-link>
         <Button id="but2" type="ghost">语音查询</Button>
       </div>
@@ -37,7 +37,8 @@ export default {
       pRight: "",
       pTop: "",
       height: "",
-      pb: ""
+      pb: "",
+      bb: ""
     };
   },
   methods: {
@@ -73,22 +74,26 @@ export default {
       var pTop = ([(-(scrollTop - oheight) / 88) * 102] * 320) / 750 / 20;
       // console.log(scrollTop)
 
-      if (scrollTop < 0) {
+      // if (scrollTop < 0) {
         //  document.documentElement.scrollTop=3
         //  document.body.scrollTop=3
         // tableView.bounces = NO
 
-      }
+      // }
 
       if (scrollTop < oheight) {
         this.show = false;
         this.on = true;
+        this.bb=false
       } else if (scrollTop >= oheight && scrollTop < oheight + 88) {
         this.show = true;
         this.on = false;
-      } else {
+        this.bb=false
+      } else if(scrollTop >= oheight + 88){
+        this.bb=true
         this.show = true;
         this.on = false;
+        // this.$refs.abl.style
       }
 
       if (scrollTop >= oheight && scrollTop < oheight + 88) {
@@ -145,7 +150,13 @@ export default {
   // padding-bottom px2rem(146)
   background: #efefef;
 }
+.ab1 {
+  z-index 9999
 
+}
+.ab2 {
+  z-index -9999
+}
 .all {
   background: #efefef;
 
@@ -182,7 +193,6 @@ export default {
   left: px2rem(80);
   z-index: 1100;
   width: px2rem(48);
-  z-index 33
 }
 
 #abr {
@@ -191,7 +201,6 @@ export default {
   right: px2rem(246);
   z-index: 1100;
   width: px2rem(48);
-  z-index 33
 }
 
 #bleft {
@@ -215,7 +224,6 @@ export default {
   bottom: px2rem(-50);
   left: px2rem(30);
   background: #fff;
-  z-index 22
 }
 
 #but2 {
@@ -223,7 +231,6 @@ export default {
   bottom: px2rem(-50);
   right: px2rem(30);
   background: #fff;
-  z-index 22
 }
 </style>
 
