@@ -153,7 +153,7 @@ export default {
                         localStorage.setItem('usernickname', res.data.usernickname)
                         localStorage.setItem('userbirthday', res.data.userbirthday)
                         localStorage.setItem('usersex', res.data.usersex)
-
+                        localStorage.setItem('userphoto', res.data.userphoto)
                         this.usernickname = res.data.usernickname
                          if(this.usernickname == null) {
                            this.$router.push({path: '/info'})
@@ -343,7 +343,8 @@ export default {
         color: #199ED8;
       }
       div{
-          flex-direction: row;
+            // margin: 0 auto;
+          // flex-direction: row;
           // flex-direction: -webkit-row;
 
           img{
@@ -355,9 +356,9 @@ export default {
               font-size: px2rem(10);
           }
       }
-      .qq{
-          margin: 0 auto;
-      }
+      // .qq{
+      //     margin: 0 auto;
+      // }
   }
 }
 

@@ -19,7 +19,7 @@
       </div>
       <div class="tright">
         <div class="set">
-          <router-link to="/user">
+          <router-link to="/set">
              <img src="./img/ZY-004.png" alt="">
         </router-link>
            <!-- <Dropdown>
@@ -186,6 +186,9 @@ export default {
 
 .all {
   position: fixed;
+  -webkit-overflow-scroll:touch
+  // transform: translateY(0);
+  // -webkit-transform: translateY(0);
   top: 0;
   left: 0;
   right: 0;
@@ -237,16 +240,16 @@ header {
 .tright {
   .set{
     float: right;
-    >>> .ivu-dropdown{ 
+    >>> .ivu-dropdown{
         .ivu-select-dropdown{
          margin-top:px2rem(64);
          li {
            font-size :px2rem(16)!important;
          }
-        
+
       }
     }
-    
+
   }
   img {
     float: right;
@@ -292,7 +295,7 @@ header {
   img {
     position: absolute;
     top: px2rem(46);
-    right: px2rem(60);
+    right: 8%;
     width: px2rem(48);
   }
 }

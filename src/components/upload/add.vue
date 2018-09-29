@@ -14,8 +14,8 @@
     </section>
     <section>
       <div class="title">
-        <input @input="childByValue1" placeholder="添加上传名称" style="width: 100%" v-model="ubname"/>
-        <p>必填</p>
+        <input maxlength="11" @input="childByValue1" placeholder="添加上传名称(最多11个字符)" style="width: 100%" v-model="ubname"/>
+        <!-- <p>必填</p> -->
       </div>
       <div class="pic">
         <i-input @input="childByValue2" type="textarea" :autosize="true" placeholder="添加上传说明" v-model="ubdescription"></i-input>
@@ -349,13 +349,10 @@ input:hover {
          height:100% ;
 
           // background: #000;
-      .ivu-modal-body {
-
-        // box-sizing border-box
+      .cropper-crop-box{
+        border-radius 0 !important
       }
-      // .ivu-modal-close {
-      //     display: none;
-      //   }
+
       .vue-cropper{
           background-image:none !important;
           // background: #000;
@@ -372,9 +369,9 @@ input:hover {
         }
         .cropper-view-box{
           outline: 2px solid #39f;
-
+          border-radius 0 !important
           // position: absolute;
-          // border: none;
+          border: none !important;
           // overflow: hidden;
         }
         .cropper-face{

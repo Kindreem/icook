@@ -27,11 +27,13 @@ import conter from '@/components/conter/conter'
 import achieve from '@/components/conter/achieve'
 import badge from '@/components/conter/badge'
 import show from '@/components/conter/show'
+import myfeed from '@/components/conter/myfeed'
 
 import tast from '@/components/tast/tast'
 import genre from '@/components/genre/genre'
 import dan from '@/components/dan/dan'
 
+import set from '@/components/member/set'
 import user from '@/components/member/user'
 import fstyle from '@/components/cookinfo/fstyle'
 import cookinfo from '@/components/cookinfo/cookinfo'
@@ -39,22 +41,27 @@ import one from '@/components/cookinfo/one'
 import tow from '@/components/cookinfo/tow'
 
 
-import {authlogin} from '@/api'
+import {
+  authlogin
+} from '@/api'
 
 Vue.use(Router)
 
 let router = new Router({
   mode: 'history',
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-           return savedPosition
-   } else {
-       if (from.meta.keepAlive) {
-       　　from.meta.savedPosition = document.body.scrollTop;
-       }
-       return { x: 0, y: to.meta.savedPosition ||0}
-   }
-},
+      return savedPosition
+    } else {
+      if (from.meta.keepAlive) {
+        from.meta.savedPosition = document.body.scrollTop;
+      }
+      return {
+        x: 0,
+        y: to.meta.savedPosition || 0
+      }
+    }
+  },
 
   // scrollBehavior(to, from,savedPosition) {
   //   return {
@@ -63,44 +70,42 @@ let router = new Router({
   //   }
   // },
 
-  routes: [
-    {
+  routes: [{
       path: "/home",
       name: "home",
       component: Home,
-    },{
+    }, {
       path: "/",
       redirect: 'home',
-    },{
+    }, {
       path: "/O_recipe/:id",
       name: "O_recipe",
       component: O_recipe,
-    },{
+    }, {
       path: "/U_menu/:id",
       name: "U_menu",
       component: U_menu,
-    },{
+    }, {
       path: "/flow",
       name: "flow",
       component: Flow,
-    },{
+    }, {
       path: "/search",
       name: "search",
       component: Search,
-    },{
+    }, {
       path: "/share",
       name: "share",
       component: Share,
-    },{
+    }, {
       path: "/upload",
       name: "upload",
       component: Upload,
-      children: [
-        {
+      children: [{
           path: "/works",
           name: "works",
           component: Works,
-        },{
+        }, {
           path: "/cook",
           name: "cook",
           component: Cook,
@@ -112,9 +117,9 @@ let router = new Router({
         // },
       ]
     },
-	// -----华丽的分割线-----
+    // -----华丽的分割线-----
 
-	 {
+    {
       path: '/member',
       name: 'member',
       component: member,
@@ -137,7 +142,7 @@ let router = new Router({
     {
       path: '/info/impression',
       name: 'impression',
-      component:impression
+      component: impression
     },
     {
       path: '/info/meet',
@@ -147,68 +152,77 @@ let router = new Router({
     {
       path: '/load',
       name: 'load',
-      component:load
+      component: load
     },
     {
       path: '/conter',
       name: 'conter',
-      component:conter
+      component: conter
     },
     {
       path: '/achieve',
       name: 'achieve',
-      component:achieve
+      component: achieve
     },
     {
       path: '/conter/badge',
       name: 'badge',
-      component:badge
+      component: badge
     },
     {
       path: '/conter/show',
       name: 'show',
-      component:show
+      component: show
+    },
+    {
+      path: '/myfeed/:id',
+      name: 'myfeed',
+      component: myfeed
     },
     {
       path: '/tast/tast',
       name: 'tast',
-      component:tast
+      component: tast
     },
     {
       path: '/genre/genre',
       name: 'genre',
-      component:genre
+      component: genre
     },
     {
       path: '/dan/dan',
       name: 'dan',
-      component:dan
+      component: dan
     },
     {
       path: '/user',
       name: 'user',
-      component:user
+      component: user
+    },
+    {
+      path: '/set',
+      name: 'set',
+      component: set
     },
     {
       path: '/fstyle',
       name: 'fstyle',
-      component:fstyle
+      component: fstyle
     },
     {
       path: '/cookinfo/:id',
       name: 'cookinfo',
-      component:cookinfo,
-      redirect:'/one/:id',
-      children:[
-        {
+      component: cookinfo,
+      redirect: '/one/:id',
+      children: [{
           path: '/one/:id',
           name: 'one',
-          component:one
+          component: one
         },
         {
           path: '/tow/:id',
           name: 'tow',
-          component:tow
+          component: tow
         },
       ]
     }
@@ -219,19 +233,28 @@ let router = new Router({
 // router.beforeEach((to, from, next) => {
 //   let token = localStorage.getItem('mytoken')
 //   let userphone = localStorage.getItem('myphone')
-//   authlogin(userphone,token).then(res=>{
-//     if(res.code==200){
-//         localStorage.setItem('mytoken', res.data.token)
-//         next()
-//      } else{
-//         //如果没有登录，访问非登录页面,则跳转到登录页面
-//       if(to.path!== '/member' && to.path!=='/register'){
-//         next({path: '/member'})
+//   authlogin(userphone, token).then(res => {
+//     if (res.code == 200) {
+//       localStorage.setItem('mytoken', res.data.token)
+//       localStorage.setItem('myphone', res.data.userphone)
+//       localStorage.setItem('certificationstatus', res.data.certificationstatus)
+//       localStorage.setItem('userid', res.data.userid)
+//       localStorage.setItem('usernickname', res.data.usernickname)
+//       localStorage.setItem('userbirthday', res.data.userbirthday)
+//       localStorage.setItem('usersex', res.data.usersex)
+//       localStorage.setItem('userphoto', res.data.userphoto)
+//       next()
+//     } else {
+//       //如果没有登录，访问非登录页面,则跳转到登录页面
+//       if (to.path !== '/member' && to.path !== '/register') {
+//         next({
+//           path: '/member'
+//         })
 //       }
 //       // if(to.path!=='/register'){
 //       //   next({path: '/member'})
 //       // }
-//       else{
+//       else {
 //         //如果没有登录，但访问的是登录页面,直接进入
 //         next()
 //       }
@@ -239,4 +262,3 @@ let router = new Router({
 //   })
 // })
 export default router
-

@@ -165,3 +165,7 @@ export const tastlist = (userid)=>{
 export const receive= (userid,utid)=>{
   return axios.post(`task/receive?userid=${userid}&utid=${utid}`).then(res=>res.data)
 }
+//作品详情
+export const getfeed = (ufid)=>{
+  return axios.post(`/userfeed/getfeed?ufid=${ufid}`).then(res=>res.data)
+}
