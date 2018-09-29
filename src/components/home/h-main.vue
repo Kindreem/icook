@@ -77,7 +77,7 @@ export default {
         //  document.documentElement.scrollTop=3
         //  document.body.scrollTop=3
         // tableView.bounces = NO
-      
+
       }
 
       if (scrollTop < oheight) {
@@ -182,6 +182,7 @@ export default {
   left: px2rem(80);
   z-index: 1100;
   width: px2rem(48);
+  z-index 33
 }
 
 #abr {
@@ -190,6 +191,7 @@ export default {
   right: px2rem(246);
   z-index: 1100;
   width: px2rem(48);
+  z-index 33
 }
 
 #bleft {
@@ -213,6 +215,7 @@ export default {
   bottom: px2rem(-50);
   left: px2rem(30);
   background: #fff;
+  z-index 22
 }
 
 #but2 {
@@ -220,6 +223,7 @@ export default {
   bottom: px2rem(-50);
   right: px2rem(30);
   background: #fff;
+  z-index 22
 }
 </style>
 
