@@ -67,7 +67,7 @@
            <ul class="menus">
              <swiper :options="swiperOption">
                <swiper-slide v-for="(item,index) in $store.state.feed" :key="index">
-                   <router-link :to="'U_menu/'+item.ufid" >
+                   <router-link :to="'myfeed/'+item.ufid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ufimg) + ')'}">
                    </div></router-link>
                    <p>{{item.ufname}}</p>

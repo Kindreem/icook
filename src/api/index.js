@@ -148,3 +148,7 @@ export const addfeed = (userid,ufname,ufimg,uftext)=>{
 export const myfeed = (userid)=>{
   return axios.post(`/userfeed/myfeed?userid=${userid}`).then(res=>res.data)
 }
+//作品详情
+export const getfeed = (ufid)=>{
+  return axios.post(`/userfeed/getfeed?ufid=${ufid}`).then(res=>res.data)
+}

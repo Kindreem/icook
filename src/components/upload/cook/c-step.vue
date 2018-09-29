@@ -86,7 +86,7 @@ export default {
   },
   data() {
     return {
-      height: '',
+      height: "",
       date2: "",
       previews: "",
       option: {
@@ -101,10 +101,10 @@ export default {
         canMove: true,
         canScale: true,
         autoCropWidth: 480,
-        autoCropHeight: 270,
+        autoCropHeight: 270
         // 开启宽度和高度比例
-					// fixed: true,
-					// fixedNumber: [5, 3]
+        // fixed: true,
+        // fixedNumber: [5, 3]
       },
       infoimg: false, //截图
       files: [], // 文件
@@ -121,18 +121,18 @@ export default {
       },
       uploadToken: "",
       upkey: "",
-      url: '',
-      shu: '',
-      userStepDtos: '',
-      img:"",
-      ishow:'true' //解决同文件bug
+      url: "",
+      shu: "",
+      userStepDtos: "",
+      img: "",
+      ishow: "true" //解决同文件bug
     };
   },
   mounted() {
-      this.height = document.documentElement.clientHeight-180
-     let width = document.documentElement.clientWidth*0.7
-      this.option.autoCropWidth= width
-      this.option.autoCropHeight = width/16*9
+    this.height = document.documentElement.clientHeight - 180;
+    let width = document.documentElement.clientWidth * 0.7;
+    this.option.autoCropWidth = width;
+    this.option.autoCropHeight = (width / 16) * 9;
     //页面加载 拉去token
     upload(1, 1).then(res => {
       this.uploadToken = res.data.token;
@@ -141,11 +141,11 @@ export default {
   },
   methods: {
     rotate() {
-      this.$refs.cropper.rotateRight()
+      this.$refs.cropper.rotateRight();
     },
     end() {
-      this.infoimg=false
-      this.ishow=true
+      this.infoimg = false;
+      this.ishow = true;
     },
     // beforeUpload(file) {
     //   let newdate = Date.parse(new Date());
@@ -173,20 +173,18 @@ export default {
     //   // })
     // },
     addshu(index) {
-      this.shu=index
-
+      this.shu = index;
     },
 
     // 实时预览函数
-		realTime (data) {
-		},
+    realTime(data) {},
     uploadImg(e, num) {
-      this.infoimg = true
+      this.infoimg = true;
       //上传图片
       // this.option.img
       var file = e.target.files[0];
-      this.ishow=false
-      console.log(file)
+      this.ishow = false;
+      console.log(file);
       // if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
       //   alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
       //   return false;
@@ -198,11 +196,11 @@ export default {
         //   // 把Array Buffer转化为blob 如果是base64不需要
         //   data = window.URL.createObjectURL(new Blob([e.target.result]));
         // } else {
-          data = e.target.result;
+        data = e.target.result;
         // }
         // if (num === 1) {
-          console.log(data)
-          this.img = data;
+        console.log(data);
+        this.img = data;
         // }
       };
       // 转化为base64
@@ -218,60 +216,60 @@ export default {
       //   self.formDynamic.items[index].img = self.url;
       //   console.log(self.formDynamic.items[index].img);
       // }, 800);
-
     },
 
     achieve() {
-      this.ishow=true
-      var self = this
-       this.infoimg = false
+      this.ishow = true;
+      var self = this;
+      this.infoimg = false;
       // this. finish('glob')
-        this.$refs.cropper.getCropData((data) => {
+      this.$refs.cropper.getCropData(data => {
         // this.url = data
-        console.log(data)
-      /*picUrl用来存储返回来的url*/
-      var picUrl;
-    /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
-      let picBase=data.substring(22);
+        console.log(data);
+        /*picUrl用来存储返回来的url*/
+        var picUrl;
+        /*把头部的data:image/png;base64,去掉。（注意：base64后面的逗号也去掉）*/
+        let picBase = data.substring(22);
         /*通过base64编码字符流计算文件流大小函数*/
         // let str = picBase
         function fileSize(str) {
-            var fileSize;
-            if(str.indexOf('=')>0)  {
-                var indexOf=str.indexOf('=');
-                str=str.substring(0,indexOf);//把末尾的’=‘号去掉
-            }
-            fileSize=parseInt(str.length-(str.length/8)*2);
-            return fileSize;
-            // console.log(fileSize)
+          var fileSize;
+          if (str.indexOf("=") > 0) {
+            var indexOf = str.indexOf("=");
+            str = str.substring(0, indexOf); //把末尾的’=‘号去掉
+          }
+          fileSize = parseInt(str.length - (str.length / 8) * 2);
+          return fileSize;
+          // console.log(fileSize)
         }
-    //  console.log(fileSize(str))
-     /*把字符串转换成json*/
-     function strToJson(str) {
-         var json = eval('(' + str + ')');
-         return json;
-     }
-    //  console.log(strToJson(picBase))
-    let newdate = md5(Date.parse(new Date()).toString());
-      // console.log(newdate);
-      let newk = `${this.upkey}${newdate}.png`
-      let nkey=Base64.encode(newk)
-      // let EncodedKey = UrlSafeBase64.encodeToString(key)
-     // //http://upload-z2.qiniu.com/putb64/ 只适用于七牛云华南空间 因为我的是七牛云华南空间，如果不是华南空间需要根据七牛云文档进行更改
-     var url = `http://upload-z2.qiniu.com/putb64/${fileSize(picBase)}/key/${nkey}`;
-     var xhr = new XMLHttpRequest();
-     xhr.onreadystatechange=function(){
-
-         if (xhr.readyState==4){
-          //  console.log(xhr)
-              var keyText=xhr.responseText;
+        //  console.log(fileSize(str))
+        /*把字符串转换成json*/
+        function strToJson(str) {
+          var json = eval("(" + str + ")");
+          return json;
+        }
+        //  console.log(strToJson(picBase))
+        let newdate = md5(Date.parse(new Date()).toString());
+        // console.log(newdate);
+        let newk = `${this.upkey}${newdate}.png`;
+        let nkey = Base64.encode(newk);
+        // let EncodedKey = UrlSafeBase64.encodeToString(key)
+        // //http://upload-z2.qiniu.com/putb64/ 只适用于七牛云华南空间 因为我的是七牛云华南空间，如果不是华南空间需要根据七牛云文档进行更改
+        var url = `http://upload-z2.qiniu.com/putb64/${fileSize(
+          picBase
+        )}/key/${nkey}`;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            //  console.log(xhr)
+            var keyText = xhr.responseText;
             // /*返回的key是字符串，需要装换成json*/
-              keyText=strToJson(keyText);
+            keyText = strToJson(keyText);
             /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
-              picUrl="http://img.ichushen.cn/"+keyText.key;
-              self.url = picUrl
-              console.log(self.url)
-              self.formDynamic.items[self.shu].img = self.url;
+            picUrl = "http://img.ichushen.cn/" + keyText.key;
+            self.url = picUrl;
+            console.log(self.url);
+            self.formDynamic.items[self.shu].img = self.url;
             //   var t;
             //   clearTimeout(t);
             //   console.log(self.shu);
@@ -279,19 +277,17 @@ export default {
             //   self.formDynamic.items[self.shu].img = self.url;
             //    console.log(self.formDynamic.items[self.shu].img)
             // }, 0);
-         }
-     }
-     xhr.open("POST", url, true);
-     xhr.setRequestHeader("Content-Type", "application/octet-stream");
-     xhr.setRequestHeader("Authorization", "UpToken "+this.uploadToken+"");
-     xhr.send(picBase);
-    })
-  },
-
-
-
-
-
+          }
+        };
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/octet-stream");
+        xhr.setRequestHeader(
+          "Authorization",
+          "UpToken " + this.uploadToken + ""
+        );
+        xhr.send(picBase);
+      });
+    },
 
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
@@ -330,11 +326,11 @@ export default {
     formDynamic: {
       //深度监听，可监听到对象、数组的变化
       handler(val) {
-        var userStepDtos=[];
+        var userStepDtos = [];
         val.items.forEach(value => {
-          var str = `{"description": "${value.value}","img": "${value.img}"}`
-          var obj = JSON.parse(str)
-        //  console.log(obj)
+          var str = `{"description": "${value.value}","img": "${value.img}"}`;
+          var obj = JSON.parse(str);
+          //  console.log(obj)
 
           userStepDtos.push(obj);
           //  value.value1 = foodname
@@ -344,7 +340,7 @@ export default {
           //  console.log(value)
         });
 
-        this.userStepDtos = userStepDtos
+        this.userStepDtos = userStepDtos;
         // console.log(this.userStepDtos)
         this.$emit("childByValue4", this.userStepDtos);
       },
@@ -422,11 +418,13 @@ export default {
   border-radius: 20px;
   height: px2rem(360);
   margin-bottom: px2rem(36);
-  text-align center
+  text-align: center;
+
   input {
     // height px2rem(360)
     // width 100%
   }
+
   img {
     margin-top: px2rem(114);
     width: px2rem(96);
@@ -456,11 +454,11 @@ export default {
   border: none;
   font-size: px2rem(26);
   width: 100%;
-  border-bottom: 0.1px solid #999;
+  border-bottom: 1px solid #999;
 }
 
 >>>.ivu-input-wrapper {
-  border-bottom: 0.1px solid #999 !important;
+  border-bottom: 1px solid #999 !important;
 }
 
 >>>.ivu-input::-webkit-input-placeholder { /* WebKit browsers */
@@ -491,72 +489,85 @@ export default {
   width: 100%;
   height: px2rem(360);
   background-size: cover !important;
-  border-radius 20px
-}
->>>.ivu-form-item-error-tip  {
-  display none !important
+  border-radius: 20px;
 }
 
+>>>.ivu-form-item-error-tip {
+  display: none !important;
+}
 
-.infoimg{
+.infoimg {
+  background: #199ed8;
 
-    background: #199ed8;
-     >>>.ivu-modal{
-      // touch-action: none;
-      top: 0;
+  >>>.ivu-modal {
+    // touch-action: none;
+    top: 0;
+    height: 100%;
+    margin: 0;
+
+    // box-box-sizing border-box
+    .ivu-modal-content {
       height: 100%;
-      margin 0
-      // box-box-sizing border-box
-      .ivu-modal-content{
-         height:100% ;
-          // background: #000;
-      .vue-cropper{
-          background-image:none !important;
-          // background: #000;
-          // height: px2rem(1100);
-       img{
+
+      .vue-cropper {
+        background-image: none !important;
+
+        img {
           // margin-top: 40%;
           // position: relative;
           width: 100%;
           // height:100%;
         }
-        .cropper-view-box{
 
+        .cropper-crop-box {
+          border-radius: 0 !important;
+        }
+
+        .cropper-view-box {
+          outline: 2px solid #39f;
+          border: none !important;
+          border-radius: 0 !important;
           img {
             // width px2rem(300) !important
             // heiht auto !important
           }
         }
+
         .cropper-box-canvas {
           img {
             // width px2rem(300) !important
           }
         }
-        .cropper-view-box{
 
+        .cropper-view-box {
         }
-        .cropper-face{
+
+        .cropper-face {
           background: none;
         }
-        .crop-info{
+
+        .crop-info {
           display: none;
         }
-        }
+      }
     }
-    .ivu-modal-footer{
-        padding: 0;
-     .footer{
+
+    .ivu-modal-footer {
+      padding: 0;
+
+      .footer {
         width: 100%;
         display: flex;
-        justify-content:space-around;
-      .ivu-btn{
-        width: px2rem(120);
-        margin-top:px2rem(4);
-        font-size: px2rem(24);
-      }
+        justify-content: space-around;
+
+        .ivu-btn {
+          width: px2rem(120);
+          margin-top: px2rem(4);
+          font-size: px2rem(24);
+        }
       }
     }
- }
- }
+  }
+}
 </style>
 

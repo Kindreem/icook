@@ -19,7 +19,7 @@
       </div>
       <div class="tright">
         <div class="set">
-          <router-link to="/user">
+          <router-link to="/set">
              <img src="./img/ZY-004.png" alt="">
         </router-link>
            <!-- <Dropdown>
@@ -237,16 +237,16 @@ header {
 .tright {
   .set{
     float: right;
-    >>> .ivu-dropdown{ 
+    >>> .ivu-dropdown{
         .ivu-select-dropdown{
          margin-top:px2rem(64);
          li {
            font-size :px2rem(16)!important;
          }
-        
+
       }
     }
-    
+
   }
   img {
     float: right;

@@ -349,13 +349,10 @@ input:hover {
          height:100% ;
 
           // background: #000;
-      .ivu-modal-body {
-
-        // box-sizing border-box
+      .cropper-crop-box{
+        border-radius 0 !important
       }
-      // .ivu-modal-close {
-      //     display: none;
-      //   }
+
       .vue-cropper{
           background-image:none !important;
           // background: #000;
@@ -372,9 +369,9 @@ input:hover {
         }
         .cropper-view-box{
           outline: 2px solid #39f;
-
+          border-radius 0 !important
           // position: absolute;
-          // border: none;
+          border: none !important;
           // overflow: hidden;
         }
         .cropper-face{
