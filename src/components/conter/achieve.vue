@@ -5,7 +5,7 @@
             <p class="title">任务</p>
       </header>
 
-      <Collapse accordion simple v-model="val" >
+      <Collapse accordion simple >
       <div v-for="(item,index) in list" :key="index" class="allitem">
         <Panel>
             <div class="left"><img :src="item.achievementimg" alt=""></div>
@@ -67,11 +67,11 @@ export default {
     },
 //领取奖励
     get(id){
-        this.val ="1"
         console.log('wwwwww')
-        // receive(this.id,id).then(res=>{
-        //     console.log(res)
-        // })
+        receive(this.id,id).then(res=>{
+            console.log(res)
+            this.getlist()
+        })
     }
   },
 }
@@ -125,7 +125,7 @@ export default {
                 float: left;
                 width: px2rem(56);
                 height: px2rem(56);
-                margin: px2rem(8) px2rem(15) px2rem(0) px2rem(10);
+                margin: px2rem(8) px2rem(15) px2rem(0) px2rem(15);
                 background: #BFC1C0;
                 border-radius: 10px;
                 border: 1px solid #199ED8;
@@ -144,8 +144,8 @@ export default {
             h4{
                 font-size: px2rem(14);
                 color: #199ED8;
-                transform: translateY(px2rem(22));
-                margin-bottom: px2rem(30);
+                transform: translateY(px2rem(15));
+                margin-bottom: px2rem(15);
             }
             span{
                 font-size:px2rem(12);
@@ -165,18 +165,20 @@ export default {
           }
         }
         .allitem{
+            position: relative;
             .btn1{
                 width: px2rem(55);
                 height: px2rem(25);
                 font-size: px2rem(12);
-                background: #5CB8E7;
+                background: #808080;
                 color: #fff;
                 border-radius:20px;
-                float: right;
-                margin-right:px2rem(10) ;
-                
                 border: none;
                 z-index: 9999;
+                position: absolute;
+                right:px2rem(10);
+                top: px2rem(20);
+                
             }
             .btn2{
                 width: px2rem(55);
@@ -184,12 +186,11 @@ export default {
                 font-size: px2rem(12);
                 background: #5CB8E7;
                 color: #fff;
-                border-radius:20px;
-                float: right;
-                margin-right:px2rem(10) ;
-                margin-top: px2rem(-22);
                 border: none;
-                z-index: 9999;
+                border-radius:20px;
+                position: absolute;
+                right:px2rem(10);
+                top: px2rem(20);
             }
 }      }
 
