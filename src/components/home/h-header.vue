@@ -295,7 +295,7 @@ header {
   img {
     position: absolute;
     top: px2rem(46);
-    right: px2rem(60);
+    right: 8%;
     width: px2rem(48);
   }
 }
