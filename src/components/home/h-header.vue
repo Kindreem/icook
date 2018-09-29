@@ -186,6 +186,9 @@ export default {
 
 .all {
   position: fixed;
+  -webkit-overflow-scroll:touch
+  // transform: translateY(0);
+  // -webkit-transform: translateY(0);
   top: 0;
   left: 0;
   right: 0;

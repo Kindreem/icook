@@ -69,14 +69,15 @@ export default {
   },
 
   mounted() {
+
     let certificationstatus = localStorage.getItem("certificationstatus");
     if (certificationstatus == 0) {
       this.show = true;
     } else {
       this.show = false;
     }
-    let id = this.id.toUpperCase()
-    console.log(id)
+    let id = this.id.toUpperCase();
+    console.log(id);
   },
   methods: {
     //  真实姓名身份证
@@ -93,18 +94,16 @@ export default {
           this.warning = false;
         }, 1000);
         // return false;
-      }
-      else {
+      } else {
         let userid = localStorage.getItem("userid");
-        let id = this.id.toUpperCase()
+        let id = this.id.toUpperCase();
         // console.log(id)
         addid(userid, this.name, id).then(res => {
           console.log(res);
           if (res.code == 200) {
-            localStorage.setItem('certificationstatus', 1)
-            this.$router.push({path: '/load'})
+            localStorage.setItem("certificationstatus", 1);
+            this.$router.push({ path: "/load" });
             this.show = false;
-
           } else {
             this.tit = res.msg;
             this.warning = true;
@@ -228,6 +227,7 @@ export default {
 @import '../../assets/px2rem.styl';
 
 .all {
+  // -webkit-overflow-scrolling:touch;
   position: relative;
 }
 
@@ -318,7 +318,7 @@ export default {
   font-size: px2rem(24);
   color: #fff;
   z-index: 111112;
-  overflow hidden
+  overflow: hidden;
 }
 
 .v-enter {

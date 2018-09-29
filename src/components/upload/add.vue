@@ -14,8 +14,8 @@
     </section>
     <section>
       <div class="title">
-        <input @input="childByValue1" placeholder="添加上传名称" style="width: 100%" v-model="ubname"/>
-        <p>必填</p>
+        <input maxlength="11" @input="childByValue1" placeholder="添加上传名称(最多11个字符)" style="width: 100%" v-model="ubname"/>
+        <!-- <p>必填</p> -->
       </div>
       <div class="pic">
         <i-input @input="childByValue2" type="textarea" :autosize="true" placeholder="添加上传说明" v-model="ubdescription"></i-input>

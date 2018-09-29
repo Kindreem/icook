@@ -69,64 +69,65 @@ header {
   h3 {
     text-align: center;
     font-size: px2rem(26);
-    color: #5DB8E9;
+    color: #199ed8;
   }
 }
 
 .list {
-  margin-top: 20px;
-  padding-bottom 50px
+  margin-top: px2rem(20);
+  padding-bottom px2rem(50)
   height: 100%;
   border-radius: 20px;
   box-shadow: 16px 16px 20px rgba(204, 204, 204, 0.349019607843137);
 
   ul {
     li {
-      padding: 0 20px;
-      font-size: 26px;
-      height: 90px;
-      line-height: 90px;
+      padding: 0 px2rem(20);
+      font-size: px2rem(26);
+      height: px2rem(90);
+      line-height:px2rem(90);
       border-bottom: 1px solid #bbb;
     }
   }
   div {
-    margin-top 160px
+    margin-top px2rem(160)
     text-align center
   }
   button {
     text-align: center;
-    height: 80px;
-    width: 560px;
+    height: px2rem(80);
+    width: px2rem(560);
     border-radius: 20px;
     box-shadow: 16px 16px 20px rgba(204, 204, 204, 0.349019607843137);
     outline: none;
     border: none;
     background-color: #fff;
-    font-size 30px
+    font-size px2rem(30)
     color #888
   }
 }
 .mask {
+  background-color #fff
   position absolute
-  left 32px
-  right 32px
-  bottom 70px
-  font-size 26px
+  left px2rem(32)
+  right px2rem(32)
+  bottom px2rem(70)
+  font-size px2rem(26)
   border-radius: 20px;
   box-shadow: 16px 16px 20px rgba(204, 204, 204, 0.349019607843137);
   h4 {
     border-bottom 1px solid #bbb
-    height 90px
-    line-height 90px
+    height px2rem(90)
+    line-height px2rem(90)
     text-align center
 
   }
   ul {
-    margin 20px 0
+    margin px2rem(20) 0
     text-align center
     li {
       color #666
-      line-height 56px
+      line-height px2rem(56)
     }
   }
 
