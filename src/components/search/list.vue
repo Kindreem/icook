@@ -87,7 +87,6 @@ export default {
             //  this.allLoaded = false
             this.num = 1;
             this.allLoaded = true;
-            return false;
           }
          });
          }

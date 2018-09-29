@@ -153,7 +153,10 @@ export const myfeed = (userid)=>{
 export const myachievement = (userid)=>{
   return axios.post(`user/myachievement?userid=${userid}`).then(res=>res.data)
 }
-
+//成就详情
+export const myachinfo= (achievementid,userid)=>{
+  return axios.post(`user/achievementinfo?achievementid=${achievementid}&userid=${userid}`).then(res=>res.data)
+}
 
 
 //任务列表

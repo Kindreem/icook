@@ -108,17 +108,17 @@
                </swiper>
            </ul>
        </div></router-link>
-        <div class="item badge">
+        <div class="item badge" v-if="myach">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的成就</p>
             </div>
            <ul class="badges">
-                <swiper :options="swiperOption1">
-                     <swiper-slide v-for="(item,index) in imgs" :key="index">
-                    <router-link to="/achieve" >
-                     <img src="./YES-SIR.png" alt="">
-                     <p>段位</p>
+                <swiper :options="swiperOption1" >
+                     <swiper-slide v-for="(item,index) in myach" :key="index">
+                    <router-link :to="'/show/'+item.achievementid" >
+                     <img :src="item.achievementimg" alt="">
+                     <p>{{item.achievementname}}</p>
                     </router-link>
                 </swiper-slide>
                </swiper>
@@ -166,8 +166,7 @@ export default {
       usernickname: "",
       userphoto: "",
       userid: "",
-      // mycook: "", //我的菜谱
-      // mybookcollect: "" //我的收藏
+      myach:''
     };
   },
   created() {
@@ -218,6 +217,9 @@ export default {
   
   //我的成就
   myachievement(this.userid).then(res=>{
+    if(res.code==200){
+      this.myach = res.data
+    }
     console.log(res.data)
   })
 
@@ -287,12 +289,13 @@ export default {
     .menus {
       overflow: hidden;
     }
-    /deep/ .swiper-container {
+    .swiper-container{
       overflow: hidden;
       margin-left: px2rem(-10);
       width: 100%;
       .swiper-wrapper {
         display: flex;
+        display: -webkit-flex; 
         width: 700%;
         .swiper-slide {
           // width: 33.333%;
@@ -318,7 +321,7 @@ export default {
   ul.badges {
     overflow: hidden;
     color: #666;
-    /deep/ .swiper-container {
+    .swiper-container {
       width: 100%;
       .swiper-wrapper {
         display: flex;

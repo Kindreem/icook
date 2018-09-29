@@ -52,8 +52,8 @@ export default {
             this.num++;
             // console.log(this.num)
             // this.$store.commit('setsize',this.pagesize)
-             if(!this.allLoaded){
-            getcooklist(this.id, this.num,2).then(res => {
+         if(!this.allLoaded){
+            getcooklist(this.id, this.num,this.pagesize).then(res => {
             // this.cooklist= res.data
             if (res.code == 200) {
                 this.allLoaded = false;
@@ -63,7 +63,6 @@ export default {
                 //  this.allLoaded = false
                 this.num = 1;
                 this.allLoaded = true;
-                return false;
             }
             });
              }
