@@ -149,6 +149,7 @@ export default {
                         localStorage.setItem('mytoken', res.data.token)
                         localStorage.setItem('certificationstatus', res.data.certificationstatus)
                         localStorage.setItem('userid', res.data.userid)
+                        localStorage.setItem('userphoto', res.data.userphoto)
                         localStorage.setItem('usernickname', res.data.usernickname)
                         localStorage.setItem('userbirthday', res.data.userbirthday)
                         localStorage.setItem('usersex', res.data.usersex)

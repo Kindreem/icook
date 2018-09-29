@@ -155,7 +155,7 @@ let router = new Router({
       component:conter
     },
     {
-      path: '/conter/achieve',
+      path: '/achieve',
       name: 'achieve',
       component:achieve
     },

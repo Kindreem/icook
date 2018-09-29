@@ -89,7 +89,7 @@
 import * as qiniu from "qiniu-js";
 import md5 from "js-md5";
 let Base64 = require("js-base64").Base64;
-import { updateuser} from "@/api";
+import {upload,updateuser} from "@/api";
 import vueCropper from "vue-cropper";
 import moment from "moment";
 import {mapState} from 'vuex'
@@ -201,16 +201,6 @@ export default {
     },
     
     add() {
-        // let id =`&userid=${this.id}`
-        let url =`&userphoto=${this.url}`
-        let nickname =`&usernickname=${this.nickname}`
-        let picked = `&userbirthday=${this.picked}`
-        let age
-            if(!this.age){
-             age=''
-        }else{
-            age=`&userbirthday=${this.age}`
-        }
         updateuser(this.id,this.url,this.nickname,this.age,this.picked).then(res=>{
           if(res.code==200){
                 localStorage.setItem("usernickname", this.nickname);

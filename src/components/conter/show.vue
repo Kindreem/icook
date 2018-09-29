@@ -8,7 +8,13 @@
           <img src="./2.png" alt="">
           <p>粤派二段</p>
           <span>通过粤派菜系获得</span>
+          <div class="end">
+              <span>date</span>
+              <span>奖励给什么事没什么没什么事吗</span>
+              <span>已解锁</span>
+          </div>
       </div>
+      <p class="tit">最多可展示3个</p>
        <div class="btn">
            <button class="demount">卸下</button>
            <button class="change">更换</button>
@@ -25,7 +31,7 @@ export default {
     }
   },
   mounted(){
-      let number= document.documentElement.clientHeight*0.75
+      let number= document.documentElement.clientHeight*0.70
       this.height = number+'px';
   },
   methods:{
@@ -70,6 +76,7 @@ export default {
             border-radius: 20px;
             margin: px2rem(10) auto;
             color: #999;
+            position: relative;
             img{
                 width: px2rem(90);
                 margin-top:38%;
@@ -82,13 +89,31 @@ export default {
             span{
                 font-size: px2rem(10);
             }
+            .end{
+                width: 90%;
+                position: absolute;
+                bottom: px2rem(10) ;
+                margin:0 px2rem(20);
+                text-align: center;
+                span:nth-child(1){
+                    float: left;
+                }
+                span:nth-child(3){
+                    float: right;
+                }
+            }
+        }
+        p.tit{
+            margin-top: px2rem(20);
+            font-size: px2rem(14);
+            color: #777;
         }
         .btn{
             font-size:  px2rem(16);
             display: flex;
             justify-content: space-between;
             width:90%;
-            margin:px2rem(20) auto ;
+            margin:px2rem(8) auto ;
             button{
                 width: px2rem(150);
                 height: px2rem(40);

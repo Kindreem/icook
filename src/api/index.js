@@ -131,7 +131,7 @@ export const mybookcollect = (userid)=>{
 
 //修改个人信息
 export const updateuser = (userid,userphoto,usernickname,userbirthday,usersex)=>{
-  return axios.post(`/userinfo/updateuser?userid=${userid}&serphoto=${userphoto}&usernickname=${usernickname}&userbirthday=${userbirthday}&usersex=${usersex}`).then(res=>res.data)
+  return axios.post(`/userinfo/updateuser?userid=${userid}&userphoto=${userphoto}&usernickname=${usernickname}&userbirthday=${userbirthday}&usersex=${usersex}`).then(res=>res.data)
 }
 
 //根据流派id获取官方菜谱
@@ -147,4 +147,21 @@ export const addfeed = (userid,ufname,ufimg,uftext)=>{
 //我的作品
 export const myfeed = (userid)=>{
   return axios.post(`/userfeed/myfeed?userid=${userid}`).then(res=>res.data)
+}
+
+//我的成就
+export const myachievement = (userid)=>{
+  return axios.post(`user/myachievement?userid=${userid}`).then(res=>res.data)
+}
+
+
+
+//任务列表
+export const tastlist = (userid)=>{
+  return axios.post(`task/list?userid=${userid}`).then(res=>res.data)
+}
+//领取任务
+
+export const receive= (userid,utid)=>{
+  return axios.post(`task/receive?userid=${userid}&utid=${utid}`).then(res=>res.data)
 }

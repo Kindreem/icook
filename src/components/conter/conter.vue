@@ -116,10 +116,10 @@
            <ul class="badges">
                 <swiper :options="swiperOption1">
                      <swiper-slide v-for="(item,index) in imgs" :key="index">
-                    <!-- <router-link to="dan/dan" > -->
+                    <router-link to="/achieve" >
                      <img src="./YES-SIR.png" alt="">
                      <p>段位</p>
-                    <!-- </router-link> -->
+                    </router-link>
                 </swiper-slide>
                </swiper>
 
@@ -131,7 +131,7 @@
 
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import { mybook, mybookcollect,myfeed } from "@/api";
+import { mybook, mybookcollect,myfeed,myachievement} from "@/api";
 export default {
   components: {
     swiper,
@@ -183,7 +183,7 @@ export default {
           console.log(1)
         } else {
           this.$store.state.caipu = res.data;
-          console.log(this.$store.state.caipu)
+          // console.log(this.$store.state.caipu)
         }
       }
     });
@@ -215,6 +215,12 @@ export default {
       }
       // console.log(res.data);
     });
+  
+  //我的成就
+  myachievement(this.userid).then(res=>{
+    console.log(res.data)
+  })
+
   },
   mounted() {
     this.url = this.$store.state.picimg;

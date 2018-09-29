@@ -22,7 +22,7 @@
         </router-link>
       </div>
     </div>
-    <li class="more_loading" v-show="!queryLoading">
+    <li class="more_loading" v-show="queryLoading">
       <mt-spinner type="snake" color="#ccc" :size="70" v-show="loading&&!allLoaded"></mt-spinner>
       <span class="allload" v-show="allLoaded">已全部加载</span>
     </li>
@@ -65,16 +65,17 @@ export default {
       //  if(this.queryLoading){
       //   return;
       //   }
-      // this.loading = !this.queryLoading;
+      this.queryLoading = true;
       this.loading = true;
       setTimeout(() => {
         this.size = this.$store.state.size;
         this.value = this.$store.state.val;
-        console.log(this.value);
+        // console.log(this.value);
         // this.size+=5
         this.num++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
+         if(!this.allLoaded){
         searchbook(this.value, this.num, 5,this.$store.state.searchsort).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
@@ -88,7 +89,8 @@ export default {
             this.allLoaded = true;
             return false;
           }
-        });
+         });
+         }
         this.loading = false;
       }, 2500);
     }

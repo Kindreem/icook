@@ -401,9 +401,9 @@ export default {
         overflow: hidden;
     /deep/ .dp-content{
       .dp-item{
-        height:  px2rem(140);
-        margin-top: px2rem(14);
-           transform: perspective(860px) rotateX(10deg); 
+          height:  px2rem(140);
+          margin-top: px2rem(14);
+          transform: perspective(860px) rotateX(10deg); 
         .scroller-component{
           height: px2rem(120);
           position: relative;
@@ -470,11 +470,15 @@ export default {
           width: 100%;
           // height:100%;
         }
+        .cropper-crop-box,
+        .cropper-face{
+          overflow: hidden;
+          border-radius: 50%;
+        }
         .cropper-view-box {
           border-radius: 50%;
           position: absolute;
           border: px2rem(1) solid #199ed8;
-          overflow: hidden;
           outline: none;
         }
         .cropper-face {
@@ -490,6 +494,8 @@ export default {
       .footer {
         width: 100%;
         display: flex;
+        display: -webkit-flex;
+        -webkit-justify-content: space-around;
         justify-content: space-around;
         .ivu-btn {
           width: px2rem(60);

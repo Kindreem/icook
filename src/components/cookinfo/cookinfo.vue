@@ -29,7 +29,8 @@ export default {
   },
   methods:{
      backto(){
-      this.$router.go(-1);
+      // this.$router.go(-1);
+      this.$router.push({path: '/fstyle'})
     },
     tab(){
       if(this.istab==true){
