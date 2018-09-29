@@ -170,7 +170,7 @@ let router = new Router({
       component: badge
     },
     {
-      path: '/conter/show',
+      path: '/show/:id',
       name: 'show',
       component: show
     },

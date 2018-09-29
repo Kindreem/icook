@@ -5,12 +5,12 @@
             <p class="title">展示中</p>
       </header>
       <div class="badge" :style="{height:height}">
-          <img src="./2.png" alt="">
-          <p>粤派二段</p>
-          <span>通过粤派菜系获得</span>
+          <img :src="mylist.achievementimg" alt="">
+          <p>{{mylist.achievementname}}</p>
+          <span>{{mylist.outline}}</span>
           <div class="end">
-              <span>date</span>
-              <span>奖励给什么事没什么没什么事吗</span>
+              <span>{{mylist.createtime}}</span>
+              <span>{{mylist.explain}}</span>
               <span>已解锁</span>
           </div>
       </div>
@@ -24,11 +24,24 @@
 </template>
 
 <script>
+import {myachinfo} from '@/api'
 export default {
   data () {
     return {
-        height:''
+        height:'',
+        userid:'',
+        mylist:''
     }
+  },
+  created(){
+      this.userid = localStorage.getItem("userid");
+      let achid = this.$route.params.id 
+      myachinfo(achid,this.userid).then(res=>{
+          if(res.code==200){
+              this.mylist=res.data
+          }
+          console.log(res)
+      })
   },
   mounted(){
       let number= document.documentElement.clientHeight*0.70
@@ -97,8 +110,11 @@ export default {
                 text-align: center;
                 span:nth-child(1){
                     float: left;
+                    margin-left: px2rem(-10);
                 }
                 span:nth-child(3){
+                    margin-left: px2rem(15);
+                    transform: translateX( px2rem(8));
                     float: right;
                 }
             }

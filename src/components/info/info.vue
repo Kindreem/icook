@@ -395,11 +395,11 @@ export default {
         width: 80%!important;
         left: 10%!important;
         height: px2rem(200);
-        margin-bottom:px2rem(80);
+        margin-bottom:px2rem(120);
         transform: none!important;
         border-radius: 20px;
         overflow: hidden;
-    /deep/ .dp-content{
+     .dp-content{
       .dp-item{
           height:  px2rem(140);
           margin-top: px2rem(14);
@@ -427,11 +427,11 @@ export default {
         }
         }
     }
-    /deep/ .dp-header{
+     .dp-header{
             width:80%;
             left: 10%;
             position: absolute!important;
-            bottom:px2rem(10)!important;
+            bottom:px2rem(15)!important;
         .dp-item{
             font-size:  px2rem(14);
             width: px2rem(85);
@@ -445,7 +445,7 @@ export default {
         }
         .dp-item:nth-child(2){
           border: none;
-           margin: 0 px2rem(30);
+          margin: 0 px2rem(30);
         }
         .dp-item:nth-child(3){
             color: #199ed8;

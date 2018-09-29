@@ -338,19 +338,18 @@ export default {
   }
 }
 .dp-container{
-        position: relative;
         width: 80%!important;
         left: 10%!important;
         height: px2rem(200);
-        margin-bottom:px2rem(80);
+        margin-bottom:px2rem(120);
         transform: none!important;
         border-radius: 20px;
         overflow: hidden;
-    /deep/ .dp-content{
+     .dp-content{
       .dp-item{
-        height:  px2rem(140);
-        margin-top: px2rem(14);
-           transform: perspective(860px) rotateX(10deg); 
+          height:  px2rem(140);
+          margin-top: px2rem(14);
+          transform: perspective(860px) rotateX(10deg); 
         .scroller-component{
           height: px2rem(120);
           position: relative;
@@ -374,11 +373,11 @@ export default {
         }
         }
     }
-    .dp-header{
+     .dp-header{
             width:80%;
             left: 10%;
             position: absolute!important;
-            bottom:px2rem(10)!important;
+            bottom:px2rem(15)!important;
         .dp-item{
             font-size:  px2rem(14);
             width: px2rem(85);
@@ -392,7 +391,7 @@ export default {
         }
         .dp-item:nth-child(2){
           border: none;
-           margin: 0 px2rem(30);
+          margin: 0 px2rem(30);
         }
         .dp-item:nth-child(3){
             color: #199ed8;
@@ -416,6 +415,11 @@ export default {
           // position: relative;
           width: 100%;
           // height:100%;
+        }
+        .cropper-crop-box,
+        .cropper-face{
+          overflow: hidden;
+          border-radius: 50%;
         }
         .cropper-view-box {
           border-radius: 50%;
@@ -576,60 +580,7 @@ export default {
       color: #199ed8;
     }
   }
-  .mint-popup {
-    top: 50%;
-    width: 85%;
-    left: 8%;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    height: px2rem(200);
-    transform: none;
-    .picker-slot-wrapper {
-      margin-top: px2rem(-15);
-    }
-    .picker-items {
-      height: px2rem(110);
-      margin: px2rem(30) 0;
-      -webkit-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-      .picker-item {
-        font-size: px2rem(17);
-        // transform: perspective(600px) rotateY(20deg);
-        transform: rotate3d(1, 0, 0, 30deg) translate3d(0px, 0px, px2rem(2));
-      }
-      .picker-item.picker-selected {
-        height: px2rem(30) !important;
-        line-height: px2rem(30) !important;
-        font-size: px2rem(19);
-        transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
-      }
-    }
-    .picker-center-highlight {
-      height: px2rem(20) !important;
-    }
-    .picker-toolbar {
-      position: absolute;
-      height: px2rem(25);
-      bottom: px2rem(12);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      span {
-        font-size: px2rem(14);
-        display: inline-block;
-        margin: 0 px2rem(20);
-        width: px2rem(85);
-        border: 1px solid #999;
-        border-radius: px2rem(3);
-        line-height: px2rem(25);
-        color: #999;
-      }
-      span:last-child {
-        color: #199ed8;
-        border: 1px solid #199ed8;
-      }
-    }
-  }
+
   .next {
     width: px2rem(270);
     height: px2rem(40);
