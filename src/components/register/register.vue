@@ -71,10 +71,10 @@ export default {
   },
   watch:{
     userphone(val,old){
-      console.log('111')
+      this.userphone=val
     },
     password(val,old){
-       if(val.length==6){
+       if(val.length==6&&this.userphone){
           this.style={
             background:"#199ED8",
             color:"#fff",

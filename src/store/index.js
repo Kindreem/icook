@@ -22,6 +22,7 @@ const state = {
   feed: '',  //我的作品
   one: '', //one排列
   num: 1, //页数
+  cbname:'',  //菜谱名字
 }
 
 
@@ -69,6 +70,9 @@ const mutations = {
   },
   setnum: (state, mun) => {
     state.num = num
+  },
+  setcbname: (state, cbname) => {
+    state.cbname = cbname
   },
 }
 
@@ -119,6 +123,9 @@ const getters = {
   },
   getnum: (state) => {
     return state.num
+  },
+  getcbname: (state) => {
+    return state.cbname
   },
 }
 

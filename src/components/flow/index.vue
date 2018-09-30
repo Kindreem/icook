@@ -104,7 +104,7 @@ export default {
   data() {
     return {
       bookid:'',    //菜谱id
-      value: '梅干菜烧四季豆',
+      value:this.$store.state.cbname,
       step:[
           {id:1,bg:'#E3CC6F',name:'起汤锅',tit:'锅中加入冷水'},
           {id:2,bg:'#625739',name:'煮羊肉',tit:'将羊肉加入水中,并将水煮至沸腾'},
@@ -244,9 +244,12 @@ export default {
             }
             p{
                 position: absolute;
-                font-size:  px2rem(16);
+                width: px2rem(16);
+                height:px2rem(16) ;
+                font-size: px2rem(16);
                 top: px2rem(5);
-                left:px2rem(10);
+                left:px2rem(6);
+                text-align: center;
             }
             .wire{
                 position: absolute;

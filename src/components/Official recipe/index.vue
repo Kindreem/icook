@@ -48,6 +48,7 @@ export default {
      getcook(cbid).then(res=>{
        this.getlist=res.data
        console.log(this.getlist)
+        this.$store.commit("setcbname", this.getlist.cbname);
      })
   }
 }
