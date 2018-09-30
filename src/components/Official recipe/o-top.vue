@@ -7,7 +7,7 @@
        <p>{{getlist.cbtext}}</p>
      </section>
      <section class="but">
-       <router-link to="/flow">
+       <router-link :to="'/flow/'+getlist.cookbookid">
          <Button id="but1" type="ghost">分解流程</Button>
        </router-link>
        <router-link to="#">

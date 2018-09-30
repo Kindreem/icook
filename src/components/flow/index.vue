@@ -10,9 +10,9 @@
               <p>食材</p>
           </div>
           <ul class="item-ul">
-            <li><p>五花肉</p>600克</li>
-            <li><p>五花肉</p>600克</li>
-            <li><p>五花肉</p>600克</li>
+                <li v-for="(item,index) in list.sysBookFoodVOlist" :key="index">
+                <p>{{item.foodname}}</p>{{item.weight}}{{item.unit}}
+            </li>
           </ul>
       </div>
       <div class="item2">
@@ -21,10 +21,9 @@
               <p>调料</p>
           </div>
           <ul class="item-ul">
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
+             <li v-for="(item,index) in list.sysBookCondimentVOlist" :key="index">
+                 <p>{{item.condimentname}}</p>{{item.weight}}{{item.unit}}
+             </li> 
           </ul>
       </div>
     </div>
@@ -32,14 +31,13 @@
     <div class="item">
         <div class="tit">PART2 食材处理</div>
         <ul class="item3 item-ul">
-            <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
-             <li><p>五花肉</p>600克</li> 
+            <li v-for="(item,index) in list.sysBookHandlingVOlist" :key="index">
+                <p>{{item.name}}</p>{{item.handlingname}}
+            </li> 
+             <!-- <li><p>五花肉</p>600克</li>  -->
         </ul>
     </div>
-      <div class="item step">
+      <div class="item step" >
         <div class="tit">PART2 烹饪</div>
           <div class="top">
               <img src="./0.png">
@@ -50,10 +48,10 @@
               </div>
           </div>
               <ul>
-                  <li  v-for="(item,index) in step" :key="index">
+                  <li v-for="(item,index) in list.sysBookCookingVOlist" :key="index">
                       <div class="left">
                           <img src="./8.png">
-                          <p class="number">{{item.id}}</p>
+                          <p class="number">{{item.step}}</p>
                           <div class="wire">
                             <span></span>
                             <span></span>    
@@ -67,7 +65,7 @@
                           </div>
                       </div>
                       <div class="right">
-                         <p v-bind:style="{background:item.bg}">{{item.name}}</p>
+                         <p v-bind:style="{background:'rgb('+Math.floor(Math.random() * 200)+','+Math.floor(Math.random() * 256)+','+Math.floor(Math.random() * 256)+')'}">{{item.description.split('$')[0]}}</p>
                          <img src="./9.png">
                          <div class="cen">
                             <div class="line"> 
@@ -85,7 +83,7 @@
                          </div>
                       </div>
                       <div class="text">
-                          <p>{{item.tit}}</p>
+                          <p>{{item.description.split('$')[1]}}</p>
                       </div>
                   </li>
               </ul>
@@ -96,6 +94,7 @@
 
 <script>
 import sheader from '../public/header'
+import {process} from '@/api'
 // import fready from './f-ready'
 export default {
   components: {
@@ -104,6 +103,7 @@ export default {
   },
   data() {
     return {
+      bookid:'',    //菜谱id
       value: '梅干菜烧四季豆',
       step:[
           {id:1,bg:'#E3CC6F',name:'起汤锅',tit:'锅中加入冷水'},
@@ -112,10 +112,28 @@ export default {
           {id:4,bg:'#8C6270',name:'加热水煮羊肉',tit:'加入热水羊肉锅中煮'},
           {id:5,bg:'#B1250E',name:'盛出冷却',tit:'羊肉盛出冷却至室温羊汤备用'},
           {id:6,bg:'#BCB6B6',name:'切片',tit:'羊肉冷却后切片羊肉片备用'},
-      ]
+      ],
+      list:''
     }
-  }
-
+  },
+  created(){
+      this.bookid= this.$route.params.id 
+      process(this.bookid).then(res=>{
+          if(res.code==200){
+              this.list=res.data
+          }
+          console.log(res.data)
+      })
+        // r(index) {
+    //   let r, g, b;
+    //   r = Math.floor(Math.random() * 256);
+    //   g = Math.floor(Math.random() * 256);
+    //   b = Math.floor(Math.random() * 256);
+    //   return "rgb(" + r + "," + g + "," + b + ")";
+    //   // :style="{background:'rgb('+Math.floor(Math.random() * 220)+','+Math.floor(Math.random() * 256)+','+Math.floor(Math.random() * 256)+')'}"
+    // }
+  },
+ 
 }
 </script>
 
@@ -129,7 +147,7 @@ export default {
         font-size: px2rem(14);
         margin-bottom: px2rem(15);
     }
-    /deep/ .all{
+     .all{
         margin: px2rem(-15) 0 px2rem(10) 0;
     }
    .item{

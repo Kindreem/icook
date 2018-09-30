@@ -13,7 +13,7 @@
             <p slot="content"><span>完成条件:</span>{{item.condition}}</p>
         </Panel>
 
-            <button :class="item.taskstatus==2&&item.rewardstatus==1?'btn2':'btn1'" @click="get(item.utid)">
+            <button :class="item.rewardstatus==1?'btn2':item.rewardstatus==2?'btn3':'btn1'" @click="get(item.utid)">
                 {{item.rewardstatus==1?'领取':item.rewardstatus==2?'已领取':'未完成'}}
             </button>
       </div>
@@ -166,6 +166,7 @@ export default {
         }
         .allitem{
             position: relative;
+            //未完成
             .btn1{
                 width: px2rem(55);
                 height: px2rem(25);
@@ -180,6 +181,7 @@ export default {
                 top: px2rem(20);
                 
             }
+            //已完成
             .btn2{
                 width: px2rem(55);
                 height: px2rem(25);
@@ -192,6 +194,20 @@ export default {
                 right:px2rem(10);
                 top: px2rem(20);
             }
+            //已领取
+            .btn3{
+                width: px2rem(55);
+                height: px2rem(25);
+                font-size: px2rem(12);
+                color: #5CB8E7;
+                background: #fff;
+                border: none;
+                border-radius:20px;
+                position: absolute;
+                right:px2rem(10);
+                top: px2rem(20);
+            }
+
 }      }
 
 

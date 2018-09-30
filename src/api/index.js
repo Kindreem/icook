@@ -172,3 +172,8 @@ export const receive= (userid,utid)=>{
 export const getfeed = (ufid)=>{
   return axios.post(`/userfeed/getfeed?ufid=${ufid}`).then(res=>res.data)
 }
+//查看官方菜谱分解流程
+
+export const process = (cookbookid)=>{
+  return axios.post(`/process/getbookprocess?cookbookid=${cookbookid}`).then(res=>res.data)
+}
