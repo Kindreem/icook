@@ -44,12 +44,16 @@ export default {
   },
   mounted() {
     this.id = this.$route.params.id
+    if(this.$store.state.one=='') {
     getcooklist(this.id,this.num,this.pagesize).then(res=>{
         if(res.code==200){
             this.cooklist=res.data
+            this.$store.commit("setone", this.cooklist);
         }
     })
-    
+    } else{
+        this.cooklist= this.$store.state.one
+    }
   },
   methods: {
     loadMore() {
@@ -74,6 +78,7 @@ export default {
             this.allLoaded = false;
             //  console.log(res.data)
             this.cooklist = this.cooklist.concat(res.data);
+            this.$store.commit("setone", this.cooklist);
           } else {
             //  this.allLoaded = false
             this.num = 1;

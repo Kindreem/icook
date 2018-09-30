@@ -20,6 +20,7 @@ const state = {
   caipu: '', //我的菜谱
   shoucang: '', //我的收藏
   feed: '',  //我的作品
+  one: '', //one排列
 }
 
 
@@ -61,6 +62,9 @@ const mutations = {
   },
   setfeed: (state, feed) => {
     state.feed = feed
+  },
+  setone: (state, one) => {
+    state.one = one
   },
 }
 
@@ -105,6 +109,9 @@ const getters = {
   },
   getfeed: (state) => {
     return state.feed
+  },
+  getone: (state) => {
+    return state.one
   },
 }
 

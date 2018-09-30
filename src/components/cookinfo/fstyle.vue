@@ -25,6 +25,7 @@ export default {
     };
   },
   created() {
+    this.$store.state.one=""
     let userid = localStorage.getItem("userid");
     faction(userid).then(res => {
       this.data = res.data;

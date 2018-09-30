@@ -30,7 +30,7 @@
                 </DropdownMenu>
             </Dropdown> -->
         </div>
-        <router-link to="tast/tast">
+        <router-link to="/achieve">
           <img src="./img/ZY-003.png" alt="">
         </router-link>
       </div>

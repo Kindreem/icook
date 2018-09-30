@@ -49,10 +49,11 @@ export default {
 }
 .text {
   margin px2rem(20) 0px
-  height px2rem(250)
+  height px2rem(300)
   p {
-    font-size px2rem(24)
+    font-size px2rem(26)
     color #666
+    text-indent px2rem(52)
   }
 }
 .but {

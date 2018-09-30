@@ -7,8 +7,8 @@
       <div class="butt">
         <img id="bleft" v-if="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt="">
         <img id="bright" v-if="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
-        <img id="abl" v-if="on" ref="abl" :class="bb?'ab1':'ab2'" src="./img/ZY-005.png" alt="">
-        <img id="abr" v-if="on" ref="abr" :class="bb?'ab1':'ab2'" src="./img/ZY-006.png" alt="">
+        <img id="abl" v-if="on" src="./img/ZY-005.png" alt="">
+        <img id="abr" v-if="on" src="./img/ZY-006.png" alt="">
         <router-link to="/fstyle"><Button id="but1" type="ghost">烹饪菜系</Button></router-link>
         <Button id="but2" type="ghost">语音查询</Button>
       </div>
@@ -38,7 +38,7 @@ export default {
       pTop: "",
       height: "",
       pb: "",
-      bb: ""
+      // bb: ""
     };
   },
   methods: {
@@ -150,13 +150,13 @@ export default {
   // padding-bottom px2rem(146)
   background: #efefef;
 }
-.ab1 {
-  z-index 9999
+// .ab1 {
+//   z-index 9999
 
-}
-.ab2 {
-  z-index -9999
-}
+// }
+// .ab2 {
+//   z-index -9999
+// }
 .all {
   background: #efefef;
 

@@ -121,7 +121,7 @@ export default {
 
   .tab {
     // width: px2rem(320);
-    padding-right: px2rem(46);
+    padding-right: px2rem(50);
     height: px2rem(88);
     position: absolute;
     top: px2rem(-4);
@@ -136,12 +136,12 @@ export default {
     top: 0.26rem;
     // left: 0.73rem;
     margin-top: px2rem(6);
-    margin-left: px2rem(27);
+    margin-left: px2rem(40);
     display: inline-block;
   }
 
   p {
-    margin-left: px2rem(12);
+    margin-left: px2rem(8);
     // position: relative;
     // top: 0.29rem;
     // left: 0.6rem;
