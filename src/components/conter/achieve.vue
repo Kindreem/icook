@@ -5,8 +5,8 @@
             <p class="title">任务</p>
       </header>
 
-      <Collapse accordion simple >
-      <div v-for="(item,index) in list" :key="index" class="allitem">
+      <Collapse accordion v-model="val">
+      <div v-for="(item,index) in list" :key="index" class="allitem" @click="open(index)">
         <Panel>
             <div class="left"><img :src="item.achievementimg" alt=""></div>
             <h4>{{item.tsakname}}</h4><span>{{item.explain}}</span>
@@ -17,7 +17,7 @@
                 {{item.rewardstatus==1?'领取':item.rewardstatus==2?'已领取':'未完成'}}
             </button>
       </div>
-        <Panel class="none" name="1"></Panel>
+        <!-- <Panel class="none" name="0"></Panel> -->
     </Collapse>
 
       <!-- <div class="item">
@@ -45,7 +45,7 @@ export default {
     return {
         list:'' ,            //任务列表
         id:'' ,     //用户id
-        val:'1'
+        val:''
     }
   },
   mounted(){
@@ -55,7 +55,9 @@ export default {
      backto(){
       this.$router.go(-1);
     },
-
+  open(index){
+      this.val = index
+  },
     getlist(){
         this.id = localStorage.getItem("userid");
         tastlist(this.id).then(res=>{
