@@ -470,11 +470,11 @@ export default {
           width: 100%;
           // height:100%;
         }
-        .cropper-crop-box,
-        .cropper-face{
-          overflow: hidden;
-          border-radius: 50%;
-        }
+          .cropper-crop-box,
+          .cropper-face{
+            overflow: hidden;
+            border-radius: 50%;
+          }
         .cropper-view-box {
           border-radius: 50%;
           position: absolute;
