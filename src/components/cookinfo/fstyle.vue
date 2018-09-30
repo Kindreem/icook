@@ -55,15 +55,17 @@ export default {
 header {
   height: px2rem(88);
   line-height: px2rem(88);
-
+  // text-align center
   img {
-    margin-top: px2rem(18);
-    float: left;
+    margin-top: px2rem(22);
+    position absolute
+    // top px2rem(18);
+    // left 0px
     width: px2rem(48);
   }
 
   h3 {
-    text-align: center;
+    text-align center
     font-size px2rem(32)
     font-weight 300
     color: #199ed8;
