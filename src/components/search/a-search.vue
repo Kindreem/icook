@@ -1,10 +1,12 @@
 <template>
   <div class="all">
+    <div class="out">
     <section class="top">
       <Input v-model="value" ref="in" placeholder="输入菜系或菜谱" clearable search @on-enter="handleAdd" autofocus="autofocus"/>
       <img class="left" src="./img/DR-005.png" alt="" @click="back">
       <img class="right" src="./img/ZY-028.png" alt="">
     </section>
+    </div>
     <section class="bot">
       <div class="title">
         <img class="tag" src="./img/ZY-021.png" alt="">
@@ -50,6 +52,7 @@ export default {
     },
     handleAdd() {
       // let size = this.$store.state.size
+      this.$store.state.num = 1;
       this.$store.state.items = "";
       searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
         this.list = res.data;
@@ -86,10 +89,21 @@ export default {
 @import '../../assets/px2rem.styl';
 .all {
   margin 0 px2rem(30)
+  .out {
+    height px2rem(100)
+  }
   .top {
+    position fixed
+    top 0px
+    left px2rem(0)
+    right px2rem(0)
+    padding-left px2rem(30)
+    padding-right px2rem(30)
     text-align center
     height px2rem(100)
     line-height px2rem(100)
+    background-color #fff
+    z-index 999
     .left {
       float left
       margin-top px2rem(28)

@@ -72,12 +72,12 @@ export default {
         this.value = this.$store.state.val;
         // console.log(this.value);
         // this.size+=5
-        this.num++;
+        this.$store.state.num++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
 
          if(!this.allLoaded){
-        searchbook(this.value, this.num, this.pagesize,this.$store.state.searchsort).then(res => {
+        searchbook(this.value, this.$store.state.num, 5,this.$store.state.searchsort).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
             console.log(this.num)
@@ -86,7 +86,8 @@ export default {
             this.cooklist = this.cooklist.concat(res.data);
             this.$store.commit("setlist", this.cooklist);
           } else {
-            this.num = 1;
+            //  this.allLoaded = false
+            // this.$store.state.num = 1;
             this.allLoaded = true;
           }
          });
