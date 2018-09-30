@@ -42,13 +42,13 @@
                </swiper>
            </ul>
        </div>
-       <div class="item menu" v-if="$store.state.caipu">
+       <div class="item menu" >
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的菜谱(共{{$store.state.caipu.length}}个)</p>
             </div>
             <ul class="menus">
-             <swiper :options="swiperOption">
+             <swiper :options="swiperOption" v-if="$store.state.caipu">
                <swiper-slide v-for="(item,index) in $store.state.caipu" :key="index">
                    <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
@@ -57,15 +57,16 @@
                    <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
+               <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
-       <div class="item menu" v-if="$store.state.feed">
+       <div class="item menu">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                 <p>我的作品(共{{$store.state.feed.length}}个)</p>
             </div>
            <ul class="menus">
-             <swiper :options="swiperOption">
+             <swiper :options="swiperOption" v-if="$store.state.feed">
                <swiper-slide v-for="(item,index) in $store.state.feed" :key="index">
                    <router-link :to="'myfeed/'+item.ufid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ufimg) + ')'}">
@@ -73,15 +74,16 @@
                    <p>{{item.ufname}}</p>
                </swiper-slide>
                </swiper>
+               <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
-         <div class="item menu"  v-if="$store.state.shoucang">
+         <div class="item menu" >
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的收藏(共{{$store.state.shoucang.length}}个)</p>
             </div>
            <ul class="menus">
-             <swiper :options="swiperOption">
+             <swiper :options="swiperOption" v-if="$store.state.shoucang">
                <swiper-slide v-for="(item,index) in $store.state.shoucang" :key="index">
                    <router-link :to="'U_menu/'+item.ubid" >
                    <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
@@ -89,6 +91,7 @@
                    <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
+               <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
          <router-link to="conter/badge" >
@@ -108,21 +111,21 @@
                </swiper>
            </ul>
        </div></router-link>
-        <div class="item badge" v-if="myach">
+        <div class="item badge">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的成就</p>
             </div>
            <ul class="badges">
-                <swiper :options="swiperOption1" >
-                     <swiper-slide v-for="(item,index) in myach" :key="index">
+                <swiper :options="swiperOption1"  v-if="$store.state.myach">
+                     <swiper-slide v-for="(item,index) in $store.state.myach" :key="index">
                     <router-link :to="'/show/'+item.achievementid" >
                      <img :src="item.achievementimg" alt="">
                      <p>{{item.achievementname}}</p>
                     </router-link>
                 </swiper-slide>
                </swiper>
-
+             <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
 
@@ -218,7 +221,11 @@ export default {
   //我的成就
   myachievement(this.userid).then(res=>{
     if(res.code==200){
-      this.myach = res.data
+      if (this.$store.state.myach == res.data) {
+          this.$store.state.myach = this.$store.state.myach;
+      }else{
+        this.$store.state.myach = res.data
+      }
     }
     console.log(res.data)
   })
@@ -302,6 +309,7 @@ export default {
           text-align: center;
           img {
             width: px2rem(90);
+            border-radius: 20px;
           }
           .ubimg {
             margin: 0 auto;
@@ -345,6 +353,12 @@ export default {
     margin-top: px2rem(15);
     border-radius: px2rem(10);
     box-shadow: 5px 6px 3px 6px rgba(0, 0, 0, 0.1);
+    .nodata{
+      width: 100%;
+      margin-top: px2rem(38);
+      font-size: px2rem(16);
+      text-align: center;
+    }
     .title {
       width: px2rem(180);
       height: px2rem(30);

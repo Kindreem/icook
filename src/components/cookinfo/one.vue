@@ -38,14 +38,14 @@ export default {
       loading: false,
       queryLoading: false,
       allLoaded: false,
-      num: 1,
+      // num: 1,
       id:''
     };
   },
   mounted() {
     this.id = this.$route.params.id
     if(this.$store.state.one=='') {
-    getcooklist(this.id,this.num,this.pagesize).then(res=>{
+    getcooklist(this.id,1,this.pagesize).then(res=>{
         if(res.code==200){
             this.cooklist=res.data
             this.$store.commit("setone", this.cooklist);
@@ -68,11 +68,11 @@ export default {
       this.loading = true;
       setTimeout(() => {
         // this.size+=5
-        this.num++;
+        this.$store.state.num1++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
-       if(!this.allLoaded){
-          getcooklist(this.id, this.num,this.pagesize).then(res => {
+      //  if(!this.allLoaded){
+          getcooklist(this.id, this.$store.state.num1,this.pagesize).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
             this.allLoaded = false;
@@ -81,11 +81,11 @@ export default {
             this.$store.commit("setone", this.cooklist);
           } else {
             //  this.allLoaded = false
-            this.num = 1;
+            // this.$store.state.num1 = 1;
             this.allLoaded = true;
           }
         });
-       }
+      //  }
         this.loading = false;
       }, 2500);
     }

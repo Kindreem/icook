@@ -23,6 +23,11 @@ const state = {
   one: '', //one排列
   num: 1, //页数
   cbname:'',  //菜谱名字
+  num: 1, //list页数
+  num1: 1, //one页数
+  num2: 1, //tow页数
+  tow: '', //tow排列
+  myach:'', //我的成就
 }
 
 
@@ -73,7 +78,19 @@ const mutations = {
   },
   setcbname: (state, cbname) => {
     state.cbname = cbname
+},
+  setnum1: (state, mun1) => {
+    state.num1 = num1
   },
+  setnum2: (state, mun2) => {
+    state.num2 = num2
+  },
+  settow: (state, tow) => {
+    state.tow = tow
+  },
+  setmyach: (state, myach) => {
+    state.myach =myach
+  }
 }
 
 //  3异步修改数据
@@ -126,9 +143,20 @@ const getters = {
   },
   getcbname: (state) => {
     return state.cbname
+ },
+  getnum1: (state) => {
+    return state.num1
+  },
+  getnum2: (state) => {
+    return state.num2
+  },
+  gettow: (state) => {
+    return state.tow
+  },
+  getmyach: (state) => {
+    return state.myach
   },
 }
-
 
 //导出store实例
 export default new Vuex.Store({

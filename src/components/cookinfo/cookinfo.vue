@@ -34,6 +34,10 @@ export default {
       this.$router.push({ path: "/fstyle" });
     },
     tab() {
+      this.$store.state.one = "";
+      this.$store.state.tow = "";
+      this.$store.state.num1 = 1;
+      this.$store.state.num2 = 1;
       if (this.istab == true) {
         this.$router.push({ path: "/tow/" + this.id });
       } else {

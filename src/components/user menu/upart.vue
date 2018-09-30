@@ -111,7 +111,8 @@ export default {
           border-bottom: 0.02px solid #ccc;
           // height 50px
           // margin 0 auto
-          justify-content: space-around;
+          padding 0 px2rem(16)
+          justify-content: space-between;
           width: 50%;
           display: flex;
 

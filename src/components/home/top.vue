@@ -133,7 +133,7 @@ export default {
   .heart {
     width: px2rem(36);
     position: relative;
-    top: 0.26rem;
+    top: px2rem(9);
     // left: 0.73rem;
     margin-top: px2rem(6);
     margin-left: px2rem(40);
