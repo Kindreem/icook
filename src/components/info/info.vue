@@ -83,7 +83,7 @@
            <input type="button" class="next" value="下一步" @click="add">
 
   </form>
-          <div class="end">
+      <div class="end">
         <div class="left"><img src="./1.png" alt=""></div>
         <div class="con">
             <p><span>'烹饪之心'</span>徽章</p>
@@ -620,34 +620,42 @@ export default {
   span,p{
     font-size:  px2rem(12);
     color: #999;
+    float left
+    text-align left 
+    i{
+      display none
+    }
+  }
+  .vux-datetime-value{
+    display none 
   }
 }
 .dp-container{
-        width: 80%!important;
-        left: 10%!important;
+        width: 80% !important;
+        left: 10% !important;
         height: px2rem(200);
         margin-bottom:px2rem(120);
-        transform: none!important;
-        border-radius: 20px;
-        overflow: hidden;
+        transform: none !important;
+        border-radius: 20px !important;
+        overflow: hidden !important;
    .dp-content{
       .dp-item{
-          height:  px2rem(140);
-          margin-top: px2rem(14);
+          height:  px2rem(140) !important;
+          margin-top: px2rem(14) !important;
           transform: perspective(860px) rotateX(10deg); 
         .scroller-component{
-          height: px2rem(120);
-          position: relative;
+          height: px2rem(120) !important;
+          position: relative !important;
         .scroller-mask {
             background-size:100% px2rem(50) !important;
             bottom :0px !important;
             // height:100% !important;
               }
           .scroller-indicator{
-              height: px2rem(25);
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
+              height: px2rem(25) !important;
+              position: absolute !important;
+              top: 50%!important;
+              transform: translateY(-50%) !important;
           }
         }
         .scroller-item{

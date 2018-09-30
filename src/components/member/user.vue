@@ -514,24 +514,32 @@ export default {
   span,p{
     font-size:  px2rem(12);
     color: #999;
+    float left
+    text-align left 
+    i{
+      display none
+    }
+  }
+   .vux-datetime-value{
+    display none 
   }
 }
 .dp-container{
-        width: 80%!important;
-        left: 10%!important;
+        width: 80% !important;
+        left: 10% !important;
         height: px2rem(200);
         margin-bottom:px2rem(120);
-        transform: none!important;
-        border-radius: 20px;
-        overflow: hidden;
+        transform: none !important;
+        border-radius: 20px !important;
+        overflow: hidden !important;
      .dp-content{
       .dp-item{
-          height:  px2rem(140);
-          margin-top: px2rem(14);
+          height:  px2rem(140) !important;
+          margin-top: px2rem(14) !important;
           transform: perspective(860px) rotateX(10deg); 
         .scroller-component{
-          height: px2rem(120);
-          position: relative;
+          height: px2rem(120) !important;
+          position: relative !important;
         .scroller-mask {
             background-size:100% px2rem(50) !important;
             bottom :0px !important;
@@ -545,18 +553,18 @@ export default {
           }
         }
         .scroller-item{
-            height: px2rem(25)!important;
-            line-height:  px2rem(20)!important;
+            height: px2rem(25) !important;
+            line-height:  px2rem(20) !important;
             font-size: px2rem(18);
             transform:rotate3d(0, 0, 0,0deg) translate3d(8px, 0px, px2rem(2));
         }
         }
     }
      .dp-header{
-            width:80%;
-            left: 10%;
-            position: absolute!important;
-            bottom:px2rem(15)!important;
+            width:80% !important;
+            left: 10% !important;
+            position: absolute !important;
+            bottom:px2rem(15) !important;
         .dp-item{
             font-size:  px2rem(14);
             width: px2rem(85);
