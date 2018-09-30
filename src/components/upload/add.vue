@@ -364,9 +364,6 @@ input:hover {
           // width: 100%;
           // height:100%;
         }
-        .cropper-face{
-            border-radius: 0;
-          }
         .cropper-box-canvas {
           // transform: scale(1, 1) !important
         }
@@ -377,6 +374,7 @@ input:hover {
         }
         .cropper-face{
           background: none;
+          border-radius: 0;
         }
 
         .crop-info{
