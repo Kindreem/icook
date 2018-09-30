@@ -12,9 +12,11 @@
             <p>所属公会</p>
         </div>
         <div class="right">
-          <v-for v-for="(item,index) in myach" :key="index">
+          <!-- <v-for v-for="(item,index) in myach" :key="index"> -->
             <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
-          </v-for>
+            <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
+            <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
+          <!-- </v-for> -->
         </div>
       </div>
        <div class="item">
