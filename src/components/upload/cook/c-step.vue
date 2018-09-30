@@ -1,5 +1,5 @@
 <template>
-  <div class="all">
+  <div class="all c_step">
     <div class="ban">
       <h2>步骤分解</h2>
     </div>
@@ -372,37 +372,7 @@ export default {
   }
 }
 
->>>.ivu-form {
-  .ivu-form-item {
-    img {
-      position: relative;
-      top: px2rem(8);
-    }
 
-    .ivu-btn {
-      font-size: px2rem(32);
-      border-radius: px2rem(20);
-      box-shadow: 10px 10px 14px rgba(204, 204, 204, 0.4);
-      border: none;
-      color: #fff;
-      border-color: #444;
-      margin-top: px2rem(40);
-      padding-left: px2rem(72);
-      background: #5DB8E9 url('../img/1-036-1.png') no-repeat 20% 50%;
-      background-size: px2rem(42);
-    }
-
-    .ivu-btn-dashed:active {
-      color: #fff;
-      border-color: #5DB8E9;
-    }
-
-    .ivu-btn-dashed:hover {
-      color: #fff;
-      border-color: #5DB8E9;
-    }
-  }
-}
 
 .content {
   // border-bottom 1px solid #333
@@ -435,49 +405,6 @@ export default {
     font-size: px2rem(25);
   }
 }
-
->>>.ivu-form-item-label {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: px2rem(32);
-  // color #999
-}
-
->>>.ivu-form-item-label::before {
-  content: '';
-}
-
->>>.ivu-input {
-  // min-height: 40px;
-  color: #999;
-  outline: none;
-  border: none;
-  font-size: px2rem(26);
-  width: 100%;
-  border-bottom: 1px solid #999;
-}
-
->>>.ivu-input-wrapper {
-  border-bottom: 1px solid #999 !important;
-}
-
->>>.ivu-input::-webkit-input-placeholder { /* WebKit browsers */
-  color: #999;
-}
-
->>>.ivu-input:hover {
-  border: 0;
-  outline: 0;
-  border-bottom: 1px solid #999;
-}
-
->>>.ivu-input:focus {
-  border: 0;
-  outline: 0;
-  border-bottom: 1px solid #999;
-  box-shadow: none;
-}
-
 .imgb {
   position: relative;
 }
@@ -491,15 +418,88 @@ export default {
   background-size: cover !important;
   border-radius: 20px;
 }
+</style>
+<style lang="stylus">
+@import '../../../assets/px2rem.styl';
+.c_step{
+.ivu-form {
+  .ivu-form-item {
+    img {
+      position: relative;
+      top: px2rem(8);
+    }
 
->>>.ivu-form-item-error-tip {
+    .ivu-btn {
+      font-size: px2rem(32);
+      border-radius: px2rem(20);
+      box-shadow: 10px 10px 14px rgba(204, 204, 204, 0.4);
+      border: none;
+      color: #fff;
+      border-color: #444;
+      margin-top: px2rem(40);
+      padding-left: px2rem(72);
+      background: #5DB8E9 url('../img/1-036-1.png') no-repeat 20% 50%;
+      background-size: px2rem(42);
+    }
+
+    .ivu-btn-dashed:active {
+      color: #fff;
+      border-color: #5DB8E9;
+    }
+
+    .ivu-btn-dashed:hover {
+      color: #fff;
+      border-color: #5DB8E9;
+    }
+  }
+}
+.ivu-form-item-error-tip {
   display: none !important;
 }
+.ivu-form-item-label {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: px2rem(32);
+  // color #999
+}
 
+.ivu-form-item-label::before {
+  content: '';
+}
+
+.ivu-input {
+  // min-height: 40px;
+  color: #999;
+  outline: none;
+  border: none;
+  font-size: px2rem(26);
+  width: 100%;
+  border-bottom: 1px solid #999;
+}
+
+.ivu-input-wrapper {
+  border-bottom: 1px solid #999 !important;
+}
+
+.ivu-input::-webkit-input-placeholder { /* WebKit browsers */
+  color: #999;
+}
+
+.ivu-input:hover {
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #999;
+}
+
+.ivu-input:focus {
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #999;
+  box-shadow: none;
+}
 .infoimg {
   background: #199ed8;
-
-  >>>.ivu-modal {
+  .ivu-modal {
     // touch-action: none;
     top: 0;
     height: 100%;
@@ -569,5 +569,5 @@ export default {
     }
   }
 }
+}
 </style>
-
