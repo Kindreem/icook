@@ -75,16 +75,17 @@ export default {
         this.num++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
+
          if(!this.allLoaded){
-        searchbook(this.value, this.num, 5,this.$store.state.searchsort).then(res => {
+        searchbook(this.value, this.num, this.pagesize,this.$store.state.searchsort).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
+            console.log(this.num)
             this.allLoaded = false;
             //  console.log(res.data)
             this.cooklist = this.cooklist.concat(res.data);
             this.$store.commit("setlist", this.cooklist);
           } else {
-            //  this.allLoaded = false
             this.num = 1;
             this.allLoaded = true;
           }
