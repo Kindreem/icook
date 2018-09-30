@@ -146,7 +146,7 @@ export default {
       img: {
         url: ""
       },
-      url: require("./TX.png"),
+      url: require("./TXXX.png"),
       nickname: "",
       endDate: new Date(),
       startDate: new Date("1970-1-1"),
@@ -382,130 +382,10 @@ export default {
   }
 };
 </script>
+<style lang="stylus" scoped>
+@import '../../assets/css/px2rem.styl';
 
-<style lang="scss">
-@import "@/assets/hotcss/px2rem.scss";
-.vux-datetime{
-  span,p{
-    font-size:  px2rem(12);
-    color: #999;
-  }
-}
-.dp-container{
-        width: 80%!important;
-        left: 10%!important;
-        height: px2rem(200);
-        margin-bottom:px2rem(120);
-        transform: none!important;
-        border-radius: 20px;
-        overflow: hidden;
-     .dp-content{
-      .dp-item{
-          height:  px2rem(140);
-          margin-top: px2rem(14);
-          transform: perspective(860px) rotateX(10deg); 
-        .scroller-component{
-          height: px2rem(120);
-          position: relative;
-        .scroller-mask {
-            background-size:100% px2rem(50) !important;
-            bottom :0px !important;
-            // height:100% !important;
-              }
-          .scroller-indicator{
-              height: px2rem(25);
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-          }
-        }
-        .scroller-item{
-            height: px2rem(25)!important;
-            line-height:  px2rem(20)!important;
-            font-size: px2rem(20);
-            transform:rotate3d(0, 0, 0,0deg) translate3d(8px, 0px, px2rem(2));
-        }
-        }
-    }
-     .dp-header{
-            width:80%;
-            left: 10%;
-            position: absolute!important;
-            bottom:px2rem(15)!important;
-        .dp-item{
-            font-size:  px2rem(14);
-            width: px2rem(85);
-            border: 1px solid #999;
-            border-radius: px2rem(3);
-            height: px2rem(25);
-            line-height: px2rem(25);
-            color: #999;
-            padding: 0;
-            text-align: center;
-        }
-        .dp-item:nth-child(2){
-          border: none;
-          margin: 0 px2rem(30);
-        }
-        .dp-item:nth-child(3){
-            color: #199ed8;
-            border: 1px solid #199ed8;
-        }
-    }
-}
-.infoimg {
-  background: #000;
-  .ivu-modal {
-      top: 0;
-    height: 100%;
-    .ivu-modal-content {
-      background: #000;
-      .vue-cropper {
-        background-image: none !important;
-        background: #000;
-        height: 100%;
-        img {
-          // margin-top: 40%;
-          // position: relative;
-          width: 100%;
-          // height:100%;
-        }
-          .cropper-crop-box,
-          .cropper-face{
-            overflow: hidden;
-            border-radius: 50%;
-          }
-        .cropper-view-box {
-          border-radius: 50%;
-          position: absolute;
-          border: px2rem(1) solid #199ed8;
-          outline: none;
-        }
-        .cropper-face {
-          background: none;
-        }
-        .crop-info {
-          display: none;
-        }
-      }
-    }
-    .ivu-modal-footer {
-      padding: 0;
-      .footer {
-        width: 100%;
-        display: flex;
-        display: -webkit-flex;
-        -webkit-justify-content: space-around;
-        justify-content: space-around;
-        .ivu-btn {
-          width: px2rem(60);
-          margin-top: px2rem(2);
-          font-size: px2rem(12);
-        }
-      }
-    }
-  }
-}
+
 .info {
   .warning {
     position: absolute;
@@ -633,60 +513,60 @@ export default {
       color: #199ed8;
     }
   }
-  .mint-popup {
-    top: 50%;
-    width: 85%;
-    left: 8%;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    height: px2rem(200);
-    transform: none;
-    .picker-slot-wrapper {
-      margin-top: px2rem(-15);
-    }
-    .picker-items {
-      height: px2rem(110);
-      margin: px2rem(30) 0;
-      -webkit-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-      .picker-item {
-        font-size: px2rem(17);
-        // transform: perspective(600px) rotateY(20deg);
-        transform: rotate3d(1, 0, 0, 30deg) translate3d(0px, 0px, px2rem(2));
-      }
-      .picker-item.picker-selected {
-        height: px2rem(30) !important;
-        line-height: px2rem(30) !important;
-        font-size: px2rem(19);
-        transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
-      }
-    }
-    .picker-center-highlight {
-      height: px2rem(20) !important;
-    }
-    .picker-toolbar {
-      position: absolute;
-      height: px2rem(25);
-      bottom: px2rem(12);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      span {
-        font-size: px2rem(14);
-        display: inline-block;
-        margin: 0 px2rem(20);
-        width: px2rem(85);
-        border: 1px solid #999;
-        border-radius: px2rem(3);
-        line-height: px2rem(25);
-        color: #999;
-      }
-      span:last-child {
-        color: #199ed8;
-        border: 1px solid #199ed8;
-      }
-    }
-  }
+  // .mint-popup {
+  //   top: 50%;
+  //   width: 85%;
+  //   left: 8%;
+  //   border-radius: 10px;
+  //   background: rgba(255, 255, 255, 0.9);
+  //   height: px2rem(200);
+  //   transform: none;
+  //   .picker-slot-wrapper {
+  //     margin-top: px2rem(-15);
+  //   }
+  //   .picker-items {
+  //     height: px2rem(110);
+  //     margin: px2rem(30) 0;
+  //     -webkit-transform-style: preserve-3d;
+  //     transform-style: preserve-3d;
+  //     .picker-item {
+  //       font-size: px2rem(17);
+  //       // transform: perspective(600px) rotateY(20deg);
+  //       transform: rotate3d(1, 0, 0, 30deg) translate3d(0px, 0px, px2rem(2));
+  //     }
+  //     .picker-item.picker-selected {
+  //       height: px2rem(30) !important;
+  //       line-height: px2rem(30) !important;
+  //       font-size: px2rem(19);
+  //       transform: rotate3d(1, 0, 0, 0) translate3d(0px, 0px, px2rem(0));
+  //     }
+  //   }
+  //   .picker-center-highlight {
+  //     height: px2rem(20) !important;
+  //   }
+  //   .picker-toolbar {
+  //     position: absolute;
+  //     height: px2rem(25);
+  //     bottom: px2rem(12);
+  //     width: 100%;
+  //     display: flex;
+  //     justify-content: center;
+  //     span {
+  //       font-size: px2rem(14);
+  //       display: inline-block;
+  //       margin: 0 px2rem(20);
+  //       width: px2rem(85);
+  //       border: 1px solid #999;
+  //       border-radius: px2rem(3);
+  //       line-height: px2rem(25);
+  //       color: #999;
+  //     }
+  //     span:last-child {
+  //       color: #199ed8;
+  //       border: 1px solid #199ed8;
+  //     }
+  //   }
+  // }
   .next {
     width: px2rem(270);
     height: px2rem(40);
@@ -733,3 +613,128 @@ export default {
   }
 }
 </style>
+
+<style lang="stylus">
+@import '../../assets/css/px2rem.styl';
+.vux-datetime{
+  span,p{
+    font-size:  px2rem(12);
+    color: #999;
+  }
+}
+.dp-container{
+        width: 80%!important;
+        left: 10%!important;
+        height: px2rem(200);
+        margin-bottom:px2rem(120);
+        transform: none!important;
+        border-radius: 20px;
+        overflow: hidden;
+   .dp-content{
+      .dp-item{
+          height:  px2rem(140);
+          margin-top: px2rem(14);
+          transform: perspective(860px) rotateX(10deg); 
+        .scroller-component{
+          height: px2rem(120);
+          position: relative;
+        .scroller-mask {
+            background-size:100% px2rem(50) !important;
+            bottom :0px !important;
+            // height:100% !important;
+              }
+          .scroller-indicator{
+              height: px2rem(25);
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+          }
+        }
+        .scroller-item{
+            height: px2rem(25) !important;
+            line-height:  px2rem(20) !important;
+            font-size: px2rem(18) !important;
+            transform:rotate3d(0, 0, 0,0deg) translate3d(8px, 0px, px2rem(2));
+        }
+        }
+    }
+     .dp-header{
+            width:80%;
+            left: 10%;
+            position: absolute!important;
+            bottom:px2rem(15)!important;
+        .dp-item{
+            font-size:  px2rem(14);
+            width: px2rem(85);
+            border: 1px solid #999;
+            border-radius: px2rem(3);
+            height: px2rem(25);
+            line-height: px2rem(25);
+            color: #999;
+            padding: 0;
+            text-align: center;
+        }
+        .dp-item:nth-child(2){
+          border: none;
+          margin: 0 px2rem(30);
+        }
+        .dp-item:nth-child(3){
+            color: #199ed8;
+            border: 1px solid #199ed8;
+        }
+    }
+}
+.infoimg {
+  background: #000;
+  .ivu-modal {
+      top: 0;
+    height: 100%;
+    .ivu-modal-content {
+      background: #000;
+      .vue-cropper {
+        background-image: none !important;
+        background: #000;
+        height: 100%;
+        img {
+          // margin-top: 40%;
+          // position: relative;
+          width: 100%;
+          // height:100%;
+        }
+          .cropper-crop-box,
+          .cropper-face{
+            overflow: hidden;
+            border-radius: 50%;
+          }
+        .cropper-view-box {
+          border-radius: 50%;
+          position: absolute;
+          border: px2rem(1) solid #199ed8;
+          outline: none;
+        }
+        .cropper-face {
+          background: none;
+        }
+        .crop-info {
+          display: none;
+        }
+      }
+    }
+    .ivu-modal-footer {
+      padding: 0;
+      .footer {
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        .ivu-btn {
+          width: px2rem(60);
+          margin-top: px2rem(2);
+          font-size: px2rem(12);
+        }
+      }
+    }
+  }
+}
+</style> 

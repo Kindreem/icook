@@ -27,6 +27,7 @@
           </ul>
       </div>
     </div>
+    <div v-else class="nodata">暂无分解,敬请期待</div>
     
     <div class="item" v-if="list">
         <div class="tit">PART2 食材处理</div>
@@ -89,7 +90,7 @@
               </ul>
               <div class="achieve">烹饪完成</div>
       </div>
-    <!-- <div class="item step"  v-if="list">
+    <div class="item step"  v-if="list.sysBookExcipientsVOlist">
         <div class="tit">PART4 装盘</div>
           <div class="top">
               <img src="./0.png">
@@ -141,9 +142,8 @@
                   </li>
               </ul>
               <div class="achieve">装盘完成</div>
-      </div> -->
+      </div>
 
-      <div v-else class="nodata">暂无分解,敬请期待</div>
   
   
   
