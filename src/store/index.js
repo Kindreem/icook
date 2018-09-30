@@ -21,6 +21,7 @@ const state = {
   shoucang: '', //我的收藏
   feed: '',  //我的作品
   one: '', //one排列
+  num: 1, //页数
 }
 
 
@@ -65,6 +66,9 @@ const mutations = {
   },
   setone: (state, one) => {
     state.one = one
+  },
+  setnum: (state, mun) => {
+    state.num = num
   },
 }
 
@@ -112,6 +116,9 @@ const getters = {
   },
   getone: (state) => {
     return state.one
+  },
+  getnum: (state) => {
+    return state.num
   },
 }
 

@@ -48,7 +48,7 @@ export default {
     change1() {
       this.$store.state.searchsort = 1;
       this.active = true;
-
+      this.$store.state.num = 1;
       this.$store.state.items = "";
       searchbook(this.$store.state.val, 1, this.psize,this.$store.state.searchsort).then(res => {
         this.list = res.data;
@@ -59,7 +59,7 @@ export default {
     change2() {
       this.$store.state.searchsort = 2;
       this.active = false;
-
+      this.$store.state.num = 1;
       this.$store.state.items = "";
       searchbook(this.$store.state.val, 1, this.psize,this.$store.state.searchsort).then(res => {
         this.list = res.data;

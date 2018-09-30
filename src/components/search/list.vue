@@ -72,11 +72,11 @@ export default {
         this.value = this.$store.state.val;
         // console.log(this.value);
         // this.size+=5
-        this.num++;
+        this.$store.state.num++;
         // console.log(this.num)
         // this.$store.commit('setsize',this.pagesize)
          if(!this.allLoaded){
-        searchbook(this.value, this.num, 5,this.$store.state.searchsort).then(res => {
+        searchbook(this.value, this.$store.state.num, 5,this.$store.state.searchsort).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
             this.allLoaded = false;
@@ -85,7 +85,7 @@ export default {
             this.$store.commit("setlist", this.cooklist);
           } else {
             //  this.allLoaded = false
-            this.num = 1;
+            // this.$store.state.num = 1;
             this.allLoaded = true;
           }
          });

@@ -41,7 +41,7 @@
       <router-link to="search" :style="{'transform': 'scale(' + sty + ')','transition': 'all 0.2s'}" @mousemove="move" @touchmove="move">
         <transition name="fade">
           <div class="i_search">
-          <Input placeholder="在此输入你要查询的菜谱"/>
+          <Input disabled placeholder="在此输入你要查询的菜谱"/>
           <transition name="slide-fade">
             <img v-show="show" src="./img/1-005.png" alt="">
           </transition>
@@ -311,6 +311,9 @@ header {
 .slide-fade-enter, .slide-fade-leave-to, {
   // transform: translateX(10px);
   opacity: 0;
+}
+>>>.ivu-input[disabled]{
+  background-color: #fff !important
 }
 </style>
 
