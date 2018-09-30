@@ -53,6 +53,7 @@ export default {
     handleAdd() {
       // let size = this.$store.state.size
       this.$store.state.num = 1;
+      // console.log(this.$store.state.num)
       this.$store.state.items = "";
       searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
         this.list = res.data;

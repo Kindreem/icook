@@ -10,7 +10,7 @@
         <li @click="show=!show">语音人声</li>
       </ul>
       <div>
-         <button>注销</button>
+         <button @click="quiet">注销</button>
       </div>
     </section>
     <transition name="slide-fade">
@@ -43,6 +43,10 @@ export default {
   methods: {
     back() {
       this.$router.go(-1); //返回上一层
+    },
+    quiet() {
+      localStorage.clear()
+      this.$router.push({path: '/member'})
     }
   }
 };

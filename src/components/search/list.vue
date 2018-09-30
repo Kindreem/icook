@@ -73,12 +73,13 @@ export default {
         // console.log(this.value);
         // this.size+=5
         this.$store.state.num++;
-        // console.log(this.num)
+
         // this.$store.commit('setsize',this.pagesize)
-         if(!this.allLoaded){
+        //  if(!this.allLoaded){
         searchbook(this.value, this.$store.state.num, 5,this.$store.state.searchsort).then(res => {
           // this.cooklist= res.data
           if (res.code == 200) {
+            console.log(this.$store.state.num)
             this.allLoaded = false;
             //  console.log(res.data)
             this.cooklist = this.cooklist.concat(res.data);
@@ -89,7 +90,7 @@ export default {
             this.allLoaded = true;
           }
          });
-         }
+        //  }
         this.loading = false;
       }, 2500);
     }
