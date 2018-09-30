@@ -459,12 +459,12 @@ export default {
 .ivu-form-item-label {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: px2rem(32);
+  font-size: px2rem(32) !important;
   // color #999
 }
 
 .ivu-form-item-label::before {
-  content: '';
+  content: '' !important;
 }
 
 .ivu-input {
@@ -522,10 +522,12 @@ export default {
         .cropper-crop-box {
           border-radius: 0 !important;
         }
-
+        .cropper-face{
+            border-radius: 0;
+          }
         .cropper-view-box {
-          outline: px2rem(3) solid #39f !important;
-          border: none !important;
+          border: px2rem(3) solid #39f !important;
+          outline none !important
           border-radius: 0 !important;
           img {
             // width px2rem(300) !important
@@ -538,10 +540,6 @@ export default {
             // width px2rem(300) !important
           }
         }
-
-        .cropper-view-box {
-        }
-
         .cropper-face {
           background: none;
         }
