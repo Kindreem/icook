@@ -39,7 +39,7 @@ export default {
       let self = this;
       console.log(this.$route);
       if (this.$route.name == "works") {
-        addfeed(this.userid,this.ubname,this.ubthumbimg,this.userid).then(res => {
+        addfeed(this.userid,this.ubname,this.ubthumbimg,this.ubdescription).then(res => {
           console.log(res);
           this.$router.push({ path: "/Share" });
         });

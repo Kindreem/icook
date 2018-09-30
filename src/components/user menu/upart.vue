@@ -78,6 +78,8 @@ export default {
       font-size: px2rem(40);
       color: #fff;
       line-height: px2rem(80);
+      font-weight 300
+
     }
 
     img {
@@ -92,6 +94,7 @@ export default {
     >h4 {
       text-align: center;
       font-size: px2rem(30);
+      font-weight 300
       color: #5DB8E9;
       margin-bottom: px2rem(20);
     }
@@ -119,6 +122,7 @@ export default {
           h4 {
             // justify-content space-between !important
             font-size: px2rem(26);
+            font-weight 300
           }
         }
       }

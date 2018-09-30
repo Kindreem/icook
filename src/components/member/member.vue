@@ -2,7 +2,7 @@
   <div class="member">
 
       <div class="logo">
-          <img src="../../assets/images/DR-001.png" alt="">
+          <img src="./i厨神-字标.png" alt="">
           <p>游饪我生活！</p>
       </div>
 
@@ -44,7 +44,7 @@ export default {
   },
     created() {
         //如果url里有token, 设置进cookie
-        var token = this.$route.query.token;    
+        var token = this.$route.query.token;
         if(typeof token !== 'undefined') {
         var exp = new Date();
         exp.setTime(exp.getTime() + 3600 * 1000);//过期时间60分钟
@@ -69,12 +69,13 @@ export default {
       text-align: center;
         .logo img{
             margin-top: px2rem(108);
-            width: px2rem(195);
-            height: px2rem(39);
+            width: px2rem(162);
+            height: px2rem(57.6);
         }
         .logo p{
+            margin-top: px2rem(4);
             color: #199ED8;
-            font-size: px2rem(14);
+            font-size: px2rem(17);
         }
         .btn{
             top:  70%;

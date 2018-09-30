@@ -81,7 +81,8 @@ export default {
       left px2rem(42)
     }
     #tag {
-      width px2rem(320)
+      width px2rem(380)
+      height px2rem(90)
     }
     h3 {
       position absolute

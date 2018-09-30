@@ -368,7 +368,7 @@ input:hover {
           // transform: scale(1, 1) !important
         }
         .cropper-view-box{
-          outline: 2px solid #39f;
+          outline: px2rem(3) solid #39f !important;
           border-radius 0 !important
           // position: absolute;
           border: none !important;

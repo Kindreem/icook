@@ -182,6 +182,7 @@ export default {
 
 .zong {
   height: px2rem(210);
+  background-color #EFEFEF
 }
 
 .all {
