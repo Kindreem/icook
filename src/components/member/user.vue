@@ -173,7 +173,7 @@ export default {
     }
 },
    created() {
-      this.height = document.documentElement.clientHeight-120
+      this.height = document.documentElement.clientHeight-160
       console.log(this.height)
       let width = document.documentElement.clientWidth*0.6
       this.option.autoCropWidth= width
