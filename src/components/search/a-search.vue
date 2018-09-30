@@ -56,10 +56,15 @@ export default {
       // console.log(this.$store.state.num)
       this.$store.state.items = "";
       searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
-        this.list = res.data;
-        this.$store.commit("setsize", this.psize);
-        this.$store.commit("setval", this.value);
-        this.$store.commit("setlist", this.list);
+        if(res.code==200){
+          this.$store.commit("setnodata", '');
+          this.list = res.data;
+          this.$store.commit("setsize", this.psize);
+          this.$store.commit("setval", this.value);
+          this.$store.commit("setlist", this.list);
+        }else{
+           this.$store.commit("setnodata", '暂无相关菜谱');
+        }
         console.log(res);
       });
       for (var i = 0; i < this.items.length; i++) {

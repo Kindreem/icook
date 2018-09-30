@@ -28,6 +28,7 @@ const state = {
   num2: 1, //tow页数
   tow: '', //tow排列
   myach:'', //我的成就
+  nodata:''   //暂无相关菜谱
 }
 
 
@@ -90,6 +91,9 @@ const mutations = {
   },
   setmyach: (state, myach) => {
     state.myach =myach
+  },
+  setnodata: (state,nodata) => {
+    state.nodata=nodata
   }
 }
 
@@ -155,6 +159,9 @@ const getters = {
   },
   getmyach: (state) => {
     return state.myach
+  },
+  getnodata: (state) => {
+    return state.nodata
   },
 }
 

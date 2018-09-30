@@ -84,7 +84,7 @@ export default {
   .more_loading {
     width: 100% !important;
     margin: px2rem(10) auto !important;
-    padding-right:px2rem(15) ;
+    padding-right:px2rem(10) ;
     // padding: 0 !important;
     /deep/ .mint-spinner-snake {
       margin: 0 auto;

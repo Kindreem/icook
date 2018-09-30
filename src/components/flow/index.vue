@@ -2,7 +2,7 @@
   <div class="menu">
     <sheader :value='value'/>
     <!-- <fready/> -->
-     <div class="item">
+     <div class="item" v-if="list">
       <div class="tit">PART1 食材准备</div>
       <div class="item1">
           <div class="top">
@@ -28,7 +28,7 @@
       </div>
     </div>
     
-    <div class="item">
+    <div class="item" v-if="list">
         <div class="tit">PART2 食材处理</div>
         <ul class="item3 item-ul">
             <li v-for="(item,index) in list.sysBookHandlingVOlist" :key="index">
@@ -37,11 +37,11 @@
              <!-- <li><p>五花肉</p>600克</li>  -->
         </ul>
     </div>
-      <div class="item step" >
-        <div class="tit">PART2 烹饪</div>
+      <div class="item step"  v-if="list">
+        <div class="tit">PART3 烹饪</div>
           <div class="top">
               <img src="./0.png">
-              <p>炒四季豆和梅菜</p>
+              <p>{{this.$store.state.cbname}}</p>
               <div class="top_step">
                   <span>步</span>
                   <span>骤</span>
@@ -87,8 +87,66 @@
                       </div>
                   </li>
               </ul>
-              <div class="achieve">羊肉去血水完成</div>
+              <div class="achieve">烹饪完成</div>
       </div>
+    <!-- <div class="item step"  v-if="list">
+        <div class="tit">PART4 装盘</div>
+          <div class="top">
+              <img src="./0.png">
+              <p>{{this.$store.state.cbname}}</p>
+              <div class="top_step">
+                  <span>步</span>
+                  <span>骤</span>
+              </div>
+          </div>
+              <ul>
+                  <li v-for="(item,index) in list.sysBookExcipientsVOlist" :key="index">
+                      <div class="left">
+                          <img src="./8.png">
+                          <p class="number">{{item.step}}</p>
+                          <div class="wire">
+                            <span></span>
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                            <span></span>    
+                          </div>
+                      </div>
+                      <div class="right">
+                         <p v-bind:style="{background:'rgb('+Math.floor(Math.random() * 200)+','+Math.floor(Math.random() * 256)+','+Math.floor(Math.random() * 256)+')'}">
+                             {{item.excipientsname}}</p>
+                         <img src="./9.png">
+                         <div class="cen">
+                            <div class="line"> 
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             <span></span>
+                             </div>
+                         </div>
+                      </div>
+                      <div class="text">
+                          <p>{{item.description}}</p>
+                      </div>
+                  </li>
+              </ul>
+              <div class="achieve">装盘完成</div>
+      </div> -->
+
+      <div v-else class="nodata">暂无分解,敬请期待</div>
+  
+  
+  
   </div>
 </template>
 
@@ -142,6 +200,12 @@ export default {
 .menu{
     width: 90%;
     margin: px2rem(20) auto;
+    .nodata{
+        width: 100%;
+        text-align: center;
+        font-size: px2rem(20);
+        margin:px2rem(20) auto;
+    }
     li{
         list-style: none;
         font-size: px2rem(14);
@@ -204,14 +268,14 @@ export default {
             justify-content: center;
             li{
             width: 42%;
-            height: px2rem(60);
+            // height: px2rem(60);
             margin:px2rem(10) ;
             background: url(./1.png);
             border-radius: px2rem(5);
             text-align: center;
             color: #fff;
+            padding:px2rem(5);
             p{
-                padding-top:px2rem(12);  
             }
          }
         }

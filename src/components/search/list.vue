@@ -26,6 +26,7 @@
       <mt-spinner type="snake" color="#ccc" :size="70" v-show="loading&&!allLoaded"></mt-spinner>
       <span class="allload" v-show="allLoaded">已全部加载</span>
     </li>
+    <p class="notit">{{nodata}}</p>
   </div>
 </template>
 
@@ -45,11 +46,13 @@ export default {
       value: "",
       // i:1,
       top: false,
-      utop: true
+      utop: true,
+      nodata:''
     };
   },
   computed: mapGetters({
-    list: "getlist"
+    list: "getlist",
+    no:"getnodata"
   }),
   created() {
     // console.log(this.$store.state.items)
@@ -101,6 +104,12 @@ export default {
         this.cooklist = val;
       },
       deep: true
+    },
+    no: {
+      handler: function(val, oldVal) {
+        this.nodata = val;
+      },
+      deep: true
     }
   }
 };
@@ -111,7 +120,14 @@ export default {
 
 .all {
   margin: px2rem(36) px2rem(30) 0px;
-
+  li{
+    list-style none
+  }
+  .notit {
+    text-align center
+    font-size px2rem(30)
+    color #666
+  }
   >>> .mint-spinner-snake {
     margin: 0 auto;
   }

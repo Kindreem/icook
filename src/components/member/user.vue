@@ -43,7 +43,7 @@
             </transition>
    <form >
         <div class="item">
-            <input v-model="nickname" placeholder="请输入最多6个字符" class="nickname"/>
+            <input v-model="nickname" placeholder="请输入最多10个字符" class="nickname"/>
             <img src="../../assets/images/DR-026.png" @click="clear">
         </div>
         <div class="item">
@@ -162,9 +162,9 @@ export default {
     },
     nickname(val,old){
       if(val.length>6){
-          this.nickname=this.nickname.substring(0,6)
+          this.nickname=this.nickname.substring(0,10)
           this.warning = 1;
-          this.tit = '昵称不能超过6个字符'
+          this.tit = '昵称不能超过10个字符'
           setTimeout(()=>{
                       this.warning=0;
                    },1000)

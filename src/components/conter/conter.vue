@@ -342,6 +342,9 @@ export default {
           }
         }
       }
+      p{
+        color: #666
+      }
     }
   }
   .item.badge {
