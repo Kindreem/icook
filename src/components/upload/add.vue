@@ -364,15 +364,16 @@ input:hover {
           // width: 100%;
           // height:100%;
         }
+        .cropper-face{
+            border-radius: 0;
+          }
         .cropper-box-canvas {
           // transform: scale(1, 1) !important
         }
         .cropper-view-box{
-          outline: px2rem(3) solid #39f !important;
-          border-radius 0 !important
-          // position: absolute;
-          border: none !important;
-          // overflow: hidden;
+          border: px2rem(3) solid #39f !important;
+          outline none !important
+          border-radius: 0 !important;
         }
         .cropper-face{
           background: none;
