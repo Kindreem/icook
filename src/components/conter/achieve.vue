@@ -45,7 +45,7 @@ export default {
     return {
         list:'' ,            //任务列表
         id:'' ,     //用户id
-        val:''
+        val:'',
     }
   },
   mounted(){
@@ -56,7 +56,12 @@ export default {
       this.$router.go(-1);
     },
   open(index){
-      this.val = index
+      console.log(index)
+        if(index==0){
+            this.val= '0'
+        }else{
+            this.val=index
+        }
   },
     getlist(){
         this.id = localStorage.getItem("userid");
