@@ -524,7 +524,7 @@ export default {
         }
 
         .cropper-view-box {
-          outline: 2px solid #39f;
+          outline: px2rem(3) solid #39f !important;
           border: none !important;
           border-radius: 0 !important;
           img {

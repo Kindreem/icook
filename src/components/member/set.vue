@@ -66,8 +66,8 @@ header {
 
   img {
     line-height: px2rem(88);
-    margin-top: px2rem(18);
-    float: left;
+    margin-top: px2rem(22);
+    position absolute
     width: px2rem(48);
   }
 

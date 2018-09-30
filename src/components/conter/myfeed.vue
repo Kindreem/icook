@@ -86,7 +86,7 @@ section {
       font-size px2rem(26)
       display inline
       position relative
-      top -12px
+      top px2rem(-12)
 
     }
     img {

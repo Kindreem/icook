@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <div>
-      <router-link to="O_recipe">
+      <router-link to="/fstyle">
         <h2>查看ICOOK官方菜谱</h2>
       </router-link>
     </div>

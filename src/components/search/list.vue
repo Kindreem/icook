@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     loadMore() {
+      this.allLoaded = false;
       //  if(this.allLoaded){
       //   this.loading = true;
       //   return;
@@ -76,7 +77,6 @@ export default {
         // console.log(this.value);
         // this.size+=5
         this.$store.state.num++;
-
         // this.$store.commit('setsize',this.pagesize)
         //  if(!this.allLoaded){
         searchbook(this.value, this.$store.state.num, 5,this.$store.state.searchsort).then(res => {
@@ -227,16 +227,17 @@ export default {
       font: px2rem(22) Arail;
       // color #666
       position: relative;
-      top: -5px;
-      left: 5px;
+      top: px2rem(-5);
+      left: px2rem(5);
     }
   }
   >h4{
     position: absolute;
-    bottom: px2rem(26);
+    bottom: px2rem(28);
     right: px2rem(20);
     // display: inline-block;
     font-size px2rem(24)
+    font-weight 300
 
   }
 }
