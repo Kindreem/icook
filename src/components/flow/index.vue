@@ -65,7 +65,7 @@
                           </div>
                       </div>
                       <div class="right">
-                         <p v-bind:style="{background:item.bg}">{{item.description.split('$')[0]}}</p>
+                         <p v-bind:style="{background:'rgb('+Math.floor(Math.random() * 200)+','+Math.floor(Math.random() * 256)+','+Math.floor(Math.random() * 256)+')'}">{{item.description.split('$')[0]}}</p>
                          <img src="./9.png">
                          <div class="cen">
                             <div class="line"> 
@@ -124,8 +124,16 @@ export default {
           }
           console.log(res.data)
       })
+        // r(index) {
+    //   let r, g, b;
+    //   r = Math.floor(Math.random() * 256);
+    //   g = Math.floor(Math.random() * 256);
+    //   b = Math.floor(Math.random() * 256);
+    //   return "rgb(" + r + "," + g + "," + b + ")";
+    //   // :style="{background:'rgb('+Math.floor(Math.random() * 220)+','+Math.floor(Math.random() * 256)+','+Math.floor(Math.random() * 256)+')'}"
+    // }
   },
-
+ 
 }
 </script>
 
