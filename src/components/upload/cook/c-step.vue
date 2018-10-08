@@ -456,8 +456,8 @@ export default {
           border-radius: 0 !important;
         }
         .cropper-face{
-          background: none;
-          border-radius: 0;
+          background: none !important;
+          border-radius: 0 !important;
         }
 
         .crop-info{
