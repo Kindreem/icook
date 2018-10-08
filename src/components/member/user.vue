@@ -508,9 +508,10 @@ export default {
 }
 </style>
 
-<style lang="stylus" >
+<style lang="stylus">
 @import '../../assets/css/px2rem.styl';
 .vux-datetime{
+  padding 0 !important;
   span,p{
     font-size:  px2rem(12);
     color: #999;
@@ -520,8 +521,8 @@ export default {
       display none
     }
   }
-   .vux-datetime-value{
-    display none 
+  .vux-datetime-value{
+    // display none 
   }
 }
 .dp-container{
@@ -532,7 +533,7 @@ export default {
         transform: none !important;
         border-radius: 20px !important;
         overflow: hidden !important;
-     .dp-content{
+   .dp-content{
       .dp-item{
           height:  px2rem(140) !important;
           margin-top: px2rem(14) !important;
@@ -546,25 +547,25 @@ export default {
             // height:100% !important;
               }
           .scroller-indicator{
-              height: px2rem(25);
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
+              height: px2rem(25) !important;
+              position: absolute !important;
+              top: 50%!important;
+              transform: translateY(-50%) !important;
           }
         }
         .scroller-item{
             height: px2rem(25) !important;
             line-height:  px2rem(20) !important;
-            font-size: px2rem(18);
+            font-size: px2rem(18) !important;
             transform:rotate3d(0, 0, 0,0deg) translate3d(8px, 0px, px2rem(2));
         }
         }
     }
      .dp-header{
-            width:80% !important;
-            left: 10% !important;
-            position: absolute !important;
-            bottom:px2rem(15) !important;
+            width:80%;
+            left: 10%;
+            position: absolute!important;
+            bottom:px2rem(15)!important;
         .dp-item{
             font-size:  px2rem(14);
             width: px2rem(85);
@@ -603,16 +604,15 @@ export default {
           width: 100%;
           // height:100%;
         }
-        .cropper-crop-box,
-        .cropper-face{
-          overflow: hidden;
-          border-radius: 50%;
-        }
+          .cropper-crop-box,
+          .cropper-face{
+            overflow: hidden;
+            border-radius: 50%;
+          }
         .cropper-view-box {
           border-radius: 50%;
           position: absolute;
           border: px2rem(1) solid #199ed8;
-          overflow: hidden;
           outline: none;
         }
         .cropper-face {
@@ -628,6 +628,8 @@ export default {
       .footer {
         width: 100%;
         display: flex;
+        display: -webkit-flex;
+        -webkit-justify-content: space-around;
         justify-content: space-around;
         .ivu-btn {
           width: px2rem(60);
@@ -638,4 +640,4 @@ export default {
     }
   }
 }
-</style>
+</style> 

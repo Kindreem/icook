@@ -164,13 +164,13 @@ export default {
   },
   watch: {
     //picker关闭没有回调函数，所以侦听该属性替代
-     signReasonVisible:function(newvs,oldvs){
-        if(newvs) {
-            this.closeTouch()
-        } else {
-            this.openTouch()
-        }
-    },
+    //  signReasonVisible:function(newvs,oldvs){
+    //     if(newvs) {
+    //         this.closeTouch()
+    //     } else {
+    //         this.openTouch()
+    //     }
+    // },
     nickname(val,old){
       if(val.length>11){
           this.nickname=this.nickname.substring(0,11)
@@ -202,6 +202,7 @@ export default {
   },
   methods: {
     onConfirm(){
+      console.log(this.age)
       this.title=''
     },
     // 实时预览函数
@@ -617,6 +618,7 @@ export default {
 <style lang="stylus">
 @import '../../assets/css/px2rem.styl';
 .vux-datetime{
+  padding 0 !important;
   span,p{
     font-size:  px2rem(12);
     color: #999;
@@ -627,7 +629,7 @@ export default {
     }
   }
   .vux-datetime-value{
-    display none 
+    // display none 
   }
 }
 .dp-container{
