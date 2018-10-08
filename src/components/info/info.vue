@@ -30,6 +30,7 @@
               :original="option.original"
               :canMove="option.canMove"
               :maxImgSize ="option.maxImgSize"
+              :high="option.high"
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
@@ -136,7 +137,8 @@ export default {
         fixedNumber: [1, 1],
         autoCropWidth: 200,
         autoCropHeight: 200,
-        maxImgSize: 4000
+        maxImgSize: 4000,
+        high:false
       },
       height:'',    //屏幕高度
       infoimg: false, //截图

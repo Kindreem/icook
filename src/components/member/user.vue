@@ -30,6 +30,7 @@
               :original="option.original"
               :canMove="option.canMove"
               :maxImgSize ="option.maxImgSize"
+              :high = "option.high"
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
@@ -121,6 +122,7 @@ export default {
         centerBox: true,
         canMove: true,
         fixed: true,
+        high:false,
         fixedNumber: [1, 1],
         autoCropWidth: 200,
         autoCropHeight: 200,

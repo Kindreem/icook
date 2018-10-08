@@ -11,7 +11,7 @@
           </div>
           <ul class="item-ul">
                 <li v-for="(item,index) in list.sysBookFoodVOlist" :key="index">
-                <p>{{item.foodname}}</p>{{item.weight}}{{item.unit}}
+                <p>{{item.foodname}}</p>{{item.weight}} {{item.description}}
             </li>
           </ul>
       </div>
@@ -174,7 +174,7 @@ export default {
       list:''
     }
   },
-  created(){
+  mounted(){
       this.bookid= this.$route.params.id 
       process(this.bookid).then(res=>{
           if(res.code==200){

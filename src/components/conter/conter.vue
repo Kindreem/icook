@@ -297,6 +297,9 @@ export default {
     // ===========================修改处
     .menus {
       overflow: hidden;
+      p{
+        padding:0 px2rem(13);
+      }
     }
     .swiper-container{
       overflow: hidden;

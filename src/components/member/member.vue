@@ -2,7 +2,7 @@
   <div class="member">
 
       <div class="logo">
-          <img src="./i厨神-字标.png" alt="">
+          <img src="./i.png" alt="">
           <p>游饪我生活！</p>
       </div>
 
