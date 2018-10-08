@@ -39,6 +39,7 @@
               :original="option.original"
               :canMove="option.canMove"
               :scalable="option.scalable"
+              :high="option.high"
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
@@ -78,6 +79,7 @@ export default {
         autoCropWidth: 480,
         autoCropHeight: 270,
         scalable: true,
+        high: false,
         // autoCropArea:1,
         // 开启宽度和高度比例
 					// fixed: true,
@@ -189,6 +191,7 @@ export default {
             /* http://image.haoqiure.com/ 是我的七牛云空间网址，keyText.key 是返回的图片文件名*/
               picUrl="http://img.ichushen.cn/"+keyText.key;
               self.ubthumbimg = picUrl
+              console.log(picUrl)
               self.$emit('childByValue', self.ubthumbimg)
          }
      }
