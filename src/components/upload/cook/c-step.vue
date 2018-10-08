@@ -62,6 +62,7 @@
               :canMove="option.canMove"
               :fixed="option.fixed"
               :canScale="option.canScale"
+              :high="option.high"
               @realTime="realTime"
             ></vueCropper>
           <div slot="footer" class="footer">
@@ -101,7 +102,8 @@ export default {
         canMove: true,
         canScale: true,
         autoCropWidth: 480,
-        autoCropHeight: 270
+        autoCropHeight: 270,
+        high: false,
         // 开启宽度和高度比例
         // fixed: true,
         // fixedNumber: [5, 3]
