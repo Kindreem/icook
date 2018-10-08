@@ -43,7 +43,7 @@
             </Row>
         </FormItem>
     </Form>
-    <Modal v-model="infoimg" width="100%" class="infoimg">
+    <Modal v-model="infoimg" width="100%" class="infoimg1">
             <vueCropper
               :style="{height:height+'px'}"
               ref="cropper"
@@ -418,6 +418,69 @@ export default {
   background-size: cover !important;
   border-radius: 20px;
 }
+
+.infoimg1{
+    background: #199ed8;
+
+     >>>.ivu-modal{
+      overflow:hidden !important
+      top: 0;
+      height: 100%;
+      // box-sizing border-box
+      margin 0
+      .ivu-modal-content{
+         height:100% ;
+
+          // background: #000;
+      .cropper-crop-box{
+        border-radius 0 !important
+      }
+
+      .vue-cropper{
+          background-image:none !important;
+          // background: #000;
+          // height: 100%;
+          // height: px2rem(1100);
+       img{
+          // margin-top: 40%;
+          // position: relative;
+          // width: 100%;
+          // height:100%;
+        }
+        .cropper-box-canvas {
+          // transform: scale(1, 1) !important
+        }
+        .cropper-view-box{
+          border: px2rem(3) solid #39f !important;
+          outline none !important
+          border-radius: 0 !important;
+        }
+        .cropper-face{
+          background: none !important;
+          border-radius: 0 !important;
+        }
+
+        .crop-info{
+          display: none;
+        }
+        }
+    }
+    .ivu-modal-footer{
+        padding: 0;
+     .footer{
+        width: 100%;
+        display: flex;
+        justify-content:space-around;
+      .ivu-btn{
+        width: px2rem(120);
+        margin-top:px2rem(4);
+        font-size: px2rem(24);
+      }
+      }
+    }
+ }
+ }
+
 </style>
 <style lang="stylus">
 @import '../../../assets/px2rem.styl';
@@ -497,75 +560,6 @@ export default {
   border-bottom: 1px solid #999;
   box-shadow: none;
 }
-.infoimg {
-  background: #199ed8;
-  .ivu-modal {
-    // touch-action: none;
-    top: 0;
-    height: 100%;
-    margin: 0;
 
-    // box-box-sizing border-box
-    .ivu-modal-content {
-      height: 100%;
-
-      .vue-cropper {
-        background-image: none !important;
-
-        img {
-          // margin-top: 40%;
-          // position: relative;
-          width: 100%;
-          // height:100%;
-        }
-
-        .cropper-crop-box {
-          border-radius: 0 !important;
-        }
-        .cropper-face{
-            border-radius: 0;
-          }
-        .cropper-view-box {
-          border: px2rem(3) solid #39f !important;
-          outline none !important
-          border-radius: 0 !important;
-          img {
-            // width px2rem(300) !important
-            // heiht auto !important
-          }
-        }
-
-        .cropper-box-canvas {
-          img {
-            // width px2rem(300) !important
-          }
-        }
-        .cropper-face {
-          background: none;
-        }
-
-        .crop-info {
-          display: none;
-        }
-      }
-    }
-
-    .ivu-modal-footer {
-      padding: 0;
-
-      .footer {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-
-        .ivu-btn {
-          width: px2rem(120);
-          margin-top: px2rem(4);
-          font-size: px2rem(24);
-        }
-      }
-    }
-  }
-}
 }
 </style>
