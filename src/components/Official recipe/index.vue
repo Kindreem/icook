@@ -49,6 +49,7 @@ export default {
        this.getlist=res.data
        console.log(this.getlist)
         this.$store.commit("setcbname", this.getlist.cbname);
+        localStorage.setItem("cbname", this.getlist.cbname);    //菜谱名字
      })
   }
 }

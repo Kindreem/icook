@@ -11,7 +11,7 @@
           </div>
           <ul class="item-ul">
                 <li v-for="(item,index) in list.sysBookFoodVOlist" :key="index">
-                <p>{{item.foodname}}</p>{{item.weight}} {{item.description}}
+                <p>{{item.foodname}}</p>{{item.weight}} {{item.unit}}
             </li>
           </ul>
       </div>
@@ -22,12 +22,25 @@
           </div>
           <ul class="item-ul">
              <li v-for="(item,index) in list.sysBookCondimentVOlist" :key="index">
-                 <p>{{item.condimentname}}</p>{{item.weight}}{{item.unit}}
+                 <p>{{item.condimentname}}</p>{{item.weight==0?item.description:item.weight+item.unit+item.description}}
+             </li> 
+          </ul>
+      </div>
+       <div class="item4" v-if="list.sysBookExcipientsVOlist">
+           <div class="top">
+              <img src="./0.png">
+              <p>辅料</p>
+          </div>
+          <ul class="item-ul">
+             <li v-for="(item,index) in list.sysBookExcipientsVOlist" :key="index">
+                 <p>{{item.excipientsname}}</p>
+                 <!-- {{item.weight}}{{item.unit}} -->
+                 {{item.weight==0?item.description:item.weight+item.unit+item.description}}
              </li> 
           </ul>
       </div>
     </div>
-    <div v-else class="nodata">暂无分解,敬请期待</div>
+    <div v-if="isnone" class="nodata">暂无分解,敬请期待</div>
     
     <div class="item" v-if="list">
         <div class="tit">PART2 食材处理</div>
@@ -42,7 +55,7 @@
         <div class="tit">PART3 烹饪</div>
           <div class="top">
               <img src="./0.png">
-              <p>{{this.$store.state.cbname}}</p>
+              <p>{{value}}</p>
               <div class="top_step">
                   <span>步</span>
                   <span>骤</span>
@@ -90,7 +103,7 @@
               </ul>
               <div class="achieve">烹饪完成</div>
       </div>
-    <div class="item step"  v-if="list.sysBookExcipientsVOlist">
+    <div class="item step"  v-if="list.sysBookTrayVOlist">
         <div class="tit">PART4 装盘</div>
           <div class="top">
               <img src="./0.png">
@@ -101,7 +114,7 @@
               </div>
           </div>
               <ul>
-                  <li v-for="(item,index) in list.sysBookExcipientsVOlist" :key="index">
+                  <li v-for="(item,index) in list.sysBookTrayVOlist" :key="index">
                       <div class="left">
                           <img src="./8.png">
                           <p class="number">{{item.step}}</p>
@@ -162,7 +175,9 @@ export default {
   data() {
     return {
       bookid:'',    //菜谱id
-      value:this.$store.state.cbname,
+    //   value:this.$store.state.cbname,
+      value:localStorage.getItem("cbname"),
+      isnone:false,     //是否显示暂无
       step:[
           {id:1,bg:'#E3CC6F',name:'起汤锅',tit:'锅中加入冷水'},
           {id:2,bg:'#625739',name:'煮羊肉',tit:'将羊肉加入水中,并将水煮至沸腾'},
@@ -174,11 +189,13 @@ export default {
       list:''
     }
   },
-  mounted(){
+  created(){
       this.bookid= this.$route.params.id 
       process(this.bookid).then(res=>{
           if(res.code==200){
               this.list=res.data
+          }else{
+              this.isnone = true
           }
           console.log(res.data)
       })
@@ -256,7 +273,7 @@ export default {
                     margin-left: px2rem(15);
                     margin-top: px2rem(-5);
                     display: block;
-                    font-size: px2rem(15                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             )
+                    font-size: px2rem(15)
                 }
             }
         }
@@ -270,7 +287,8 @@ export default {
             width: 42%;
             // height: px2rem(60);
             margin:px2rem(10) ;
-            background: url(./1.png);
+            // background: url(./1.png);
+            background: #5CB8E7;
             border-radius: px2rem(5);
             text-align: center;
             color: #fff;
@@ -280,6 +298,9 @@ export default {
          }
         }
         .item2 li{
+            background: url(./1.png);
+        }
+        .item4 li{
             background: url(./2.png);
         }
         .item3 li{
