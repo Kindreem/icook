@@ -354,7 +354,7 @@ export default {
                 // console.log(res);
               // this.$store.commit('setname',this.nickname)
               // this.$store.commit('setimg',this.url)
-              
+
               localStorage.setItem("usernickname", this.nickname);
               localStorage.setItem("userphoto", this.url);
               this.$router.push({ path: "/info/meet" });
@@ -625,13 +625,13 @@ export default {
     font-size:  px2rem(12);
     color: #999;
     float left
-    text-align left 
+    text-align left
     i{
       display none
     }
   }
   .vux-datetime-value{
-    // display none 
+    // display none
   }
 }
 .dp-container{
@@ -646,7 +646,7 @@ export default {
       .dp-item{
           height:  px2rem(140) !important;
           margin-top: px2rem(14) !important;
-          transform: perspective(860px) rotateX(10deg); 
+          transform: perspective(860px) rotateX(10deg);
         .scroller-component{
           height: px2rem(120) !important;
           position: relative !important;
@@ -749,4 +749,4 @@ export default {
     }
   }
 }
-</style> 
+</style>

@@ -11,9 +11,21 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      
+      '/proxy': {
+        target: 'http://tsn.baidu.com/text2audio',   // 需要请求的地址
+        changeOrigin: true,  // 是否跨域
+        pathRewrite: {
+          '^/proxy': '/'  // 替换target中的请求地址，也就是说，在请求的时候，url用'/proxy'代替'http://ip.taobao.com'
+        }
     },
-
+    '/gtok': {
+      target: 'https://openapi.baidu.com/oauth/2.0/token',   // 需要请求的地址
+      changeOrigin: true,  // 是否跨域
+      pathRewrite: {
+        '^/gtok': '/'  // 替换target中的请求地址，也就是说，在请求的时候，url用'/proxy'代替'http://ip.taobao.com'
+      }
+  }
+  },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
@@ -22,7 +34,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

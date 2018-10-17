@@ -4,7 +4,7 @@
     <section class="top">
       <Input v-model="value" ref="in" placeholder="输入菜系或菜谱" clearable search @on-enter="handleAdd" autofocus="autofocus"/>
       <img class="left" src="./img/DR-005.png" alt="" @click="back">
-      <img class="right" src="./img/ZY-028.png" alt="">
+      <img class="right" ref="talk" src="./img/ZY-028.png" alt="">
     </section>
     </div>
     <section class="bot">
@@ -44,29 +44,33 @@ export default {
     },
     handleshow(item) {
       this.value = item;
-      this.$refs.in.focus()
+      this.$refs.in.focus();
     },
     handleClose(event, name) {
       this.items.splice(name, 1);
-      this.$store.commit("setsea", this.items);
+      // this.$store.commit("setsea", this.items);
+      localStorage.setItem("sea", this.items);
     },
     handleAdd() {
-      // let size = this.$store.state.size
+      if(this.value !==""){
+        // let size = this.$store.state.size
       this.$store.state.num = 1;
       // console.log(this.$store.state.num)
       this.$store.state.items = "";
-      searchbook(this.value, 1, this.psize,this.$store.state.searchsort).then(res => {
-        if(res.code==200){
-          this.$store.commit("setnodata", '');
-          this.list = res.data;
-          this.$store.commit("setsize", this.psize);
-          this.$store.commit("setval", this.value);
-          this.$store.commit("setlist", this.list);
-        }else{
-           this.$store.commit("setnodata", '暂无相关菜谱');
+      searchbook(this.value, 1, this.psize, this.$store.state.searchsort).then(
+        res => {
+          if (res.code == 200) {
+            this.$store.commit("setnodata", "");
+            this.list = res.data;
+            this.$store.commit("setsize", this.psize);
+            this.$store.commit("setval", this.value);
+            this.$store.commit("setlist", this.list);
+          } else {
+            this.$store.commit("setnodata", "暂无相关菜谱");
+          }
+          console.log(res);
         }
-        console.log(res);
-      });
+      );
       for (var i = 0; i < this.items.length; i++) {
         if (this.value == this.items[i] || this.value.length == 0) {
           return false;
@@ -74,12 +78,35 @@ export default {
       }
 
       this.items.push(this.value);
-      this.$store.commit("setsea", this.items);
+      // this.$store.commit("setsea", this.items);
+      localStorage.setItem("sea", this.items);
+
       // this.value = ""
+      }
     }
   },
   mounted() {
-    this.items = this.$store.state.sea;
+    this.$refs.in.focus();
+    // console.log(localStorage.getItem("sea"));
+    if (
+      localStorage.getItem("sea") == null ||
+      localStorage.getItem("sea") == ""
+    ) {
+      this.items = ["麻辣鸡丝", "水煮肉", "叉烧肉"];
+    } else {
+      this.items = localStorage.getItem("sea").split(",");
+    }
+    // console.log(this.items);
+
+//     wx.config({
+//    debug: false,
+//    appId: '<%= @jsapi_config[:appid] %>', // 必填，公众号的唯一标识
+//    timestamp: <%= @jsapi_config[:timestamp] %>, // 必填，生成签名的时间戳
+//    nonceStr: '<%= @jsapi_config[:noncestr] %>', // 必填，生成签名的随机串
+//    signature: '<%= @jsapi_config[:signature] %>',// 必填，签名
+//    jsApiList: ['startRecord', 'stopRecord', 'onVoiceRecordEnd', 'translateVoice'] // 必填，需要使用的JS接口列表
+//  });
+
   },
   watch: {
     // size: {
@@ -93,103 +120,120 @@ export default {
 </script>
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
+
 .all {
-  margin 0 px2rem(30)
+  margin: 0 px2rem(30);
+
   .out {
-    height px2rem(100)
+    height: px2rem(100);
   }
+
   .top {
-    position fixed
-    top 0px
-    left px2rem(0)
-    right px2rem(0)
-    padding-left px2rem(30)
-    padding-right px2rem(30)
-    text-align center
-    height px2rem(100)
-    line-height px2rem(100)
-    background-color #fff
-    z-index 999
+    position: fixed;
+    top: 0px;
+    left: px2rem(0);
+    right: px2rem(0);
+    padding-left: px2rem(30);
+    padding-right: px2rem(30);
+    text-align: center;
+    height: px2rem(100);
+    line-height: px2rem(100);
+    background-color: #fff;
+    z-index: 999;
+
     .left {
-      float left
-      margin-top px2rem(28)
-      width px2rem(48)
+      float: left;
+      margin-top: px2rem(28);
+      width: px2rem(48);
     }
+
     .right {
-      width px2rem(64)
-      float right
-      margin-top px2rem(22)
+      width: px2rem(64);
+      float: right;
+      margin-top: px2rem(22);
     }
+
     .ivu-input-wrapper {
-      width 78%
+      width: 78%;
     }
   }
+
   .bot {
-    margin-top px2rem(30)
-    border-radius 20px
-    box-shadow 10px 10px 5px rgba(204, 204, 204, 0.4)
+    margin-top: px2rem(30);
+    border-radius: 20px;
+    box-shadow: 10px 10px 5px rgba(204, 204, 204, 0.4);
+
     div {
-      position relative
+      position: relative;
+
       .tag {
-        width px2rem(234)
+        width: px2rem(234);
       }
+
       .heart {
-        width px2rem(36)
-        position absolute
-        top 0.32rem
-        left 0.75rem
+        width: px2rem(36);
+        position: absolute;
+        top: 0.32rem;
+        left: 0.75rem;
       }
+
       h3 {
-        position absolute
-        top 0.32rem
-        left 1.65rem
-        font px2rem(24) Arial
-        color #5A4030
+        position: absolute;
+        top: 0.32rem;
+        left: 1.65rem;
+        font: px2rem(24) Arial;
+        color: #5A4030;
       }
     }
+
     .content {
-      margin-left px2rem(30)
-      padding-bottom px2rem(30)
+      margin-left: px2rem(30);
+      padding-bottom: px2rem(30);
     }
-      >>>.ivu-tag {
-        height px2rem(50)
-        width px2rem(144)
-        margin-right px2rem(20)
-        margin-bottom px2rem(16)
-        background #5DB8E9
-        font px2rem(20) Arail
-        text-align center
-        border-radius 20px
-        overflow hidden
-        text-overflow ellipsis
-        padding-right 20px
-        // white-space nowrap
-      }
-      >>>.ivu-tag-text {
-        line-height px2rem(50)
-        color #fff
-        border-radius 20px
-      }
-      >>>.ivu-icon {
-        font-size px2rem(26)
-        position absolute
-        top px2rem(10)
-        right px2rem(11)
-        color #fff
-        font-weight 900
-      }
+
+    >>>.ivu-tag {
+      height: px2rem(50);
+      width: px2rem(144);
+      margin-right: px2rem(20);
+      margin-bottom: px2rem(16);
+      background: #5DB8E9;
+      font: px2rem(20) Arail;
+      text-align: center;
+      border-radius: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 20px;
+      // white-space nowrap
+    }
+
+    >>>.ivu-tag-text {
+      line-height: px2rem(50);
+      color: #fff;
+      border-radius: 20px;
+    }
+
+    >>>.ivu-icon {
+      font-size: px2rem(26);
+      position: absolute;
+      top: px2rem(11.5);
+      right: px2rem(11);
+      color: #fff;
+      font-weight: 900;
+    }
   }
 }
+
 >>>.ivu-input {
-  height px2rem(54) !important
-  border-color #5DB8E9
-  font px2rem(26) Arail
-  text-align center
-  border-radius 20px
+  height: px2rem(54) !important;
+  border-color: #5DB8E9;
+  font: px2rem(26) Arail;
+  text-align: center;
+  border-radius: 20px;
 }
+
 >>>.ivu-input-icon {
-  line-height px2rem(56)
-  font-size px2rem(35)
-  margin-right px2rem(14)
+  line-height: px2rem(56);
+  font-size: px2rem(35);
+  margin-right: px2rem(14);
 }
 </style>

@@ -17,14 +17,10 @@
     <section class="mask" v-show="show">
        <h4>请选择语音人声</h4>
        <ul>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
-         <li>人声选项语音人声</li>
+         <li @click="voice1">普通女声（默认）</li>
+         <li @click="voice2">普通男声</li>
+         <li @click="voice3">情感合成-度逍遥</li>
+         <li @click="voice4">情感合成-度丫丫</li>
        </ul>
     </section>
     </transition>
@@ -47,7 +43,23 @@ export default {
     quiet() {
       localStorage.clear()
       this.$router.push({path: '/member'})
-    }
+    },
+    voice1() {
+      localStorage.setItem("setvoice", 0)
+      this.show=!this.show
+    },
+    voice2() {
+      localStorage.setItem("setvoice", 1);
+       this.show=!this.show
+    },
+    voice3() {
+      localStorage.setItem("setvoice", 3);
+       this.show=!this.show
+    },
+    voice4() {
+      localStorage.setItem("setvoice", 4);
+       this.show=!this.show
+    },
   }
 };
 </script>

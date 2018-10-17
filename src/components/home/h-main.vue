@@ -5,7 +5,7 @@
     <div class="content">
       <p :style="{height: height+'px','line-height': height+'px'}">游烹我生活！</p>
       <div class="butt">
-        <img id="bleft" v-show="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt="">
+        <router-link to="/fstyle"><img id="bleft" v-show="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt=""></router-link>
         <img id="bright" v-show="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
         <img id="abl" v-show="on" src="./img/ZY-005.png" alt="">
         <img id="abr" v-show="on" src="./img/ZY-006.png" alt="">

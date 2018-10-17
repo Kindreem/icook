@@ -163,7 +163,7 @@ export default {
         }
     },
     nickname(val,old){
-      if(val.length>11){
+      if(val.length>10){
           this.nickname=this.nickname.substring(0,10)
           this.warning = 1;
           this.tit = '昵称不能超过10个字符'

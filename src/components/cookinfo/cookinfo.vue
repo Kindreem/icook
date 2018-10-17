@@ -73,12 +73,12 @@ export default {
       width: px2rem(80);
       position: absolute;
       text-align: center;
-      top: px2rem(20);
+      top: px2rem(15.5);
       transform: translateX(-50%);
       left: 50%;
       p {
         white-space: nowrap;
-        font-size: px2rem(14);
+        font-size: px2rem(15);
         color: #199ed8;
       }
     }

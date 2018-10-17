@@ -177,3 +177,5 @@ export const getfeed = (ufid)=>{
 export const process = (cookbookid)=>{
   return axios.post(`/process/getbookprocess?cookbookid=${cookbookid}`).then(res=>res.data)
 }
+
+

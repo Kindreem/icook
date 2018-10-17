@@ -57,7 +57,7 @@ header {
   line-height: px2rem(88);
   // text-align center
   img {
-    margin-top: px2rem(22);
+    margin-top: px2rem(20.8);
     position absolute
     // top px2rem(18);
     // left 0px

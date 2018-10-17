@@ -30,7 +30,6 @@
 import { mapGetters } from "vuex";
 import { getcooklist } from "@/api";
 export default {
-    props: ["id"],
   data() {
     return {
       cooklist: "",

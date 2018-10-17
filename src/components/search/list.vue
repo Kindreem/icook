@@ -233,7 +233,7 @@ export default {
   }
   >h4{
     position: absolute;
-    bottom: px2rem(28);
+    bottom: px2rem(25.6);
     right: px2rem(20);
     // display: inline-block;
     font-size px2rem(24)

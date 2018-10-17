@@ -32,9 +32,9 @@
           </div>
       </div> -->
 
-     
-       
-       
+
+
+
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
       this.$router.go(-1);
     },
   open(index){
-      console.log(index)
+      // console.log(index)
         if(index==0){
             this.val= '0'
         }else{
@@ -69,14 +69,14 @@ export default {
             if(res.code==200){
                 this.list=res.data
             }
-            console.log(res.data)
+            // console.log(res.data)
         })
     },
 //领取奖励
     get(id){
         console.log('wwwwww')
         receive(this.id,id).then(res=>{
-            console.log(res)
+            // console.log(res)
             this.getlist()
         })
     }
@@ -118,10 +118,10 @@ export default {
         width: 90%;
         margin: 0 auto;
         margin-top:px2rem(20) ;
-        border: none; 
+        border: none;
         .none{
             display: none
-        }     
+        }
         .ivu-collapse-item{
             margin-top:px2rem(10);
             border-radius:20px;
@@ -160,10 +160,10 @@ export default {
           }
           .ivu-collapse-content{
               border-radius: 0 0 20px 20px;
-              background: #E6E6E6; 
+              background: #E6E6E6;
               font-size:px2rem(12);
               .ivu-collapse-content-box{
-                  margin-left:px2rem(80); 
+                  margin-left:px2rem(80);
                   border-top: 1px solid #999;
                   span{
                       display: block
@@ -185,8 +185,8 @@ export default {
                 z-index: 9999;
                 position: absolute;
                 right:px2rem(10);
-                top: px2rem(20);
-                
+                top: px2rem(25);
+
             }
             //已完成
             .btn2{
@@ -199,7 +199,7 @@ export default {
                 border-radius:20px;
                 position: absolute;
                 right:px2rem(10);
-                top: px2rem(20);
+                top: px2rem(25);
             }
             //已领取
             .btn3{
@@ -212,7 +212,7 @@ export default {
                 border-radius:20px;
                 position: absolute;
                 right:px2rem(10);
-                top: px2rem(20);
+                top: px2rem(25);
             }
 
 }      }

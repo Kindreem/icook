@@ -106,6 +106,12 @@ export default {
                     setTimeout(()=>{
                               this.tips=0;
                             },700)
+                  }else if(res.code==500){
+                    this.tit = "请勿重复请求"
+                      this.spin=0;
+                    setTimeout(()=>{
+                              this.tips=0;
+                            },700)
                   }
                   // console.log(res)
                 })

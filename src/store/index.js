@@ -10,7 +10,6 @@ const state = {
   items: '', //菜谱搜索列表
   val: '', //搜索框值
   size: '',
-  sea: ['麻辣鸡丝', '水煮肉', '叉烧肉'], //历史搜索
   size: '', //条数
   name: '', //昵称
   picimg: '', //头像地址
@@ -28,7 +27,8 @@ const state = {
   num2: 1, //tow页数
   tow: '', //tow排列
   myach:'', //我的成就
-  nodata:''   //暂无相关菜谱
+  nodata:'',   //暂无相关菜谱
+  voice: 0 //人声
 }
 
 
@@ -43,10 +43,6 @@ const mutations = {
   setval: (state, val) => {
     state.val = val
   },
-  setsea: (state, sea) => {
-    state.sea = sea
-  },
-
   setimg: (state, picimg) => {
     state.picimg = picimg
   },
@@ -94,7 +90,10 @@ const mutations = {
   },
   setnodata: (state,nodata) => {
     state.nodata=nodata
-  }
+  },
+  setvoice: (state,LoginStatus) => {
+    state.voice=voice
+  },
 }
 
 //  3异步修改数据
@@ -110,10 +109,6 @@ const getters = {
   },
   getval: (state) => {
     return state.val
-  },
-
-  getsea: (state) => {
-    return state.sea
   },
   getimg: (state) => {
     return state.picimg
@@ -162,6 +157,9 @@ const getters = {
   },
   getnodata: (state) => {
     return state.nodata
+  },
+  getvoice: (state) => {
+    return state.voice
   },
 }
 

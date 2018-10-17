@@ -4,7 +4,7 @@
     <section class="bot">
       <div class="head"><img :src="userlist.userphoto" alt=""><h4>{{userlist.usernickname}}</h4></div>
       <div class="icon"><img src="../../common/img/川派徽章/1川派学员.png" alt=""><img src="../../common/img/川派徽章/4川派达人.png" alt=""></div>
-      <div class="good" @click="star"><img :src="goodimg" alt=""><h4>{{userlist.star}}</h4></div>
+      <div class="good" @click="star"><img :src="userlist.starstatus?require('./img/1-024.png'):require('./img/1-024-1.png')" alt=""><h4>{{userlist.star}}</h4></div>
     </section>
     <section class="text"><p>{{userlist.ubtext}}</p></section>
   </div>
@@ -21,26 +21,31 @@ export default {
     };
   },
   created() {
-    let ubid = this.$route.params.id;
-    let userid = localStorage.getItem("userid");
-    bookstar(ubid, userid).then(res => {
-      if (res.code == 200) {
-        this.goodimg = require("./img/1-024-1.png");
-        bookunstar(ubid, userid).then(res => {});
-      } else {
-        this.goodimg = require("./img/1-024.png");
-      }
-    });
+    console.log(this.userlist.starstatus)
+    console.log(this.userlist)
+    // let ubid = this.$route.params.id;
+    // let userid = localStorage.getItem("userid");
+    // bookstar(ubid, userid).then(res => {
+    //   if (res.code == 200) {
+    //     this.goodimg = require("./img/1-024-1.png");
+    //     bookunstar(ubid, userid).then(res => {});
+    //   } else {
+    //     this.goodimg = require("./img/1-024.png");
+    //   }
+    // });
   },
   methods: {
+
     star() {
+      console.log(this.userlist.starstatus)
+    console.log(this.userlist)
       let ubid = this.$route.params.id;
       let userid = localStorage.getItem("userid");
       bookstar(ubid, userid).then(res => {
         console.log(res);
         if (res.code == 200) {
           this.userlist.star++;
-          this.goodimg = require("./img/1-024.png");
+          this.userlist.starstatus = true;
           this.$store.state.items.forEach(val => {
             if (val.id == ubid) {
               val.star++;
@@ -50,7 +55,7 @@ export default {
           bookunstar(ubid, userid).then(res => {
             if (res.code == 200) {
               this.userlist.star--;
-              this.goodimg = require("./img/1-024-1.png");
+              this.userlist.starstatus = false;
               this.$store.state.items.forEach(val => {
                 if (val.id == ubid) {
                   val.star--;
@@ -79,7 +84,6 @@ export default {
       width: 100%;
       box-shadow: 10px 10px 5px rgba(204, 204, 204, 0.4);
       border-radius: 20px;
-      height px2rem(690/16*9)
     }
   }
 

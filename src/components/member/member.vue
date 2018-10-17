@@ -28,7 +28,7 @@
 
 <script>
 // import axios from 'axios'
-import {code} from '@/api'
+import {wxdl} from '@/api'
 export default {
   data () {
     return {
@@ -39,7 +39,10 @@ export default {
       wx(){
         //   console.log('ssss')
         // https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx46bfe246fb596974&secret=ecf3b8b5219b4a264eb33634af6e6c15
-        location.href = "https://open.weixin.qq.com/connect/qrconnect?appid=wx46bfe246fb596974&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect"
+        location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx46bfe246fb596974&redirect_uri=http%3a%2f%2fwww.ichushen.cn%2fmember&response_type=code&scope=snsapi_userinfo&state=STATE&component_appid=wxb3e59c7063714eb4#wechat_redirect"
+        // wxdl().then(res => {
+        //   console.log(res)
+        // })
       }
   },
     created() {
