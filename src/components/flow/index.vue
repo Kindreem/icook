@@ -52,7 +52,7 @@
         <div class="tit">PART3 烹饪</div>
           <div class="top">
               <img src="./0.png">
-              <p>{{this.$store.state.cbname}}</p>
+              <p>{{value}}</p>
               <div class="top_step">
                   <span>步</span>
                   <span>骤</span>
@@ -111,7 +111,7 @@
               </div>
           </div>
               <ul>
-                  <li v-for="(item,index) in list.sysBookExcipientsVOlist" :key="index">
+                  <li v-for="(item,index) in list.sysBookTrayVOlist" :key="index">
                       <div class="left">
                           <img src="./8.png">
                           <p class="number">{{item.step}}</p>

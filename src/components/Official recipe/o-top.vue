@@ -38,7 +38,7 @@ export default {
       text: ''
     }
   },
-  created(){
+  mounted(){
     let self = this
     this.bookid = this.$route.params.id;
     process(this.bookid).then(res => {

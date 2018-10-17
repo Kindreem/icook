@@ -174,8 +174,8 @@ export default {
     //     }
     // },
     nickname(val,old){
-      if(val.length>11){
-          this.nickname=this.nickname.substring(0,11)
+      if(val.length>10){
+          this.nickname=this.nickname.substring(0,10)
           this.warning = 1;
           this.tit = '昵称不能超过10个字符'
           setTimeout(()=>{
@@ -392,7 +392,7 @@ export default {
 .info {
   .warning {
     position: absolute;
-    width: px2rem(120);
+    width: px2rem(130);
     height: px2rem(25);
     line-height: px2rem(25);
     background: rgba(0, 0, 0, 0.7);
