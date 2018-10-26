@@ -210,5 +210,6 @@ export default {
 .quan {
    animation:changDeg 2s linear 0.2s infinite;
 }
+
 </style>
 

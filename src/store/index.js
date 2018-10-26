@@ -1,5 +1,4 @@
 import Vue from 'vue'
-
 //  导入并绑定Vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
@@ -28,7 +27,9 @@ const state = {
   tow: '', //tow排列
   myach:'', //我的成就
   nodata:'',   //暂无相关菜谱
-  voice: 0 //人声
+  step: 1,  //新手指引
+  warning: false,  //语音面板
+  guide1: false
 }
 
 
@@ -70,16 +71,16 @@ const mutations = {
   setone: (state, one) => {
     state.one = one
   },
-  setnum: (state, mun) => {
+  setnum: (state, num) => {
     state.num = num
   },
   setcbname: (state, cbname) => {
     state.cbname = cbname
 },
-  setnum1: (state, mun1) => {
+  setnum1: (state, num1) => {
     state.num1 = num1
   },
-  setnum2: (state, mun2) => {
+  setnum2: (state, num2) => {
     state.num2 = num2
   },
   settow: (state, tow) => {
@@ -91,8 +92,14 @@ const mutations = {
   setnodata: (state,nodata) => {
     state.nodata=nodata
   },
-  setvoice: (state,LoginStatus) => {
-    state.voice=voice
+  setstep: (state,step) => {
+    state.step=step
+  },
+  setwarning: (state,warning) => {
+    state.warning=warning
+  },
+  setguide1: (state,guide1) => {
+    state.guide1=guide1
   },
 }
 
@@ -158,8 +165,14 @@ const getters = {
   getnodata: (state) => {
     return state.nodata
   },
-  getvoice: (state) => {
-    return state.voice
+  getstep: (state) => {
+    return state.step
+  },
+  getwarning: (state) => {
+    return state.warning
+  },
+  getguide1: (state) => {
+    return state.guide1
   },
 }
 

@@ -23,11 +23,27 @@
       <div><span>身份证：</span><input type="text" mame='id' maxlength="18" v-model="id"/></div>
       <button @click="check">提交</button>
    </div>
-   <div class="mask" v-show="show"></div>
+   <div class="mask" v-show="show" @touchmove.prevent></div>
    <transition>
       <p class="warning" v-show="warning">{{tit}}</p>
    </transition>
-
+   <div class="guide1" v-if="$store.state.step==1?true:false">
+     <p>“I厨神”是一款烹饪助理APP，目标是让用户学会全天下所有美食料理，上传自己拿手的得意好菜。在学习与上传的过程中，不断获得“I厨神”美食头衔，向全网展示您的烹饪天赋！</p>
+     <h4 class="h1">“烹饪派系”包含所有当前收录的菜谱美食</h4>
+     <h4 class="h2">“语音查询”支持您说出菜名就能查到菜谱</h4>
+     <img class="img1" src="./img/1-首页 (1).png" alt="">
+     <img class="img2" src="./img/6-语言查询.png" alt="">
+     <button @click="end1">朕知道了</button>
+   </div>
+   <div class="guide2" v-if="$store.state.step==2?true:false">
+     <h4 class="h21">这里将展示您的个人信息，并收录所有您已获得的“I厨神”美食成就。</h4>
+     <h4 class="h22">完成任务能获得更多美食成就和丰厚奖励。</h4>
+      <h4 class="h23">这里讲展现您当前的流派和段位，不断上传菜谱来提升您的流派段位。</h4>
+     <img class="img21" src="./img/1-首页 (2).png" alt="">
+     <img class="img22" src="./img/1-首页 (3).png" alt="">
+     <img class="img23" src="./img/1-首页 (4).png" alt="">
+     <button @click="end2">朕知道了</button>
+   </div>
   </div>
 </template>
 
@@ -69,17 +85,39 @@ export default {
   },
 
   mounted() {
-
+    // document.addEventListener('touchmove',this.bodyScroll, { passive: false }) //禁止屏幕滑动
     let certificationstatus = localStorage.getItem("certificationstatus");
     if (certificationstatus == 0) {
       this.show = true;
+      localStorage.setItem('guide1',1)
+      localStorage.setItem('guide2',1)
+      document.addEventListener('touchmove',this.bodyScroll, { passive: false }) //禁止屏幕滑动
     } else {
       this.show = false;
     }
     let id = this.id.toUpperCase();
-    console.log(id);
+    // console.log(id);
+  },
+  created() {
+    // document.addEventListener('touchmove',this.bodyScroll, { passive: false })
   },
   methods: {
+    end1(){
+      let pageHeight = document.documentElement.clientHeight;
+      let height = pageHeight * (930 / 1334);
+      let pb = pageHeight * (116 / 1334);
+       this.$store.commit('setstep',2)
+       document.documentElement.scrollTop = height + pb;
+       document.body.scrollTop = height + pb;
+    },
+    end2(){
+       this.$store.commit('setstep',3)
+       document.documentElement.scrollTop = 0
+       document.body.scrollTop = 0
+    },
+      bodyScroll(event) {
+        event.preventDefault()
+    },
     //  真实姓名身份证
     check() {
       // let checkTrueName = () => {
@@ -102,8 +140,9 @@ export default {
           console.log(res);
           if (res.code == 200) {
             localStorage.setItem("certificationstatus", 1);
-            this.$router.push({ path: "/load" });
+            // this.$router.push({ path: "/load" });
             this.show = false;
+            this.$store.commit('setstep',1)
           } else {
             this.tit = res.msg;
             this.warning = true;
@@ -205,13 +244,13 @@ export default {
         //   return false
         // }
         //阻止页面的滑动默认事件
-        document.addEventListener(
-          "touchmove",
-          function() {
-            event.preventDefault();
-          },
-          false
-        );
+        // document.addEventListener(
+        //   "touchmove",
+        //   function() {
+        //     event.preventDefault();
+        //   },
+        //   false
+        // );
       }
     },
     //鼠标释放时候的函数
@@ -229,6 +268,8 @@ export default {
 .all {
   // -webkit-overflow-scrolling:touch;
   position: relative;
+  height: 100%;
+  // width: 100%;
 }
 
 .xuanfu {
@@ -303,7 +344,156 @@ export default {
   // -ms-filter: blur(10px);
   // filter: blur(10px);
 }
+.guide1 {
+  position absolute
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  p {
+    position fixed
+    top 43%
+    color #fff
+    font-size px2rem(26)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    // text-align center
+    margin 0 px2rem(40)
+  }
+  .h1 {
+    position fixed
+    bottom 32.5%;
+    left: px2rem(40);
+    color #fff
+    font-size px2rem(26)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    width px2rem(310);
+    white-space normal
+  }
+  .h2 {
+    position fixed
+    bottom 32.5%;
+    right: px2rem(40);
+    color #fff
+    font-size px2rem(26)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    width px2rem(310);
+    white-space normal
+  }
+  .img1 {
+    position fixed
+    bottom 18.5%;
+    left: 16%;
+    width px2rem(40)
+    // transform rotate(-45deg)
+    // margin-top 120px
+    // margin-left 90px
+  }
+  .img2 {
+    position fixed
+    bottom 18.5%;
+    right : 16%;
+    width px2rem(40)
+    // transform rotate(-45deg)
+    // margin-top 120px
+    // margin-left 90px
+  }
+  button {
+    position fixed
+    bottom 21%;
+    left 50%
+    margin-left px2rem(-90)
+    width px2rem(180)
+    height px2rem(54)
+    color #fff
+    font-size px2rem(26)
+    border 1px solid #fff
+    border-radius 10px
+    background transparent
+    outline none
 
+  }
+}
+.guide2 {
+  position absolute
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  .h21 {
+    position fixed
+    top px2rem(178)
+    left: px2rem(26);
+    color #fff
+    font-size px2rem(24)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    width px2rem(310);
+    white-space normal
+  }
+  .h22 {
+    position fixed
+    top px2rem(178)
+    right: px2rem(18);
+    color #fff
+    font-size px2rem(24)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    width px2rem(310);
+    white-space normal
+  }
+  .h23 {
+    position fixed
+    top px2rem(960)
+    right: px2rem(18);
+    color #fff
+    font-size px2rem(24)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    margin 0 px2rem(80)
+    white-space normal
+  }
+  .img21 {
+    position fixed
+    top px2rem(90)
+    left: 16%;
+    width px2rem(40)
+  }
+  .img22 {
+    position fixed
+    top px2rem(90)
+    right: 16.5%;
+    width px2rem(40)
+  }
+  .img23 {
+    position fixed
+    top px2rem(808)
+    right: 50%;
+    margin-left px2rem(-17)
+    width px2rem(34)
+  }
+  button {
+    position fixed
+    top px2rem(1070)
+    left 50%
+    margin-left px2rem(-90)
+    width px2rem(180)
+    height px2rem(54)
+    color #fff
+    font-size px2rem(26)
+    border 1px solid #fff
+    border-radius 10px
+    background transparent
+    outline none
+
+  }
+}
 .warning {
   position: fixed;
   width: px2rem(400);

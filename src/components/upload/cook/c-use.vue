@@ -28,6 +28,9 @@
             </Row>
         </FormItem>
     </Form>
+    <Col span="12" offset="6" v-if="$store.state.guide1">
+      <Button type="dashed" long class="fb">添加食材</Button>
+    </Col>
   </div>
 </template>
 
@@ -163,7 +166,24 @@ export default {
     }
   }
 }
-
+>>>.ivu-btn {
+      font-size: px2rem(32);
+      border-radius: px2rem(20);
+      // box-shadow: 10px 10px 14px rgba(204, 204, 204, 0.4);
+      border: none;
+      color: #5DB8E9;
+      border-color: #444;
+      margin-top: px2rem(40);
+      padding-left: px2rem(72);
+      background: #fff url('../img/1-036.png') no-repeat 20% 50%;
+      background-size: px2rem(42);
+    }
+.fb {
+  position absolute
+  top px2rem(-118)
+  left 0
+  z-index 10000
+}
 .content {
   border-bottom: 1px solid #333;
 }

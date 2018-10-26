@@ -22,12 +22,13 @@ export default {
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
 .all {
-  margin px2rem(26) px2rem(30)
-  height px2rem(180)
+  margin 0 px2rem(30) px2rem(60)
+  padding-top px2rem(40)
+  // height px2rem(180)
   position relative
   img{
     position absolute
-    top 0px
+    top px2rem(32)
     right 0px
     width px2rem(48)
   }
@@ -36,7 +37,7 @@ export default {
     justify-content space-around
     font-size px2rem(24)
     color #ccc
-    padding-top px2rem(100)
+    // padding-top px2rem(100)
   }
 }
 .router-link-active {

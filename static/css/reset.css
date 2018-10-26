@@ -54,3 +54,11 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 select{
   -webkit-appearance: none;
 } */
+.zoomt1 {
+  z-index: 10000 !important;
+}
+
+
+.zoomt2 {
+  z-index: 10001 !important;
+}

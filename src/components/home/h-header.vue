@@ -2,11 +2,13 @@
 <div class="zong" @mouseup="end" @touchend="end">
   <div class="all" :style="bg">
     <header>
-      <div class="tleft">
-        <router-link to="conter">
+      <div class="tleft ">
+        <div>
+        <router-link to="conter" >
           <img :src="userphoto" alt="">
           <h3>{{usernickname}}</h3>
         </router-link>
+        </div>
         <router-link to="conter/badge" class="sicon">
           <img src="../../common/img/36X36/资源 107自定.png" alt="">
         </router-link>
@@ -49,7 +51,15 @@
         </transition>
       </router-link>
     </div>
+
   </div>
+  <div class="f1" v-if="$store.state.step==2?true:false">
+      <img :src="userphoto" alt="">
+      <h3>{{usernickname}}</h3>
+    </div>
+    <div class="f2" v-if="$store.state.step==2?true:false">
+       <img src="./img/ZY-003.png" alt="">
+    </div>
 </div>
 </template>
 
@@ -260,7 +270,6 @@ header {
 
 .sea {
   position: relative;
-
   .sleft {
     position: absolute;
     top: px2rem(44);
@@ -315,6 +324,50 @@ header {
 }
 >>>.ivu-input[disabled]{
   background-color: #fff !important
+}
+
+.f1 {
+  position fixed
+  top px2rem(22)
+  left px2rem(20)
+  z-index: 10000 !important
+  background #fff
+  height px2rem(58)
+  // width 180px
+  border-radius px2rem(12)
+
+  img {
+    width: px2rem(48);
+    border-radius 50%
+    vertical-align: middle
+    margin-left px2rem(10)
+    // display inline
+  }
+  h3 {
+    display inline-block
+    font: px2rem(24) '微软雅黑';
+    color: #000;
+    margin-left: px2rem(10);
+    margin-right: px2rem(10);
+    height: px2rem(58);
+    line-height: px2rem(58);
+    vertical-align: middle
+  }
+}
+.f2 {
+  position fixed
+  top px2rem(22)
+  right px2rem(99)
+  z-index: 10000 !important
+  width px2rem(58)
+  height px2rem(58)
+  background #fff
+  border-radius px2rem(12)
+  img{
+    width px2rem(48)
+    margin-left px2rem(7)
+    margin-top px2rem(4)
+  }
 }
 </style>
 

@@ -178,4 +178,7 @@ export const process = (cookbookid)=>{
   return axios.post(`/process/getbookprocess?cookbookid=${cookbookid}`).then(res=>res.data)
 }
 
-
+//微信config
+export const getwxjssdk = (jsurl)=>{
+  return axios.post(`/common/getwxjssdk_config?jsurl=${jsurl}`).then(res=>res.data)
+}

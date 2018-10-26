@@ -31,9 +31,28 @@
               <p>已获得</p>
           </div>
       </div> -->
+    <div class="fcoll" v-if="guide2">
+      <Collapse v-model="val1">
+      <div class="allitem">
+        <Panel name="1">
+            <div class="left"><img src="./美食梦想家.png" alt=""></div>
+            <h4>美食梦想家</h4><span>奖励给绑定或注册手机号的用户</span>
+            <p slot="content"><span>完成条件:</span>用户完成注册，如用户使用三方账号登录需绑定手机号</p>
+        </Panel>
 
-
-
+            <button class="btn1">
+                未完成
+            </button>
+      </div>
+    </Collapse>
+    </div>
+    <div class="guide" v-if="guide2">
+     <h4 class="h1">点击此处查看任务完成条件。达成任务条件即可获得任务奖励。</h4>
+     <img class="img1" src="./3-任务.png" alt="">
+   </div>
+  <div class="guide1" @touchmove.prevent v-if="guide2">
+     <button @click="end">朕知道了</button>
+   </div>
 
   </div>
 </template>
@@ -46,12 +65,23 @@ export default {
         list:'' ,            //任务列表
         id:'' ,     //用户id
         val:'',
+        val1:'1',
+        guide2: false
     }
   },
   mounted(){
       this.getlist()
+      if(localStorage.getItem('guide2')==1) {
+        this.guide2=true
+    }
   },
   methods:{
+    end() {
+      localStorage.setItem('guide2',0)
+      if(localStorage.getItem('guide2')==0) {
+        this.guide2=false
+    }
+    },
      backto(){
       this.$router.go(-1);
     },
@@ -86,6 +116,63 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/hotcss/px2rem.scss';
+.guide1 {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  z-index: 10001;
+  button {
+    position: absolute;
+    bottom: px2rem(90);
+    left: 50%;
+    margin-left: px2rem(-45);
+    width: px2rem(90);
+    height: px2rem(27);
+    color: #fff;
+    font-size: px2rem(13);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background: transparent;
+    outline: none;
+  }
+}
+.guide {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  .h1 {
+    position: absolute;
+    top: px2rem(300);
+    left: 50%;
+    margin-left: px2rem(-160);
+    color: #fff;
+    font-size: px2rem(13);
+    letter-spacing: px2rem(2);
+    line-height: px2rem(18);
+    width: px2rem(320);
+    white-space: normal;
+  }
+  .img1 {
+    position: absolute;
+    top: px2rem(226);
+    left: 50%;
+    margin-left: px2rem(-8.5);
+    width: px2rem(17);
+  }
+}
+.fcoll {
+  position: fixed;
+  top: px2rem(46);
+  left: 0px;
+  z-index: 10000;
+}
 .achieve{
     .header{
     height: px2rem(44);

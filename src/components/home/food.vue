@@ -35,6 +35,20 @@
          </router-link>
        </div>
      </div>
+     <div class="fban" v-if="$store.state.step==2?true:false">
+        <div class="b-top">
+         <h1>粤派三段</h1>
+         <p>您已掌握18道菜式,获得粤派段位经验478/1200</p>
+       </div>
+       <div class="b-bot">
+         <div class="silder">
+           <Carousel :items="items" :swiperOption="swiperOption" />
+         </div>
+         <div class="b-right">
+            <p>看完整粤派菜肴&gt;</p>
+         </div>
+       </div>
+     </div>
   </div>
 </template>
 
@@ -49,7 +63,7 @@ export default {
     //  window.addEventListener('scroll', this.end)
     var pageHeight = document.documentElement.clientHeight;
     this.height = pageHeight * (930 / 1334);
-    this.pb = pageHeight * (146 / 1334);
+    this.pb = pageHeight * (116 / 1334);
   },
   data() {
     return {
@@ -119,7 +133,6 @@ export default {
 .top {
   font: px2rem(24) '微软雅黑';
   padding-bottom: px2rem(72);
-
   p {
     color: #727171;
   }
@@ -133,7 +146,7 @@ export default {
   float: right;
 }
 
-.ban {
+.ban,.fban {
   border-radius: 20px;
   box-shadow: 8px 8px 4px rgba(204, 204, 204, 0.349019607843137);
   // margin-top px2rem(72)
@@ -184,7 +197,6 @@ export default {
       .ban {
         text-align: center;
         padding: px2rem(20) 0;
-
         // border-radius 20px
         // border-bottom-right-radius 20px
         h3 {
@@ -204,5 +216,15 @@ export default {
     color: #777;
     padding-bottom: px2rem(28);
   }
+}
+.fban {
+  box-shadow: none
+  position fixed
+  top px2rem(292)
+  left 0
+  right 0
+  z-index 10000
+  background #fff
+  margin 0 px2rem(30)
 }
 </style>

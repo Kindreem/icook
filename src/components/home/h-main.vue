@@ -7,10 +7,10 @@
       <div class="butt">
         <router-link to="/fstyle"><img id="bleft" v-show="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt=""></router-link>
         <img id="bright" v-show="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
-        <img id="abl" v-show="on" src="./img/ZY-005.png" alt="">
-        <img id="abr" v-show="on" src="./img/ZY-006.png" alt="">
-        <router-link to="/fstyle"><Button id="but1" type="ghost">烹饪菜系</Button></router-link>
-        <Button id="but2" type="ghost">语音查询</Button>
+        <img id="abl" :class="$store.state.step==1?'zoomt2':''" v-show="on" src="./img/ZY-005.png" alt="">
+        <img id="abr" :class="$store.state.step==1?'zoomt2':''" v-show="on" src="./img/ZY-006.png" alt="">
+        <router-link :to="$store.state.step==1?'':'/fstyle'" ><Button :class="$store.state.step==1?'zoomt1':''" id="but1" type="ghost">烹饪菜系</Button></router-link>
+        <router-link :to="$store.state.step==1?'':'/search'" ><Button id="but2" :class="$store.state.step==1?'zoomt1':''" type="ghost" @click="yycx">语音查询</Button></router-link>
       </div>
     </div>
   </div>
@@ -21,11 +21,15 @@
 <script>
 export default {
   mounted() {
+    // function bodyScroll(event){
+    // event.preventDefault();
+    // }
+    // document.body.addEventListener('touchmove',this.bodyScroll,false);
     window.addEventListener("scroll", this.move);
     //  window.addEventListener('scroll', this.end)
     var pageHeight = document.documentElement.clientHeight;
     this.height = pageHeight * (930 / 1334);
-    this.pb = pageHeight * (146 / 1334);
+    this.pb = pageHeight * (116 / 1334);  //146
   },
   data() {
     return {
@@ -42,15 +46,19 @@ export default {
     };
   },
   methods: {
+    yycx() {
+       this.$store.commit('setwarning', true )
+    },
     end() {
       var height = this.height;
       var oheight = this.height - 25;
+      //  console.log(oheight)
       var pb = this.pb;
       var scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      //  console.log(scrollTop)
+       console.log(scrollTop)
       if (scrollTop <= oheight + 41 && scrollTop > oheight - 21) {
         document.documentElement.scrollTop = oheight - 21;
         document.body.scrollTop = oheight - 21;

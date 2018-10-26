@@ -40,6 +40,7 @@ export default {
     //  window.addEventListener('scroll', this.end)
     var pageHeight = document.documentElement.clientHeight;
     this.height = pageHeight * (930 / 1334);
+    this.pb = pageHeight * (116 / 1334);
 
     userbooktopten().then(res => {
       if (res.code == 200) {
@@ -57,7 +58,8 @@ export default {
   data() {
     return {
       height: "",
-      usernickname: "kin"
+      usernickname: "kin",
+      pb: ''
       // items: ""
     };
   },
@@ -65,6 +67,7 @@ export default {
     end() {
       var height = this.height;
       var oheight = this.height - 25;
+      var pb = this.pb;
       var scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||
@@ -73,9 +76,9 @@ export default {
       if (scrollTop <= oheight + 41 && scrollTop > oheight - 21) {
         document.documentElement.scrollTop = oheight - 21;
         document.body.scrollTop = oheight - 21;
-      } else if (scrollTop >= oheight + 41 && scrollTop < height + 145) {
-        document.documentElement.scrollTop = height + 145;
-        document.body.scrollTop = height + 145;
+      } else if (scrollTop >= oheight + 41 && scrollTop < height + pb) {
+        document.documentElement.scrollTop = height + pb;
+        document.body.scrollTop = height + pb;
       }
     }
   }

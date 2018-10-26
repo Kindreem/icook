@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="all">
     <add @childByValue="childByValue" @childByValue1="childByValue1" @childByValue2="childByValue2" />
     <cuse @childByValue3="childByValue3"/>
     <cstep @childByValue4="childByValue4"/>
@@ -66,4 +66,7 @@ export default {
   }
 };
 </script>
+
+
+
 

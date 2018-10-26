@@ -71,6 +71,9 @@
             <Button type="primary" @click="achieve">完成</Button>
           </div>
     </Modal>
+    <Col span="12" offset="6" v-if="$store.state.guide1">
+        <Button type="dashed" long class="fb" v-if="guide1?true:false">增加步骤</Button>
+    </Col>
   </div>
 </template>
 
@@ -482,7 +485,24 @@ export default {
     }
  }
  }
-
+.fb {
+  position absolute
+  bottom px2rem(24)
+  left 0
+  z-index 10000
+}
+>>>.ivu-btn {
+      font-size: px2rem(32);
+      border-radius: px2rem(20);
+      // box-shadow: 10px 10px 14px rgba(204, 204, 204, 0.4);
+      border: none;
+      color: #fff;
+      border-color: #444;
+      margin-top: px2rem(40);
+      padding-left: px2rem(72);
+      background: #5DB8E9 url('../img/1-036-1.png') no-repeat 20% 50%;
+      background-size: px2rem(42);
+    }
 </style>
 <style lang="stylus">
 @import '../../../assets/px2rem.styl';

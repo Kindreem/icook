@@ -130,7 +130,34 @@
              <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
-
+       <div class="fimg">
+         <img src="./1.png" alt="">
+         <img src="./2.png" alt="">
+         <img src="./3.png" alt="">
+       </div>
+       <div class="item fitem">
+             <div class="title">
+                <img src="./GR-007.png" alt="">
+               <p>我的钱包</p>
+            </div>
+           <ul class="money">
+               <li>第一种货币:999999</li>
+               <li>第二种货币:999999</li>
+               <li>第三种货币:999999</li>
+           </ul>
+       </div>
+       <div class="ficon">
+         <img src="./1.png" alt="">
+       </div>
+       <div class="guide">
+     <h4 class="h1">点击此处可查看所获徽章</h4>
+     <h4 class="h2">此处是您的“I厨神”货币概况</h4>
+     <h4 class="h3">此处可浏览您已获得的所有徽章，徽章不仅是收藏品，还能装备在首页向全网展示您已达成的成就。</h4>
+     <img class="img1" src="./4-个人中心 (1).png" alt="">
+     <img class="img2" src="./4-个人中心 (2).png" alt="">
+     <img class="img3" src="./4-个人中心 (3).png" alt="">
+     <img class="img4" src="./4-个人中心 (4).png" alt="">
+   </div>
   </div>
 </template>
 
@@ -219,7 +246,7 @@ export default {
       }
       // console.log(res.data);
     });
-  
+
   //我的成就
   myachievement(this.userid).then(res=>{
     if(res.code==200){
@@ -246,13 +273,124 @@ export default {
 
 <style lang="scss">
 @import "@/assets/hotcss/px2rem.scss";
+.guide {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  .h1 {
+    position: absolute;
+    top: px2rem(70);
+    right: px2rem(180);
+    color: #fff;
+    font-size: px2rem(13);
+    letter-spacing: px2rem(2);
+    line-height: px2rem(18);
+    width: px2rem(140);
+    white-space: normal;
+  }
+  .h2 {
+    position: absolute;
+    top: px2rem(350);
+    left: 50%;
+    margin-left: px2rem(-92);
+    color: #fff;
+    font-size: px2rem(13);
+    letter-spacing: px2rem(2);
+    line-height: px2rem(18);
+    width: px2rem(184);
+    white-space: normal;
+  }
+  .h3 {
+    position: absolute;
+    bottom: px2rem(376);
+    left: 50%;
+    margin-left: -45%;
+    color: #fff;
+    font-size: px2rem(13);
+    letter-spacing: px2rem(2);
+    line-height: px2rem(18);
+    width: 90%;
+    white-space: normal;
+  }
+  .img1 {
+    position: absolute;
+    top: px2rem(78);
+    right: px2rem(131.5);
+    // margin-left: px2rem(-8.5);
+    width: px2rem(50);
+  }
+  .img2 {
+    position: absolute;
+    top: px2rem(282);
+    left: 50%;
+    margin-left: px2rem(-8.5);
+    width: px2rem(14);
+  }
+  .img3 {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    margin-left: px2rem(-24);
+    width: px2rem(48);
+  }
+  .img4 {
+    position: absolute;
+    bottom: px2rem(288);
+    left: px2rem(70);
+    width: px2rem(18);
+  }
+}
+.ficon {
+  position: absolute;
+  bottom: px2rem(213);
+  left: px2rem(21.5);
+  z-index: 10000;
+  img {
+    width: px2rem(64);
+  }
+}
+.fitem {
+  position: absolute;
+  top: px2rem(120);
+  // left: 20px;
+  left: px2rem(10);
+  z-index: 10000;
+  width: 95.5% !important;
+  // height: 90px;
+  background: #fff;
+  // border-radius: 10px;
+  // text-align: center;
+    // margin-left: 20px;
+  z-index: 10000;
+}
+.fimg {
+  position: absolute;
+  top: px2rem(66);
+  right: px2rem(5);
+  width: px2rem(120);
+  height: px2rem(45);
+  background: #fff;
+  border-radius: px2rem(5);
+  text-align: center;
+  z-index: 10000;
+  img {
+    width: px2rem(35);
+    margin-top: px2rem(5);
+  }
+}
 .conter {
+  position: relative;
+  height: 100%;
   .header {
     height: px2rem(44);
     background: none;
     text-align: left;
     div {
-      padding: 20px;
+      padding:  px2rem(10);
     }
     img {
       margin-top: px2rem(5);
@@ -287,7 +425,7 @@ export default {
       right: 0;
       img {
         width: px2rem(35);
-        height: px2rem(35);
+        // height: px2rem(35);
       }
     }
   }
@@ -307,7 +445,7 @@ export default {
       width: 100%;
       .swiper-wrapper {
         display: flex;
-        display: -webkit-flex; 
+        display: -webkit-flex;
         width: 700%;
         .swiper-slide {
           // width: 33.333%;
