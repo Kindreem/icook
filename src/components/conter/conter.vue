@@ -112,6 +112,9 @@
                 </swiper-slide>
                </swiper>
            </ul>
+           <div class="ficon" v-if="guide3">
+         <img src="./1.png" alt="">
+       </div>
        </div></router-link>
         <div class="item badge">
              <div class="title">
@@ -130,12 +133,12 @@
              <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
-       <div class="fimg">
+       <div class="fimg" v-if="guide3">
          <img src="./1.png" alt="">
          <img src="./2.png" alt="">
          <img src="./3.png" alt="">
        </div>
-       <div class="item fitem">
+       <div class="item fitem" v-if="guide3">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的钱包</p>
@@ -146,10 +149,8 @@
                <li>第三种货币:999999</li>
            </ul>
        </div>
-       <div class="ficon">
-         <img src="./1.png" alt="">
-       </div>
-       <div class="guide">
+
+    <div class="guide" v-if="guide3">
      <h4 class="h1">点击此处可查看所获徽章</h4>
      <h4 class="h2">此处是您的“I厨神”货币概况</h4>
      <h4 class="h3">此处可浏览您已获得的所有徽章，徽章不仅是收藏品，还能装备在首页向全网展示您已达成的成就。</h4>
@@ -157,6 +158,7 @@
      <img class="img2" src="./4-个人中心 (2).png" alt="">
      <img class="img3" src="./4-个人中心 (3).png" alt="">
      <img class="img4" src="./4-个人中心 (4).png" alt="">
+     <button @click="end">朕知道了</button>
    </div>
   </div>
 </template>
@@ -198,7 +200,8 @@ export default {
       usernickname: "",
       userphoto: "",
       userid: "",
-      myach:''
+      myach:'',
+      guide3: false
     };
   },
   created() {
@@ -256,16 +259,22 @@ export default {
         this.$store.state.myach = res.data
       }
     }
-    console.log(res.data)
+    // console.log(res.data)
   })
-
   },
   mounted() {
     this.url = this.$store.state.picimg;
+    if(localStorage.getItem('guide3')==1) {
+        this.guide3=true
+    }
   },
   methods: {
     backto() {
       this.$router.go(-1);
+    },
+    end() {
+      localStorage.setItem('guide3',0)
+      this.guide3=false
     }
   }
 };
@@ -343,11 +352,26 @@ export default {
     left: px2rem(70);
     width: px2rem(18);
   }
+  button {
+    position: absolute;
+    bottom: px2rem(90);
+    left: 50%;
+    margin-left: px2rem(-45);
+    width: px2rem(90);
+    height: px2rem(27);
+    color: #fff;
+    font-size: px2rem(13);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background: transparent;
+    outline: none;
+  }
 }
 .ficon {
   position: absolute;
-  bottom: px2rem(213);
-  left: px2rem(21.5);
+  bottom: px2rem(38);
+  left: px2rem(-32);
+  margin-left: 12.5%;
   z-index: 10000;
   img {
     width: px2rem(64);
@@ -492,6 +516,7 @@ export default {
   }
   .item.badge {
     height: px2rem(150);
+    position: relative;
   }
   .item {
     width: 100%;

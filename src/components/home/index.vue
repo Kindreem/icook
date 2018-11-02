@@ -19,7 +19,7 @@
    <!-- 弹窗 -->
    <div class="win" v-show="show">
       <P>根据网信办2016年6月28日发布的《移动互联网应用程序信息服务管理规定》当中规定，为了加强对移动互联网应用程序(APP)信息服务的规范管理，促进行业健康有序发展，保护公民、法人和其他组织的合法权益，将从2016年8月1日开始落实安全责任，实行实名制管理，从今天开始当用户注册APP时将提供较为严格的个人信息进行认证，以减少窃取隐私、恶意扣费、诱骗欺诈等损害用户合法权益的行为发生。</P>
-      <div><span>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</span><input type="text" name="name" v-model="name"/></div>
+      <div><span class="s1">姓名：</span><input type="text" name="name" v-model="name"/></div>
       <div><span>身份证：</span><input type="text" mame='id' maxlength="18" v-model="id"/></div>
       <button @click="check">提交</button>
    </div>
@@ -44,6 +44,7 @@
      <img class="img23" src="./img/1-首页 (4).png" alt="">
      <button @click="end2">朕知道了</button>
    </div>
+   <!-- <button @click="end3" class="f123">123</button> -->
   </div>
 </template>
 
@@ -88,14 +89,28 @@ export default {
     // document.addEventListener('touchmove',this.bodyScroll, { passive: false }) //禁止屏幕滑动
     let certificationstatus = localStorage.getItem("certificationstatus");
     if (certificationstatus == 0) {
-      this.show = true;
-      localStorage.setItem('guide1',1)
-      localStorage.setItem('guide2',1)
+      this.show = false;
+      localStorage.setItem('guide1',1) //上传
+      localStorage.setItem('guide2',1)  //成就
+      localStorage.setItem('guide3',1) //个人中心
+      localStorage.setItem('guide4',1)  // 流派
+      localStorage.setItem('guide5',1)    //官方菜谱
+      localStorage.setItem('guide6',1)    //首页语音
+      localStorage.setItem('guide7',1)    //语音查询
+      localStorage.setItem('guide8',1)   //徽章
       document.addEventListener('touchmove',this.bodyScroll, { passive: false }) //禁止屏幕滑动
     } else {
       this.show = false;
+      // localStorage.setItem('guide1',0)
+      // localStorage.setItem('guide2',0)
+      // localStorage.setItem('guide3',0)
+      // localStorage.setItem('guide4',0)
+      // localStorage.setItem('guide5',0)
+      //  localStorage.setItem('guide6',0)
+      //  localStorage.setItem('guide7',0)
+      //  localStorage.setItem('guide8',0)
     }
-    let id = this.id.toUpperCase();
+    // let id = this.id.toUpperCase();
     // console.log(id);
   },
   created() {
@@ -114,7 +129,14 @@ export default {
        this.$store.commit('setstep',3)
        document.documentElement.scrollTop = 0
        document.body.scrollTop = 0
+       this.$store.commit('setfbut2',true)
+       document.removeEventListener('touchmove',this.bodyScroll, { passive: false })
     },
+    // end3(){
+    //   document.documentElement.scrollTop = 0;
+    //         document.body.scrollTop = 0;
+    //         this.$store.commit('setstep',1)
+    // },
       bodyScroll(event) {
         event.preventDefault()
     },
@@ -142,6 +164,8 @@ export default {
             localStorage.setItem("certificationstatus", 1);
             // this.$router.push({ path: "/load" });
             this.show = false;
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
             this.$store.commit('setstep',1)
           } else {
             this.tit = res.msg;
@@ -264,7 +288,12 @@ export default {
 <style lang="stylus" scoped>
 
 @import '../../assets/px2rem.styl';
-
+// .f123 {
+//   position absolute
+//   top 0
+//   left 0
+//   z-index 111111
+// }
 .all {
   // -webkit-overflow-scrolling:touch;
   position: relative;
@@ -307,7 +336,9 @@ export default {
     span {
       padding-right: px2rem(20);
     }
-
+    .s1 {
+      letter-spacing px2rem(8)
+    }
     input {
       width: 78%;
       border-radius: 10px;
@@ -364,7 +395,7 @@ export default {
   }
   .h1 {
     position fixed
-    bottom 32.5%;
+    bottom 35%;
     left: px2rem(40);
     color #fff
     font-size px2rem(26)
@@ -375,7 +406,7 @@ export default {
   }
   .h2 {
     position fixed
-    bottom 32.5%;
+    bottom 35%;
     right: px2rem(40);
     color #fff
     font-size px2rem(26)
@@ -386,7 +417,7 @@ export default {
   }
   .img1 {
     position fixed
-    bottom 18.5%;
+    bottom 22%;
     left: 16%;
     width px2rem(40)
     // transform rotate(-45deg)
@@ -395,7 +426,7 @@ export default {
   }
   .img2 {
     position fixed
-    bottom 18.5%;
+    bottom 22%;
     right : 16%;
     width px2rem(40)
     // transform rotate(-45deg)

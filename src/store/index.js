@@ -27,9 +27,14 @@ const state = {
   tow: '', //tow排列
   myach:'', //我的成就
   nodata:'',   //暂无相关菜谱
-  step: 1,  //新手指引
+  step: 0,  //新手指引
   warning: false,  //语音面板
-  guide1: false
+  guide1: false,
+  guide5: false,
+  guide7: false,
+  fbut2: false, //语音查询按钮
+  fwarn: false, //f语音面板
+  // fon: false  //搜索焦点
 }
 
 
@@ -101,6 +106,21 @@ const mutations = {
   setguide1: (state,guide1) => {
     state.guide1=guide1
   },
+  setguide5: (state,guide5) => {
+    state.guide5=guide5
+  },
+  setguide7: (state,guide7) => {
+    state.guide7=guide7
+  },
+  setfbut2: (state,fbut2) => {
+    state.fbut2=fbut2
+  },
+  setfwarn: (state,fwarn) => {
+    state.fwarn=fwarn
+  },
+  // setfon: (state,fon) => {
+  //   state.fon=fon
+  // },
 }
 
 //  3异步修改数据
@@ -174,6 +194,21 @@ const getters = {
   getguide1: (state) => {
     return state.guide1
   },
+  getguide5: (state) => {
+    return state.guide5
+  },
+  getguide7: (state) => {
+    return state.guide7
+  },
+  getfbut2: (state) => {
+    return state.fbut2
+  },
+  getfwarn: (state) => {
+    return state.fwarn
+  },
+  // getfon: (state) => {
+  //   return state.fon
+  // },
 }
 
 //导出store实例

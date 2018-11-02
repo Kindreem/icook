@@ -78,9 +78,8 @@ export default {
   methods:{
     end() {
       localStorage.setItem('guide2',0)
-      if(localStorage.getItem('guide2')==0) {
-        this.guide2=false
-    }
+      this.guide2=false
+
     },
      backto(){
       this.$router.go(-1);
@@ -104,7 +103,7 @@ export default {
     },
 //领取奖励
     get(id){
-        console.log('wwwwww')
+        // console.log('wwwwww')
         receive(this.id,id).then(res=>{
             // console.log(res)
             this.getlist()
@@ -174,6 +173,7 @@ export default {
   z-index: 10000;
 }
 .achieve{
+  padding-bottom: px2rem(10);
     .header{
     height: px2rem(44);
     background: none;

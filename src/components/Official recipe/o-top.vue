@@ -11,17 +11,30 @@
          <Button id="but1" type="ghost">分解流程</Button>
        </router-link>
 
-         <Button id="but2" type="ghost" @click="music">
+         <Button class="but2" type="ghost" @click="music">
            <img :class="show?'':'quan'" :src="show?require('./img/1-030-1.png'):require('./img/QQ20181017171135.png')" alt="">
+           语音帮手
+         </Button>
+         <Button class="but2 fbut2" type="ghost" v-if="$store.state.guide5">
+           <img src="./img/1-030-1.png" alt="">
            语音帮手
          </Button>
      </section>
      <section class="step">
        <div v-for="(item,index) in (getlist.cbimg||'').split('$')" :key="index"><img :src="item" alt=""></div>
      </section>
+     <router-link to="/Share">
+     <section class="up">
+          <button>点击上传</button>
+      </section>
+      </router-link>
      <section class="yuyin">
        <audio ref="yy" preload="auto" loop="loop" v-show="show"></audio>
      </section>
+
+     <div class="up fup" v-if="$store.state.guide5">
+       <button>点击上传</button>
+     </div>
   </div>
 </template>
 
@@ -102,7 +115,7 @@ export default {
             tok = localStorage.getItem("bdyytok");
             console.log(tok);
             yuyin(this.text, "7666dwdawadfe", tok,5,4,5,localStorage.getItem('setvoice')).then(res => {
-              // console.log(res);
+              console.log(res);
               var url = res.request.responseURL
               self.$refs.yy.src = url;
               // this.refs.yy.play();
@@ -121,7 +134,8 @@ export default {
         }else{
           this.$refs.yy.pause()
         }
-    }
+    },
+
   }
 }
 
@@ -130,6 +144,23 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
+.fup {
+  position absolute
+  bottom px2rem(0)
+  left 0
+  right 0
+  z-index 10000
+  button {
+     box-shadow none !important
+  }
+}
+.fbut2 {
+  position absolute !important
+  top 0
+  right px2rem(0)
+  z-index 10000
+  box-shadow none !important
+}
 .all {
   margin px2rem(30) px2rem(30)
   section {
@@ -182,23 +213,40 @@ export default {
   background #5DB8E9 url('./img/icon/part.png') no-repeat px2rem(34) center
   background-size px2rem(64)
 }
-#but2 {
+.but2 {
   background #5DB8E9
   background-size px2rem(64)
 }
-.yuyin {
-  position fixed
-  bottom px2rem(0)
-  left 0
-  z-index 11000
-  width 100%
-  height 100px
-  // margin 0 px2rem(30)
-  audio {
-    width 100%
-    height 100% !important
+.up {
+  text-align center
+  margin-top px2rem(50)
+  button {
+    background #5DB8E9
+    width: 80%;
+    height: px2rem(80);
+    line-height px2rem(80)
+    color: #fff;
+    font-size: px2rem(30);
+    border: 1px solid #fff;
+    // background: transparent;
+    outline: none;
+    border-radius 20px
+    box-shadow: 8px 8px 4px rgba(204, 204, 204, 0.4)
   }
 }
+// .yuyin {
+//   position fixed
+//   bottom px2rem(0)
+//   left 0
+//   z-index 9000
+//   width 100%
+//   height 100px
+//   // margin 0 px2rem(30)
+//   audio {
+//     width 100%
+//     height 100% !important
+//   }
+// }
 @keyframes changDeg{
 			0%{
 				transform: rotate(0deg);

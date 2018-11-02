@@ -6,15 +6,25 @@
       <p :style="{height: height+'px','line-height': height+'px'}">游烹我生活！</p>
       <div class="butt">
         <router-link to="/fstyle"><img id="bleft" v-show="show" :style="{'transform': 'translate(' + pLeft + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-005.png" alt=""></router-link>
-        <img id="bright" v-show="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="">
+        <router-link :to="$store.state.fbut2==true?'':'/search'" ><img id="bright" v-show="show" :style="{'transform': 'translate(' + pRight + 'rem,' + pTop + 'rem)' ,'transition': 'all 1s cubic-bezier(0.01,1,1,1)'}" src="./img/ZY-006.png" alt="" @click="$store.state.fbut2==true?fbut():yycx()"></router-link>
         <img id="abl" :class="$store.state.step==1?'zoomt2':''" v-show="on" src="./img/ZY-005.png" alt="">
-        <img id="abr" :class="$store.state.step==1?'zoomt2':''" v-show="on" src="./img/ZY-006.png" alt="">
+        <img class="abr" :class="$store.state.step==1?'zoomt2':''" v-show="on" src="./img/ZY-006.png" alt="">
         <router-link :to="$store.state.step==1?'':'/fstyle'" ><Button :class="$store.state.step==1?'zoomt1':''" id="but1" type="ghost">烹饪菜系</Button></router-link>
-        <router-link :to="$store.state.step==1?'':'/search'" ><Button id="but2" :class="$store.state.step==1?'zoomt1':''" type="ghost" @click="yycx">语音查询</Button></router-link>
+        <router-link :to="$store.state.step==1?'':'/search'" ><Button class="but2" :class="$store.state.step==1?'zoomt1':''" type="ghost" @click="$store.state.step==1?'':yycx()">语音查询</Button></router-link>
+
+        <div :class="yyshow?'fbut2':'fbut1'" v-if="$store.state.fbut2" @click="fbut" @touchmove.prevent>
+          <img class="abr" src="./img/ZY-006.png" alt="" v-if="yyshow">
+          <Button class="but2" type="ghost">语音查询</Button>
+        </div>
       </div>
     </div>
   </div>
  <!-- </transition> -->
+ <div class="guide" v-if="fmask" @touchmove.prevent>
+     <h4 class="h1">“语音查询”可在不打字的情况下支持查询。不信你试试说个“剁椒鱼头”，(当然你现在说别的也搜不出来，因为这里是强制引导，下步一定显示“剁椒鱼头”。)肯定搜的出来！</h4>
+     <img class="img1" src="./img/6-语言查询.png" alt="">
+     <router-link to="/search" ><button @click="end2">朕知道了</button></router-link>
+   </div>
 </div>
 </template>
 
@@ -42,10 +52,23 @@ export default {
       pTop: "",
       height: "",
       pb: "",
+      fmask: false,
+      yyshow: false
       // bb: ""
     };
   },
   methods: {
+    end2() {
+       this.$store.commit('setfwarn', true )
+       this.fmask=false
+       this.$store.commit('setfbut2',false)
+    },
+    fbut() {
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+       this.fmask=true
+       this.yyshow=true
+    },
     yycx() {
        this.$store.commit('setwarning', true )
     },
@@ -58,7 +81,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-       console.log(scrollTop)
+      //  console.log(scrollTop)
       if (scrollTop <= oheight + 41 && scrollTop > oheight - 21) {
         document.documentElement.scrollTop = oheight - 21;
         document.body.scrollTop = oheight - 21;
@@ -152,6 +175,71 @@ export default {
 // .fade-enter, .fade-leave-to /* .fade-leave-active, 2.1.8 版本以下 */ {
 // opacity: 1
 // }
+.guide {
+  position fixed
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  .h1 {
+    position fixed
+    bottom 38%;
+    left: 50%;
+    margin-left -46%
+    color #fff
+    font-size px2rem(26)
+    letter-spacing px2rem(4)
+    line-height px2rem(36)
+    width 92%;
+    white-space normal
+  }
+  .img1 {
+    position fixed
+    bottom 21%;
+    right: 16%;
+    width px2rem(40)
+  }
+  button {
+    position fixed
+    bottom 21%;
+    left 50%
+    margin-left px2rem(-90)
+    width px2rem(180)
+    height px2rem(54)
+    color #fff
+    font-size px2rem(26)
+    border 1px solid #fff
+    border-radius 10px
+    background transparent
+    outline none
+
+  }
+}
+.fbut1 {
+  position absolute
+  bottom px2rem(0);
+  right 0
+  z-index 1
+  >>>.ivu-btn-ghost {
+    background transparent !important
+    box-shadow none !important
+    border none !important
+    color: transparent !important
+  }
+}
+.fbut2 {
+  position absolute
+  bottom px2rem(0);
+  right 0
+  z-index 10001
+  >>>.ivu-btn-ghost {
+    background #fff !important
+    box-shadow none !important
+    border none !important
+  }
+}
 .zong {
   // padding-bottom px2rem(146)
   background: #efefef;
@@ -201,7 +289,7 @@ export default {
   width: px2rem(48);
 }
 
-#abr {
+.abr {
   position: absolute;
   bottom: px2rem(-32);
   right: px2rem(246);
@@ -232,7 +320,7 @@ export default {
   background: #fff;
 }
 
-#but2 {
+.but2 {
   position: absolute;
   bottom: px2rem(-50);
   right: px2rem(30);

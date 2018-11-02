@@ -21,12 +21,23 @@
         </section>
         </router-link>
       </div>
+
+
     </div>
     <li class="more_loading" v-show="queryLoading">
       <mt-spinner type="snake" color="#ccc" :size="70" v-show="loading&&!allLoaded"></mt-spinner>
       <span class="allload" v-show="allLoaded">已全部加载</span>
     </li>
     <p class="notit">{{nodata}}</p>
+
+    <div class="o_ban fob" v-if="$store.state.guide7">
+      <section class="p_top">
+          <div class="aimg"><img src="./img/0剁椒鱼头封面.jpg" alt=""></div>
+          <section class="o_bot">
+          <div class="head"><img src="./img/1-025(官方菜头像).png" alt=""><h4>饭爷</h4></div>
+        </section>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -117,9 +128,22 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl';
-
+.fob {
+  position absolute !important
+  top px2rem(0)
+  left 0
+  right 0
+  z-index 10001
+  box-shadow: none !important;
+  .o_bot {
+    background #fff
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
 .all {
   margin: px2rem(36) px2rem(30) 0px;
+  position relative
   li{
     list-style none
   }
@@ -188,6 +212,7 @@ export default {
       border-top-right-radius: 20px;
       width: 100%;
       height: px2rem(690*9/16);
+      display block
     }
   }
 

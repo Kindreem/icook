@@ -28,6 +28,17 @@
         </div>
        </div>
    </transition>
+   <transition>
+       <div class="warning" v-if="$store.state.fwarn">
+        <p>{{tit}}</p>
+        <!-- <img class="clo" src="./img/1-037.png" alt="" @click="close"> -->
+        <img :class="qz?'quan zhuan':'quan'" src="./img/QQ20181017171135.png" alt="">
+        <div>
+          <h4 @click="fend" v-show="it">我说完了</h4>
+          <img @click="ftalk" v-show="!it" src="./img/icon_start@3x.png" alt="">
+        </div>
+       </div>
+   </transition>
    <div class="mask" v-show="$store.state.warning" @touchmove.prevent></div>
   </div>
 </template>
@@ -160,6 +171,88 @@ export default {
         }
       });
     },
+     ftalk() {
+      this.tit = "请说出您想输入的内容";
+      this.qz = true
+      this.it = true
+      let self = this;
+      wx.startRecord({
+        success: function() {
+          wx.onVoiceRecordEnd({
+            // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+            complete: function(res) {
+              self.tit = "识别中...";
+              self.localId = res.localId;
+                wx.translateVoice({
+                  localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                  isShowProgressTips: 1, // 默认为1，显示进度提示
+                  success: function(res) {
+                    self.qz=false
+                    // alert(res.translateResult);
+                    //去掉最后一个句号
+                    self.result = res.translateResult.substring(
+                      0,
+                      res.translateResult.length - 1
+                    );
+                    // alert(self.result);
+                    self.value = "剁椒鱼头";
+                    self.handleAdd();
+                    self.$store.commit('setfwarn',false)
+                    self.$store.commit('setguide7',true)
+                  },
+                  fail: function(res) {
+                    self.qz=false
+                    self.value = "剁椒鱼头";
+                    self.handleAdd();
+                    self.$store.commit('setfwarn',false)
+                    self.$store.commit('setguide7',true)
+                  // alert(JSON.stringify(res))
+                }
+                });
+            }
+          });
+        },
+        cancel: function() {
+          this.tit = "用户拒绝授权录音";
+        }
+      });
+    },
+     fend() {
+      let self = this;
+          self.tit = "识别中...";
+          wx.stopRecord({
+            success: function(res) {
+              self.localId = res.localId;
+              wx.translateVoice({
+                localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function(res) {
+                  self.qz=false
+                  self.result = res.translateResult.substring(
+                    0,
+                    res.translateResult.length - 1
+                  );
+                  // alert(self.result);
+                  self.value = "剁椒鱼头";
+                  self.handleAdd();
+                  self.$store.commit('setfwarn',false)
+                  self.$store.commit('setguide7',true)
+
+                },
+                fail: function(res) {
+                  self.qz=false
+                  self.value = "剁椒鱼头";
+                  self.handleAdd();
+                  self.$store.commit('setfwarn',false)
+                  // if(localStorage.getItem('guide7')==1) {
+                  self.$store.commit('setguide7',true)
+    // }
+                }
+              });
+            }
+          });
+      // }
+    },
     end() {
       //  alert(this.warning)
       // let END = new Date().getTime();
@@ -220,7 +313,13 @@ export default {
     }
   },
   mounted() {
-    this.$refs.in.focus();
+    // console.log(this.$store.state.fon)
+    // if(this.$store.state.fon == true) {
+
+    //   this.$refs.in.focus();
+    //   this.$store.state.fon = false
+    // }
+    // this.$refs.in.focus();
     // console.log(localStorage.getItem("sea"));
     if (
       localStorage.getItem("sea") == null ||
@@ -257,6 +356,9 @@ export default {
       //语音面板
       if(this.$store.state.warning==true) {
            this.talk()
+      }
+      if(this.$store.state.fwarn==true) {
+           this.ftalk()
       }
     });
   },

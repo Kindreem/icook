@@ -35,7 +35,7 @@
          </router-link>
        </div>
      </div>
-     <div class="fban" v-if="$store.state.step==2?true:false">
+     <div class="fban" v-if="$store.state.step==2?true:false" @touchmove.prevent>
         <div class="b-top">
          <h1>粤派三段</h1>
          <p>您已掌握18道菜式,获得粤派段位经验478/1200</p>

@@ -41,7 +41,7 @@
       <!-- <router-link class="sleft" to="home" :style="dis"><img src="./img/ZY-005.png" alt=""></router-link> -->
       <!-- <router-link class="sright" to="home" :style="dis"><img src="./img/ZY-006.png" alt=""></router-link> -->
       <router-link to="search" :style="{'transform': 'scale(' + sty + ')','transition': 'all 0.2s'}" @mousemove="move" @touchmove="move">
-        <transition name="fade">
+        <transition name="fade" >
           <div class="i_search">
           <Input disabled placeholder="在此输入你要查询的菜谱"/>
           <transition name="slide-fade">
@@ -53,11 +53,11 @@
     </div>
 
   </div>
-  <div class="f1" v-if="$store.state.step==2?true:false">
+  <div class="f1" v-if="$store.state.step==2?true:false" @touchmove.prevent>
       <img :src="userphoto" alt="">
       <h3>{{usernickname}}</h3>
     </div>
-    <div class="f2" v-if="$store.state.step==2?true:false">
+    <div class="f2" v-if="$store.state.step==2?true:false" @touchmove.prevent>
        <img src="./img/ZY-003.png" alt="">
     </div>
 </div>
@@ -86,6 +86,11 @@ export default {
     };
   },
   methods: {
+    //搜索焦点
+    // fon() {
+    //    this.$store.commit('setfon',true)
+    //   //  console.log(this.$store.state.fon)
+    // },
     end() {
       var oheight = this.height - 25;
       var pb = this.pb;

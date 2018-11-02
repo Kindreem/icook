@@ -72,7 +72,7 @@
           </div>
     </Modal>
     <Col span="12" offset="6" v-if="$store.state.guide1">
-        <Button type="dashed" long class="fb" v-if="guide1?true:false">增加步骤</Button>
+        <Button type="dashed" long class="fb">增加步骤</Button>
     </Col>
   </div>
 </template>

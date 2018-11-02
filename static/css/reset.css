@@ -62,3 +62,6 @@ select{
 .zoomt2 {
   z-index: 10001 !important;
 }
+.zoomt {
+  z-index: 1 !important;
+}
