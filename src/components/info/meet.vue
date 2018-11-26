@@ -83,7 +83,7 @@ export default {
       // console.log(res);
       res.data.forEach(function(item) {
         item.ishow = 0;
-        console.log(item);
+        // console.log(item);
       });
 
       this.names = res.data;

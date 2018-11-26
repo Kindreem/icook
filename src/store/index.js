@@ -18,6 +18,8 @@ const state = {
   caipu: '', //我的菜谱
   shoucang: '', //我的收藏
   feed: '',  //我的作品
+  badge: '', //我的徽章
+  dish: '',  //我学会的菜肴
   one: '', //one排列
   num: 1, //页数
   cbname:'',  //菜谱名字
@@ -35,6 +37,7 @@ const state = {
   fbut2: false, //语音查询按钮
   fwarn: false, //f语音面板
   // fon: false  //搜索焦点
+  Url: '' //微信ios兼容
 }
 
 
@@ -121,6 +124,15 @@ const mutations = {
   // setfon: (state,fon) => {
   //   state.fon=fon
   // },
+  setbadge: (state,badge) => {
+    state.badge=badge
+  },
+  setdish: (state,dish) => {
+    state.dish=dish
+  },
+  setUrl: (state,Url) => {
+    state.Url=Url
+  },
 }
 
 //  3异步修改数据
@@ -209,6 +221,15 @@ const getters = {
   // getfon: (state) => {
   //   return state.fon
   // },
+  getbadge: (state) => {
+    return state.badge
+  },
+  getdish: (state) => {
+    return state.dish
+  },
+  getUrl: (state) => {
+    return state.Url
+  },
 }
 
 //导出store实例

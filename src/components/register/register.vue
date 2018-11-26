@@ -162,11 +162,14 @@ export default {
                         localStorage.setItem('userphoto', res.data.userphoto)
                         this.usernickname = res.data.usernickname
                          if(this.usernickname == null) {
-                           this.$router.push({path: '/info'})
+                           localStorage.setItem('usernickname', "--")
+                           localStorage.setItem('userbirthday', "2018-1-1")
+                           localStorage.setItem('usersex', 1)
                          }
-                         else {
-                           this.$router.push({path: '/'})
-                         }
+                         this.$router.push({path: '/'})
+                        //  else {
+                        //    this.$router.push({path: '/'})
+                        //  }
                         }
                    })
                   }else{

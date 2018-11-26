@@ -42,9 +42,13 @@
     <div class="item" v-if="list">
         <div class="tit">PART2 食材处理</div>
         <ul class="item3 item-ul">
-            <li v-for="(item,index) in list.sysBookHandlingVOlist" :key="index">
+          <li class="long" v-show="item.handlinglength==1?1:0" v-for="(item,index) in list.sysBookHandlingVOlist" :key="index">
                 <p>{{item.name}}</p>{{item.handlingname}}
             </li>
+            <li class="short" v-show="item.handlinglength==0?1:0" v-for="(item,index) in list.sysBookHandlingVOlist" :key="index">
+                <p>{{item.name}}</p>{{item.handlingname}}
+            </li>
+
              <!-- <li><p>五花肉</p>600克</li>  -->
         </ul>
     </div>
@@ -221,7 +225,7 @@ export default {
           this.show = true;
         }
         // console.log(this.show)
-      }else if(res.code == 500) {
+      } else if (res.code == 500) {
         this.list = res.data;
       }
       // console.log(res.data.sysBookTrayVOlist)
@@ -309,6 +313,7 @@ export default {
       display: flex;
       flex-wrap: wrap-reverse;
       justify-content: center;
+      align-items: center;
       li {
         width: 42%;
         // height: px2rem(60);
@@ -317,7 +322,7 @@ export default {
         border-radius: px2rem(5);
         text-align: center;
         color: #fff;
-        padding: px2rem(5);
+        padding: px2rem(10);
         p {
         }
       }
@@ -325,8 +330,23 @@ export default {
     .item2 li {
       background: url(./2.png);
     }
-    .item3 li {
+    // .item3 li {
+    //   background: url(./3.png);
+    // }
+    .item3 .short {
       background: url(./3.png);
+      width: 42%;
+      // height: px2rem(60);
+      margin: px2rem(10);
+      border-radius: px2rem(5);
+      text-align: center;
+      color: #fff;
+      padding: px2rem(10);
+    }
+    .item3 .long {
+      width: 100%;
+      flex-wrap: nowrap;
+      padding: px2rem(10);
     }
   }
   .item.step {

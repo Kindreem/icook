@@ -1,13 +1,36 @@
 <template>
   <div class="all">
     <div>
-      <router-link to="/fstyle">
+      <router-link :to="'/O_recipe/'+value" v-if="ok">
         <h2>查看ICOOK官方菜谱</h2>
       </router-link>
+        <h2 v-else>查看ICOOK官方菜谱</h2>
     </div>
   </div>
 </template>
 
+<script>
+import { getcookbookbyname } from "@/api";
+export default {
+  props: ['value','ok'],
+  // data() {
+  //   return {
+  //     ok: ''
+  //   }
+  // },
+  // created() {
+  //   getcookbookbyname(this.value).then(res => {
+  //       if(res.code==200) {
+  //           this.ok = true
+
+  //       }else {
+  //         this.ok = false
+  //       }
+  //       console.log(this.ok)
+  //     });
+  // }
+}
+</script>
 <style lang="stylus" scoped>
 @import '../../assets/px2rem.styl'
 .all {

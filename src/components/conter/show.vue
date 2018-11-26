@@ -2,7 +2,7 @@
   <div class="show">
       <header class="header">
             <img src="@/assets/images/DR-005.png" @click="backto">
-            <p class="title">展示中</p>
+            <!-- <p class="title">展示中</p> -->
       </header>
       <div class="badge" :style="{height:height+ 'px'}">
           <img :src="mylist.achievementimg" alt="" :style="{'margin-top':height/2.9+ 'px'}">
@@ -14,20 +14,20 @@
               <span>已解锁</span>
           </div>
 
-          <div class="fbad" :style="{top:height/2.95+ 'px'}" v-if="guide8">
+          <!-- <div class="fbad" :style="{top:height/2.95+ 'px'}" v-if="guide8">
             <img :src="mylist.achievementimg" alt="">
             <p>{{mylist.achievementname}}</p>
-          </div>
+          </div> -->
       </div>
-      <p class="tit">最多可展示3个</p>
+      <!-- <p class="tit">最多可展示3个</p>
        <div class="btn">
            <button class="demount">卸下</button>
            <button class="change">更换</button>
 
            <button class="demount fde" v-if="guide8">卸下</button>
-       </div>
+       </div> -->
 
-      <div class="fhead" v-if="guide8">
+      <!-- <div class="fhead" v-if="guide8">
         <img class="fimg" src="./1-006（头像）.png" alt="">
         <h4>随便取个名</h4>
         <div class="icon">
@@ -40,7 +40,7 @@
         <h4 class="h1">这就是您得到的徽章啦，是不是很好看！<br>您还可以点击更换，将它放置在首页个人中心用以展示您的伟大成绩！您的个人最多能展示3个这样的徽章。快来试试吧！</h4>
         <img class="img1" src="./10-徽章.png" alt="">
        <button @click="end">朕知道了</button>
-      </div>
+      </div> -->
   </div>
 </template>
 
@@ -66,7 +66,7 @@ export default {
     });
   },
   mounted() {
-    let number = document.documentElement.clientHeight * 0.7;
+    let number = document.documentElement.clientHeight * 0.85; //0.7
     this.height = number;
     if(localStorage.getItem('guide8')==1) {
         this.guide8=true

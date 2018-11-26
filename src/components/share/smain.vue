@@ -2,10 +2,10 @@
   <div class="all">
     <h1>分享我厨的点点滴滴</h1>
     <section class="pic">
-      <router-link to="works">
+      <router-link :to="usernickname=='--'?'/user':'/works'">
         <div><img src="./img/RW-027.png" alt=""></div>
       </router-link>
-      <router-link to="cook">
+      <router-link :to="usernickname=='--'?'/user':'/cook'">
         <div><img src="./img/RW-028.png" alt=""></div>
       </router-link>
     </section>
@@ -17,6 +17,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      usernickname: ""
+    };
+  },
+  mounted() {
+    this.usernickname = localStorage.getItem("usernickname");
+  }
+}
+</script>
 
 
 <style lang="stylus" scoped>

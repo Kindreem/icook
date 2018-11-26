@@ -39,7 +39,7 @@
         </div>
        </div>
    </transition>
-   <div class="mask" v-show="$store.state.warning" @touchmove.prevent></div>
+   <div class="mask" v-show="$store.state.warning||$store.state.fwarn" @touchmove.prevent></div>
   </div>
 </template>
 
@@ -118,14 +118,14 @@ export default {
       }
     },
     close() {
-      wx.stopRecord()
-      this.$store.commit('setwarning',false)
+      wx.stopRecord();
+      this.$store.commit("setwarning", false);
     },
     talk() {
       this.tit = "请说出您想输入的内容";
-      this.qz = true
-      this.it = true
-      this.$store.commit('setwarning',true)
+      this.qz = true;
+      this.it = true;
+      this.$store.commit("setwarning", true);
       // event.preventDefault();
       let self = this;
       // this.tit = "正在录音...";
@@ -139,29 +139,29 @@ export default {
               // self.warning = false;
               self.localId = res.localId;
               // setTimeout(() => {
-                wx.translateVoice({
-                  localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
-                  isShowProgressTips: 1, // 默认为1，显示进度提示
-                  success: function(res) {
-                    self.qz=false
-                    // alert(res.translateResult);
-                    //去掉最后一个句号
-                    self.result = res.translateResult.substring(
-                      0,
-                      res.translateResult.length - 1
-                    );
-                    // alert(self.result);
-                    self.value = self.result;
-                    self.handleAdd();
-                    self.$store.commit('setwarning',false)
-                  },
-                  fail: function(res) {
+              wx.translateVoice({
+                localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function(res) {
+                  self.qz = false;
+                  // alert(res.translateResult);
+                  //去掉最后一个句号
+                  self.result = res.translateResult.substring(
+                    0,
+                    res.translateResult.length - 1
+                  );
+                  // alert(self.result);
+                  self.value = self.result;
+                  self.handleAdd();
+                  self.$store.commit("setwarning", false);
+                },
+                fail: function(res) {
                   self.tit = "我好像没听清";
-                  self.qz=false //转圈
-                  self.it=false //图片文字
+                  self.qz = false; //转圈
+                  self.it = false; //图片文字
                   // alert(JSON.stringify(res))
                 }
-                });
+              });
               // }, 130);
             }
           });
@@ -171,10 +171,10 @@ export default {
         }
       });
     },
-     ftalk() {
+    ftalk() {
       this.tit = "请说出您想输入的内容";
-      this.qz = true
-      this.it = true
+      this.qz = true;
+      this.it = true;
       let self = this;
       wx.startRecord({
         success: function() {
@@ -183,32 +183,32 @@ export default {
             complete: function(res) {
               self.tit = "识别中...";
               self.localId = res.localId;
-                wx.translateVoice({
-                  localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
-                  isShowProgressTips: 1, // 默认为1，显示进度提示
-                  success: function(res) {
-                    self.qz=false
-                    // alert(res.translateResult);
-                    //去掉最后一个句号
-                    self.result = res.translateResult.substring(
-                      0,
-                      res.translateResult.length - 1
-                    );
-                    // alert(self.result);
-                    self.value = "剁椒鱼头";
-                    self.handleAdd();
-                    self.$store.commit('setfwarn',false)
-                    self.$store.commit('setguide7',true)
-                  },
-                  fail: function(res) {
-                    self.qz=false
-                    self.value = "剁椒鱼头";
-                    self.handleAdd();
-                    self.$store.commit('setfwarn',false)
-                    self.$store.commit('setguide7',true)
+              wx.translateVoice({
+                localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+                isShowProgressTips: 1, // 默认为1，显示进度提示
+                success: function(res) {
+                  self.qz = false;
+                  // alert(res.translateResult);
+                  //去掉最后一个句号
+                  self.result = res.translateResult.substring(
+                    0,
+                    res.translateResult.length - 1
+                  );
+                  // alert(self.result);
+                  self.value = "剁椒鱼头";
+                  self.handleAdd();
+                  self.$store.commit("setfwarn", false);
+                  self.$store.commit("setguide7", true);
+                },
+                fail: function(res) {
+                  self.qz = false;
+                  self.value = "剁椒鱼头";
+                  self.handleAdd();
+                  self.$store.commit("setfwarn", false);
+                  self.$store.commit("setguide7", true);
                   // alert(JSON.stringify(res))
                 }
-                });
+              });
             }
           });
         },
@@ -217,40 +217,39 @@ export default {
         }
       });
     },
-     fend() {
+    fend() {
       let self = this;
-          self.tit = "识别中...";
-          wx.stopRecord({
+      self.tit = "识别中...";
+      wx.stopRecord({
+        success: function(res) {
+          self.localId = res.localId;
+          wx.translateVoice({
+            localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function(res) {
-              self.localId = res.localId;
-              wx.translateVoice({
-                localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: function(res) {
-                  self.qz=false
-                  self.result = res.translateResult.substring(
-                    0,
-                    res.translateResult.length - 1
-                  );
-                  // alert(self.result);
-                  self.value = "剁椒鱼头";
-                  self.handleAdd();
-                  self.$store.commit('setfwarn',false)
-                  self.$store.commit('setguide7',true)
-
-                },
-                fail: function(res) {
-                  self.qz=false
-                  self.value = "剁椒鱼头";
-                  self.handleAdd();
-                  self.$store.commit('setfwarn',false)
-                  // if(localStorage.getItem('guide7')==1) {
-                  self.$store.commit('setguide7',true)
-    // }
-                }
-              });
+              self.qz = false;
+              self.result = res.translateResult.substring(
+                0,
+                res.translateResult.length - 1
+              );
+              // alert(self.result);
+              self.value = "剁椒鱼头";
+              self.handleAdd();
+              self.$store.commit("setfwarn", false);
+              self.$store.commit("setguide7", true);
+            },
+            fail: function(res) {
+              self.qz = false;
+              self.value = "剁椒鱼头";
+              self.handleAdd();
+              self.$store.commit("setfwarn", false);
+              // if(localStorage.getItem('guide7')==1) {
+              self.$store.commit("setguide7", true);
+              // }
             }
           });
+        }
+      });
       // }
     },
     end() {
@@ -260,55 +259,53 @@ export default {
       // if (END - this.START < 300) {
       //   END = 0;
       //   this.START = 0;
-        //小于300ms，不录音
-        // wx.stopRecord();
-        // this.tit = "时间过短，无法识别";
-        // this.warning = true;
-        // setTimeout(() => {
-        //   this.warning = 0;
-        // }, 600);
+      //小于300ms，不录音
+      // wx.stopRecord();
+      // this.tit = "时间过短，无法识别";
+      // this.warning = true;
+      // setTimeout(() => {
+      //   this.warning = 0;
+      // }, 600);
       // } else {
-        // this.warning = false;
-          // self.qz=true
-          self.tit = "识别中...";
-          wx.stopRecord({
+      // this.warning = false;
+      // self.qz=true
+      self.tit = "识别中...";
+      wx.stopRecord({
+        success: function(res) {
+          // self.qz = true
+          // alert(res.localId);
+          self.localId = res.localId;
+          wx.translateVoice({
+            localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
+            isShowProgressTips: 1, // 默认为1，显示进度提示
             success: function(res) {
-
-              // self.qz = true
-              // alert(res.localId);
-              self.localId = res.localId;
-              wx.translateVoice({
-                localId: self.localId, // 需要识别的音频的本地Id，由录音相关接口获得
-                isShowProgressTips: 1, // 默认为1，显示进度提示
-                success: function(res) {
-                  self.qz=false
-                  // self.tit = "识别中...";
-                  // alert(res.errMsg);
-                  //去掉最后一个句号
-                  self.result = res.translateResult.substring(
-                    0,
-                    res.translateResult.length - 1
-                  );
-                  // alert(self.result);
-                  self.value = self.result;
-                  self.handleAdd();
-                  self.$store.commit('setwarning',false)
-
-                },
-                fail: function(res) {
-                  self.tit = "我好像没听清";
-                  self.qz=false
-                  self.it=false
-                }
-              });
-              // alert(self.value);
-              // if (self.value=='') {
-              //   alert('没听清');
-              // } else {
-              //   self.handleAdd();
-              // }
+              self.qz = false;
+              // self.tit = "识别中...";
+              // alert(res.errMsg);
+              //去掉最后一个句号
+              self.result = res.translateResult.substring(
+                0,
+                res.translateResult.length - 1
+              );
+              // alert(self.result);
+              self.value = self.result;
+              self.handleAdd();
+              self.$store.commit("setwarning", false);
+            },
+            fail: function(res) {
+              self.tit = "我好像没听清";
+              self.qz = false;
+              self.it = false;
             }
           });
+          // alert(self.value);
+          // if (self.value=='') {
+          //   alert('没听清');
+          // } else {
+          //   self.handleAdd();
+          // }
+        }
+      });
       // }
     }
   },
@@ -325,14 +322,25 @@ export default {
       localStorage.getItem("sea") == null ||
       localStorage.getItem("sea") == ""
     ) {
-      this.items = ["麻辣鸡丝", "水煮肉", "叉烧肉"];
+      this.items = ["宫保鸡丁", "干锅排骨", "剁椒鱼头"];
     } else {
       this.items = localStorage.getItem("sea").split(",");
     }
-    // console.log(location.href.split('#')[0]);
 
-    getwxjssdk(encodeURIComponent(location.href)).then(res => {
-      console.log(res.data);
+
+    var url = "";
+    // 判断是否是ios微信浏览器
+    if (window.__wxjs_is_wkwebview === true) {
+      url = this.$store.state.Url;
+    } else {
+      url = window.location.href;
+    }
+    // console.log(location.href);
+    // encodeURIComponent(location.href)
+    // console.log(url)
+    // alert(url)
+    getwxjssdk(encodeURIComponent(url)).then(res => {
+      // console.log(res.data);
 
       //  console.log(res.data.appId);
       //  console.log(res.data.timestamp);
@@ -354,11 +362,11 @@ export default {
       });
 
       //语音面板
-      if(this.$store.state.warning==true) {
-           this.talk()
+      if (this.$store.state.warning == true) {
+        this.talk();
       }
-      if(this.$store.state.fwarn==true) {
-           this.ftalk()
+      if (this.$store.state.fwarn == true) {
+        this.ftalk();
       }
     });
   },
@@ -505,8 +513,9 @@ export default {
   color: #fff;
   z-index: 111112;
   overflow: hidden;
+
   h4 {
-    line-height px2rem(84);
+    line-height: px2rem(84);
   }
 }
 
@@ -546,36 +555,38 @@ export default {
 }
 
 .warning>div>img {
-  width px2rem(50)
+  width: px2rem(50);
   display: inline-block;
   margin: px2rem(8) auto;
 }
 
 .warning>p {
   // line-height: 100px;
-  margin-top px2rem(16)
+  margin-top: px2rem(16);
   color: #5DB8E9;
   // margin-left: 100px;
 }
 
 .warning .clo {
-  width px2rem(40)
+  width: px2rem(40);
   position: absolute;
-  top: px2rem(14)
-  right: px2rem(12)
+  top: px2rem(14);
+  right: px2rem(12);
 }
 
 .warning .quan {
   position: absolute;
-  top: px2rem(118)
+  top: px2rem(118);
   left: 50%;
-  margin-left: px2rem(-60)
-  width: px2rem(120)
+  margin-left: px2rem(-60);
+  width: px2rem(120);
   // animation: changDeg 2s linear 0.2s infinite;
 }
+
 .zhuan {
   animation: changDeg 2s linear 0.2s infinite;
 }
+
 .mask {
   position: fixed;
   top: 0px;

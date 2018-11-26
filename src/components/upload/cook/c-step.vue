@@ -37,7 +37,7 @@
         </FormItem>
         <FormItem>
             <Row>
-                <Col span="12" offset="6">
+                <Col span="12" offset="6" class="addb">
                     <Button type="dashed" long @click="handleAdd">增加步骤</Button>
                 </Col>
             </Row>
@@ -71,7 +71,7 @@
             <Button type="primary" @click="achieve">完成</Button>
           </div>
     </Modal>
-    <Col span="12" offset="6" v-if="$store.state.guide1">
+    <Col span="12" offset="6" v-if="$store.state.guide1" class="addb">
         <Button type="dashed" long class="fb">增加步骤</Button>
     </Col>
   </div>
@@ -134,7 +134,7 @@ export default {
     };
   },
   mounted() {
-    this.height = document.documentElement.clientHeight - 180;
+    this.height = document.documentElement.clientHeight - 500;
     let width = document.documentElement.clientWidth * 0.7;
     this.option.autoCropWidth = width;
     this.option.autoCropHeight = (width / 16) * 9;
@@ -435,8 +435,7 @@ export default {
       margin 0
       .ivu-modal-content{
          height:100% ;
-
-          // background: #000;
+         background: #fff !important;
       .cropper-crop-box{
         border-radius 0 !important
       }
@@ -491,6 +490,7 @@ export default {
   left 0
   z-index 10000
 }
+.addb {
 >>>.ivu-btn {
       font-size: px2rem(32);
       border-radius: px2rem(20);
@@ -503,6 +503,7 @@ export default {
       background: #5DB8E9 url('../img/1-036-1.png') no-repeat 20% 50%;
       background-size: px2rem(42);
     }
+}
 </style>
 <style lang="stylus">
 @import '../../../assets/px2rem.styl';

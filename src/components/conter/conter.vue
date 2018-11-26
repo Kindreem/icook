@@ -4,22 +4,24 @@
             <img src="@/assets/images/DR-005.png" @click="backto">
       </header>
       <div class="head">
+        <router-link to="/user">
          <div class="demo-avatar">
-            <Avatar :src="userphoto" />
+            <Avatar v-if="userphoto" :src="userphoto" />
+            <Avatar v-else :src="require('../../common/img/TXXX.png')" />
+            <!-- <Avatar v-else src="@/common/img/TXXX.png"/> -->
         </div>
+         </router-link>
         <div class="name">
             <p>{{usernickname}}</p>
-            <p>所属公会</p>
+            <!-- <p>所属公会</p> -->
         </div>
-        <div class="right">
-          <!-- <v-for v-for="(item,index) in myach" :key="index"> -->
-            <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
-            <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
-            <router-link :to="'/show/'+1" ><img src="./2.png" alt=""></router-link>
-          <!-- </v-for> -->
+        <div class="right" >
+            <!-- <router-link :to="'/badshow/'+item.rankid" > -->
+            <img v-for="(item,index) in userbadge" :key="index" :src="item.rankimg" alt="">
+            <!-- </router-link> -->
         </div>
       </div>
-       <div class="item">
+       <!-- <div class="item">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的钱包</p>
@@ -29,19 +31,23 @@
                <li>第二种货币:999999</li>
                <li>第三种货币:999999</li>
            </ul>
-       </div>
+       </div> -->
         <div class="item menu">
            <div class="title">
                 <img src="./GR-007.png" alt="">
-                <p>我学会的菜肴:38道</p>
+                <p>我学会的菜肴:{{$store.state.dish.length}}道</p>
             </div>
            <ul class="menus">
-             <swiper :options="swiperOption">
-               <swiper-slide v-for="(item,index) in imgs" :key="index">
-                   <img src="./pic.png" alt="">
-                   <p>蛋炒饭</p>
+             <swiper :options="swiperOption" v-if="$store.state.dish">
+               <swiper-slide v-for="(item,index) in $store.state.dish" :key="index">
+                   <router-link :to="'U_menu/'+item.ubid" >
+                   <div class="ubimg" :style="{backgroundImage:'url(' + (item.ubthumbimg) + ')'}">
+                   <!-- <img :src="item.ubthumbimg" alt=""> -->
+                   </div></router-link>
+                   <p>{{item.ubname}}</p>
                </swiper-slide>
                </swiper>
+               <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
        <div class="item menu" >
@@ -96,26 +102,28 @@
                <div class="nodata" v-else>暂无数据</div>
            </ul>
        </div>
-         <router-link to="conter/badge" >
+         <!-- <router-link to="conter/badge" > -->
        <div class="item badge">
             <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的徽章</p>
            </div>
            <ul class="badges">
-               <swiper :options="swiperOption1">
-                     <swiper-slide v-for="(item,index) in imgs" :key="index">
-                        <router-link to="dan/dan" >
-                        <img :src="item.url" alt="">
-                        </router-link>
-                        <p>段位</p>
+               <swiper :options="swiperOption1"  v-if="$store.state.badge">
+                     <swiper-slide v-for="(item,index) in $store.state.badge" :key="index">
+                    <router-link :to="'/badshow/'+item.ufeid" >
+                     <img :src="item.rankimg" alt="">
+                     <p>{{item.rankname}}</p>
+                    </router-link>
                 </swiper-slide>
                </swiper>
+               <div class="nodata" v-else>暂无数据</div>
            </ul>
            <div class="ficon" v-if="guide3">
          <img src="./1.png" alt="">
        </div>
-       </div></router-link>
+       </div>
+       <!-- </router-link> -->
         <div class="item badge">
              <div class="title">
                 <img src="./GR-007.png" alt="">
@@ -138,7 +146,7 @@
          <img src="./2.png" alt="">
          <img src="./3.png" alt="">
        </div>
-       <div class="item fitem" v-if="guide3">
+       <!-- <div class="item fitem" v-if="guide3">
              <div class="title">
                 <img src="./GR-007.png" alt="">
                <p>我的钱包</p>
@@ -148,14 +156,14 @@
                <li>第二种货币:999999</li>
                <li>第三种货币:999999</li>
            </ul>
-       </div>
+       </div> -->
 
     <div class="guide" v-if="guide3">
      <h4 class="h1">点击此处可查看所获徽章</h4>
-     <h4 class="h2">此处是您的“I厨神”货币概况</h4>
+     <!-- <h4 class="h2">此处是您的“I厨神”货币概况</h4> -->
      <h4 class="h3">此处可浏览您已获得的所有徽章，徽章不仅是收藏品，还能装备在首页向全网展示您已达成的成就。</h4>
      <img class="img1" src="./4-个人中心 (1).png" alt="">
-     <img class="img2" src="./4-个人中心 (2).png" alt="">
+     <!-- <img class="img2" src="./4-个人中心 (2).png" alt=""> -->
      <img class="img3" src="./4-个人中心 (3).png" alt="">
      <img class="img4" src="./4-个人中心 (4).png" alt="">
      <button @click="end">朕知道了</button>
@@ -165,7 +173,7 @@
 
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper";
-import { mybook, mybookcollect,myfeed,myachievement} from "@/api";
+import { mybook, mybookcollect,myfeed,myachievement,mybadge,mydish,userbadge } from "@/api";
 export default {
   components: {
     swiper,
@@ -186,22 +194,12 @@ export default {
         // slidesOffsetBefore: 24,
       },
       url: "", //头像
-      imgs: [
-        { url: require("./1.png") },
-        { url: require("./8.png") },
-        { url: require("./3.png") },
-        { url: require("./4.png") },
-        { url: require("./4.png") },
-        { url: require("./4.png") },
-        { url: require("./4.png") },
-        { url: require("./4.png") },
-        { url: require("./4.png") }
-      ],
       usernickname: "",
       userphoto: "",
       userid: "",
       myach:'',
-      guide3: false
+      guide3: false,
+      userbadge: ''
     };
   },
   created() {
@@ -260,6 +258,33 @@ export default {
       }
     }
     // console.log(res.data)
+  })
+  //我的徽章
+  mybadge(this.userid).then(res=>{
+    if(res.code==200){
+      if (this.$store.state.badge == res.data) {
+          this.$store.state.badge = this.$store.state.badge;
+      }else{
+        this.$store.state.badge = res.data
+      }
+    }
+  })
+  //我学会的菜肴
+  mydish(this.userid).then(res=>{
+    if(res.code==200){
+      if (this.$store.state.dish == res.data) {
+          this.$store.state.dish = this.$store.state.dish;
+      }else{
+        this.$store.state.dish = res.data
+      }
+    }
+  })
+  //展示徽章
+  userbadge(this.userid).then(res=>{
+    if(res.code==200){
+      this.userbadge=res.data
+      console.log(res.data)
+    }
   })
   },
   mounted() {
@@ -433,7 +458,7 @@ export default {
     .name {
       position: absolute;
       font-size: px2rem(12);
-      top: 0;
+      top: px2rem(16);
       left: px2rem(75);
       transform: translateY(50%);
       p:last-child {

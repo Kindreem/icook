@@ -6,7 +6,7 @@
     </header>
     <section>
       <div class="top">
-        <img class="head" :src="userphoto" alt=""><h4>{{usernickname}}</h4><img src="./1.png" alt=""><img src="./1.png" alt="">
+        <img class="head" :src="userphoto" alt=""><h4>{{usernickname}}</h4><img v-for="(item,index) in userbadge" :key="index" :src="item.rankimg" alt="">
         <div class="time">
            <h4>{{time}}</h4>
         </div>
@@ -22,14 +22,15 @@
 
 </template>
 <script>
-import { getfeed } from "@/api";
+import { getfeed, userbadge } from "@/api";
 export default {
   data() {
     return {
       item: "",
       usernickname: "",
       userphoto: "",
-      time: ''
+      time: "",
+      userbadge: ""
     };
   },
   methods: {
@@ -40,13 +41,19 @@ export default {
   created() {
     this.usernickname = localStorage.getItem("usernickname");
     this.userphoto = localStorage.getItem("userphoto");
-    let ufid= this.$route.params.id
+    let ufid = this.$route.params.id;
     //  console.log(this.$route.params.id)
-    getfeed(ufid).then(res=>{
-       this.item=res.data
-       this.time=res.data.createtime.slice(0,11)
+    getfeed(ufid).then(res => {
+      this.item = res.data;
+      this.time = res.data.createtime.slice(0, 11);
       //  console.log(res.data)
-    })
+      userbadge(res.data.userid).then(res => {
+        if (res.code == 200) {
+          this.userbadge = res.data;
+        }
+        // console.log(res.data);
+      });
+    });
   }
 };
 </script>
@@ -70,61 +77,69 @@ header {
 
   h3 {
     text-align: center;
-    font-size px2rem(32)
-    font-weight 300
+    font-size: px2rem(32);
+    font-weight: 300;
     color: #199ed8;
   }
 }
 
 section {
-  padding px2rem(20)
+  padding: px2rem(20);
   border-radius: 20px;
   box-shadow: 16px 16px 20px rgba(204, 204, 204, 0.349019607843137);
-  .top {
-    position relative
-    h4 {
-      font-size px2rem(26)
-      display inline
-      position relative
-      top px2rem(-12)
 
+  .top {
+    position: relative;
+
+    h4 {
+      font-size: px2rem(26);
+      display: inline;
+      position: relative;
+      top: px2rem(-12);
     }
+
     img {
       width: px2rem(44);
       display: inline-block;
-      margin-left px2rem(10)
+      margin-left: px2rem(10);
     }
+
     .head {
       width: px2rem(48);
       border-radius: 50%;
-      margin-right px2rem(10)
-      margin-left 0px
+      margin-right: px2rem(10);
+      margin-left: 0px;
     }
+
     .time {
-      position absolute
-      right px2rem(10)
-      top px2rem(20)
-      color #888
+      position: absolute;
+      right: px2rem(10);
+      top: px2rem(20);
+      color: #888;
     }
   }
+
   .center {
-    margin-top px2rem(20)
-    margin-left px2rem(58)
+    margin-top: px2rem(20);
+    margin-left: px2rem(58);
+
     h2 {
-      font-size px2rem(24)
+      font-size: px2rem(24);
     }
+
     p {
-      font-size px2rem(24)
-      margin-top px2rem(20)
-      line-height px2rem(34)
-      word-wrap:break-word
-      color #888
+      font-size: px2rem(24);
+      margin-top: px2rem(20);
+      line-height: px2rem(34);
+      word-wrap: break-word;
+      color: #888;
     }
+
     img {
-      width 100%
+      width: 100%;
       border-radius: 20px;
-      height px2rem(588/16*9)
-      display block
+      height: px2rem(588 / 16 * 9);
+      display: block;
     }
   }
 }

@@ -3,7 +3,7 @@
   <div class="all">
     <hheader/>
     <hmain/>
-    <food/>
+    <!-- <food/> -->
     <top/>
     <!-- <hslider/> -->
     <router-link to="Share">
@@ -38,10 +38,10 @@
    <div class="guide2" v-if="$store.state.step==2?true:false">
      <h4 class="h21">这里将展示您的个人信息，并收录所有您已获得的“I厨神”美食成就。</h4>
      <h4 class="h22">完成任务能获得更多美食成就和丰厚奖励。</h4>
-      <h4 class="h23">这里讲展现您当前的流派和段位，不断上传菜谱来提升您的流派段位。</h4>
+      <!-- <h4 class="h23">这里讲展现您当前的流派和段位，不断上传菜谱来提升您的流派段位。</h4> -->
      <img class="img21" src="./img/1-首页 (2).png" alt="">
      <img class="img22" src="./img/1-首页 (3).png" alt="">
-     <img class="img23" src="./img/1-首页 (4).png" alt="">
+     <!-- <img class="img23" src="./img/1-首页 (4).png" alt=""> -->
      <button @click="end2">朕知道了</button>
    </div>
    <!-- <button @click="end3" class="f123">123</button> -->
@@ -51,7 +51,7 @@
 <script>
 import hheader from "./h-header";
 import hmain from "./h-main";
-import food from "./food";
+// import food from "./food";
 import top from "./top";
 import { addid } from "@/api";
 // import hslider from './h-slider'
@@ -59,7 +59,7 @@ export default {
   components: {
     hheader,
     hmain,
-    food,
+    // food,
     top
     // hslider
   },
@@ -81,7 +81,6 @@ export default {
       show: false,
       warning: false,
       tit: "",
-      certificationstatus: ""
     };
   },
 
@@ -89,7 +88,7 @@ export default {
     // document.addEventListener('touchmove',this.bodyScroll, { passive: false }) //禁止屏幕滑动
     let certificationstatus = localStorage.getItem("certificationstatus");
     if (certificationstatus == 0) {
-      this.show = false;
+      this.show = true;
       localStorage.setItem('guide1',1) //上传
       localStorage.setItem('guide2',1)  //成就
       localStorage.setItem('guide3',1) //个人中心
@@ -110,6 +109,7 @@ export default {
       //  localStorage.setItem('guide7',0)
       //  localStorage.setItem('guide8',0)
     }
+    // console.log(this.show)
     // let id = this.id.toUpperCase();
     // console.log(id);
   },

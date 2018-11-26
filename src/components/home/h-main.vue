@@ -12,7 +12,11 @@
         <router-link :to="$store.state.step==1?'':'/fstyle'" ><Button :class="$store.state.step==1?'zoomt1':''" id="but1" type="ghost">烹饪菜系</Button></router-link>
         <router-link :to="$store.state.step==1?'':'/search'" ><Button class="but2" :class="$store.state.step==1?'zoomt1':''" type="ghost" @click="$store.state.step==1?'':yycx()">语音查询</Button></router-link>
 
-        <div :class="yyshow?'fbut2':'fbut1'" v-if="$store.state.fbut2" @click="fbut" @touchmove.prevent>
+        <div class="fbut2" v-if="$store.state.fbut2&&yyshow" @touchmove.prevent>
+          <img class="abr" src="./img/ZY-006.png" alt="" v-if="yyshow">
+          <Button class="but2" type="ghost">语音查询</Button>
+        </div>
+        <div class="fbut1" v-if="$store.state.fbut2&&!yyshow" @click="fbut" @touchmove.prevent>
           <img class="abr" src="./img/ZY-006.png" alt="" v-if="yyshow">
           <Button class="but2" type="ghost">语音查询</Button>
         </div>
@@ -176,7 +180,7 @@ export default {
 // opacity: 1
 // }
 .guide {
-  position fixed
+  position absolute
   top: 0px;
   left: 0px;
   height: 100%;
@@ -184,8 +188,8 @@ export default {
   background: rgba(0,0,0,0.6);
   z-index: 9999;
   .h1 {
-    position fixed
-    bottom 38%;
+    position absolute
+    top 10%;
     left: 50%;
     margin-left -46%
     color #fff
@@ -196,14 +200,14 @@ export default {
     white-space normal
   }
   .img1 {
-    position fixed
-    bottom 21%;
+    position absolute
+    top 14.5%;
     right: 16%;
     width px2rem(40)
   }
   button {
-    position fixed
-    bottom 21%;
+    position absolute
+    top 15.2%;
     left 50%
     margin-left px2rem(-90)
     width px2rem(180)
@@ -221,7 +225,7 @@ export default {
   position absolute
   bottom px2rem(0);
   right 0
-  z-index 1
+  z-index 1 !important
   >>>.ivu-btn-ghost {
     background transparent !important
     box-shadow none !important
@@ -269,6 +273,7 @@ export default {
 }
 
 >>>.ivu-btn-ghost {
+  background #fff !important
   height: px2rem(80);
   width: 6.8rem;
   font-size: px2rem(30);

@@ -4,11 +4,12 @@
     <bheader/>
     <list/>
 
-    <div class="guide" v-if="$store.state.guide7">
+    <div class="guide" v-if="$store.state.guide7" @touchmove.prevent>
      <h4 class="h1">你看，是不是搜出来了。搜不出来只有两种情况，一种是你普通话不够标准；还一种是这个菜太稀奇了。我们会在后续版本让“I厨神”学会识别我国各地方言，以及收录更多稀奇古怪的美食。</h4>
      <img class="img1" src="./img/6-语言查询.png" alt="">
      <button @click="end">朕知道了</button>
    </div>
+   <div class="mask" v-show="$store.state.guide7" @touchmove.prevent></div>
   </div>
 </template>
 
@@ -86,6 +87,20 @@ export default {
       outline: none;
     }
   }
+  .mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  z-index: 1000;
+  -moz-opacity: 0.4;
+  opacity: 0.4;
+  // -webkit-filter: blur(10px); /* Chrome, Opera */
+  // -ms-filter: blur(10px);
+  // filter: blur(10px);
+}
 }
 </style>
 

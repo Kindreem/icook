@@ -175,16 +175,22 @@ export default {
     }
 },
    created() {
-      this.height = document.documentElement.clientHeight-160
+      this.height = document.documentElement.clientHeight-500
       console.log(this.height)
       let width = document.documentElement.clientWidth*0.6
       this.option.autoCropWidth= width
       this.option.autoCropHeight = this.option.autoCropWidth
       // console.log(this.option.autoCropHeight)
-    
+
     //id,姓名和头像
      this.id = localStorage.getItem("userid");
-     this.url = localStorage.getItem("userphoto");
+     if(localStorage.getItem("userphoto")==''){
+       this.url = require('../../common/img/TXXX.png')
+       console.log(this.url)
+     }else{
+       this.url = localStorage.getItem("userphoto");
+     }
+
      this.nickname = localStorage.getItem("usernickname");
      this.age = localStorage.getItem("userbirthday");
      this.picked = localStorage.getItem("usersex");
@@ -201,7 +207,7 @@ export default {
     onConfirm(){
       this.title=''
     },
-    
+
     add() {
         updateuser(this.id,this.url,this.nickname,this.age,this.picked).then(res=>{
           if(res.code==200){
@@ -518,13 +524,13 @@ export default {
     font-size:  px2rem(12);
     color: #999;
     float left
-    text-align left 
+    text-align left
     i{
       display none
     }
   }
   .vux-datetime-value{
-    // display none 
+    // display none
   }
 }
 .dp-container{
@@ -539,7 +545,7 @@ export default {
       .dp-item{
           height:  px2rem(140) !important;
           margin-top: px2rem(14) !important;
-          transform: perspective(860px) rotateX(10deg); 
+          transform: perspective(860px) rotateX(10deg);
         .scroller-component{
           height: px2rem(120) !important;
           position: relative !important;
@@ -595,10 +601,10 @@ export default {
       top: 0;
     height: 100%;
     .ivu-modal-content {
-      background: #000;
+      height: 100%;
+      background: #fff !important;
       .vue-cropper {
         background-image: none !important;
-        background: #000;
         height: 100%;
         img {
           // margin-top: 40%;
@@ -642,4 +648,4 @@ export default {
     }
   }
 }
-</style> 
+</style>

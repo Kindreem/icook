@@ -20,7 +20,6 @@ Vue.component(DatetimePicker.name, DatetimePicker);
 Vue.component(Spinner.name, Spinner);
 
 
-
 import 'iview/dist/styles/iview.css';
 
 
@@ -42,4 +41,15 @@ new Vue({
 // router.afterEach((to,from,next) => {
 //   window.scrollTo(0,0);
 // })
+
+//微信兼容ios
+router.beforeEach((to, from, next) => {
+  // 处理jssdk签名,兼容history模式
+  if (store.state.Url=='') {
+    store.commit('setUrl', document.URL)
+    next()
+  }else{
+    next()
+  }
+})
 

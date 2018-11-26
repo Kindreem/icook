@@ -103,7 +103,7 @@ export default {
         localStorage.setItem("setvoice", 0)
       }
        let tok = localStorage.getItem("bdyytok");
-      yuyin(this.text, "7666dwdawad9", tok,5,4,5,localStorage.getItem('setvoice')).then(res => {
+      yuyin(this.text, "7666dwdawadioj", tok,5,4,5,localStorage.getItem('setvoice')).then(res => {
         // console.log(res);
         var url = res.request.responseURL
               self.$refs.yy.src = url;
@@ -149,7 +149,7 @@ export default {
   bottom px2rem(0)
   left 0
   right 0
-  z-index 10000
+  z-index 10000 !important
   button {
      box-shadow none !important
   }
@@ -158,7 +158,7 @@ export default {
   position absolute !important
   top 0
   right px2rem(0)
-  z-index 10000
+  z-index 10000 !important
   box-shadow none !important
 }
 .all {
@@ -185,6 +185,7 @@ export default {
   display flex
   justify-content space-between
   >>>.ivu-btn-ghost {
+    background-color #5DB8E9
     height px2rem(80)
     width px2rem(310)
     font-size px2rem(30)
@@ -210,12 +211,12 @@ export default {
   }
 }
 #but1 {
-  background #5DB8E9 url('./img/icon/part.png') no-repeat px2rem(34) center
-  background-size px2rem(64)
+  background #5DB8E9 url('./img/icon/part.png') no-repeat px2rem(34) center !important
+  background-size px2rem(64) !important
 }
 .but2 {
-  background #5DB8E9
-  background-size px2rem(64)
+  background-color #5DB8E9 !important
+  background-size px2rem(64) !important
 }
 .up {
   text-align center

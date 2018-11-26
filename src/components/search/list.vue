@@ -30,7 +30,7 @@
     </li>
     <p class="notit">{{nodata}}</p>
 
-    <div class="o_ban fob" v-if="$store.state.guide7">
+    <div class="o_ban fob" v-if="$store.state.guide7" @touchmove.prevent>
       <section class="p_top">
           <div class="aimg"><img src="./img/0剁椒鱼头封面.jpg" alt=""></div>
           <section class="o_bot">
@@ -69,6 +69,12 @@ export default {
     // console.log(this.$store.state.items)
     this.cooklist = this.$store.state.items;
     // this.i=this.$store.state.i
+    // userbadge().then(res => {
+    //   if (res.code == 200) {
+    //     this.userbadge = res.data;
+    //   }
+    //   // console.log(res.data)
+    // });
   },
   methods: {
     loadMore() {

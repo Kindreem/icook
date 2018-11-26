@@ -171,6 +171,7 @@ export default {
   top: px2rem(46);
   left: 0px;
   z-index: 10000;
+  width: 100%;
 }
 .achieve{
   padding-bottom: px2rem(10);

@@ -4,20 +4,15 @@
     <header>
       <div class="tleft ">
         <div>
-        <router-link to="conter" >
-          <img :src="userphoto" alt="">
+        <router-link :to="usernickname=='--'?'/user':'/conter'" >
+          <img v-if="userphoto" :src="userphoto" alt="">
+          <img v-else src="@/common/img/TXXX.png" alt="">
           <h3>{{usernickname}}</h3>
         </router-link>
         </div>
-        <router-link to="conter/badge" class="sicon">
-          <img src="../../common/img/36X36/资源 107自定.png" alt="">
-        </router-link>
-        <router-link to="conter/badge" class="sicon">
-          <img src="../../common/img/36X36/资源 43川.png" alt="">
-        </router-link>
-        <router-link to="conter/badge" class="sicon">
-          <img src="../../common/img/36X36/资源 51鲁.png" alt="">
-        </router-link>
+        <div class="sicon" v-for="(item,index) in userbadge" :key="index">
+          <img :src="item.rankimg" alt="">
+        </div>
       </div>
       <div class="tright">
         <div class="set">
@@ -54,7 +49,7 @@
 
   </div>
   <div class="f1" v-if="$store.state.step==2?true:false" @touchmove.prevent>
-      <img :src="userphoto" alt="">
+      <img src="@/common/img/TXXX.png" alt="">
       <h3>{{usernickname}}</h3>
     </div>
     <div class="f2" v-if="$store.state.step==2?true:false" @touchmove.prevent>
@@ -64,6 +59,7 @@
 </template>
 
 <script>
+import { userbadge } from "@/api";
 export default {
   mounted() {
     this.usernickname = localStorage.getItem("usernickname");
@@ -72,6 +68,13 @@ export default {
     var pageHeight = document.documentElement.clientHeight;
     this.height = pageHeight * (930 / 1334);
     this.pb = pageHeight * (146 / 1334);
+
+    userbadge(localStorage.getItem("userid")).then(res=>{
+    if(res.code==200){
+      this.userbadge=res.data
+    }
+    console.log(res.data)
+  })
   },
   data() {
     return {
@@ -82,7 +85,8 @@ export default {
       pb: "",
       show: false,
       usernickname: "",
-      userphoto: ""
+      userphoto: "",
+      userbadge: ''
     };
   },
   methods: {

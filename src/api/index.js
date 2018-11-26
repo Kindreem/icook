@@ -182,3 +182,46 @@ export const process = (cookbookid)=>{
 export const getwxjssdk = (jsurl)=>{
   return axios.post(`/common/getwxjssdk_config?jsurl=${jsurl}`).then(res=>res.data)
 }
+
+//我的流派徽章
+export const mybadge = (userid)=>{
+  return axios.post(`/user/mybadge?userid=${userid}`).then(res=>res.data)
+}
+
+//我学会的菜肴
+export const mydish = (userid)=>{
+  return axios.post(`/user/mydish?userid=${userid}`).then(res=>res.data)
+}
+
+//段位详情
+export const mybadgeinfo= (userid,ufeid)=>{
+  return axios.post(`/user/mybadgeinfo?userid=${userid}&ufeid=${ufeid}`).then(res=>res.data)
+}
+
+//取下段位徽章
+export const badgedown= (userid,ubadgeid)=>{
+  return axios.post(`/user/badgedown?userid=${userid}&ubadgeid=${ubadgeid}`).then(res=>res.data)
+}
+
+//戴上段位徽章
+export const badgeup= (userid,rankid,rankimg)=>{
+  return axios.post(`/user/badgeup?userid=${userid}&rankid=${rankid}&rankimg=${rankimg}`).then(res=>res.data)
+}
+
+//用户展示徽章
+export const userbadge= (userid)=>{
+  return axios.post(`/user/userbadge?userid=${userid}`).then(res=>res.data)
+}
+
+//根据名称获取官方菜谱
+export const getcookbookbyname = ( cookbookname )=>{
+  return axios.post(`/cookbook/getcookbookbyname?cookbookname=${cookbookname}`).then(res=>res.data)
+}
+
+// export const gtok = ()=>{
+//   return axios.post("https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=Nc9dDI61x4AFyhczZ2GIkW9A&client_secret=T7ITcbvA79hDpxAXlEZkNUGvfSkfuQYe").then(res=>res.data)
+// }
+
+// export const yuyin = (tex,cuid,tok,spd,pit,vol,per)=>{
+//   return axios.post(`http://tsn.baidu.com/text2audio?tex=${tex}&lan=zh&cuid=${cuid}&ctp=1&aue=3&tok=${tok}&spd=${spd}&spd=${pit}&vol=${vol}&per=${per}`).then(res=>res)
+// }

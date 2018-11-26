@@ -27,6 +27,7 @@ import conter from '@/components/conter/conter'
 import achieve from '@/components/conter/achieve'
 import badge from '@/components/conter/badge'
 import show from '@/components/conter/show'
+import badshow from '@/components/conter/badshow'
 import myfeed from '@/components/conter/myfeed'
 
 import tast from '@/components/tast/tast'
@@ -71,13 +72,15 @@ let router = new Router({
   // },
 
   routes: [{
-      path: "/home",
+      path: "/",
       name: "home",
       component: Home,
-    }, {
-      path: "/",
-      redirect: 'home',
-    }, {
+    },
+    //  {
+    //   path: "/",
+    //   redirect: 'home',
+    // },
+    {
       path: "/O_recipe/:id",
       name: "O_recipe",
       component: O_recipe,
@@ -175,6 +178,11 @@ let router = new Router({
       component: show
     },
     {
+      path: '/badshow/:id',
+      name: 'badshow',
+      component: badshow
+    },
+    {
       path: '/myfeed/:id',
       name: 'myfeed',
       component: myfeed
@@ -230,36 +238,46 @@ let router = new Router({
 })
 
 // 注册一个全局守卫，作用是在路由跳转前，对路由进行判断，防止未登录的用户跳转到其他需要登录的页面去
-// router.beforeEach((to, from, next) => {
-//   let token = localStorage.getItem('mytoken')
-//   let userphone = localStorage.getItem('myphone')
-//   authlogin(userphone, token).then(res => {
-//     if (res.code == 200) {
-//       localStorage.setItem('mytoken', res.data.token)
-//       localStorage.setItem('myphone', res.data.userphone)
-//       localStorage.setItem('certificationstatus', res.data.certificationstatus)
-//       localStorage.setItem('userid', res.data.userid)
-//       localStorage.setItem('usernickname', res.data.usernickname)
-//       localStorage.setItem('userbirthday', res.data.userbirthday)
-//       localStorage.setItem('usersex', res.data.usersex)
-//       localStorage.setItem('userphoto', res.data.userphoto)
-//       next()
-//     } else {
-//       //如果没有登录，访问非登录页面,则跳转到登录页面
-//       if (to.path !== '/member' && to.path !== '/register') {
-//         next({
-//           path: '/member'
-//         })
-//       }
-//       // if(to.path!=='/register'){
-//       //   next({path: '/member'})
-//       // }
-//       else {
-//         //如果没有登录，但访问的是登录页面,直接进入
-//         next()
-//       }
-//     }
-//   })
-// })
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem('mytoken')
+  let userphone = localStorage.getItem('myphone')
+  authlogin(userphone, token).then(res => {
+    if (res.code == 200) {
+      if(localStorage.getItem('usernickname')=='--') {
+        localStorage.setItem('mytoken', res.data.token)
+        localStorage.setItem('userphoto', '')
+        localStorage.setItem('certificationstatus', res.data.certificationstatus)
+        localStorage.setItem('myphone', res.data.userphone)
+        localStorage.setItem('userid', res.data.userid)
+      }else {
+        localStorage.setItem('mytoken', res.data.token)
+        localStorage.setItem('myphone', res.data.userphone)
+        localStorage.setItem('certificationstatus', res.data.certificationstatus)
+        localStorage.setItem('userid', res.data.userid)
+        localStorage.setItem('usernickname', res.data.usernickname)
+        localStorage.setItem('userbirthday', res.data.userbirthday)
+        localStorage.setItem('usersex', res.data.usersex)
+        localStorage.setItem('userphoto', res.data.userphoto)
+      }
+
+      next()
+    } else {
+      //如果没有登录，访问非登录页面,则跳转到登录页面
+      if (to.path !== '/member' && to.path !== '/register') {
+        next({
+          path: '/member'
+        })
+      }
+      // if(to.path!=='/register'){
+      //   next({path: '/member'})
+      // }
+      else {
+        //如果没有登录，但访问的是登录页面,直接进入
+        next()
+      }
+    }
+  })
+})
+
 
 export default router

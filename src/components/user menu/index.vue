@@ -1,22 +1,22 @@
 <template>
   <div>
     <uheader :value='userlist.ubname'/>
-    <uimg :userlist="userlist"/>
+    <uimg :userlist="userlist" :userbadge="userbadge"/>
     <upart :userlist="userlist"/>
     <ustep :userlist="userlist"/>
-    <look/>
-    <uslider :name='name'/>
+    <look :value='userlist.ubname' :ok='ok'/>
+    <!-- <uslider :name='name'/> -->
   </div>
 </template>
 
 <script>
-import {getuser} from '@/api'
+import {getuser,getcookbookbyname,userbadge} from '@/api'
 import uheader from '../public/header'
 import uimg from './uimg'
 import upart from './upart'
 import ustep from './ustep'
 import look from './look'
-import uslider from '../public/slider'
+// import uslider from '../public/slider'
 export default {
   components: {
     uheader,
@@ -24,13 +24,15 @@ export default {
     upart,
     ustep,
     look,
-    uslider
+    // uslider
   },
   data (){
     return {
       value: '彩椒炒回锅肉',
       name: 'Ta的个人推荐',
-      userlist:[]
+      userlist:[],
+      ok: '',
+      userbadge: ''
     }
   },
   created(){
@@ -39,8 +41,29 @@ export default {
     let userid = localStorage.getItem("userid");
     getuser(cbid,userid).then(res=>{
       this.userlist = res.data
-      console.log(res)
+      // console.log(res)
+
+      getcookbookbyname(res.data.ubname).then(res => {
+        if(res.code==200) {
+            this.ok = true
+
+        }else {
+          this.ok = false
+        }
+        // console.log(this.ok)
+      });
+
+      userbadge(res.data.userid).then(res => {
+      if (res.code == 200) {
+        this.userbadge = res.data;
+      }
+      console.log(res.data)
+    });
+
+
     })
+
+
   },
 }
 </script>
